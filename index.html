@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noel Studio — Diseño Web en Chihuahua</title>
+<meta name="description" content="Noel Studio. Diseño web profesional en Chihuahua. Páginas modernas, rápidas y que generan clientes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --gray-100: #f5f5f5;
+  --gray-200: #e0e0e0;
+  --gray-400: #999999;
+  --gray-600: #555555;
+  --gray-800: #1a1a1a;
+  --gray-900: #0d0d0d;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--black);
+  color: var(--white);
+  line-height: 1.6;
+  cursor: none;
+  overflow-x: hidden;
+}
+
+/* CURSOR */
+.cursor {
+  position: fixed;
+  width: 10px; height: 10px;
+  background: var(--white);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
+}
+.cursor-follower {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: all 0.15s ease;
+}
+.cursor-follower.hover {
+  width: 60px; height: 60px;
+  background: rgba(255,255,255,0.07);
+  border-color: var(--white);
+}
+
+
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.nav-brand {
+  text-decoration: none;
+  display: flex; align-items: center; gap: 1rem;
+}
+.nav-brand img {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+.nav-brand-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.12em;
+  color: var(--white);
+  line-height: 1;
+}
+.nav-links {
+  display: flex; gap: 2.5rem; list-style: none;
+}
+.nav-links a {
+  color: var(--gray-400);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--white); }
+.nav-cta {
+  font-size: 0.8rem; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--black) !important;
+  background: var(--white);
+  padding: 0.6rem 1.4rem;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.nav-cta:hover { opacity: 0.85; }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+.hero-content {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - 6rem);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  z-index: 2;
+}
+.hero-left {
+  flex: 1;
+  min-width: 0;
+}
+.hero-right {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
+.hero-right img {
+  width: 340px;
+  height: 340px;
+  object-fit: cover;
+  border-radius: 16px;
+  mix-blend-mode: screen;
+  display: block;
+  margin: auto;
+}
+.hero-tag {
+  font-size: 0.72rem; color: var(--gray-400);
+  letter-spacing: 0.2em; text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  opacity: 1;
+}
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(5rem, 14vw, 14rem);
+  line-height: 0.88;
+  letter-spacing: -0.01em;
+  position: relative; z-index: 1;
+  overflow: hidden;
+}
+.hero-title .line {
+  display: block;
+  overflow: hidden;
+}
+.hero-title .line span {
+  display: block;
+  transform: translateY(0);
+}
+.hero-sub {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  position: absolute;
+  bottom: 3rem;
+  left: 3rem;
+  right: 3rem;
+  z-index: 2;
+  opacity: 1;
+}
+.hero-sub p {
+  font-size: 0.9rem; color: var(--gray-400);
+  font-weight: 300; max-width: 320px; line-height: 1.7;
+}
+.hero-scroll {
+  display: flex; align-items: center; gap: 0.75rem;
+  font-size: 0.72rem; color: var(--gray-400);
+  letter-spacing: 0.15em; text-transform: uppercase;
+}
+.scroll-line {
+  width: 40px; height: 1px; background: var(--gray-600);
+  position: relative; overflow: hidden;
+}
+.scroll-line::after {
+  content: '';
+  position: absolute; left: -100%; top: 0;
+  width: 100%; height: 100%;
+  background: var(--white);
+  animation: scrollLine 2s ease infinite;
+}
+@keyframes scrollLine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* MARQUEE */
+.marquee-wrap {
+  overflow: hidden;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 1.25rem 0;
+  background: var(--gray-900);
+}
+.marquee-track {
+  display: flex; gap: 3rem;
+  white-space: nowrap;
+  animation: marquee 20s linear infinite;
+}
+.marquee-track span {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem; letter-spacing: 0.15em;
+  color: var(--gray-600);
+  flex-shrink: 0;
+}
+.marquee-track span.dot {
+  color: var(--white);
+  font-size: 0.5rem;
+  align-self: center;
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* SERVICES */
+#servicios {
+  padding: 8rem 3rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.section-header {
+  display: flex; justify-content: space-between;
+  align-items: flex-end; margin-bottom: 5rem;
+}
+.section-num {
+  font-size: 0.72rem; color: var(--gray-600);
+  letter-spacing: 0.2em; font-weight: 500;
+}
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  letter-spacing: 0.02em; line-height: 1;
+  overflow: hidden;
+}
+.section-title span { display: block; }
+.section-desc {
+  font-size: 0.875rem; color: var(--gray-400);
+  max-width: 280px; line-height: 1.8; font-weight: 300;
+  text-align: right;
+}
+.services-list { display: flex; flex-direction: column; }
+.service-item {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  align-items: center; gap: 2rem;
+  padding: 2.25rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  cursor: default;
+  transition: padding-left 0.4s ease;
+  overflow: hidden;
+}
+.service-item:hover { padding-left: 1rem; }
+.service-item:hover .service-arrow { opacity: 1; transform: rotate(-45deg); }
+.service-num {
+  font-size: 0.72rem; color: var(--gray-600);
+  letter-spacing: 0.15em; font-weight: 500;
+}
+.service-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+  letter-spacing: 0.04em; color: var(--white);
+}
+.service-tag {
+  font-size: 0.72rem; color: var(--gray-600);
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.service-arrow {
+  font-size: 1.5rem; color: var(--white);
+  opacity: 0; transition: opacity 0.3s, transform 0.3s;
+  transform: rotate(0deg);
+}
+
+/* PORTFOLIO */
+#portafolio {
+  padding: 8rem 3rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 5rem;
+}
+.portfolio-item {
+  position: relative; overflow: hidden;
+  border-radius: 4px;
+  cursor: none;
+  aspect-ratio: 4/3;
+  background: var(--gray-900);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.portfolio-item:first-child {
+  grid-column: 1 / -1;
+  aspect-ratio: 16/7;
+}
+.portfolio-thumb {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease, filter 0.4s ease;
+  filter: grayscale(30%);
+}
+.portfolio-item:hover .portfolio-thumb {
+  transform: scale(1.05);
+  filter: grayscale(0%);
+}
+.portfolio-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+  display: flex; flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+.portfolio-item:hover .portfolio-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+.portfolio-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem; letter-spacing: 0.05em;
+}
+.portfolio-type {
+  font-size: 0.72rem; color: var(--gray-400);
+  letter-spacing: 0.15em; text-transform: uppercase;
+  margin-top: 0.25rem;
+}
+.portfolio-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 1rem;
+}
+.portfolio-placeholder-icon {
+  width: 60px; height: 60px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.portfolio-placeholder-icon svg {
+  width: 24px; height: 24px;
+  stroke: var(--gray-600); fill: none;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.portfolio-placeholder span {
+  font-size: 0.72rem; color: var(--gray-600);
+  letter-spacing: 0.15em; text-transform: uppercase;
+}
+.portfolio-placeholder.featured {
+  flex-direction: row; gap: 3rem;
+}
+.portfolio-placeholder.featured .portfolio-placeholder-icon {
+  width: 100px; height: 100px;
+}
+.portfolio-placeholder.featured .portfolio-placeholder-icon svg {
+  width: 40px; height: 40px;
+}
+.portfolio-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem; letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.1);
+}
+
+/* PRICING */
+#precios {
+  padding: 8rem 3rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin-top: 5rem;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.pricing-card {
+  background: var(--gray-900);
+  padding: 2.5rem 2rem;
+  position: relative;
+  transition: background 0.3s;
+}
+.pricing-card:hover { background: var(--gray-800); }
+.pricing-card.featured {
+  background: var(--white);
+  color: var(--black);
+}
+.pricing-card.featured .pricing-desc,
+.pricing-card.featured .pricing-feature { color: var(--gray-600); }
+.pricing-card.featured .pricing-feature::before { background: var(--black); }
+.pricing-tag {
+  font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gray-600); margin-bottom: 2rem; display: block;
+}
+.pricing-card.featured .pricing-tag { color: var(--gray-400); }
+.pricing-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem; letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+.pricing-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3.5rem; letter-spacing: 0.02em;
+  line-height: 1;
+}
+.pricing-price sup {
+  font-size: 1.2rem; vertical-align: top;
+  margin-top: 0.5rem; display: inline-block;
+}
+.pricing-currency {
+  font-size: 0.72rem; color: var(--gray-400);
+  letter-spacing: 0.1em; margin-bottom: 2rem;
+  display: block; margin-top: 0.25rem;
+}
+.pricing-desc {
+  font-size: 0.825rem; color: var(--gray-400);
+  line-height: 1.7; font-weight: 300;
+  margin-bottom: 2rem;
+}
+.pricing-features {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+.pricing-feature {
+  font-size: 0.825rem; color: var(--gray-400);
+  display: flex; align-items: center; gap: 0.75rem;
+  font-weight: 300;
+}
+.pricing-feature::before {
+  content: '';
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--gray-600); flex-shrink: 0;
+}
+.btn-pricing {
+  display: block; width: 100%;
+  padding: 0.9rem;
+  text-align: center;
+  font-size: 0.8rem; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.btn-pricing-outline {
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--white);
+}
+.btn-pricing-outline:hover {
+  background: rgba(255,255,255,0.05);
+  border-color: var(--white);
+}
+.btn-pricing-solid {
+  background: var(--black);
+  color: var(--white);
+  border: 1px solid var(--black);
+}
+.btn-pricing-solid:hover { background: var(--gray-800); }
+
+/* CONTACT */
+#contacto {
+  padding: 8rem 3rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  position: relative; overflow: hidden;
+}
+.contact-bg-text {
+  position: absolute;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(8rem, 20vw, 18rem);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.04);
+  bottom: -2rem; right: -1rem;
+  pointer-events: none; user-select: none;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem; align-items: center;
+  position: relative; z-index: 1;
+}
+.contact-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 7vw, 6rem);
+  letter-spacing: 0.02em; line-height: 0.95;
+  margin-bottom: 2rem;
+}
+.contact-title em {
+  font-style: normal;
+  color: var(--gray-600);
+}
+.contact-info { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2.5rem; }
+.contact-info-item {
+  display: flex; flex-direction: column; gap: 0.2rem;
+}
+.contact-info-label {
+  font-size: 0.65rem; color: var(--gray-600);
+  letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;
+}
+.contact-info-value {
+  font-size: 1.1rem; color: var(--white); font-weight: 300;
+}
+.contact-info-value a {
+  color: var(--white); text-decoration: none;
+  transition: color 0.2s;
+}
+.contact-info-value a:hover { color: var(--gray-400); }
+.contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
+.form-field {
+  display: flex; flex-direction: column; gap: 0.5rem;
+}
+.form-field label {
+  font-size: 0.65rem; color: var(--gray-600);
+  letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;
+}
+.form-field input,
+.form-field textarea {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  padding: 0.875rem 1rem;
+  color: var(--white);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem; font-weight: 300;
+  outline: none;
+  transition: border-color 0.3s;
+  width: 100%;
+}
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: rgba(255,255,255,0.4);
+}
+.form-field textarea { resize: none; height: 120px; }
+.btn-submit {
+  display: flex; align-items: center; gap: 0.75rem;
+  background: var(--white); color: var(--black);
+  border: none; cursor: none;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.875rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 1rem 2rem; border-radius: 4px;
+  align-self: flex-start;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.btn-submit:hover { opacity: 0.85; transform: translateY(-2px); }
+.btn-submit svg {
+  width: 16px; height: 16px;
+  transition: transform 0.3s;
+}
+.btn-submit:hover svg { transform: translateX(4px); }
+
+/* WHATSAPP */
+.wa-float {
+  position: fixed; bottom: 2rem; right: 2rem;
+  z-index: 500;
+  width: 52px; height: 52px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.wa-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 30px rgba(37,211,102,0.5);
+}
+.wa-float svg { width: 26px; height: 26px; fill: #fff; }
+
+/* FOOTER */
+footer {
+  padding: 3rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem; letter-spacing: 0.12em;
+}
+.footer-copy {
+  font-size: 0.75rem; color: var(--gray-600);
+  letter-spacing: 0.08em;
+}
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(40px); }
+
+/* MOBILE */
+@media (max-width: 768px) {
+  nav { padding: 1.25rem 1.5rem; }
+  .nav-links { display: none; }
+  .nav-brand-name { font-size: 1.2rem; }
+  .hero { min-height: 100vh; }
+  .hero-content {
+    flex-direction: column;
+    top: 50%;
+    width: calc(100% - 3rem);
+    gap: 1.5rem;
+    text-align: center;
+    align-items: center;
+  }
+  .hero-right img { width: 160px; height: 160px; }
+  .hero-title { font-size: clamp(4rem, 18vw, 6rem); }
+  .hero-sub {
+    flex-direction: column; align-items: flex-start; gap: 1rem;
+    left: 1.5rem; right: 1.5rem; bottom: 1.5rem;
+  }
+  #servicios, #portafolio, #precios, #contacto { padding: 5rem 1.5rem; }
+  .section-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .section-desc { text-align: left; max-width: 100%; }
+  .service-item { grid-template-columns: 60px 1fr; }
+  .service-tag, .service-arrow { display: none; }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .portfolio-item:first-child { aspect-ratio: 4/3; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+  footer { flex-direction: column; gap: 1rem; text-align: center; }
+  body { cursor: auto; }
+  .cursor, .cursor-follower { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursorFollower"></div>
+
+<div class="preloader-line" id="preloaderLine"></div>
+  <div class="preloader-count" id="preloaderCount">0%</div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#portafolio">Portafolio</a></li>
+    <li><a href="#precios">Precios</a></li>
+    <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+  </ul>
+  <a href="#" class="nav-brand">
+    <span class="nav-brand-name">NOEL STUDIO</span>
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-tag" id="heroTag">— Diseño Web · Chihuahua, México</div>
+      <h1 class="hero-title">
+        <div class="line"><span>NOEL</span></div>
+        <div class="line"><span>STUDIO</span></div>
+      </h1>
+    </div>
+    <div class="hero-right">
+    <img src="data:image/jpeg;base64,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" alt="Noel Studio">
+  </div>
+  </div>
+  <div class="hero-sub" id="heroSub">
+    <p>Creamos páginas web que convierten visitantes en clientes. Diseño premium para negocios en Chihuahua.</p>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      Scroll
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>DISEÑO WEB</span><span class="dot">●</span>
+    <span>SEO</span><span class="dot">●</span>
+    <span>CHIHUAHUA</span><span class="dot">●</span>
+    <span>LANDING PAGES</span><span class="dot">●</span>
+    <span>E-COMMERCE</span><span class="dot">●</span>
+    <span>BRANDING</span><span class="dot">●</span>
+    <span>DISEÑO WEB</span><span class="dot">●</span>
+    <span>SEO</span><span class="dot">●</span>
+    <span>CHIHUAHUA</span><span class="dot">●</span>
+    <span>LANDING PAGES</span><span class="dot">●</span>
+    <span>E-COMMERCE</span><span class="dot">●</span>
+    <span>BRANDING</span><span class="dot">●</span>
+    <span>DISEÑO WEB</span><span class="dot">●</span>
+    <span>SEO</span><span class="dot">●</span>
+    <span>CHIHUAHUA</span><span class="dot">●</span>
+    <span>LANDING PAGES</span><span class="dot">●</span>
+    <span>E-COMMERCE</span><span class="dot">●</span>
+    <span>BRANDING</span><span class="dot">●</span>
+  </div>
+</div>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="section-header">
+    <div>
+      <div class="section-num">01</div>
+      <h2 class="section-title reveal"><span>LO QUE</span><span>HAGO</span></h2>
+    </div>
+    <p class="section-desc reveal">Cada proyecto es una solución a medida, diseñada para que tu negocio crezca en internet.</p>
+  </div>
+  <div class="services-list">
+    <div class="service-item reveal">
+      <span class="service-num">01</span>
+      <span class="service-name">Landing Page</span>
+      <span class="service-tag">Desde $7,000 MXN</span>
+      <span class="service-arrow">↗</span>
+    </div>
+    <div class="service-item reveal">
+      <span class="service-num">02</span>
+      <span class="service-name">Sitio Web Completo</span>
+      <span class="service-tag">Desde $12,000 MXN</span>
+      <span class="service-arrow">↗</span>
+    </div>
+    <div class="service-item reveal">
+      <span class="service-num">03</span>
+      <span class="service-name">Tienda en Línea</span>
+      <span class="service-tag">Desde $18,000 MXN</span>
+      <span class="service-arrow">↗</span>
+    </div>
+    <div class="service-item reveal">
+      <span class="service-num">04</span>
+      <span class="service-name">SEO & Posicionamiento</span>
+      <span class="service-tag">Desde $3,000/mes MXN</span>
+      <span class="service-arrow">↗</span>
+    </div>
+  </div>
+</section>
+
+<!-- PORTAFOLIO -->
+<section id="portafolio">
+  <div class="section-header">
+    <div>
+      <div class="section-num">02</div>
+      <h2 class="section-title reveal"><span>PROYECTOS</span></h2>
+    </div>
+    <p class="section-desc reveal">Trabajo real, resultados reales para negocios en Chihuahua.</p>
+  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-item reveal" style="grid-column: 1 / -1; aspect-ratio: 16/7;">
+      <div class="portfolio-placeholder featured">
+        <div class="portfolio-placeholder-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <div>
+          <div class="portfolio-label">MONTES TIRE CENTER</div>
+          <span style="font-size:0.72rem;color:var(--gray-600);letter-spacing:0.15em;text-transform:uppercase;">Llantera · Chihuahua · 2025</span>
+        </div>
+      </div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-name">Montes Tire Center</div>
+        <div class="portfolio-type">Landing Page · Llantera</div>
+      </div>
+    </div>
+  </div>
+  <p class="section-desc reveal" style="margin-top: 2rem; max-width:100%; text-align:center; color: var(--gray-600);">
+    Más proyectos próximamente — ¿quieres ser el siguiente?
+  </p>
+</section>
+
+<!-- PRECIOS -->
+<section id="precios">
+  <div class="section-header">
+    <div>
+      <div class="section-num">03</div>
+      <h2 class="section-title reveal"><span>PRECIOS</span><span>CLAROS</span></h2>
+    </div>
+    <p class="section-desc reveal">Sin sorpresas. Sabes exactamente qué incluye cada paquete.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card reveal">
+      <span class="pricing-tag">Básico</span>
+      <div class="pricing-name">Starter</div>
+      <div class="pricing-price"><sup>$</sup>7,000</div>
+      <span class="pricing-currency">MXN · pago único</span>
+      <p class="pricing-desc">Para negocios que necesitan presencia web rápida y profesional.</p>
+      <ul class="pricing-features">
+        <li class="pricing-feature">Página de 1 sección</li>
+        <li class="pricing-feature">Diseño mobile-first</li>
+        <li class="pricing-feature">Botón de WhatsApp</li>
+        <li class="pricing-feature">Entrega en 5 días</li>
+      </ul>
+      <a href="https://wa.me/526142251419" class="btn-pricing btn-pricing-outline">Cotizar</a>
+    </div>
+    <div class="pricing-card featured reveal">
+      <span class="pricing-tag">⭐ Más Popular</span>
+      <div class="pricing-name">Pro</div>
+      <div class="pricing-price"><sup>$</sup>12,000</div>
+      <span class="pricing-currency">MXN · pago único</span>
+      <p class="pricing-desc">El paquete completo para negocios que quieren destacar en Chihuahua.</p>
+      <ul class="pricing-features">
+        <li class="pricing-feature">Sitio multipágina</li>
+        <li class="pricing-feature">SEO optimizado</li>
+        <li class="pricing-feature">Formulario de contacto</li>
+        <li class="pricing-feature">Google Maps integrado</li>
+        <li class="pricing-feature">Dominio + hosting incluido</li>
+        <li class="pricing-feature">Entrega en 10 días</li>
+      </ul>
+      <a href="https://wa.me/526142251419" class="btn-pricing btn-pricing-solid">Cotizar</a>
+    </div>
+    <div class="pricing-card reveal">
+      <span class="pricing-tag">Premium</span>
+      <div class="pricing-name">Studio</div>
+      <div class="pricing-price"><sup>$</sup>20,000</div>
+      <span class="pricing-currency">MXN · pago único</span>
+      <p class="pricing-desc">Para empresas que quieren una experiencia web de nivel internacional.</p>
+      <ul class="pricing-features">
+        <li class="pricing-feature">Diseño personalizado</li>
+        <li class="pricing-feature">Animaciones premium</li>
+        <li class="pricing-feature">Tienda en línea</li>
+        <li class="pricing-feature">Panel de administración</li>
+        <li class="pricing-feature">Soporte 3 meses</li>
+        <li class="pricing-feature">Entrega en 21 días</li>
+      </ul>
+      <a href="https://wa.me/526142251419" class="btn-pricing btn-pricing-outline">Cotizar</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="contact-bg-text">HOLA</div>
+  <div class="contact-inner">
+    <div>
+      <div class="section-num">04</div>
+      <h2 class="contact-title reveal">
+        ¿LISTO<br>PARA<br><em>CRECER?</em>
+      </h2>
+      <div class="contact-info">
+        <div class="contact-info-item">
+          <span class="contact-info-label">Teléfono / WhatsApp</span>
+          <span class="contact-info-value">
+            <a href="https://wa.me/526142251419">614 225 1419</a>
+          </span>
+        </div>
+        <div class="contact-info-item">
+          <span class="contact-info-label">Ubicación</span>
+          <span class="contact-info-value">Chihuahua, México</span>
+        </div>
+        <div class="contact-info-item">
+          <span class="contact-info-label">Disponibilidad</span>
+          <span class="contact-info-value">Lun – Sáb · 9am – 7pm</span>
+        </div>
+      </div>
+      <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20una%20p%C3%A1gina%20web"
+         class="btn-submit" style="cursor:none;">
+        Escribir por WhatsApp
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+    <form class="contact-form reveal" onsubmit="sendWhatsApp(event)">
+      <div class="form-field">
+        <label>Tu nombre</label>
+        <input type="text" id="fname" placeholder="Nombre completo" required>
+      </div>
+      <div class="form-field">
+        <label>Tu negocio</label>
+        <input type="text" id="fbusiness" placeholder="Nombre de tu negocio">
+      </div>
+      <div class="form-field">
+        <label>¿Qué necesitas?</label>
+        <textarea id="fmessage" placeholder="Cuéntame sobre tu proyecto..."></textarea>
+      </div>
+      <button type="submit" class="btn-submit">
+        Enviar mensaje
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">NOEL STUDIO</div>
+  <div class="footer-copy">© 2025 · Chihuahua, México</div>
+</footer>
+
+<!-- WhatsApp flotante -->
+<a href="https://wa.me/526142251419" class="wa-float" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// CURSOR
+const cursor = document.getElementById('cursor');
+const follower = document.getElementById('cursorFollower');
+let mx = 0, my = 0, fx = 0, fy = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx + 'px';
+  cursor.style.top = my + 'px';
+});
+
+function animFollower() {
+  fx += (mx - fx) * 0.12;
+  fy += (my - fy) * 0.12;
+  follower.style.left = fx + 'px';
+  follower.style.top = fy + 'px';
+  requestAnimationFrame(animFollower);
+}
+animFollower();
+
+document.querySelectorAll('a, button, .service-item, .portfolio-item, .pricing-card').forEach(el => {
+  el.addEventListener('mouseenter', () => follower.classList.add('hover'));
+  el.addEventListener('mouseleave', () => follower.classList.remove('hover'));
+});
+
+// PRELOADER
+window.addEventListener('load', () => {
+  const word = document.getElementById('preloaderWord');
+  const line = document.getElementById('preloaderLine');
+  const count = document.getElementById('preloaderCount');
+
+  gsap.to(word, { y: 0, duration: 0.8, ease: 'power3.out', delay: 0.2,
+    onStart: () => { word.style.transform = 'translateY(100%)'; gsap.to(word, { transform: 'translateY(0)', duration: 0.8, ease: 'power3.out' }); }
+  });
+
+  let pct = 0;
+  const interval = setInterval(() => {
+    pct += Math.random() * 15;
+    if (pct >= 100) { pct = 100; clearInterval(interval); finishPreloader(); }
+    line.style.width = pct + '%';
+    count.textContent = Math.floor(pct) + '%';
+  }, 80);
+
+  function finishPreloader() {
+    gsap.to('#preloader', {
+      yPercent: -100, duration: 1, ease: 'power4.inOut', delay: 0.3,
+      onComplete: () => {
+        document.getElementById('preloader').style.display = 'none';
+        startHeroAnim();
+      }
+    });
+  }
+});
+
+
+
+// SCROLL REVEALS
+gsap.registerPlugin(ScrollTrigger);
+document.querySelectorAll('.reveal').forEach(el => {
+  gsap.to(el, {
+    opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
+    scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+  });
+});
+
+// HERO CANVAS — partículas
+const canvas = document.getElementById('heroCanvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+class Particle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 1.5 + 0.5;
+    this.speedX = (Math.random() - 0.5) * 0.3;
+    this.speedY = (Math.random() - 0.5) * 0.3;
+    this.opacity = Math.random() * 0.4 + 0.05;
+  }
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,255,255,${this.opacity})`;
+    ctx.fill();
+  }
+}
+
+for (let i = 0; i < 80; i++) particles.push(new Particle());
+
+function animParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => { p.update(); p.draw(); });
+  // Líneas entre partículas cercanas
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 100) {
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.strokeStyle = `rgba(255,255,255,${0.05 * (1 - dist/100)})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(animParticles);
+}
+animParticles();
+
+// Mouse influence on particles
+document.addEventListener('mousemove', e => {
+  particles.forEach(p => {
+    const dx = e.clientX - p.x;
+    const dy = e.clientY - p.y;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    if (dist < 120) {
+      p.x -= dx * 0.008;
+      p.y -= dy * 0.008;
+    }
+  });
+});
+
+// WHATSAPP FORM
+function sendWhatsApp(e) {
+  e.preventDefault();
+  const name = document.getElementById('fname').value;
+  const business = document.getElementById('fbusiness').value;
+  const message = document.getElementById('fmessage').value;
+  const text = `Hola, soy ${name}${business ? ' de ' + business : ''}. ${message || 'Me interesa una página web.'}`;
+  window.open(`https://wa.me/526142251419?text=${encodeURIComponent(text)}`, '_blank');
+}
+</script>
+</body>
+</html>
