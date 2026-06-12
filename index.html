@@ -4,8 +4,46 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Noel Studio — Diseño Web en Chihuahua</title>
-<meta name="description" content="Noel Studio. Diseño web profesional en Chihuahua. Páginas modernas, rápidas y que generan clientes.">
+<meta name="description" content="Noel Studio. Diseño web profesional en Chihuahua. Páginas modernas, rápidas y que generan clientes. Te explico todo sin tecnicismos.">
+<meta name="theme-color" content="#000000">
+
+<!-- Para que se vea bien al compartir por WhatsApp, Facebook, etc. -->
+<!-- Cuando tengas dominio propio (ej. noelstudio.com), cambia estas URLs por las nuevas -->
+<meta property="og:title" content="Noel Studio — Diseño Web en Chihuahua">
+<meta property="og:description" content="Páginas web profesionales para negocios en Chihuahua. Precios claros, todo explicado sin tecnicismos.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://raul2601199-maker.github.io/noel-studio/">
+<meta property="og:image" content="https://raul2601199-maker.github.io/noel-studio/assets/logo.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Ícono de la pestaña del navegador -->
+<link rel="icon" href="assets/logo.jpg" type="image/jpeg">
+<link rel="apple-touch-icon" href="assets/logo.jpg">
+
+<!-- Datos estructurados: le dicen a Google que eres un negocio local -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Noel Studio",
+  "url": "https://raul2601199-maker.github.io/noel-studio/",
+  "description": "Diseño de páginas web profesionales para negocios en Chihuahua, México.",
+  "telephone": "+526142251419",
+  "email": "raulparracarrillo07@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Chihuahua",
+    "addressRegion": "Chihuahua",
+    "addressCountry": "MX"
+  },
+  "areaServed": "Chihuahua, México",
+  "priceRange": "$7,000 - $20,000 MXN"
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -90,7 +128,9 @@ nav {
   letter-spacing: 0.12em;
   color: var(--white);
   line-height: 1;
+  white-space: nowrap;
 }
+.nav-brand { flex-shrink: 0; }
 .nav-links {
   display: flex; gap: 2.5rem; list-style: none;
 }
@@ -102,6 +142,13 @@ nav {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   transition: color 0.3s;
+  white-space: nowrap;
+}
+@media (max-width: 1100px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1.25rem; }
+  .nav-links a { font-size: 0.7rem; }
+  .nav-brand-name { font-size: 1.2rem; }
 }
 .nav-links a:hover { color: var(--white); }
 .nav-cta {
@@ -279,7 +326,7 @@ nav {
 .services-list { display: flex; flex-direction: column; }
 .service-item {
   display: grid;
-  grid-template-columns: 80px 1fr auto;
+  grid-template-columns: 80px 1fr auto auto;
   align-items: center; gap: 2rem;
   padding: 2.25rem 0;
   border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -301,6 +348,11 @@ nav {
 .service-tag {
   font-size: 0.72rem; color: var(--gray-600);
   letter-spacing: 0.1em; text-transform: uppercase;
+}
+.service-desc {
+  font-size: 0.85rem; color: var(--gray-400);
+  font-weight: 300; line-height: 1.6;
+  max-width: 540px; margin-top: 0.4rem;
 }
 .service-arrow {
   font-size: 1.5rem; color: var(--white);
@@ -497,6 +549,77 @@ nav {
 }
 .btn-pricing-solid:hover { background: var(--gray-800); }
 
+/* PROCESO */
+#proceso {
+  padding: 8rem 3rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3rem 2rem;
+  margin-top: 5rem;
+}
+.process-step {
+  position: relative;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+.process-step-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem; line-height: 1;
+  color: var(--gray-600);
+  margin-bottom: 1rem;
+}
+.process-step-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem; letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+.process-step p {
+  font-size: 0.85rem; color: var(--gray-400);
+  font-weight: 300; line-height: 1.7;
+}
+
+/* PREGUNTAS FRECUENTES */
+#preguntas {
+  padding: 8rem 3rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.faq-list {
+  margin-top: 5rem;
+  max-width: 820px;
+}
+.faq-item {
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.faq-item summary {
+  list-style: none;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 2rem;
+  padding: 1.75rem 0;
+  font-size: 1.05rem; font-weight: 400;
+  color: var(--white);
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary:hover { color: var(--gray-200); }
+.faq-item summary::after {
+  content: '+';
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem; color: var(--gray-600);
+  flex-shrink: 0;
+  transition: transform 0.3s;
+}
+.faq-item[open] summary::after { transform: rotate(45deg); color: var(--white); }
+.faq-item p {
+  font-size: 0.9rem; color: var(--gray-400);
+  font-weight: 300; line-height: 1.8;
+  padding-bottom: 1.75rem;
+  max-width: 680px;
+}
+
 /* CONTACT */
 #contacto {
   padding: 8rem 3rem;
@@ -626,6 +749,13 @@ footer {
 /* REVEAL */
 .reveal { opacity: 0; transform: translateY(40px); }
 
+/* Menos animación para quien lo tiene configurado así en su dispositivo */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .marquee-track { animation: none; }
+  .scroll-line::after { animation: none; }
+}
+
 /* MOBILE */
 @media (max-width: 768px) {
   nav { padding: 1.25rem 1.5rem; }
@@ -646,11 +776,12 @@ footer {
     flex-direction: column; align-items: flex-start; gap: 1rem;
     left: 1.5rem; right: 1.5rem; bottom: 1.5rem;
   }
-  #servicios, #portafolio, #precios, #contacto { padding: 5rem 1.5rem; }
+  #servicios, #proceso, #portafolio, #precios, #preguntas, #contacto { padding: 5rem 1.5rem; }
   .section-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
   .section-desc { text-align: left; max-width: 100%; }
   .service-item { grid-template-columns: 60px 1fr; }
   .service-tag, .service-arrow { display: none; }
+  .process-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .portfolio-grid { grid-template-columns: 1fr; }
   .portfolio-item:first-child { aspect-ratio: 4/3; }
   .pricing-grid { grid-template-columns: 1fr; }
@@ -667,16 +798,14 @@ footer {
 <div class="cursor" id="cursor"></div>
 <div class="cursor-follower" id="cursorFollower"></div>
 
-<div class="preloader-line" id="preloaderLine"></div>
-  <div class="preloader-count" id="preloaderCount">0%</div>
-</div>
-
 <!-- NAV -->
 <nav id="navbar">
   <ul class="nav-links">
     <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#proceso">Cómo trabajo</a></li>
     <li><a href="#portafolio">Portafolio</a></li>
     <li><a href="#precios">Precios</a></li>
+    <li><a href="#preguntas">Preguntas</a></li>
     <li><a href="#contacto" class="nav-cta">Contacto</a></li>
   </ul>
   <a href="#" class="nav-brand">
@@ -700,7 +829,7 @@ footer {
   </div>
   </div>
   <div class="hero-sub" id="heroSub">
-    <p>Creamos páginas web que convierten visitantes en clientes. Diseño premium para negocios en Chihuahua.</p>
+    <p>Creo páginas web que convierten visitantes en clientes. Diseño premium para negocios en Chihuahua.</p>
     <div class="hero-scroll">
       <div class="scroll-line"></div>
       Scroll
@@ -744,27 +873,72 @@ footer {
   <div class="services-list">
     <div class="service-item reveal">
       <span class="service-num">01</span>
-      <span class="service-name">Landing Page</span>
+      <div>
+        <span class="service-name">Página de Presentación</span>
+        <p class="service-desc">Una sola página con todo lo importante de tu negocio: qué haces, fotos de tu trabajo, dónde estás y un botón para que te escriban directo al WhatsApp. Ideal para empezar.</p>
+      </div>
       <span class="service-tag">Desde $7,000 MXN</span>
       <span class="service-arrow">↗</span>
     </div>
     <div class="service-item reveal">
       <span class="service-num">02</span>
-      <span class="service-name">Sitio Web Completo</span>
+      <div>
+        <span class="service-name">Sitio Web Completo</span>
+        <p class="service-desc">Varias páginas conectadas: inicio, servicios, quiénes somos y contacto. Incluye herramientas para tu negocio, como un inventario bien organizado de tus productos. Para negocios que quieren verse grandes y profesionales en internet.</p>
+      </div>
       <span class="service-tag">Desde $12,000 MXN</span>
       <span class="service-arrow">↗</span>
     </div>
     <div class="service-item reveal">
       <span class="service-num">03</span>
-      <span class="service-name">Tienda en Línea</span>
+      <div>
+        <span class="service-name">Tienda en Línea</span>
+        <p class="service-desc">Tus productos en internet con carrito de compras y pagos seguros. Tus clientes te compran a cualquier hora, aunque la tienda física esté cerrada.</p>
+      </div>
       <span class="service-tag">Desde $18,000 MXN</span>
       <span class="service-arrow">↗</span>
     </div>
     <div class="service-item reveal">
       <span class="service-num">04</span>
-      <span class="service-name">SEO & Posicionamiento</span>
+      <div>
+        <span class="service-name">Aparecer en Google</span>
+        <p class="service-desc">Trabajo tu página cada mes para que cuando alguien busque en Google lo que tú vendes en Chihuahua, tu negocio salga entre los primeros. (A esto se le llama SEO.)</p>
+      </div>
       <span class="service-tag">Desde $3,000/mes MXN</span>
       <span class="service-arrow">↗</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section id="proceso">
+  <div class="section-header">
+    <div>
+      <div class="section-num">02</div>
+      <h2 class="section-title reveal"><span>CÓMO</span><span>TRABAJO</span></h2>
+    </div>
+    <p class="section-desc reveal">Sin letras chiquitas. Así es el camino desde que me escribes hasta que tu página está funcionando.</p>
+  </div>
+  <div class="process-grid">
+    <div class="process-step reveal">
+      <div class="process-step-num">01</div>
+      <div class="process-step-title">PLATICAMOS</div>
+      <p>Me escribes por WhatsApp y me cuentas de tu negocio. Como una plática normal, sin palabras técnicas.</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="process-step-num">02</div>
+      <div class="process-step-title">TE PROPONGO</div>
+      <p>Te explico qué le conviene a tu negocio, qué incluye exactamente y cuánto cuesta. Todo claro antes de empezar, sin sorpresas.</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="process-step-num">03</div>
+      <div class="process-step-title">LA CONSTRUYO</div>
+      <p>Diseño y armo tu página. Te voy mostrando avances para que quede exactamente como tú la quieres.</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="process-step-num">04</div>
+      <div class="process-step-title">TE LA ENTREGO</div>
+      <p>Tu página queda en línea funcionando. Te explico cómo usarla y quedo al pendiente por si necesitas algo.</p>
     </div>
   </div>
 </section>
@@ -773,30 +947,22 @@ footer {
 <section id="portafolio">
   <div class="section-header">
     <div>
-      <div class="section-num">02</div>
+      <div class="section-num">03</div>
       <h2 class="section-title reveal"><span>PROYECTOS</span></h2>
     </div>
     <p class="section-desc reveal">Trabajo real, resultados reales para negocios en Chihuahua.</p>
   </div>
   <div class="portfolio-grid">
-    <div class="portfolio-item reveal" style="grid-column: 1 / -1; aspect-ratio: 16/7;">
-      <div class="portfolio-placeholder featured">
-        <div class="portfolio-placeholder-icon">
-          <svg viewBox="0 0 24 24" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-        </div>
-        <div>
-          <div class="portfolio-label">MONTES TIRE CENTER</div>
-          <span style="font-size:0.72rem;color:var(--gray-600);letter-spacing:0.15em;text-transform:uppercase;">Llantera · Chihuahua · 2025</span>
-        </div>
-      </div>
+    <a href="https://tirecentermontes.com/" target="_blank" rel="noopener" class="portfolio-item reveal" style="grid-column: 1 / -1; aspect-ratio: 16/7; text-decoration: none; color: inherit;">
+      <img class="portfolio-thumb" src="assets/portafolio-tirecenter.jpg" alt="Página web de Montes Tire Center, llantera en Chihuahua" loading="lazy">
       <div class="portfolio-overlay">
         <div class="portfolio-name">Montes Tire Center</div>
-        <div class="portfolio-type">Landing Page · Llantera</div>
+        <div class="portfolio-type">tirecentermontes.com · Llantera · Chihuahua</div>
       </div>
-    </div>
+    </a>
   </div>
   <p class="section-desc reveal" style="margin-top: 2rem; max-width:100%; text-align:center; color: var(--gray-600);">
-    Más proyectos próximamente — ¿quieres ser el siguiente?
+    Más proyectos próximamente — <a href="https://wa.me/526142251419?text=Hola,%20quiero%20que%20mi%20negocio%20sea%20tu%20siguiente%20proyecto" style="color:var(--white);">¿quieres ser el siguiente?</a>
   </p>
 </section>
 
@@ -804,7 +970,7 @@ footer {
 <section id="precios">
   <div class="section-header">
     <div>
-      <div class="section-num">03</div>
+      <div class="section-num">04</div>
       <h2 class="section-title reveal"><span>PRECIOS</span><span>CLAROS</span></h2>
     </div>
     <p class="section-desc reveal">Sin sorpresas. Sabes exactamente qué incluye cada paquete.</p>
@@ -817,9 +983,10 @@ footer {
       <span class="pricing-currency">MXN · pago único</span>
       <p class="pricing-desc">Para negocios que necesitan presencia web rápida y profesional.</p>
       <ul class="pricing-features">
-        <li class="pricing-feature">Página de 1 sección</li>
-        <li class="pricing-feature">Diseño mobile-first</li>
-        <li class="pricing-feature">Botón de WhatsApp</li>
+        <li class="pricing-feature">Una página completa de presentación</li>
+        <li class="pricing-feature">Se ve perfecta en celular</li>
+        <li class="pricing-feature">Botón directo a tu WhatsApp</li>
+        <li class="pricing-feature">Te ayudo con tus textos y fotos</li>
         <li class="pricing-feature">Entrega en 5 días</li>
       </ul>
       <a href="https://wa.me/526142251419" class="btn-pricing btn-pricing-outline">Cotizar</a>
@@ -831,11 +998,12 @@ footer {
       <span class="pricing-currency">MXN · pago único</span>
       <p class="pricing-desc">El paquete completo para negocios que quieren destacar en Chihuahua.</p>
       <ul class="pricing-features">
-        <li class="pricing-feature">Sitio multipágina</li>
-        <li class="pricing-feature">SEO optimizado</li>
-        <li class="pricing-feature">Formulario de contacto</li>
-        <li class="pricing-feature">Google Maps integrado</li>
-        <li class="pricing-feature">Dominio + hosting incluido</li>
+        <li class="pricing-feature">Varias páginas: inicio, servicios, contacto…</li>
+        <li class="pricing-feature">Inventario de tus productos, bien organizado</li>
+        <li class="pricing-feature">Preparada para aparecer en Google</li>
+        <li class="pricing-feature">Formulario para que te escriban</li>
+        <li class="pricing-feature">Mapa con la ubicación de tu negocio</li>
+        <li class="pricing-feature">Tu dirección .com y hospedaje incluidos</li>
         <li class="pricing-feature">Entrega en 10 días</li>
       </ul>
       <a href="https://wa.me/526142251419" class="btn-pricing btn-pricing-solid">Cotizar</a>
@@ -847,15 +1015,59 @@ footer {
       <span class="pricing-currency">MXN · pago único</span>
       <p class="pricing-desc">Para empresas que quieren una experiencia web de nivel internacional.</p>
       <ul class="pricing-features">
-        <li class="pricing-feature">Diseño personalizado</li>
-        <li class="pricing-feature">Animaciones premium</li>
-        <li class="pricing-feature">Tienda en línea</li>
-        <li class="pricing-feature">Panel de administración</li>
-        <li class="pricing-feature">Soporte 3 meses</li>
+        <li class="pricing-feature">Diseño único hecho a tu medida</li>
+        <li class="pricing-feature">Animaciones de nivel internacional</li>
+        <li class="pricing-feature">Tienda en línea con pagos seguros</li>
+        <li class="pricing-feature">Panel para administrar tu página tú mismo</li>
+        <li class="pricing-feature">3 meses de soporte: dudas y cambios incluidos</li>
         <li class="pricing-feature">Entrega en 21 días</li>
       </ul>
       <a href="https://wa.me/526142251419" class="btn-pricing btn-pricing-outline">Cotizar</a>
     </div>
+  </div>
+  <p class="section-desc reveal" style="margin-top: 2.5rem; max-width:100%; text-align:center;">
+    ¿No sabes cuál necesitas? <a href="https://wa.me/526142251419?text=Hola,%20no%20s%C3%A9%20qu%C3%A9%20paquete%20me%20conviene" style="color:var(--white);">Escríbeme</a> y te recomiendo el ideal para tu negocio — sin compromiso y sin tecnicismos.
+  </p>
+</section>
+
+<!-- PREGUNTAS FRECUENTES -->
+<section id="preguntas">
+  <div class="section-header">
+    <div>
+      <div class="section-num">05</div>
+      <h2 class="section-title reveal"><span>PREGUNTAS</span><span>FRECUENTES</span></h2>
+    </div>
+    <p class="section-desc reveal">Lo que casi todos me preguntan antes de empezar, respondido sin rodeos.</p>
+  </div>
+  <div class="faq-list">
+    <details class="faq-item reveal">
+      <summary>¿Para qué le sirve una página web a mi negocio?</summary>
+      <p>Es como tu local, pero abierto las 24 horas. Cuando alguien busca tu servicio en internet y no te encuentra, le compra al que sí aparece. Tu página le muestra qué haces, le da confianza y le pone un botón para escribirte al WhatsApp en ese momento.</p>
+    </details>
+    <details class="faq-item reveal">
+      <summary>No sé nada de tecnología, ¿hay problema?</summary>
+      <p>Ninguno. Para eso estoy yo. Tú solo me cuentas de tu negocio y yo me encargo de todo lo técnico. Al final te explico cómo funciona tu página con palabras normales.</p>
+    </details>
+    <details class="faq-item reveal">
+      <summary>¿Qué necesito para empezar?</summary>
+      <p>Solo la información de tu negocio: a qué te dedicas, tus precios o servicios, fotos y tu logo si tienes. Si te falta algo de eso, no te preocupes — te ayudo a resolverlo.</p>
+    </details>
+    <details class="faq-item reveal">
+      <summary>¿Qué significa "dominio" y "hosting"?</summary>
+      <p>El dominio es el nombre de tu página en internet (por ejemplo: tunegocio.com). El hosting es el espacio donde "vive" tu página para que cualquiera pueda verla. En el paquete Pro, los dos van incluidos — tú no tienes que hacer nada.</p>
+    </details>
+    <details class="faq-item reveal">
+      <summary>¿La página queda a mi nombre?</summary>
+      <p>Sí, la página es tuya. No te amarro con rentas escondidas ni te la quito si dejas de trabajar conmigo.</p>
+    </details>
+    <details class="faq-item reveal">
+      <summary>¿Cuánto tiempo tarda?</summary>
+      <p>Entre 5 y 21 días según el paquete. Te doy la fecha exacta antes de empezar y te voy mostrando avances en el camino.</p>
+    </details>
+    <details class="faq-item reveal">
+      <summary>¿Qué pasa después de que me entregas la página?</summary>
+      <p>No desaparezco. Te explico cómo usarla y quedo al pendiente por WhatsApp para cualquier duda. Si más adelante quieres cambios o que tu página aparezca más arriba en Google, también te puedo ayudar con eso.</p>
+    </details>
   </div>
 </section>
 
@@ -864,7 +1076,7 @@ footer {
   <div class="contact-bg-text">HOLA</div>
   <div class="contact-inner">
     <div>
-      <div class="section-num">04</div>
+      <div class="section-num">06</div>
       <h2 class="contact-title reveal">
         ¿LISTO<br>PARA<br><em>CRECER?</em>
       </h2>
@@ -873,6 +1085,12 @@ footer {
           <span class="contact-info-label">Teléfono / WhatsApp</span>
           <span class="contact-info-value">
             <a href="https://wa.me/526142251419">614 225 1419</a>
+          </span>
+        </div>
+        <div class="contact-info-item">
+          <span class="contact-info-label">Correo</span>
+          <span class="contact-info-value">
+            <a href="mailto:raulparracarrillo07@gmail.com">raulparracarrillo07@gmail.com</a>
           </span>
         </div>
         <div class="contact-info-item">
@@ -918,7 +1136,7 @@ footer {
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand">NOEL STUDIO</div>
-  <div class="footer-copy">© 2025 · Chihuahua, México</div>
+  <div class="footer-copy">© 2026 · Chihuahua, México</div>
 </footer>
 
 <!-- WhatsApp flotante -->
@@ -952,33 +1170,10 @@ document.querySelectorAll('a, button, .service-item, .portfolio-item, .pricing-c
   el.addEventListener('mouseleave', () => follower.classList.remove('hover'));
 });
 
-// PRELOADER
+// ANIMACIÓN DE ENTRADA DEL HERO
 window.addEventListener('load', () => {
-  const word = document.getElementById('preloaderWord');
-  const line = document.getElementById('preloaderLine');
-  const count = document.getElementById('preloaderCount');
-
-  gsap.to(word, { y: 0, duration: 0.8, ease: 'power3.out', delay: 0.2,
-    onStart: () => { word.style.transform = 'translateY(100%)'; gsap.to(word, { transform: 'translateY(0)', duration: 0.8, ease: 'power3.out' }); }
-  });
-
-  let pct = 0;
-  const interval = setInterval(() => {
-    pct += Math.random() * 15;
-    if (pct >= 100) { pct = 100; clearInterval(interval); finishPreloader(); }
-    line.style.width = pct + '%';
-    count.textContent = Math.floor(pct) + '%';
-  }, 80);
-
-  function finishPreloader() {
-    gsap.to('#preloader', {
-      yPercent: -100, duration: 1, ease: 'power4.inOut', delay: 0.3,
-      onComplete: () => {
-        document.getElementById('preloader').style.display = 'none';
-        startHeroAnim();
-      }
-    });
-  }
+  gsap.from('.hero-title .line span', { yPercent: 110, duration: 1, ease: 'power3.out', stagger: 0.15, delay: 0.2 });
+  gsap.from('#heroTag, .hero-right img, #heroSub', { opacity: 0, y: 20, duration: 0.9, ease: 'power3.out', stagger: 0.15, delay: 0.6 });
 });
 
 
