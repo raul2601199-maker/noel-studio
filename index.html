@@ -820,7 +820,10 @@ footer {
     text-align: center;
     align-items: center;
   }
-  .hero-right img { width: 160px; height: 160px; }
+  /* En celular ocultamos el logo (repetía "NOEL STUDIO" debajo del título) */
+  .hero-right { display: none; }
+  /* Iconos de redes centrados bajo el título en celular */
+  .hero-social { justify-content: center; }
   .hero-title { font-size: clamp(4rem, 18vw, 6rem); }
   .hero-sub {
     flex-direction: column; align-items: flex-start; gap: 1rem;
