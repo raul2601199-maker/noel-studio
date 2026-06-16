@@ -166,6 +166,26 @@ nav {
 }
 .nav-cta:hover { opacity: 0.85; }
 
+/* Botón de menú (hamburguesa) — solo visible en celular */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px; height: 44px;
+  background: none; border: none;
+  padding: 0; cursor: pointer;
+  z-index: 101;
+}
+.nav-toggle span {
+  display: block; height: 2px; width: 24px;
+  background: var(--white);
+  transition: transform 0.3s, opacity 0.3s;
+}
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
 /* HERO */
 .hero {
   min-height: 100vh;
@@ -809,7 +829,24 @@ footer {
 /* MOBILE */
 @media (max-width: 768px) {
   nav { padding: 1.25rem 1.5rem; }
-  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+  .nav-links {
+    display: flex;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin: 0;
+    background: rgba(0,0,0,0.97);
+    backdrop-filter: blur(12px);
+    transform: translateY(-100%);
+    transition: transform 0.4s ease;
+  }
+  .nav-links.open { transform: translateY(0); }
+  .nav-links a { font-size: 1.1rem; }
   .nav-brand-name { font-size: 1.2rem; }
   .hero { min-height: 100vh; }
   .hero-content {
@@ -864,6 +901,9 @@ footer {
   <a href="#" class="nav-brand">
     <span class="nav-brand-name">NOEL STUDIO</span>
   </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -1378,6 +1418,27 @@ function sendWhatsApp(e) {
   const message = document.getElementById('fmessage').value;
   const text = `Hola, soy ${name}${business ? ' de ' + business : ''}. ${message || 'Me interesa una página web.'}`;
   window.open(`https://wa.me/526142251419?text=${encodeURIComponent(text)}`, '_blank');
+}
+
+// MENÚ HAMBURGUESA (celular)
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.querySelector('.nav-links');
+if (navToggle && navLinks) {
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  // Cerrar el menú al tocar un enlace
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
 }
 </script>
 </body>
