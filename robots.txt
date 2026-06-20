@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://raul2601199-maker.github.io/noel-studio/sitemap.xml
