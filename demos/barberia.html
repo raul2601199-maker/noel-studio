@@ -21,6 +21,7 @@
   --niebla:#8b96a0;
   --filo:#e9edf0;
   --rojo:#c4463c;
+  --rojo-claro:#e0705f; /* para texto pequeño sobre fondo oscuro (cumple contraste AA) */
   --linea:rgba(201,210,216,0.15);
   --ease:cubic-bezier(0.22,1,0.36,1);
   --ease-io:cubic-bezier(0.76,0,0.24,1);
@@ -122,7 +123,7 @@ nav.scrolled::before{opacity:1}
 
 /* secciones */
 section.block{padding:7rem 0}
-.eyebrow{font-family:'Oswald',sans-serif;font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:var(--rojo);margin-bottom:1.1rem;display:inline-block}
+.eyebrow{font-family:'Oswald',sans-serif;font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:var(--rojo-claro);margin-bottom:1.1rem;display:inline-block}
 .h2{font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(2.4rem,6vw,4.6rem);line-height:.98;letter-spacing:.01em;color:var(--filo)}
 
 /* el oficio */
@@ -173,7 +174,7 @@ section.block{padding:7rem 0}
 .citas .h2{margin-bottom:1.2rem}
 .citas p{color:var(--niebla)}
 .info-row{display:flex;gap:.8rem;margin-top:1.4rem;font-size:.98rem;align-items:baseline}
-.info-row .k{font-family:'Oswald',sans-serif;color:var(--rojo);min-width:90px;font-weight:600;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}
+.info-row .k{font-family:'Oswald',sans-serif;color:var(--rojo-claro);min-width:90px;font-weight:600;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}
 .info-row .v{color:var(--filo)}
 .citas-cta{display:flex;flex-direction:column;gap:1rem;position:relative}
 .wa-btn{background:#25D366;color:#08120b;justify-content:center}
@@ -185,10 +186,10 @@ footer .brand{font-size:2.2rem;margin-bottom:.6rem}
 footer .f-tag{color:var(--niebla);font-size:.95rem}
 footer .f-meta{display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap;margin-top:2rem;font-size:.85rem}
 footer .f-meta div{color:var(--filo)}
-footer .f-meta span{display:block;font-family:'Oswald',sans-serif;color:var(--rojo);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.3rem}
+footer .f-meta span{display:block;font-family:'Oswald',sans-serif;color:var(--rojo-claro);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.3rem}
 footer .f-div{width:40px;height:1px;background:var(--linea);margin:2.4rem auto}
 footer .madeby{font-size:.82rem;color:var(--niebla)}
-footer .madeby a{color:var(--rojo);font-weight:600}
+footer .madeby a{color:var(--rojo-claro);font-weight:600}
 
 /* reveals */
 .js .reveal{opacity:0;transform:translateY(34px)}
@@ -242,7 +243,7 @@ footer .madeby a{color:var(--rojo);font-weight:600}
 
 <!-- HERO -->
 <header class="hero">
-  <div class="hero-bg" id="heroBg"><img src="img/barberia-hero.webp" alt="Barbero recortando la barba a un cliente" width="1500" height="1000"></div>
+  <div class="hero-bg" id="heroBg"><img src="img/barberia-hero.webp" alt="Barbero recortando la barba a un cliente" width="1500" height="1000" fetchpriority="high"></div>
   <div class="hero-inner">
     <div class="hero-eyebrow" data-hero="1">Barbería · Chihuahua</div>
     <h1 class="hero-title">
@@ -276,7 +277,7 @@ footer .madeby a{color:var(--rojo);font-weight:600}
 <!-- EL OFICIO -->
 <section class="block wrap" id="oficio">
   <div class="oficio">
-    <div class="oficio-img reveal"><img src="img/b-navaja.webp" alt="Barbero definiendo con navaja" width="1400" height="2097" id="oficioImg"></div>
+    <div class="oficio-img reveal"><img src="img/b-navaja.webp" alt="Barbero definiendo con navaja" width="1400" height="2097" id="oficioImg" loading="lazy"></div>
     <div>
       <span class="eyebrow reveal">El oficio</span>
       <h2 class="h2 line-mask">El detalle<br>está en<br>el filo</h2>
@@ -307,7 +308,7 @@ footer .madeby a{color:var(--rojo);font-weight:600}
 
 <!-- MOMENTO -->
 <section class="momento">
-  <div class="momento-bg" id="momentoBg"><img src="img/b-salon.webp" alt="Interior de la barbería" width="1600" height="1067"></div>
+  <div class="momento-bg" id="momentoBg"><img src="img/b-salon.webp" alt="Interior de la barbería" width="1600" height="1067" loading="lazy"></div>
   <div class="momento-inner wrap">
     <blockquote class="reveal">Un buen corte no se nota. <b>Se siente</b> toda la semana.</blockquote>
     <cite class="reveal">— Así trabajamos en Filo</cite>
@@ -319,9 +320,9 @@ footer .madeby a{color:var(--rojo);font-weight:600}
   <span class="eyebrow reveal">Galería</span>
   <h2 class="h2 line-mask" style="margin-bottom:2.4rem">El trabajo</h2>
   <div class="galeria">
-    <div class="g-item g-tall reveal"><img src="img/b-detalle.webp" alt="Detalle de corte a máquina" width="1100" height="1650"><span class="g-cap">Precisión a máquina</span></div>
-    <div class="g-item g-wide reveal"><img src="img/b-corte.webp" alt="Fade en proceso" width="1400" height="933"><span class="g-cap">Fade limpio</span></div>
-    <div class="g-item g-wide reveal"><img src="img/barberia-hero.webp" alt="Recorte de barba" width="1500" height="1000"><span class="g-cap">Barba a navaja</span></div>
+    <div class="g-item g-tall reveal"><img src="img/b-detalle.webp" alt="Detalle de corte a máquina" width="1100" height="1650" loading="lazy"><span class="g-cap">Precisión a máquina</span></div>
+    <div class="g-item g-wide reveal"><img src="img/b-corte.webp" alt="Fade en proceso" width="1400" height="933" loading="lazy"><span class="g-cap">Fade limpio</span></div>
+    <div class="g-item g-wide reveal"><img src="img/barberia-hero.webp" alt="Recorte de barba" width="1500" height="1000" loading="lazy"><span class="g-cap">Barba a navaja</span></div>
   </div>
 </section>
 
