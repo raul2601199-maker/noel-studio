@@ -428,11 +428,9 @@ nav.scrolled {
   line-height: 0.88;
   letter-spacing: -0.01em;
   position: relative; z-index: 1;
-  overflow: hidden;
 }
 .hero-title .line {
   display: block;
-  overflow: hidden;
 }
 .hero-title .line span {
   display: block;
@@ -1192,6 +1190,21 @@ footer {
   .has-gsap .reveal { opacity: 1; transform: none; }
 }
 
+/* INTRO DEL HERO — primero entran las letras (desvanecidas->potentes), luego el resto.
+   Estado inicial oculto SOLO con GSAP, para que no haya parpadeo. Sin GSAP, todo visible. */
+.has-gsap .hero-title .line span,
+.has-gsap #heroTag,
+.has-gsap #heroSub,
+.has-gsap .hero-right img,
+.has-gsap .hero-social { opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .has-gsap .hero-title .line span,
+  .has-gsap #heroTag,
+  .has-gsap #heroSub,
+  .has-gsap .hero-right img,
+  .has-gsap .hero-social { opacity: 1; }
+}
+
 /* Menos animación para quien lo tiene configurado así en su dispositivo */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -1791,11 +1804,26 @@ function initGsapAnimations() {
   document.documentElement.classList.add('has-gsap');
   gsap.registerPlugin(ScrollTrigger);
 
-  // ENTRADA DEL HERO (al terminar de cargar la página)
-  window.addEventListener('load', () => {
-    gsap.from('.hero-title .line span', { yPercent: 110, duration: 1, ease: 'power3.out', stagger: 0.15, delay: 0.2 });
-    gsap.from('#heroTag, .hero-right img, .hero-social, #heroSub', { opacity: 0, y: 20, duration: 0.9, ease: 'power3.out', stagger: 0.15, delay: 0.6 });
-  });
+  // INTRO DEL HERO — secuencia en 2 tiempos:
+  //   1) Las letras NOEL STUDIO aparecen desvanecidas y borrosas, y se vuelven nítidas y potentes.
+  //   2) Cuando las letras ya están firmes, entra TODO lo demás del hero (etiqueta, subtítulo, logo, redes).
+  // Usamos fromTo porque el estado inicial (opacity 0) ya viene del CSS .has-gsap.
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) {
+    gsap.set('.hero-title .line span, #heroTag, #heroSub, .hero-right img, .hero-social', { opacity: 1 });
+  } else {
+    const heroIntro = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroIntro
+      .fromTo('.hero-title .line span',
+        { opacity: 0, filter: 'blur(20px)', scale: 1.06 },
+        { opacity: 1, filter: 'blur(0px)', scale: 1, duration: 1.4, stagger: 0.18, ease: 'power2.out' }
+      )
+      .fromTo(['#heroTag', '#heroSub', '.hero-right img', '.hero-social'],
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 0.9, stagger: 0.12 },
+        '+=0.15'  // pequeña pausa: primero quedan las letras, luego entra el resto
+      );
+  }
 
   // SCROLL REVEALS (con cascada: los hermanos entran escalonados, no todos de golpe)
   document.querySelectorAll('.reveal').forEach(el => {
