@@ -178,6 +178,28 @@ footer .f-div{width:40px;height:1px;background:var(--linea);margin:2.4rem auto}
 footer .madeby{font-size:.82rem;color:var(--ceniza)}
 footer .madeby a{color:var(--ascua);font-weight:600}
 
+/* —— franja cinematográfica (momento) —— */
+.momento{position:relative;min-height:78vh;display:flex;align-items:center;overflow:hidden;margin:1rem 0}
+.momento-bg{position:absolute;inset:-12% 0;z-index:0;will-change:transform}
+.momento-bg img{width:100%;height:124%;object-fit:cover;filter:saturate(1.05) sepia(.07) brightness(.66)}
+.momento-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,15,10,.94) 0%,rgba(20,15,10,.55) 55%,rgba(20,15,10,.78) 100%)}
+.momento-inner{position:relative;z-index:2}
+.momento blockquote{font-family:'Fraunces',serif;font-weight:300;font-style:italic;font-size:clamp(2rem,5vw,4rem);line-height:1.16;max-width:20ch}
+.momento blockquote em{color:var(--ascua-soft)}
+.momento cite{display:block;margin-top:1.6rem;font-family:'Inter',sans-serif;font-style:normal;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ceniza)}
+
+/* —— caption galería —— */
+.g-item .g-cap{position:absolute;left:1.3rem;bottom:1.2rem;z-index:3;font-family:'Fraunces',serif;font-style:italic;font-size:1.15rem;color:#fff;opacity:0;transform:translateY(12px);transition:opacity .5s var(--ease),transform .5s var(--ease);text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.g-item:hover .g-cap{opacity:1;transform:none}
+
+/* —— cursor personalizado (solo desktop con mouse fino) —— */
+.cursor-dot,.cursor-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:9997;border-radius:50%;transform:translate(-50%,-50%);opacity:0;transition:opacity .3s}
+.cursor-dot{width:7px;height:7px;background:var(--ascua)}
+.cursor-ring{width:38px;height:38px;border:1px solid rgba(224,118,47,.55);transition:width .3s var(--ease),height .3s var(--ease),border-color .3s,opacity .3s}
+body.has-cursor.ready .cursor-dot,body.has-cursor.ready .cursor-ring{opacity:1}
+body.has-cursor.ready{cursor:none}
+.cursor-ring.hovering{width:60px;height:60px;border-color:var(--ascua);background:rgba(224,118,47,.08)}
+
 /* —— reveals (solo con JS; sin JS todo visible) —— */
 .js .reveal{opacity:0;transform:translateY(34px)}
 .js .reveal.in{opacity:1;transform:none;transition:opacity 1s var(--ease),transform 1s var(--ease)}
@@ -205,6 +227,10 @@ footer .madeby a{color:var(--ascua);font-weight:600}
 </style>
 </head>
 <body>
+
+<!-- cursor personalizado -->
+<div class="cursor-dot" id="cDot"></div>
+<div class="cursor-ring" id="cRing"></div>
 
 <!-- PRELOADER -->
 <div id="preload">
@@ -303,14 +329,23 @@ footer .madeby a{color:var(--ascua);font-weight:600}
   </div>
 </section>
 
+<!-- FRANJA CINEMATOGRÁFICA -->
+<section class="momento">
+  <div class="momento-bg" id="momentoBg"><img src="img/momento.webp" alt="Corte recién hecho a la parrilla" width="1600" height="1067"></div>
+  <div class="momento-inner wrap">
+    <blockquote class="reveal">El fuego no se <em>apura</em>. Por eso la carne sabe a tiempo, a leña y a casa.</blockquote>
+    <cite class="reveal">— Así cocinamos en Mezquite</cite>
+  </div>
+</section>
+
 <!-- GALERÍA -->
 <section class="block wrap" id="galeria">
   <span class="eyebrow reveal">Galería</span>
   <h2 class="h2 line-mask" style="margin-bottom:2.4rem">Así se vive</h2>
   <div class="galeria">
-    <div class="g-item g-big reveal"><img src="img/costillar.webp" alt="Costillar a la parrilla" width="1400" height="935"></div>
-    <div class="g-item g-small reveal"><img src="img/plato.webp" alt="Plato servido" width="1400" height="933"></div>
-    <div class="g-item g-small reveal"><img src="img/hero.webp" alt="Cortes en la tabla" width="1400" height="788"></div>
+    <div class="g-item g-big reveal"><img src="img/costillar.webp" alt="Costillar a la parrilla" width="1400" height="935"><span class="g-cap">Costillar al mezquite</span></div>
+    <div class="g-item g-small reveal"><img src="img/plato.webp" alt="Plato servido" width="1400" height="933"><span class="g-cap">De la casa</span></div>
+    <div class="g-item g-small reveal"><img src="img/hero.webp" alt="Cortes en la tabla" width="1400" height="788"><span class="g-cap">Para compartir</span></div>
   </div>
 </section>
 
@@ -389,6 +424,7 @@ function initAnims(){
   if(!reduce){
     gsap.to('#heroBg',{yPercent:18,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
     gsap.fromTo('#fuegoImg',{yPercent:-6},{yPercent:6,ease:'none',scrollTrigger:{trigger:'#fuego',start:'top bottom',end:'bottom top',scrub:true}});
+    gsap.fromTo('#momentoBg',{yPercent:-8},{yPercent:8,ease:'none',scrollTrigger:{trigger:'.momento',start:'top bottom',end:'bottom top',scrub:true}});
   }
 
   // reveals
@@ -413,6 +449,21 @@ function initAnims(){
 
 if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initAnims);
 else initAnims();
+
+// ---- CURSOR PERSONALIZADO (solo equipos con mouse fino; si falla, queda el cursor normal) ----
+(function(){
+  if(!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  const dot=document.getElementById('cDot'), ring=document.getElementById('cRing');
+  if(!dot||!ring) return;
+  document.body.classList.add('has-cursor');
+  let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my,seen=false;
+  addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';if(!seen){seen=true;document.body.classList.add('ready');}},{passive:true});
+  (function loop(){rx+=(mx-rx)*.18;ry+=(my-ry)*.18;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
+  const grow=()=>ring.classList.add('hovering'), shrink=()=>ring.classList.remove('hovering');
+  document.querySelectorAll('a,button,.g-item,.dish').forEach(el=>{el.addEventListener('mouseenter',grow);el.addEventListener('mouseleave',shrink);});
+  addEventListener('mouseleave',()=>{dot.style.opacity=ring.style.opacity=0;});
+  addEventListener('mouseenter',()=>{dot.style.opacity=ring.style.opacity='';});
+})();
 </script>
 </body>
 </html>
