@@ -445,17 +445,6 @@ nav.scrolled {
 .hero-title .line span {
   display: block;
   transform: translateY(0);
-  color: var(--white); /* respaldo: si el navegador no soporta el degradado en texto, queda blanco */
-  background: linear-gradient(180deg, #ffffff 0%, #e9eaee 14%, #9a9da6 34%, #6c6f79 46%, #ffffff 56%, #c6c8d0 74%, #82858f 100%);
-}
-/* Efecto plateado/metálico solo donde el navegador lo soporta (si no, blanco sólido legible) */
-@supports ((-webkit-background-clip: text) or (background-clip: text)) {
-  .hero-title .line span {
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-  }
 }
 .hero-sub {
   display: flex;
@@ -1328,6 +1317,29 @@ footer {
   .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
   body { cursor: auto; }
   .cursor, .cursor-follower { display: none; }
+}
+
+/* ===== TÍTULOS PLATEADOS 3D (efecto cromo en todos los títulos, sobre fondo oscuro) =====
+   Va al final para ganar sobre los colores definidos antes. Respaldo blanco si el navegador
+   no soporta degradado en texto, así que el título nunca queda invisible. */
+.hero-title .line span,
+.section-title span,
+.process-step-num,
+.footer-brand {
+  color: #fff;
+  background: linear-gradient(180deg, #ffffff 0%, #e9eaee 14%, #9a9da6 34%, #6c6f79 46%, #ffffff 56%, #c6c8d0 74%, #82858f 100%);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.45); /* relieve 3D sutil */
+}
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .hero-title .line span,
+  .section-title span,
+  .process-step-num,
+  .footer-brand {
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
 }
 </style>
 </head>
