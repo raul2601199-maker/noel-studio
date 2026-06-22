@@ -28,9 +28,13 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raul2601199-maker.github.io/noel-studio/assets/og-image.jpg">
 
-<!-- Ícono de la pestaña del navegador -->
-<link rel="icon" href="assets/logo.jpg" type="image/jpeg">
-<link rel="apple-touch-icon" href="assets/logo.jpg">
+<!-- Ícono de la pestaña del navegador y al guardar en el celular -->
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0a0a0a">
 
 <!-- La dirección "oficial" de esta página (evita contenido duplicado en Google) -->
 <link rel="canonical" href="https://raul2601199-maker.github.io/noel-studio/">
@@ -114,11 +118,9 @@
 }
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
+<!-- Fuentes AUTOALOJADAS (en este mismo sitio): carga más rápido y no depende de Google Fonts. -->
+<link rel="stylesheet" href="assets/fonts/fonts.css">
 <!-- GSAP con defer: no bloquea el dibujado de la página (carga más rápido).
      La marca .has-gsap se pone en el script principal (DOMContentLoaded), ya que con
      defer GSAP aún no existe en este punto. Si GSAP no carga, TODO queda visible. -->
@@ -496,10 +498,14 @@ nav.scrolled {
   white-space: nowrap;
   animation: marquee 20s linear infinite;
 }
+/* Pausar la cinta al pasar el cursor (solo en equipos con mouse) */
+@media (hover: hover) and (pointer: fine) {
+  .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+}
 .marquee-track span {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 1.1rem; letter-spacing: 0.15em;
-  color: var(--gray-600);
+  color: #8a8a8a; /* contraste AA (>=4.5:1) sobre el fondo gris del marquee */
   flex-shrink: 0;
 }
 .marquee-track span.dot {
@@ -1068,6 +1074,15 @@ nav.scrolled {
   transition: transform 0.3s;
 }
 .btn-submit:hover svg { transform: translateX(4px); }
+.btn-submit.is-sending { opacity: 0.8; pointer-events: none; }
+.btn-spinner {
+  display: inline-block; width: 14px; height: 14px;
+  border: 2px solid rgba(0,0,0,0.2); border-top-color: var(--black);
+  border-radius: 50%; margin-left: 2px;
+  animation: btnSpin 0.7s linear infinite;
+}
+@keyframes btnSpin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .btn-spinner { animation: none; } }
 
 /* WHATSAPP */
 .wa-float {
@@ -1089,6 +1104,25 @@ nav.scrolled {
 }
 .wa-float:active { transform: scale(0.95); }
 .wa-float svg { width: 26px; height: 26px; fill: #fff; }
+/* Pulso sutil tipo "onda" para invitar a tocarlo (detrás del botón) */
+.wa-float::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #25D366;
+  z-index: -1;
+  animation: waPulse 2.6s ease-out infinite;
+}
+.wa-float:hover::before { animation-play-state: paused; }
+@keyframes waPulse {
+  0%   { transform: scale(1);   opacity: 0.55; }
+  70%  { transform: scale(1.9); opacity: 0; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wa-float::before { animation: none; }
+}
 
 /* FOOTER */
 footer {
@@ -1988,7 +2022,19 @@ function sendWhatsApp(e) {
   const business = document.getElementById('fbusiness').value;
   const message = document.getElementById('fmessage').value;
   const text = `Hola, soy ${name}${business ? ' de ' + business : ''}. ${message || 'Me interesa una página web.'}`;
+  // Abrimos WhatsApp de inmediato (dentro del clic) para que el navegador no bloquee la ventana.
   window.open(`https://wa.me/526142251419?text=${encodeURIComponent(text)}`, '_blank');
+  // Micro-feedback visual en el botón mientras abre WhatsApp.
+  const btn = e.target.querySelector('.btn-submit');
+  if (btn && !btn.classList.contains('is-sending')) {
+    const original = btn.innerHTML;
+    btn.classList.add('is-sending');
+    btn.innerHTML = 'Abriendo WhatsApp <span class="btn-spinner"></span>';
+    setTimeout(() => {
+      btn.classList.remove('is-sending');
+      btn.innerHTML = original;
+    }, 1600);
+  }
 }
 
 // MENÚ HAMBURGUESA (celular)
