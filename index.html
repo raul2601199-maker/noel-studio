@@ -445,7 +445,17 @@ nav.scrolled {
 .hero-title .line span {
   display: block;
   transform: translateY(0);
-  color: var(--white);
+  color: var(--white); /* respaldo: si el navegador no soporta el degradado en texto, queda blanco */
+  background: linear-gradient(170deg, #ffffff 0%, #f2f2f5 30%, #b9b9c2 52%, #ffffff 68%, #cdced6 100%);
+}
+/* Efecto plateado/metálico solo donde el navegador lo soporta (si no, blanco sólido legible) */
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .hero-title .line span {
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
 }
 .hero-sub {
   display: flex;
