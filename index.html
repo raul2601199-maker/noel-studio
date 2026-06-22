@@ -694,6 +694,103 @@ nav.scrolled {
 }
 #precios > *:not(.section-header) { position: relative; z-index: 1; }
 .pricing-grid { position: relative; z-index: 1; }
+
+/* OFERTA DE LANZAMIENTO */
+#ofertas {
+  padding: 8rem 3rem 4rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  position: relative;
+  overflow: hidden;
+}
+.offer-card {
+  max-width: 760px;
+  margin: 2.5rem auto 0;
+  background: var(--gray-900);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 20px;
+  padding: 3rem 2.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.offer-card::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(closest-side, rgba(255,255,255,0.07), transparent 70%);
+  pointer-events: none;
+}
+.offer-card > * { position: relative; z-index: 1; }
+.offer-badge {
+  display: inline-block;
+  font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--black); background: var(--white);
+  padding: 0.4rem 0.9rem; border-radius: 999px; font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+.offer-name { font-size: 1.05rem; color: var(--gray-400); letter-spacing: 0.05em; }
+.offer-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 9vw, 5.5rem); line-height: 1; color: var(--white);
+  margin: 0.5rem 0 0.25rem;
+}
+.offer-price sup { font-size: 0.4em; vertical-align: super; }
+.offer-old { color: var(--gray-600); text-decoration: line-through; font-size: 1.05rem; }
+.offer-currency { display:block; color: var(--gray-400); font-size:0.8rem; letter-spacing:0.1em; margin-bottom:1.75rem; }
+.offer-features { list-style:none; display:inline-flex; flex-direction:column; gap:0.6rem; text-align:left; margin:0 auto 2rem; padding:0; }
+.offer-features li { font-size:0.9rem; color: var(--gray-200); display:flex; align-items:center; gap:0.6rem; font-weight:300; }
+.offer-features li::before { content:""; width:5px; height:5px; border-radius:50%; background: var(--white); flex-shrink:0; }
+.btn-offer {
+  display:inline-block; background: var(--white); color: var(--black);
+  font-weight:700; text-decoration:none; padding: 1rem 2.5rem; border-radius:10px;
+  font-size:0.95rem; transition: transform 0.2s var(--ease-out), opacity 0.2s;
+}
+.btn-offer:hover { opacity:0.88; }
+.btn-offer:active { transform: scale(0.97); }
+.offer-note { color: var(--gray-600); font-size: 0.8rem; margin-top: 1.25rem; }
+@media (max-width:768px){ #ofertas{padding:5rem 1.5rem 3rem;} .offer-card{padding:2.5rem 1.5rem;} }
+
+/* Animación premium: viñetas en cascada (solo si GSAP cargó) */
+.has-gsap #ofertas .offer-features li { opacity: 0; transform: translateY(12px); }
+/* Destello sutil que recorre la tarjeta de oferta */
+.offer-card::after {
+  content: ""; position: absolute; top: 0; left: -65%;
+  width: 55%; height: 100%;
+  background: linear-gradient(110deg, transparent, rgba(255,255,255,0.07), transparent);
+  transform: skewX(-18deg); pointer-events: none;
+  animation: offerShine 6s ease-in-out 1.4s infinite;
+}
+@keyframes offerShine { 0% { left: -65%; } 20% { left: 130%; } 100% { left: 130%; } }
+@media (prefers-reduced-motion: reduce) {
+  .has-gsap #ofertas .offer-features li { opacity: 1; transform: none; }
+  .offer-card::after { animation: none; }
+}
+
+/* Animación premium en las tarjetas de precio: viñetas en cascada al entrar */
+.has-gsap .pricing-features li { opacity: 0; transform: translateY(10px); }
+@media (prefers-reduced-motion: reduce) {
+  .has-gsap .pricing-features li { opacity: 1; transform: none; }
+}
+
+/* Sensación de "compra especial": badge que late, botón con glow y tarjeta que respira */
+.offer-badge { animation: offerBadgePulse 2.4s ease-in-out infinite; }
+@keyframes offerBadgePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+  50%      { box-shadow: 0 0 18px 2px rgba(255,255,255,0.28); }
+}
+.btn-offer { animation: offerCtaPulse 2.8s ease-in-out infinite; }
+@keyframes offerCtaPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+  50%      { box-shadow: 0 10px 32px rgba(255,255,255,0.22); }
+}
+.offer-card { animation: offerCardGlow 5s ease-in-out infinite; }
+@keyframes offerCardGlow {
+  0%, 100% { border-color: rgba(255,255,255,0.14); }
+  50%      { border-color: rgba(255,255,255,0.32); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .offer-badge, .btn-offer, .offer-card { animation: none; }
+}
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1186,6 +1283,7 @@ footer {
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#proceso">Cómo trabajo</a></li>
     <li><a href="#portafolio">Portafolio</a></li>
+    <li><a href="#ofertas">Ofertas</a></li>
     <li><a href="#precios">Precios</a></li>
     <li><a href="#preguntas">Preguntas</a></li>
     <li><a href="#contacto" class="nav-cta">Contacto</a></li>
@@ -1393,6 +1491,35 @@ footer {
   </div>
 </section>
 
+<!-- OFERTA DE LANZAMIENTO -->
+<section id="ofertas">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title reveal"><span>OFERTA DE</span><span>LANZAMIENTO</span></h2>
+    </div>
+    <p class="section-desc reveal">Precio especial para los primeros negocios de este mes.</p>
+  </div>
+  <div class="offer-card reveal">
+    <span class="offer-badge">Oferta de lanzamiento</span>
+    <div class="offer-name">Tu primera página profesional</div>
+    <div class="offer-price"><sup>$</sup>5,900</div>
+    <div class="offer-old">Precio normal $7,000</div>
+    <span class="offer-currency">MXN · pago único</span>
+    <ul class="offer-features">
+      <li>Una página completa y profesional</li>
+      <li>Animaciones premium (se ve moderna y de lujo)</li>
+      <li>Se ve perfecta en cualquier dispositivo</li>
+      <li>Botón directo a tu WhatsApp</li>
+      <li>Te ayudo con tus textos y fotos</li>
+      <li>Lista de 1 a 2 días</li>
+    </ul>
+    <div>
+      <a href="https://wa.me/526142251419?text=Hola,%20vi%20la%20oferta%20de%20lanzamiento%20de%20%245%2C900%20y%20me%20interesa.%20%C2%BFMe%20pasas%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-offer">La quiero a este precio</a>
+    </div>
+    <p class="offer-note">Para los primeros negocios de este mes. Sin compromiso y sin tecnicismos.</p>
+  </div>
+</section>
+
 <!-- PRECIOS -->
 <section id="precios">
   <div class="section-header">
@@ -1410,10 +1537,11 @@ footer {
       <p class="pricing-desc">Para negocios que necesitan presencia web rápida y profesional.</p>
       <ul class="pricing-features">
         <li class="pricing-feature">Una página completa de presentación</li>
-        <li class="pricing-feature">Se ve perfecta en celular</li>
+        <li class="pricing-feature">Animaciones premium (se ve moderna y de lujo)</li>
+        <li class="pricing-feature">Se ve perfecta en cualquier dispositivo</li>
         <li class="pricing-feature">Botón directo a tu WhatsApp</li>
         <li class="pricing-feature">Te ayudo con tus textos y fotos</li>
-        <li class="pricing-feature">Entrega en 5 días</li>
+        <li class="pricing-feature">Entrega de 1 a 2 días</li>
       </ul>
       <a href="https://wa.me/526142251419" class="btn-pricing btn-pricing-outline">Cotizar</a>
     </div>
@@ -1668,6 +1796,26 @@ document.querySelectorAll('.reveal').forEach(el => {
   gsap.to(el, {
     opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', delay,
     scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+  });
+});
+
+// Premium: viñetas de la OFERTA en cascada
+gsap.to('#ofertas .offer-features li', {
+  opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', stagger: 0.1,
+  scrollTrigger: { trigger: '.offer-card', start: 'top 80%', toggleActions: 'play none none none' }
+});
+
+// Premium: el PRECIO de la oferta entra con un "pop" llamativo
+gsap.from('#ofertas .offer-price', {
+  scale: 0.7, opacity: 0, duration: 0.7, ease: 'back.out(1.7)',
+  scrollTrigger: { trigger: '.offer-card', start: 'top 80%', toggleActions: 'play none none none' }
+});
+
+// Premium: viñetas de cada PAQUETE de precios en cascada (incluye el de $7,000)
+document.querySelectorAll('.pricing-card').forEach(card => {
+  gsap.to(card.querySelectorAll('.pricing-features li'), {
+    opacity: 1, y: 0, duration: 0.5, ease: 'power3.out', stagger: 0.08,
+    scrollTrigger: { trigger: card, start: 'top 80%', toggleActions: 'play none none none' }
   });
 });
 
