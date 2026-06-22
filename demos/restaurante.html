@@ -76,7 +76,7 @@ nav.scrolled::before{opacity:1}
 /* —— hero —— */
 .hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden}
 .hero-bg{position:absolute;inset:-8% 0 0 0;z-index:0;will-change:transform}
-.hero-bg img{width:100%;height:115%;object-fit:cover;filter:saturate(1.08) contrast(1.06)}
+.hero-bg img{width:100%;height:115%;object-fit:cover;filter:saturate(1.1) contrast(1.07) sepia(.08)}
 .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,15,10,.5) 0%,rgba(20,15,10,.15) 30%,rgba(20,15,10,.95) 100%)}
 .hero-ember{position:absolute;z-index:1;bottom:-32%;left:50%;transform:translateX(-50%);width:130%;height:75%;pointer-events:none;
   background:radial-gradient(ellipse at center,rgba(224,118,47,.32),rgba(224,118,47,0) 62%);filter:blur(24px);animation:emberPulse 7s ease-in-out infinite}
@@ -94,6 +94,9 @@ nav.scrolled::before{opacity:1}
 .btn:active{transform:scale(.97)}
 .btn-fill{background:var(--ascua);color:#160f08}
 .btn-fill:hover{background:var(--ascua-soft)}
+.btn-fill::before{content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-18deg);transition:left .7s var(--ease)}
+.btn-fill:hover::before{left:160%}
 .btn-ghost{border:1px solid var(--linea);color:var(--hueso)}
 .btn-ghost:hover{border-color:var(--ascua);color:var(--ascua-soft)}
 .scroll-cue{position:absolute;bottom:2rem;right:2rem;z-index:2;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ceniza);display:flex;align-items:center;gap:.6rem;writing-mode:vertical-rl}
@@ -124,7 +127,7 @@ section.block{padding:7rem 0}
 /* —— el fuego —— */
 .fuego{display:grid;grid-template-columns:1.05fr .95fr;gap:4rem;align-items:center}
 .fuego-img{position:relative;border-radius:8px;overflow:hidden;aspect-ratio:4/5}
-.fuego-img img{width:100%;height:112%;object-fit:cover;will-change:transform}
+.fuego-img img{width:100%;height:112%;object-fit:cover;will-change:transform;filter:saturate(1.05) sepia(.06)}
 .fuego-img::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 140px rgba(20,15,10,.7)}
 .fuego p{color:var(--ceniza);margin-top:1.5rem;font-size:1.08rem}
 .fuego p.lead{color:var(--hueso);font-size:1.3rem;font-family:'Fraunces',serif;font-weight:300;line-height:1.5}
@@ -137,6 +140,7 @@ section.block{padding:7rem 0}
 .dish{display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;column-gap:.8rem;margin-bottom:1.5rem}
 .dish .name{font-weight:600;font-size:1.08rem;transition:color .3s}
 .dish:hover .name{color:var(--ascua-soft)}
+.dish .badge{display:inline-block;margin-left:.6rem;font-family:'Inter',sans-serif;font-size:.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ascua);border:1px solid var(--linea);border-radius:999px;padding:.18em .6em;vertical-align:middle;transform:translateY(-2px)}
 .dish .lead-dots{border-bottom:1px dotted rgba(168,150,126,.55);transform:translateY(-5px)}
 .dish .price{font-family:'Fraunces',serif;color:var(--ascua-soft);font-size:1.15rem;white-space:nowrap}
 .dish .desc{grid-column:1/-1;color:var(--ceniza);font-size:.9rem;margin-top:.3rem}
@@ -144,7 +148,7 @@ section.block{padding:7rem 0}
 /* —— galería —— */
 .galeria{display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:auto auto;gap:1.2rem;margin-top:1rem}
 .g-item{position:relative;overflow:hidden;border-radius:8px}
-.g-item img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease);will-change:transform}
+.g-item img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease);will-change:transform;filter:saturate(1.05) sepia(.05)}
 .g-item:hover img{transform:scale(1.06)}
 .g-item::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(20,15,10,.55));opacity:0;transition:opacity .5s}
 .g-item:hover::after{opacity:1}
@@ -164,9 +168,14 @@ section.block{padding:7rem 0}
 .wa-btn:hover{background:#2be673}
 
 /* —— footer —— */
-footer{border-top:1px solid var(--linea);padding:4rem 0;text-align:center}
-footer .brand{font-size:2rem;margin-bottom:.6rem}
-footer .madeby{margin-top:2rem;font-size:.82rem;color:var(--ceniza)}
+footer{border-top:1px solid var(--linea);padding:4.5rem 0 4rem;text-align:center}
+footer .brand{font-size:2.2rem;margin-bottom:.6rem}
+footer .f-tag{color:var(--ceniza);font-size:.95rem}
+footer .f-meta{display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap;margin-top:2rem;font-size:.85rem}
+footer .f-meta div{color:var(--hueso)}
+footer .f-meta span{display:block;color:var(--ascua);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.3rem}
+footer .f-div{width:40px;height:1px;background:var(--linea);margin:2.4rem auto}
+footer .madeby{font-size:.82rem;color:var(--ceniza)}
 footer .madeby a{color:var(--ascua);font-weight:600}
 
 /* —— reveals (solo con JS; sin JS todo visible) —— */
@@ -282,7 +291,7 @@ footer .madeby a{color:var(--ascua);font-weight:600}
       <div class="dish"><span class="name">Rib eye al mezquite</span><span class="lead-dots"></span><span class="price">$420</span><span class="desc">300 g, madurado 21 días, sal de grano.</span></div>
       <div class="dish"><span class="name">Arrachera marinada</span><span class="lead-dots"></span><span class="price">$285</span><span class="desc">Marinada de la casa, cebollitas y limón.</span></div>
       <div class="dish"><span class="name">Costillar BBQ</span><span class="lead-dots"></span><span class="price">$340</span><span class="desc">Cocción lenta, glaseado de la casa.</span></div>
-      <div class="dish"><span class="name">Tomahawk para dos</span><span class="lead-dots"></span><span class="price">$890</span><span class="desc">1 kg para compartir, guarnición incluida.</span></div>
+      <div class="dish"><span class="name">Tomahawk para dos<span class="badge">Especialidad</span></span><span class="lead-dots"></span><span class="price">$890</span><span class="desc">1 kg para compartir, guarnición incluida.</span></div>
     </div>
     <div class="menu-group reveal">
       <h3>Para empezar y acompañar</h3>
@@ -326,7 +335,13 @@ footer .madeby a{color:var(--ascua);font-weight:600}
 <footer>
   <div class="wrap">
     <div class="brand serif">Mez<span class="ember">quite</span></div>
-    <div style="color:var(--ceniza);font-size:.9rem">Casa de cortes al fuego · Chihuahua, México</div>
+    <div class="f-tag">Casa de cortes al fuego · Chihuahua, México</div>
+    <div class="f-meta">
+      <div><span>Horario</span>Mar a Dom · 1 – 11 pm</div>
+      <div><span>Dónde</span>Av. Tecnológico, Chihuahua</div>
+      <div><span>Reservas</span>614 000 0000</div>
+    </div>
+    <div class="f-div"></div>
     <div class="madeby">Sitio demostrativo diseñado por <a href="../index.html">Noel Studio</a> — ¿quieres uno así para tu negocio?</div>
   </div>
 </footer>
