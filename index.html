@@ -117,12 +117,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<!-- Si GSAP cargó bien, marcamos la página para ocultar y animar las secciones.
-     Si NO carga (CDN caído, sin internet), esta marca no se pone y TODO queda visible. -->
-<script>if (window.gsap) document.documentElement.classList.add('has-gsap');</script>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
+<!-- GSAP con defer: no bloquea el dibujado de la página (carga más rápido).
+     La marca .has-gsap se pone en el script principal (DOMContentLoaded), ya que con
+     defer GSAP aún no existe en este punto. Si GSAP no carga, TODO queda visible. -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1449,7 +1450,10 @@ footer {
   </div>
   <div class="portfolio-grid">
     <a href="https://tirecentermontes.com/" target="_blank" rel="noopener" class="portfolio-item reveal" style="grid-column: 1 / -1; aspect-ratio: 16/7; text-decoration: none; color: inherit;">
-      <img class="portfolio-thumb" src="assets/portafolio-tirecenter.jpg" alt="Página web de Montes Tire Center, llantera en Chihuahua" loading="lazy" width="1400" height="787">
+      <picture>
+        <source srcset="assets/portafolio-tirecenter.webp" type="image/webp">
+        <img class="portfolio-thumb" src="assets/portafolio-tirecenter.jpg" alt="Página web de Montes Tire Center, llantera en Chihuahua" loading="lazy" width="1400" height="787">
+      </picture>
       <div class="portfolio-overlay">
         <div class="portfolio-name">Montes Tire Center</div>
         <div class="portfolio-type">tirecentermontes.com · Llantera · Chihuahua</div>
@@ -1779,45 +1783,57 @@ if (finePointer) {
   });
 }
 
-// ANIMACIÓN DE ENTRADA DEL HERO
-window.addEventListener('load', () => {
-  gsap.from('.hero-title .line span', { yPercent: 110, duration: 1, ease: 'power3.out', stagger: 0.15, delay: 0.2 });
-  gsap.from('#heroTag, .hero-right img, .hero-social, #heroSub', { opacity: 0, y: 20, duration: 0.9, ease: 'power3.out', stagger: 0.15, delay: 0.6 });
-});
+// ANIMACIONES GSAP — corren SOLO si GSAP cargó (ahora viene con defer, por eso
+// las envolvemos y esperamos a DOMContentLoaded). Si GSAP no carga, nada de esto
+// se ejecuta y TODO el contenido queda visible (robustez).
+function initGsapAnimations() {
+  if (!window.gsap) return;
+  document.documentElement.classList.add('has-gsap');
+  gsap.registerPlugin(ScrollTrigger);
 
-
-
-// SCROLL REVEALS (con cascada: los hermanos entran escalonados, no todos de golpe)
-gsap.registerPlugin(ScrollTrigger);
-document.querySelectorAll('.reveal').forEach(el => {
-  const siblings = [...el.parentElement.querySelectorAll(':scope > .reveal')];
-  const i = siblings.indexOf(el);
-  const delay = i > 0 ? i * 0.08 : 0;
-  gsap.to(el, {
-    opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', delay,
-    scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+  // ENTRADA DEL HERO (al terminar de cargar la página)
+  window.addEventListener('load', () => {
+    gsap.from('.hero-title .line span', { yPercent: 110, duration: 1, ease: 'power3.out', stagger: 0.15, delay: 0.2 });
+    gsap.from('#heroTag, .hero-right img, .hero-social, #heroSub', { opacity: 0, y: 20, duration: 0.9, ease: 'power3.out', stagger: 0.15, delay: 0.6 });
   });
-});
 
-// Premium: viñetas de la OFERTA en cascada
-gsap.to('#ofertas .offer-features li', {
-  opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', stagger: 0.1,
-  scrollTrigger: { trigger: '.offer-card', start: 'top 80%', toggleActions: 'play none none none' }
-});
-
-// Premium: el PRECIO de la oferta entra con un "pop" llamativo
-gsap.from('#ofertas .offer-price', {
-  scale: 0.7, opacity: 0, duration: 0.7, ease: 'back.out(1.7)',
-  scrollTrigger: { trigger: '.offer-card', start: 'top 80%', toggleActions: 'play none none none' }
-});
-
-// Premium: viñetas de cada PAQUETE de precios en cascada (incluye el de $7,000)
-document.querySelectorAll('.pricing-card').forEach(card => {
-  gsap.to(card.querySelectorAll('.pricing-features li'), {
-    opacity: 1, y: 0, duration: 0.5, ease: 'power3.out', stagger: 0.08,
-    scrollTrigger: { trigger: card, start: 'top 80%', toggleActions: 'play none none none' }
+  // SCROLL REVEALS (con cascada: los hermanos entran escalonados, no todos de golpe)
+  document.querySelectorAll('.reveal').forEach(el => {
+    const siblings = [...el.parentElement.querySelectorAll(':scope > .reveal')];
+    const i = siblings.indexOf(el);
+    const delay = i > 0 ? i * 0.08 : 0;
+    gsap.to(el, {
+      opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', delay,
+      scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+    });
   });
-});
+
+  // Premium: viñetas de la OFERTA en cascada
+  gsap.to('#ofertas .offer-features li', {
+    opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', stagger: 0.1,
+    scrollTrigger: { trigger: '.offer-card', start: 'top 80%', toggleActions: 'play none none none' }
+  });
+
+  // Premium: el PRECIO de la oferta entra con un "pop" llamativo
+  gsap.from('#ofertas .offer-price', {
+    scale: 0.7, opacity: 0, duration: 0.7, ease: 'back.out(1.7)',
+    scrollTrigger: { trigger: '.offer-card', start: 'top 80%', toggleActions: 'play none none none' }
+  });
+
+  // Premium: viñetas de cada PAQUETE de precios en cascada (incluye el de $7,000)
+  document.querySelectorAll('.pricing-card').forEach(card => {
+    gsap.to(card.querySelectorAll('.pricing-features li'), {
+      opacity: 1, y: 0, duration: 0.5, ease: 'power3.out', stagger: 0.08,
+      scrollTrigger: { trigger: card, start: 'top 80%', toggleActions: 'play none none none' }
+    });
+  });
+}
+// Los scripts GSAP usan defer, así que ya están listos en DOMContentLoaded.
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initGsapAnimations);
+} else {
+  initGsapAnimations();
+}
 
 // HERO CANVAS — partículas
 const canvas = document.getElementById('heroCanvas');
