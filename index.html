@@ -68,6 +68,52 @@
 }
 </script>
 
+<!-- Datos estructurados de Preguntas Frecuentes: Google puede mostrarlas
+     directamente en los resultados de búsqueda (más espacio, más clics). -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Para qué le sirve una página web a mi negocio?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Es como tu local, pero abierto las 24 horas. Cuando alguien busca tu servicio en internet y no te encuentra, le compra al que sí aparece. Tu página le muestra qué haces, le da confianza y le pone un botón para escribirte al WhatsApp en ese momento." }
+    },
+    {
+      "@type": "Question",
+      "name": "No sé nada de tecnología, ¿hay problema?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ninguno. Para eso estoy yo. Tú solo me cuentas de tu negocio y yo me encargo de todo lo técnico. Al final te explico cómo funciona tu página con palabras normales." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué necesito para empezar?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Solo la información de tu negocio: a qué te dedicas, tus precios o servicios, fotos y tu logo si tienes. Si te falta algo de eso, no te preocupes — te ayudo a resolverlo." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué significa dominio y hosting?",
+      "acceptedAnswer": { "@type": "Answer", "text": "El dominio es el nombre de tu página en internet (por ejemplo: tunegocio.com). El hosting es el espacio donde vive tu página para que cualquiera pueda verla. En el paquete Pro, los dos van incluidos — tú no tienes que hacer nada." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿La página queda a mi nombre?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sí, la página es tuya. No te amarro con rentas escondidas ni te la quito si dejas de trabajar conmigo." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto tiempo tarda?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Entre 5 y 21 días según el paquete. Te doy la fecha exacta antes de empezar y te voy mostrando avances en el camino." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué pasa después de que me entregas la página?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No desaparezco. Te explico cómo usarla y quedo al pendiente por WhatsApp para cualquier duda. Si más adelante quieres cambios o que tu página aparezca más arriba en Google, también te puedo ayudar con eso." }
+    }
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
@@ -1509,15 +1555,15 @@ footer {
     </div>
     <form class="contact-form reveal" onsubmit="sendWhatsApp(event)">
       <div class="form-field">
-        <label>Tu nombre</label>
+        <label for="fname">Tu nombre</label>
         <input type="text" id="fname" placeholder="Nombre completo" required>
       </div>
       <div class="form-field">
-        <label>Tu negocio</label>
+        <label for="fbusiness">Tu negocio</label>
         <input type="text" id="fbusiness" placeholder="Nombre de tu negocio">
       </div>
       <div class="form-field">
-        <label>¿Qué necesitas?</label>
+        <label for="fmessage">¿Qué necesitas?</label>
         <textarea id="fmessage" placeholder="Cuéntame sobre tu proyecto..."></textarea>
       </div>
       <button type="submit" class="btn-submit">
