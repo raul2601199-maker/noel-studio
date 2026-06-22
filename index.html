@@ -124,6 +124,8 @@
      defer GSAP aún no existe en este punto. Si GSAP no carga, TODO queda visible. -->
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- Lenis: scroll suave premium. Con defer no bloquea el dibujado. Si no carga, queda el scroll normal. -->
+<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -149,6 +151,12 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 }
 
 html { scroll-behavior: smooth; }
+/* Cuando Lenis (scroll suave) está activo, él maneja el desplazamiento: apagamos el nativo para que no choquen. */
+html.lenis, html.lenis body { height: auto; }
+html.lenis { scroll-behavior: auto !important; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
 
 /* Accesibilidad: anillo de foco visible solo para quien navega con teclado. */
 :focus-visible {
@@ -1804,11 +1812,36 @@ function initGsapAnimations() {
   document.documentElement.classList.add('has-gsap');
   gsap.registerPlugin(ScrollTrigger);
 
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // SCROLL SUAVE (Lenis) — sensación premium tipo agencia. Se integra con ScrollTrigger
+  // (vía el ticker de GSAP) para que las animaciones al hacer scroll sigan disparándose.
+  // Solo si Lenis cargó y el visitante no pidió menos movimiento; si no, queda el scroll normal.
+  if (window.Lenis && !reduceMotion) {
+    const lenis = new Lenis({ duration: 1.1, smoothWheel: true, touchMultiplier: 1.5 });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+    gsap.ticker.lagSmoothing(0);
+
+    // Los enlaces del menú (#seccion) navegan suave, con margen por la barra fija de arriba.
+    const navEl = document.querySelector('nav');
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      const id = link.getAttribute('href');
+      if (id.length <= 1) return; // ignora href="#"
+      link.addEventListener('click', (e) => {
+        const target = document.querySelector(id);
+        if (!target) return;
+        e.preventDefault();
+        const offset = navEl ? navEl.offsetHeight + 12 : 80;
+        lenis.scrollTo(target, { offset: -offset });
+      });
+    });
+  }
+
   // INTRO DEL HERO — secuencia en 2 tiempos:
   //   1) Las letras NOEL STUDIO aparecen desvanecidas y borrosas, y se vuelven nítidas y potentes.
   //   2) Cuando las letras ya están firmes, entra TODO lo demás del hero (etiqueta, subtítulo, logo, redes).
   // Usamos fromTo porque el estado inicial (opacity 0) ya viene del CSS .has-gsap.
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduceMotion) {
     gsap.set('.hero-title .line span, #heroTag, #heroSub, .hero-right img, .hero-social', { opacity: 1 });
   } else {
