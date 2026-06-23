@@ -260,4 +260,11 @@ footer .madeby a{color:var(--rojo-claro);font-weight:600}
 @media (max-width:880px){
   .svc-preview,.contacto-grid,.form-grid,.svc-cat{grid-template-columns:1fr}
   .page-hero{padding:9rem 0 3.5rem}
+  /* recuadros de servicios más compactos en celular (se veían muy grandes para el poco texto) */
+  .svc-preview{gap:.9rem;margin-top:.5rem}
+  .svc-card{padding:1.3rem 1.4rem}
+  .svc-card .n{margin-bottom:.5rem}
+  .svc-card h3{font-size:1.15rem;margin-bottom:.35rem}
+  .svc-card p{font-size:.86rem;margin-bottom:.65rem}
+  .svc-card .p{font-size:1.1rem}
 }
