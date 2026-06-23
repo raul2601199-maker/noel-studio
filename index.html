@@ -1224,6 +1224,21 @@ footer {
 }
 .testimonial-stars { color: var(--white); letter-spacing: 0.3em; margin-bottom: 1.5rem; font-size: 1rem; }
 
+/* RESEÑAS DE GOOGLE */
+.reviews-head { text-align: center; margin: 6rem auto 2.5rem; }
+.reviews-head .rh-stars { color: #ffc83d; letter-spacing: 0.18em; font-size: 1.15rem; }
+.reviews-head .rh-score { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.04em; margin-top: 0.5rem; color: var(--white); }
+.reviews-head .rh-sub { font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray-400); margin-top: 0.3rem; }
+.reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.review-card { background: var(--gray-900); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 2rem; display: flex; flex-direction: column; text-align: left; transition: transform 0.4s var(--ease-out), border-color 0.4s; }
+@media (hover: hover) and (pointer: fine) { .review-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.18); } }
+.review-stars { color: #ffc83d; letter-spacing: 0.14em; font-size: 0.95rem; margin-bottom: 1.1rem; }
+.review-text { font-size: 0.98rem; line-height: 1.65; color: #dcdcdc; flex: 1; }
+.review-author { margin-top: 1.6rem; display: flex; flex-direction: column; gap: 0.25rem; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.2rem; }
+.review-name { font-weight: 600; color: var(--white); }
+.review-meta { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-400); }
+@media (max-width: 768px) { .reviews { grid-template-columns: 1fr; } .reviews-head { margin-top: 4rem; } }
+
 /* REVEAL — solo escondemos las secciones si GSAP cargó (clase .has-gsap).
    Sin JS/GSAP el contenido se ve normal y nunca queda en blanco. */
 .has-gsap .reveal { opacity: 0; transform: translateY(40px); }
@@ -1570,10 +1585,27 @@ footer {
     Más proyectos próximamente — <a href="https://wa.me/526142251419?text=Hola,%20quiero%20que%20mi%20negocio%20sea%20tu%20siguiente%20proyecto" style="color:var(--white);">¿quieres ser el siguiente?</a>
   </p>
 
-  <div class="testimonial reveal">
-    <div class="testimonial-stars">★★★★★</div>
-    <p class="testimonial-quote">El equipo de Noel Studio nos hizo la página de la llantera y quedó justo como la queríamos. Nos explicaron todo sin complicaciones y ahora los clientes nos encuentran y nos escriben directo por WhatsApp.</p>
-    <div class="testimonial-author">Montes Tire Center · Chihuahua</div>
+  <div class="reviews-head reveal">
+    <div class="rh-stars">★★★★★</div>
+    <div class="rh-score">5.0 en Google</div>
+    <div class="rh-sub">Lo que dicen mis clientes</div>
+  </div>
+  <div class="reviews">
+    <div class="review-card reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">Contraté a Noel Studio para el desarrollo de mi página web y la experiencia fue muy buena. Raúl siempre fue profesional, cumplió con lo acordado y estuvo atento a cada detalle del proyecto. Todo el proceso fue claro y sin complicaciones. Muy recomendable.</p>
+      <div class="review-author"><span class="review-name">Luis Carlos C.</span><span class="review-meta">Cliente · Google</span></div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">Quedé muy satisfecho con el resultado de mi página web. El diseño se ve moderno, profesional y transmite confianza a mis clientes. Noel Studio entendió exactamente lo que necesitaba y logró plasmarlo en el sitio. Sin duda volvería a trabajar con ellos.</p>
+      <div class="review-author"><span class="review-name">ANDR3CHUS</span><span class="review-meta">Local Guide · Google</span></div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">En Noel Studio nos hicieron la página web de la llantera y quedó muy profesional, moderna y rápida. Raúl explica todo claro y da seguimiento. Si buscas diseño web en Chihuahua, totalmente recomendados.</p>
+      <div class="review-author"><span class="review-name">Montes Tire Center</span><span class="review-meta">Cliente · Google</span></div>
+    </div>
   </div>
 </section>
 
