@@ -230,6 +230,9 @@ body.has-cursor.ready{cursor:none}
   .momento-bg{inset:0}
   .momento-bg img{height:100%}
   .momento blockquote{font-size:clamp(1.6rem,7vw,2.4rem)}
+  /* fluidez: sin desenfoque ni grano fijo en celular (causan tirones de FPS al scrollear) */
+  .demobar{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(16,11,6,0.96)}
+  body::after{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   .js .reveal,.js .line-mask{opacity:1;transform:none;clip-path:none;transition:none}

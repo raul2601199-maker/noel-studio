@@ -1378,6 +1378,16 @@ footer {
     color: transparent;
   }
 }
+
+/* FLUIDEZ EN CELULAR — el backdrop-filter (desenfoque) recalcula en cada scroll y traba.
+   En móvil usamos fondo sólido (mismo look, sin el tirón de FPS). */
+@media (max-width: 768px) {
+  nav, .nav-links {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+  nav { background: rgba(0,0,0,0.92) !important; }
+}
 </style>
 </head>
 <body>

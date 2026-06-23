@@ -204,6 +204,9 @@ footer .madeby a{color:var(--rojo-claro);font-weight:600}
   .momento-bg{inset:0}
   .momento-bg img{height:100%}
   .momento blockquote{font-size:clamp(1.5rem,7vw,2.2rem)}
+  /* fluidez: sin desenfoque ni grano fijo en celular (causan tirones de FPS al scrollear) */
+  .demobar{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(8,10,12,0.96)}
+  body::after{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   .js .reveal,.js .line-mask{opacity:1;transform:none;clip-path:none;transition:none}
