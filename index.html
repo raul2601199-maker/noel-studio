@@ -1231,6 +1231,13 @@ footer {
   .has-gsap .reveal { opacity: 1; transform: none; }
 }
 
+/* LINE-MASK — el título se "dibuja" de izquierda a derecha (efecto cortina), como en los demos. */
+.has-gsap .line-mask { clip-path: inset(0 100% 0 0); }
+.has-gsap .line-mask.in { clip-path: inset(0 0 0 0); transition: clip-path 1.1s cubic-bezier(0.76,0,0.24,1); }
+@media (prefers-reduced-motion: reduce) {
+  .has-gsap .line-mask { clip-path: none; }
+}
+
 /* INTRO DEL HERO — primero entran las letras (desvanecidas->potentes), luego el resto.
    Estado inicial oculto SOLO con GSAP, para que no haya parpadeo. Sin GSAP, todo visible. */
 .has-gsap .hero-title .line span,
@@ -1452,7 +1459,7 @@ footer {
 <section id="servicios">
   <div class="section-header">
     <div>
-      <h2 class="section-title reveal"><span>LO QUE</span><span>HAGO</span></h2>
+      <h2 class="section-title line-mask"><span>LO QUE</span><span>HAGO</span></h2>
     </div>
     <p class="section-desc reveal">Cada proyecto es una solución a medida, diseñada para que tu negocio crezca en internet.</p>
   </div>
@@ -1500,7 +1507,7 @@ footer {
 <section id="proceso">
   <div class="section-header">
     <div>
-      <h2 class="section-title reveal"><span>CÓMO</span><span>TRABAJO</span></h2>
+      <h2 class="section-title line-mask"><span>CÓMO</span><span>TRABAJO</span></h2>
     </div>
     <p class="section-desc reveal">Sin letras chiquitas. Así es el camino desde que me escribes hasta que tu página está funcionando.</p>
   </div>
@@ -1532,7 +1539,7 @@ footer {
 <section id="portafolio">
   <div class="section-header">
     <div>
-      <h2 class="section-title reveal"><span>PROYECTOS</span></h2>
+      <h2 class="section-title line-mask"><span>PROYECTOS</span></h2>
     </div>
     <p class="section-desc reveal">Trabajo real, resultados reales para negocios en Chihuahua.</p>
   </div>
@@ -1574,7 +1581,7 @@ footer {
 <section id="ofertas">
   <div class="section-header">
     <div>
-      <h2 class="section-title reveal"><span>OFERTA DE</span><span>LANZAMIENTO</span></h2>
+      <h2 class="section-title line-mask"><span>OFERTA DE</span><span>LANZAMIENTO</span></h2>
     </div>
     <p class="section-desc reveal">Precio especial para los primeros negocios de este mes.</p>
   </div>
@@ -1603,7 +1610,7 @@ footer {
 <section id="precios">
   <div class="section-header">
     <div>
-      <h2 class="section-title reveal"><span>PRECIOS</span><span>CLAROS</span></h2>
+      <h2 class="section-title line-mask"><span>PRECIOS</span><span>CLAROS</span></h2>
     </div>
     <p class="section-desc reveal">Sin sorpresas. Sabes exactamente qué incluye cada paquete.</p>
   </div>
@@ -1670,7 +1677,7 @@ footer {
 <section id="preguntas">
   <div class="section-header">
     <div>
-      <h2 class="section-title reveal"><span>PREGUNTAS</span><span>FRECUENTES</span></h2>
+      <h2 class="section-title line-mask"><span>PREGUNTAS</span><span>FRECUENTES</span></h2>
     </div>
     <p class="section-desc reveal">Lo que casi todos me preguntan antes de empezar, respondido sin rodeos.</p>
   </div>
@@ -1871,7 +1878,8 @@ function initGsapAnimations() {
   // SCROLL SUAVE (Lenis) — sensación premium tipo agencia. Se integra con ScrollTrigger
   // (vía el ticker de GSAP) para que las animaciones al hacer scroll sigan disparándose.
   // Solo si Lenis cargó y el visitante no pidió menos movimiento; si no, queda el scroll normal.
-  if (window.Lenis && !reduceMotion) {
+  // smooth scroll SOLO en computadora con mouse; en celular se usa el scroll natural del teléfono
+  if (window.Lenis && !reduceMotion && window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
     const lenis = new Lenis({ duration: 1.1, smoothWheel: true, touchMultiplier: 1.5 });
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => { lenis.raf(time * 1000); });
@@ -1921,6 +1929,11 @@ function initGsapAnimations() {
       opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', delay,
       scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
     });
+  });
+
+  // LINE-MASK — títulos que se "dibujan" de izquierda a derecha (efecto cortina, como los demos)
+  document.querySelectorAll('.line-mask').forEach(el => {
+    ScrollTrigger.create({ trigger: el, start: 'top 85%', onEnter: () => el.classList.add('in') });
   });
 
   // Premium: viñetas de la OFERTA en cascada

@@ -11,7 +11,8 @@ function initAnims(){
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   gsap.registerPlugin(ScrollTrigger);
 
-  if(window.Lenis && !reduce){
+  // smooth scroll solo en computadora con mouse; en celular, scroll natural del teléfono
+  if(window.Lenis && !reduce && matchMedia('(hover:hover) and (pointer:fine)').matches){
     const lenis=new Lenis({duration:1.1,smoothWheel:true});
     lenis.on('scroll',ScrollTrigger.update);
     gsap.ticker.add(t=>lenis.raf(t*1000));
