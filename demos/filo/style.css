@@ -203,6 +203,9 @@ footer .madeby a{color:var(--rojo-claro);font-weight:600}
   /* fluidez: sin desenfoque ni grano fijo en celular (causan tirones de FPS al scrollear) */
   .demobar{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(8,10,12,0.96)}
   body::after{display:none}
+  /* en celular los títulos animan con fade suave (no el efecto cortina, que se ve "cortado") */
+  .js .line-mask{clip-path:none!important;opacity:0;transform:translateY(16px)}
+  .js .line-mask.in{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease)}
 }
 @media (prefers-reduced-motion:reduce){
   .js .reveal,.js .line-mask{opacity:1;transform:none;clip-path:none;transition:none}

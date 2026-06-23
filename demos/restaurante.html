@@ -229,6 +229,17 @@ body.has-cursor.ready{cursor:none}
   /* fluidez: sin desenfoque ni grano fijo en celular (causan tirones de FPS al scrollear) */
   .demobar{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(16,11,6,0.96)}
   body::after{display:none}
+  /* CARTA en celular: nombre y precio en 2, sin línea de puntos (aprieta), letra más grande */
+  .menu-cols{gap:2.8rem 0}
+  .menu-group h3{font-size:1.5rem}
+  .dish{grid-template-columns:1fr auto;column-gap:1.2rem;margin-bottom:1.7rem}
+  .dish .lead-dots{display:none}
+  .dish .name{font-size:1.18rem}
+  .dish .price{font-size:1.25rem}
+  .dish .desc{font-size:.95rem;margin-top:.45rem}
+  /* en celular los títulos animan con fade suave (no el efecto cortina, que se ve "cortado") */
+  .js .line-mask{clip-path:none!important;opacity:0;transform:translateY(16px)}
+  .js .line-mask.in{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease)}
 }
 @media (prefers-reduced-motion:reduce){
   .js .reveal,.js .line-mask{opacity:1;transform:none;clip-path:none;transition:none}
