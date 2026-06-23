@@ -57,6 +57,21 @@ else initAnims();
   addEventListener('mouseenter',()=>{dot.style.opacity=ring.style.opacity='';});
 })();
 
+// efecto 3D: las fotos de la galería se inclinan siguiendo el cursor (solo computadora con mouse)
+(function(){
+  if(!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  document.querySelectorAll('.g-item').forEach(item=>{
+    const tilt=item.querySelector('.g-tilt'); if(!tilt) return;
+    item.addEventListener('mousemove',e=>{
+      const r=item.getBoundingClientRect();
+      const px=(e.clientX-r.left)/r.width-0.5;
+      const py=(e.clientY-r.top)/r.height-0.5;
+      tilt.style.transform=`rotateY(${px*9}deg) rotateX(${-py*9}deg)`;
+    },{passive:true});
+    item.addEventListener('mouseleave',()=>{tilt.style.transform='';});
+  });
+})();
+
 // formulario de contacto (demo): abre WhatsApp con los datos de la cita
 window.enviarCita=function(e){
   e.preventDefault();

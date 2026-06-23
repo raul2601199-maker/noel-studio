@@ -140,18 +140,23 @@ section.block{padding-top:7rem;padding-bottom:7rem}
 
 /* galería */
 .galeria{display:grid;grid-template-columns:1fr 1.4fr;grid-auto-rows:1fr;gap:1.2rem;margin-top:1rem}
-.g-item{position:relative;overflow:hidden;border-radius:4px}
-.g-item img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease);will-change:transform;filter:grayscale(.2)}
-.g-item:hover img{transform:scale(1.06);filter:grayscale(0)}
-.g-item::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(14,17,20,.6));opacity:0;transition:opacity .5s}
-.g-item:hover::after{opacity:1}
-.g-item .g-cap{position:absolute;left:1.3rem;bottom:1.2rem;z-index:3;font-family:'Oswald',sans-serif;font-weight:500;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;color:#fff;opacity:0;transform:translateY(12px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
-.g-item:hover .g-cap{opacity:1;transform:none}
+.g-item{position:relative;border-radius:6px;perspective:1100px}
+/* .g-tilt = la tarjeta que se inclina en 3D (sigue el cursor); recorta la foto y lleva la sombra */
+.g-tilt{position:relative;width:100%;height:100%;border-radius:6px;overflow:hidden;transform-style:preserve-3d;
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease);box-shadow:0 12px 30px rgba(0,0,0,.32);will-change:transform}
+.g-tilt img{display:block;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease),filter .9s;filter:grayscale(.2)}
+.g-tilt::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(14,17,20,.62));opacity:0;transition:opacity .5s;pointer-events:none}
+.g-item .g-cap{position:absolute;left:1.3rem;bottom:1.2rem;z-index:4;font-family:'Oswald',sans-serif;font-weight:500;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;color:#fff;opacity:0;transform:translateY(12px);transition:opacity .5s var(--ease),transform .5s var(--ease);text-shadow:0 2px 10px rgba(0,0,0,.6)}
+@media (hover:hover) and (pointer:fine){
+  .g-item:hover .g-tilt{box-shadow:0 26px 55px rgba(0,0,0,.5)}
+  .g-item:hover .g-tilt img{transform:scale(1.05);filter:grayscale(0)}
+  .g-item:hover .g-tilt::after{opacity:1}
+  .g-item:hover .g-cap{opacity:1;transform:none}
+}
 /* aparición de las fotos: fade + zoom suave (se nota también en celular, donde no hay hover) */
 .js .g-item.reveal{transform:none}
-.js .g-item.reveal img{transform:scale(1.14)}
-.js .g-item.reveal.in img{transform:scale(1);transition:transform 1.2s var(--ease),filter .9s}
-.js .g-item.reveal.in:hover img{transform:scale(1.06)}
+.js .g-item.reveal .g-tilt img{transform:scale(1.16)}
+.js .g-item.reveal.in .g-tilt img{transform:scale(1)}
 .g-tall{grid-row:span 2}
 .g-wide{aspect-ratio:16/10}
 

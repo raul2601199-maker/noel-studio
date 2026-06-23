@@ -145,11 +145,16 @@ section.block{padding-top:7rem;padding-bottom:7rem}
 
 /* —— galería —— */
 .galeria{display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:auto auto;gap:1.2rem;margin-top:1rem}
-.g-item{position:relative;overflow:hidden;border-radius:8px}
-.g-item img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease);will-change:transform;filter:saturate(1.05) sepia(.05)}
-.g-item:hover img{transform:scale(1.06)}
-.g-item::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(20,15,10,.55));opacity:0;transition:opacity .5s}
-.g-item:hover::after{opacity:1}
+.g-item{position:relative;border-radius:8px;perspective:1100px}
+.g-tilt{position:relative;width:100%;height:100%;border-radius:8px;overflow:hidden;transform-style:preserve-3d;
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease);box-shadow:0 12px 30px rgba(0,0,0,.35);will-change:transform}
+.g-tilt img{display:block;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease),filter .9s;filter:saturate(1.05) sepia(.05)}
+.g-tilt::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(20,15,10,.55));opacity:0;transition:opacity .5s;pointer-events:none}
+@media (hover:hover) and (pointer:fine){
+  .g-item:hover .g-tilt{box-shadow:0 26px 55px rgba(0,0,0,.5)}
+  .g-item:hover .g-tilt img{transform:scale(1.05)}
+  .g-item:hover .g-tilt::after{opacity:1}
+}
 .g-big{grid-row:span 2;aspect-ratio:auto}
 .g-small{aspect-ratio:16/11}
 
@@ -195,13 +200,12 @@ footer .madeby a{color:var(--ascua);font-weight:600}
 .momento cite{display:block;margin-top:1.6rem;font-family:'Inter',sans-serif;font-style:normal;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ceniza)}
 
 /* —— caption galería —— */
-.g-item .g-cap{position:absolute;left:1.3rem;bottom:1.2rem;z-index:3;font-family:'Fraunces',serif;font-style:italic;font-size:1.15rem;color:#fff;opacity:0;transform:translateY(12px);transition:opacity .5s var(--ease),transform .5s var(--ease);text-shadow:0 1px 8px rgba(0,0,0,.6)}
-.g-item:hover .g-cap{opacity:1;transform:none}
+.g-item .g-cap{position:absolute;left:1.3rem;bottom:1.2rem;z-index:4;font-family:'Fraunces',serif;font-style:italic;font-size:1.15rem;color:#fff;opacity:0;transform:translateY(12px);transition:opacity .5s var(--ease),transform .5s var(--ease);text-shadow:0 1px 8px rgba(0,0,0,.6)}
+@media (hover:hover) and (pointer:fine){ .g-item:hover .g-cap{opacity:1;transform:none} }
 /* aparición de las fotos: fade + zoom suave (se nota también en celular, donde no hay hover) */
 .js .g-item.reveal{transform:none}
-.js .g-item.reveal img{transform:scale(1.14)}
-.js .g-item.reveal.in img{transform:scale(1);transition:transform 1.2s var(--ease),filter .9s}
-.js .g-item.reveal.in:hover img{transform:scale(1.06)}
+.js .g-item.reveal .g-tilt img{transform:scale(1.16)}
+.js .g-item.reveal.in .g-tilt img{transform:scale(1)}
 
 /* —— cursor personalizado (solo desktop con mouse fino) —— */
 .cursor-dot,.cursor-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:9997;border-radius:50%;transform:translate(-50%,-50%);opacity:0;transition:opacity .3s}
@@ -383,9 +387,9 @@ body.has-cursor.ready{cursor:none}
   <span class="eyebrow reveal">Galería</span>
   <h2 class="h2 line-mask" style="margin-bottom:2.4rem">Así se vive</h2>
   <div class="galeria">
-    <div class="g-item g-big reveal"><img src="img/costillar.webp" alt="Costillar a la parrilla" width="1400" height="935" loading="lazy"><span class="g-cap">Costillar al mezquite</span></div>
-    <div class="g-item g-small reveal"><img src="img/plato.webp" alt="Plato servido" width="1400" height="933" loading="lazy"><span class="g-cap">De la casa</span></div>
-    <div class="g-item g-small reveal"><img src="img/hero.webp" alt="Cortes en la tabla" width="1400" height="788" loading="lazy"><span class="g-cap">Para compartir</span></div>
+    <div class="g-item g-big reveal"><div class="g-tilt"><img src="img/costillar.webp" alt="Costillar a la parrilla" width="1400" height="935" loading="lazy"></div><span class="g-cap">Costillar al mezquite</span></div>
+    <div class="g-item g-small reveal"><div class="g-tilt"><img src="img/plato.webp" alt="Plato servido" width="1400" height="933" loading="lazy"></div><span class="g-cap">De la casa</span></div>
+    <div class="g-item g-small reveal"><div class="g-tilt"><img src="img/hero.webp" alt="Cortes en la tabla" width="1400" height="788" loading="lazy"></div><span class="g-cap">Para compartir</span></div>
   </div>
 </section>
 
@@ -514,6 +518,21 @@ else initAnims();
   document.querySelectorAll('a,button,.g-item,.dish').forEach(el=>{el.addEventListener('mouseenter',grow);el.addEventListener('mouseleave',shrink);});
   addEventListener('mouseleave',()=>{dot.style.opacity=ring.style.opacity=0;});
   addEventListener('mouseenter',()=>{dot.style.opacity=ring.style.opacity='';});
+})();
+
+// ---- EFECTO 3D: las fotos de la galería se inclinan siguiendo el cursor (solo computadora) ----
+(function(){
+  if(!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  document.querySelectorAll('.g-item').forEach(item=>{
+    const tilt=item.querySelector('.g-tilt'); if(!tilt) return;
+    item.addEventListener('mousemove',e=>{
+      const r=item.getBoundingClientRect();
+      const px=(e.clientX-r.left)/r.width-0.5;
+      const py=(e.clientY-r.top)/r.height-0.5;
+      tilt.style.transform=`rotateY(${px*9}deg) rotateX(${-py*9}deg)`;
+    },{passive:true});
+    item.addEventListener('mouseleave',()=>{tilt.style.transform='';});
+  });
 })();
 
 // ---- RESERVA: arma el mensaje con fecha/hora/personas y abre WhatsApp (demo) ----
