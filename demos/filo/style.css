@@ -104,7 +104,7 @@ nav.scrolled::before{opacity:1}
 .fact .lbl{font-family:'Oswald',sans-serif;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--niebla)}
 
 /* secciones */
-section.block{padding:7rem 0}
+section.block{padding-top:7rem;padding-bottom:7rem}
 .eyebrow{font-family:'Oswald',sans-serif;font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:var(--rojo-claro);margin-bottom:1.1rem;display:inline-block}
 .h2{font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(2.4rem,6vw,4.6rem);line-height:.98;letter-spacing:.01em;color:var(--filo)}
 
@@ -190,7 +190,7 @@ footer .madeby a{color:var(--rojo-claro);font-weight:600}
   .fact{border-left:0;border-top:1px solid var(--linea)}
   .fact:first-child{border-top:0}
   .demobar .demo-text{display:none}
-  section.block{padding:4rem 0}
+  section.block{padding-top:4rem;padding-bottom:4rem}
   /* sin parallax en celular: las imágenes llenan exacto, no se recortan ni desbordan */
   .hero-bg{inset:0}
   .hero-bg img{height:100%}
