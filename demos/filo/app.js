@@ -57,19 +57,27 @@ else initAnims();
   addEventListener('mouseenter',()=>{dot.style.opacity=ring.style.opacity='';});
 })();
 
-// efecto 3D: las fotos de la galería se inclinan siguiendo el cursor (solo computadora con mouse)
+// PARALLAX: las imágenes se mueven dentro de su marco al hacer scroll (efecto panorámica/profundidad).
+// Optimizado: solo procesa las que están a la vista, con requestAnimationFrame (no traba el scroll).
 (function(){
-  if(!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-  document.querySelectorAll('.g-item').forEach(item=>{
-    const tilt=item.querySelector('.g-tilt'); if(!tilt) return;
-    item.addEventListener('mousemove',e=>{
-      const r=item.getBoundingClientRect();
-      const px=(e.clientX-r.left)/r.width-0.5;
-      const py=(e.clientY-r.top)/r.height-0.5;
-      tilt.style.transform=`rotateY(${px*9}deg) rotateX(${-py*9}deg)`;
-    },{passive:true});
-    item.addEventListener('mouseleave',()=>{tilt.style.transform='';});
-  });
+  const els=[...document.querySelectorAll('[data-px]')];
+  if(!els.length) return;
+  let ticking=false;
+  function upd(){
+    const vh=innerHeight;
+    for(const el of els){
+      const host=el.parentElement;
+      const r=host.getBoundingClientRect();
+      if(r.bottom<-120||r.top>vh+120) continue;            // fuera de la vista: no calcular
+      const prog=(r.top+r.height/2-vh/2)/vh;               // -0.6..0.6 según su posición
+      const amt=+el.dataset.px||40;
+      el.style.transform=`translate3d(0,${(-prog*amt).toFixed(1)}px,0)`;
+    }
+    ticking=false;
+  }
+  addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(upd);ticking=true;}},{passive:true});
+  addEventListener('resize',upd,{passive:true});
+  upd();
 })();
 
 // formulario de contacto (demo): abre WhatsApp con los datos de la cita

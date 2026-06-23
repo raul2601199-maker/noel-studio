@@ -145,14 +145,12 @@ section.block{padding-top:7rem;padding-bottom:7rem}
 
 /* —— galería —— */
 .galeria{display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:auto auto;gap:1.2rem;margin-top:1rem}
-.g-item{position:relative;border-radius:8px;perspective:1100px}
-.g-tilt{position:relative;width:100%;height:100%;border-radius:8px;overflow:hidden;transform-style:preserve-3d;
-  transition:transform .5s var(--ease),box-shadow .5s var(--ease);box-shadow:0 12px 30px rgba(0,0,0,.35);will-change:transform}
-.g-tilt img{display:block;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease),filter .9s;filter:saturate(1.05) sepia(.05)}
-.g-tilt::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(20,15,10,.55));opacity:0;transition:opacity .5s;pointer-events:none}
+.g-item{position:relative;border-radius:8px;overflow:hidden}
+/* .g-tilt = marco que recorta; la foto es MÁS ALTA y se mueve dentro al hacer scroll (parallax) */
+.g-tilt{position:relative;width:100%;height:100%;border-radius:8px;overflow:hidden;box-shadow:0 12px 30px rgba(0,0,0,.35)}
+.g-tilt img{position:absolute;top:-13%;left:0;width:100%;height:126%;object-fit:cover;filter:saturate(1.05) sepia(.05);will-change:transform;transition:filter .9s}
+.g-tilt::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(20,15,10,.55));opacity:0;transition:opacity .5s;pointer-events:none;z-index:2}
 @media (hover:hover) and (pointer:fine){
-  .g-item:hover .g-tilt{box-shadow:0 26px 55px rgba(0,0,0,.5)}
-  .g-item:hover .g-tilt img{transform:scale(1.05)}
   .g-item:hover .g-tilt::after{opacity:1}
 }
 .g-big{grid-row:span 2;aspect-ratio:auto}
@@ -389,9 +387,9 @@ body.has-cursor.ready{cursor:none}
   <span class="eyebrow reveal">Galería</span>
   <h2 class="h2 line-mask" style="margin-bottom:2.4rem">Así se vive</h2>
   <div class="galeria">
-    <div class="g-item g-big reveal"><div class="g-tilt"><img src="img/costillar.webp" alt="Costillar a la parrilla" width="1400" height="935" loading="lazy"></div><span class="g-cap">Costillar al mezquite</span></div>
-    <div class="g-item g-small reveal"><div class="g-tilt"><img src="img/plato.webp" alt="Plato servido" width="1400" height="933" loading="lazy"></div><span class="g-cap">De la casa</span></div>
-    <div class="g-item g-small reveal"><div class="g-tilt"><img src="img/hero.webp" alt="Cortes en la tabla" width="1400" height="788" loading="lazy"></div><span class="g-cap">Para compartir</span></div>
+    <div class="g-item g-big reveal"><div class="g-tilt"><img data-px="34" src="img/costillar.webp" alt="Costillar a la parrilla" width="1400" height="935" loading="lazy"></div><span class="g-cap">Costillar al mezquite</span></div>
+    <div class="g-item g-small reveal"><div class="g-tilt"><img data-px="34" src="img/plato.webp" alt="Plato servido" width="1400" height="933" loading="lazy"></div><span class="g-cap">De la casa</span></div>
+    <div class="g-item g-small reveal"><div class="g-tilt"><img data-px="34" src="img/hero.webp" alt="Cortes en la tabla" width="1400" height="788" loading="lazy"></div><span class="g-cap">Para compartir</span></div>
   </div>
 </section>
 
@@ -522,19 +520,27 @@ else initAnims();
   addEventListener('mouseenter',()=>{dot.style.opacity=ring.style.opacity='';});
 })();
 
-// ---- EFECTO 3D: las fotos de la galería se inclinan siguiendo el cursor (solo computadora) ----
+// ---- PARALLAX: las imágenes se mueven dentro de su marco al hacer scroll (efecto panorámica) ----
+// Optimizado con requestAnimationFrame; solo procesa las que están a la vista (no traba el scroll).
 (function(){
-  if(!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-  document.querySelectorAll('.g-item').forEach(item=>{
-    const tilt=item.querySelector('.g-tilt'); if(!tilt) return;
-    item.addEventListener('mousemove',e=>{
-      const r=item.getBoundingClientRect();
-      const px=(e.clientX-r.left)/r.width-0.5;
-      const py=(e.clientY-r.top)/r.height-0.5;
-      tilt.style.transform=`rotateY(${px*9}deg) rotateX(${-py*9}deg)`;
-    },{passive:true});
-    item.addEventListener('mouseleave',()=>{tilt.style.transform='';});
-  });
+  const els=[...document.querySelectorAll('[data-px]')];
+  if(!els.length) return;
+  let ticking=false;
+  function upd(){
+    const vh=innerHeight;
+    for(const el of els){
+      const host=el.parentElement;
+      const r=host.getBoundingClientRect();
+      if(r.bottom<-120||r.top>vh+120) continue;
+      const prog=(r.top+r.height/2-vh/2)/vh;
+      const amt=+el.dataset.px||40;
+      el.style.transform=`translate3d(0,${(-prog*amt).toFixed(1)}px,0)`;
+    }
+    ticking=false;
+  }
+  addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(upd);ticking=true;}},{passive:true});
+  addEventListener('resize',upd,{passive:true});
+  upd();
 })();
 
 // ---- RESERVA: arma el mensaje con fecha/hora/personas y abre WhatsApp (demo) ----
