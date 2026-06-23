@@ -202,9 +202,11 @@ footer .madeby a{color:var(--ascua);font-weight:600}
 /* —— caption galería —— */
 .g-item .g-cap{position:absolute;left:1.3rem;bottom:1.2rem;z-index:4;font-family:'Fraunces',serif;font-style:italic;font-size:1.15rem;color:#fff;opacity:0;transform:translateY(12px);transition:opacity .5s var(--ease),transform .5s var(--ease);text-shadow:0 1px 8px rgba(0,0,0,.6)}
 @media (hover:hover) and (pointer:fine){ .g-item:hover .g-cap{opacity:1;transform:none} }
-/* aparición de las fotos: fade + zoom suave (se nota también en celular, donde no hay hover) */
+/* aparición 3D: la foto entra inclinada en perspectiva y se endereza (se ve en celular) */
 .js .g-item.reveal{transform:none}
-.js .g-item.reveal .g-tilt img{transform:scale(1.16)}
+.js .g-item.reveal .g-tilt{transform:rotateX(18deg) translateY(26px);transform-origin:center 75%}
+.js .g-item.reveal.in .g-tilt{transform:rotateX(0deg) translateY(0);transition:transform 1.1s var(--ease),box-shadow .5s var(--ease)}
+.js .g-item.reveal .g-tilt img{transform:scale(1.18)}
 .js .g-item.reveal.in .g-tilt img{transform:scale(1)}
 
 /* —— cursor personalizado (solo desktop con mouse fino) —— */

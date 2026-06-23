@@ -153,9 +153,11 @@ section.block{padding-top:7rem;padding-bottom:7rem}
   .g-item:hover .g-tilt::after{opacity:1}
   .g-item:hover .g-cap{opacity:1;transform:none}
 }
-/* aparición de las fotos: fade + zoom suave (se nota también en celular, donde no hay hover) */
+/* aparición 3D: la foto entra inclinada en perspectiva y se endereza (se ve en celular) */
 .js .g-item.reveal{transform:none}
-.js .g-item.reveal .g-tilt img{transform:scale(1.16)}
+.js .g-item.reveal .g-tilt{transform:rotateX(18deg) translateY(26px);transform-origin:center 75%}
+.js .g-item.reveal.in .g-tilt{transform:rotateX(0deg) translateY(0);transition:transform 1.1s var(--ease),box-shadow .5s var(--ease)}
+.js .g-item.reveal .g-tilt img{transform:scale(1.18)}
 .js .g-item.reveal.in .g-tilt img{transform:scale(1)}
 .g-tall{grid-row:span 2}
 .g-wide{aspect-ratio:16/10}
