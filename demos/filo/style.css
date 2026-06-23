@@ -147,6 +147,11 @@ section.block{padding-top:7rem;padding-bottom:7rem}
 .g-item:hover::after{opacity:1}
 .g-item .g-cap{position:absolute;left:1.3rem;bottom:1.2rem;z-index:3;font-family:'Oswald',sans-serif;font-weight:500;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;color:#fff;opacity:0;transform:translateY(12px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
 .g-item:hover .g-cap{opacity:1;transform:none}
+/* aparición de las fotos: fade + zoom suave (se nota también en celular, donde no hay hover) */
+.js .g-item.reveal{transform:none}
+.js .g-item.reveal img{transform:scale(1.14)}
+.js .g-item.reveal.in img{transform:scale(1);transition:transform 1.2s var(--ease),filter .9s}
+.js .g-item.reveal.in:hover img{transform:scale(1.06)}
 .g-tall{grid-row:span 2}
 .g-wide{aspect-ratio:16/10}
 
