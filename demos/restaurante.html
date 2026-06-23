@@ -212,12 +212,24 @@ body.has-cursor.ready{cursor:none}
   .fuego,.menu-cols,.reserva,.galeria{grid-template-columns:1fr}
   .reserva{padding:2.4rem}
   .g-big{grid-row:auto;aspect-ratio:16/11}
+  .galeria{gap:.9rem}
   .facts{grid-template-columns:1fr}
-  .fact{border-left:0;border-top:1px solid var(--linea)}
+  .fact{border-left:0;border-top:1px solid var(--linea);padding:2.2rem 1.5rem}
   .fact:first-child{border-top:0}
   .scroll-cue{display:none}
   .demobar .demo-text{display:none}
-  section.block{padding:5rem 0}
+  section.block{padding:4rem 0}
+  /* en celular el título se ve directo (sin efecto cortina, que a veces no se disparaba) */
+  .js .line-mask{clip-path:none!important}
+  /* sin parallax en celular: las imágenes llenan exacto, no se recortan ni desbordan */
+  .hero-bg{inset:0}
+  .hero-bg img{height:100%}
+  .fuego-img img{height:100%}
+  .fuego-img{aspect-ratio:4/3}
+  .momento{min-height:52vh}
+  .momento-bg{inset:0}
+  .momento-bg img{height:100%}
+  .momento blockquote{font-size:clamp(1.6rem,7vw,2.4rem)}
 }
 @media (prefers-reduced-motion:reduce){
   .js .reveal,.js .line-mask{opacity:1;transform:none;clip-path:none;transition:none}
@@ -421,31 +433,29 @@ function initAnims(){
       .from('[data-hero="6"]',{opacity:0,y:20,duration:.8},'-=.6');
   }
 
-  // parallax hero
-  if(!reduce){
+  const isDesktop = matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  // REVEALS y LINE-MASK con IntersectionObserver (nativo del navegador: fluido también en celular)
+  const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.08, rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.reveal,.line-mask').forEach(el=>io.observe(el));
+
+  // CONTADORES con IntersectionObserver
+  document.querySelectorAll('.count').forEach(el=>{
+    const to=+el.dataset.to;
+    const o=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){gsap.to({v:+el.textContent},{v:to,duration:1.4,ease:'power2.out',onUpdate(){el.textContent=Math.round(this.targets()[0].v);}});o.disconnect();}});},{threshold:0.5});
+    o.observe(el);
+  });
+
+  // PARALLAX solo en computadora (en celular traba el scroll y mueve las imágenes de más)
+  if(isDesktop && !reduce){
     gsap.to('#heroBg',{yPercent:18,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
     gsap.fromTo('#fuegoImg',{yPercent:-6},{yPercent:6,ease:'none',scrollTrigger:{trigger:'#fuego',start:'top bottom',end:'bottom top',scrub:true}});
     gsap.fromTo('#momentoBg',{yPercent:-8},{yPercent:8,ease:'none',scrollTrigger:{trigger:'.momento',start:'top bottom',end:'bottom top',scrub:true}});
   }
 
-  // reveals
-  gsap.utils.toArray('.reveal').forEach(el=>{
-    ScrollTrigger.create({trigger:el,start:'top 86%',onEnter:()=>el.classList.add('in')});
-  });
-  gsap.utils.toArray('.line-mask').forEach(el=>{
-    ScrollTrigger.create({trigger:el,start:'top 85%',onEnter:()=>el.classList.add('in')});
-  });
-
-  // contadores
-  gsap.utils.toArray('.count').forEach(el=>{
-    const to=+el.dataset.to;
-    ScrollTrigger.create({trigger:el,start:'top 90%',once:true,onEnter:()=>{
-      gsap.to({v:+el.textContent},{v:to,duration:1.4,ease:'power2.out',onUpdate(){el.textContent=Math.round(this.targets()[0].v);}});
-    }});
-  });
-
-  // nav sólido
-  ScrollTrigger.create({start:'top -30',end:99999,toggleClass:{targets:'#nav',className:'scrolled'}});
+  // NAV sólido con scroll nativo (ligero, no traba)
+  const navEl=document.getElementById('nav');
+  addEventListener('scroll',()=>{if(navEl)navEl.classList.toggle('scrolled',scrollY>30);},{passive:true});
 }
 
 if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initAnims);

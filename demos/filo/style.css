@@ -187,11 +187,23 @@ footer .madeby a{color:var(--rojo-claro);font-weight:600}
   .oficio,.serv-list,.citas,.galeria{grid-template-columns:1fr}
   .citas{padding:2.4rem}
   .g-tall{grid-row:auto;aspect-ratio:16/11}
+  .galeria{gap:.9rem}
   .facts{grid-template-columns:1fr}
   .fact{border-left:0;border-top:1px solid var(--linea)}
   .fact:first-child{border-top:0}
   .demobar .demo-text{display:none}
-  section.block{padding:5rem 0}
+  section.block{padding:4rem 0}
+  /* en celular el título se ve directo (sin efecto cortina) */
+  .js .line-mask{clip-path:none!important}
+  /* sin parallax en celular: las imágenes llenan exacto, no se recortan ni desbordan */
+  .hero-bg{inset:0}
+  .hero-bg img{height:100%}
+  .oficio-img img{height:100%}
+  .oficio-img{aspect-ratio:4/3}
+  .momento{min-height:52vh}
+  .momento-bg{inset:0}
+  .momento-bg img{height:100%}
+  .momento blockquote{font-size:clamp(1.5rem,7vw,2.2rem)}
 }
 @media (prefers-reduced-motion:reduce){
   .js .reveal,.js .line-mask{opacity:1;transform:none;clip-path:none;transition:none}

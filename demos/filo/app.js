@@ -29,16 +29,25 @@ function initAnims(){
       .from('[data-hero="5"]',{opacity:0,y:20,duration:.8},'-=.6');
   }
 
-  if(!reduce){
+  const isDesktop = matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  // REVEALS y LINE-MASK con IntersectionObserver (fluido también en celular)
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.08,rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.reveal,.line-mask').forEach(el=>io.observe(el));
+
+  // CONTADORES con IntersectionObserver
+  document.querySelectorAll('.count').forEach(el=>{const to=+el.dataset.to;const o=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){gsap.to({v:+el.textContent},{v:to,duration:1.4,ease:'power2.out',onUpdate(){el.textContent=Math.round(this.targets()[0].v);}});o.disconnect();}});},{threshold:0.5});o.observe(el);});
+
+  // PARALLAX solo en computadora (en celular traba el scroll)
+  if(isDesktop && !reduce){
     gsap.to('#heroBg',{yPercent:16,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
     gsap.fromTo('#oficioImg',{yPercent:-6},{yPercent:6,ease:'none',scrollTrigger:{trigger:'#oficio',start:'top bottom',end:'bottom top',scrub:true}});
     gsap.fromTo('#momentoBg',{yPercent:-8},{yPercent:8,ease:'none',scrollTrigger:{trigger:'.momento',start:'top bottom',end:'bottom top',scrub:true}});
   }
 
-  gsap.utils.toArray('.reveal').forEach(el=>ScrollTrigger.create({trigger:el,start:'top 86%',onEnter:()=>el.classList.add('in')}));
-  gsap.utils.toArray('.line-mask').forEach(el=>ScrollTrigger.create({trigger:el,start:'top 85%',onEnter:()=>el.classList.add('in')}));
-  gsap.utils.toArray('.count').forEach(el=>{const to=+el.dataset.to;ScrollTrigger.create({trigger:el,start:'top 90%',once:true,onEnter:()=>{gsap.to({v:+el.textContent},{v:to,duration:1.4,ease:'power2.out',onUpdate(){el.textContent=Math.round(this.targets()[0].v);}});}});});
-  ScrollTrigger.create({start:'top -30',end:99999,toggleClass:{targets:'#nav',className:'scrolled'}});
+  // NAV sólido con scroll nativo (ligero)
+  const navEl=document.getElementById('nav');
+  addEventListener('scroll',()=>{if(navEl)navEl.classList.toggle('scrolled',scrollY>30);},{passive:true});
 }
 if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initAnims);
 else initAnims();
