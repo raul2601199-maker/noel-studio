@@ -11,14 +11,7 @@ function initAnims(){
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   gsap.registerPlugin(ScrollTrigger);
 
-  // smooth scroll solo en computadora con mouse; en celular, scroll natural del teléfono
-  if(window.Lenis && !reduce && matchMedia('(hover:hover) and (pointer:fine)').matches){
-    const lenis=new Lenis({duration:1.1,smoothWheel:true});
-    lenis.on('scroll',ScrollTrigger.update);
-    gsap.ticker.add(t=>lenis.raf(t*1000));
-    gsap.ticker.lagSmoothing(0);
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{const id=a.getAttribute('href');if(id.length>1){a.addEventListener('click',e=>{const t=document.querySelector(id);if(t){e.preventDefault();lenis.scrollTo(t,{offset:-70});}});}});
-  }
+  // Scroll NATIVO (sin Lenis): aprovecha los 120Hz del Mac y se siente más fluido.
 
   if(reduce){gsap.set('[data-hero]',{opacity:1,y:0});}
   else{
@@ -38,12 +31,7 @@ function initAnims(){
   // CONTADORES con IntersectionObserver
   document.querySelectorAll('.count').forEach(el=>{const to=+el.dataset.to;const o=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){gsap.to({v:+el.textContent},{v:to,duration:1.4,ease:'power2.out',onUpdate(){el.textContent=Math.round(this.targets()[0].v);}});o.disconnect();}});},{threshold:0.5});o.observe(el);});
 
-  // PARALLAX solo en computadora (en celular traba el scroll)
-  if(isDesktop && !reduce){
-    gsap.to('#heroBg',{yPercent:16,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
-    gsap.fromTo('#oficioImg',{yPercent:-6},{yPercent:6,ease:'none',scrollTrigger:{trigger:'#oficio',start:'top bottom',end:'bottom top',scrub:true}});
-    gsap.fromTo('#momentoBg',{yPercent:-8},{yPercent:8,ease:'none',scrollTrigger:{trigger:'.momento',start:'top bottom',end:'bottom top',scrub:true}});
-  }
+  // (Parallax quitado: bajaba los FPS del scroll.)
 
   // NAV sólido con scroll nativo (ligero)
   const navEl=document.getElementById('nav');

@@ -27,9 +27,7 @@
   --ease-io:cubic-bezier(0.76,0,0.24,1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-html.lenis,html.lenis body{height:auto}
-.lenis.lenis-smooth{scroll-behavior:auto!important}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
 body{background:var(--carbon);color:var(--hueso);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;cursor:auto}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
@@ -415,15 +413,8 @@ function initAnims(){
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   gsap.registerPlugin(ScrollTrigger);
 
-  // smooth scroll — SOLO en computadora con mouse. En celular se deja el scroll natural
-  // del teléfono (más fluido en táctil y evita que las animaciones se queden a medias).
-  if(window.Lenis && !reduce && matchMedia('(hover:hover) and (pointer:fine)').matches){
-    const lenis=new Lenis({duration:1.1,smoothWheel:true});
-    lenis.on('scroll',ScrollTrigger.update);
-    gsap.ticker.add(t=>lenis.raf(t*1000));
-    gsap.ticker.lagSmoothing(0);
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{const id=a.getAttribute('href');if(id.length>1){a.addEventListener('click',e=>{const t=document.querySelector(id);if(t){e.preventDefault();lenis.scrollTo(t,{offset:-70});}});}});
-  }
+  // Scroll NATIVO (sin Lenis): aprovecha los 120Hz del Mac y se siente más fluido.
+  // El scroll a las secciones lo maneja el CSS (scroll-behavior + scroll-margin-top).
 
   // intro del hero (tras el preloader)
   if(reduce){
@@ -449,12 +440,7 @@ function initAnims(){
     o.observe(el);
   });
 
-  // PARALLAX solo en computadora (en celular traba el scroll y mueve las imágenes de más)
-  if(isDesktop && !reduce){
-    gsap.to('#heroBg',{yPercent:18,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
-    gsap.fromTo('#fuegoImg',{yPercent:-6},{yPercent:6,ease:'none',scrollTrigger:{trigger:'#fuego',start:'top bottom',end:'bottom top',scrub:true}});
-    gsap.fromTo('#momentoBg',{yPercent:-8},{yPercent:8,ease:'none',scrollTrigger:{trigger:'.momento',start:'top bottom',end:'bottom top',scrub:true}});
-  }
+  // (Parallax quitado: movía imágenes pesadas en cada frame y bajaba los FPS del scroll.)
 
   // NAV sólido con scroll nativo (ligero, no traba)
   const navEl=document.getElementById('nav');

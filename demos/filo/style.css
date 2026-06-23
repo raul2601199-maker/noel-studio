@@ -11,9 +11,7 @@
   --ease-io:cubic-bezier(0.76,0,0.24,1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-html.lenis,html.lenis body{height:auto}
-.lenis.lenis-smooth{scroll-behavior:auto!important}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
 body{background:var(--tinta);color:var(--acero);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
