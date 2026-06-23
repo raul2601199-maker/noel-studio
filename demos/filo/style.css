@@ -191,8 +191,6 @@ footer .madeby a{color:var(--rojo-claro);font-weight:600}
   .fact:first-child{border-top:0}
   .demobar .demo-text{display:none}
   section.block{padding:4rem 0}
-  /* en celular el título se ve directo (sin efecto cortina) */
-  .js .line-mask{clip-path:none!important}
   /* sin parallax en celular: las imágenes llenan exacto, no se recortan ni desbordan */
   .hero-bg{inset:0}
   .hero-bg img{height:100%}

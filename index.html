@@ -1247,10 +1247,6 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   .has-gsap .line-mask { clip-path: none; }
 }
-/* En celular el título se ve directo (sin efecto cortina, que a veces no se disparaba bien). */
-@media (max-width: 768px) {
-  .has-gsap .line-mask { clip-path: none !important; }
-}
 
 /* INTRO DEL HERO — primero entran las letras (desvanecidas->potentes), luego el resto.
    Estado inicial oculto SOLO con GSAP, para que no haya parpadeo. Sin GSAP, todo visible. */
@@ -1952,10 +1948,20 @@ function initGsapAnimations() {
     });
   });
 
-  // LINE-MASK — títulos que se "dibujan" de izquierda a derecha (efecto cortina, como los demos)
-  document.querySelectorAll('.line-mask').forEach(el => {
-    ScrollTrigger.create({ trigger: el, start: 'top 85%', onEnter: () => el.classList.add('in') });
-  });
+  // LINE-MASK — títulos que se "dibujan" de izquierda a derecha (efecto cortina).
+  // Revisamos la posición en cada scroll (confiable en TODO celular; nunca se queda sin animar).
+  const lmItems = [...document.querySelectorAll('.line-mask')];
+  function checkLineMask(){
+    let pend = false;
+    for(const el of lmItems){
+      if(el.classList.contains('in')) continue;
+      if(el.getBoundingClientRect().top < innerHeight * 0.88) el.classList.add('in');
+      else pend = true;
+    }
+    if(!pend) removeEventListener('scroll', checkLineMask);
+  }
+  addEventListener('scroll', checkLineMask, { passive: true });
+  checkLineMask();
 
   // Premium: viñetas de la OFERTA en cascada
   gsap.to('#ofertas .offer-features li', {

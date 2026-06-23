@@ -24,9 +24,11 @@ function initAnims(){
 
   const isDesktop = matchMedia('(hover:hover) and (pointer:fine)').matches;
 
-  // REVEALS y LINE-MASK con IntersectionObserver (fluido también en celular)
-  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.08,rootMargin:'0px 0px -6% 0px'});
-  document.querySelectorAll('.reveal,.line-mask').forEach(el=>io.observe(el));
+  // REVEALS y LINE-MASK — revisamos la posición en cada scroll (confiable en TODO celular)
+  const revItems=[...document.querySelectorAll('.reveal,.line-mask')];
+  function checkReveal(){let pend=false;for(const el of revItems){if(el.classList.contains('in'))continue;if(el.getBoundingClientRect().top<innerHeight*0.9)el.classList.add('in');else pend=true;}if(!pend)removeEventListener('scroll',checkReveal);}
+  addEventListener('scroll',checkReveal,{passive:true});
+  checkReveal();
 
   // CONTADORES con IntersectionObserver
   document.querySelectorAll('.count').forEach(el=>{const to=+el.dataset.to;const o=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){gsap.to({v:+el.textContent},{v:to,duration:1.4,ease:'power2.out',onUpdate(){el.textContent=Math.round(this.targets()[0].v);}});o.disconnect();}});},{threshold:0.5});o.observe(el);});
