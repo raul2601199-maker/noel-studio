@@ -1,19 +1,3 @@
-<!DOCTYPE html>
-<html lang="es-MX">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Filo · Barbería — Chihuahua</title>
-<meta name="description" content="Corte, barba y navaja en Chihuahua. Barbería para hombres que cuidan los detalles.">
-<meta name="robots" content="noindex">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
-<style>
 :root{
   --tinta:#0e1114;
   --tinta-2:#151a1e;
@@ -214,209 +198,52 @@ footer .madeby a{color:var(--rojo-claro);font-weight:600}
   .scroll-cue i{animation:none}
   html{scroll-behavior:auto}
 }
-</style>
-</head>
-<body>
 
-<div class="cursor-dot" id="cDot"></div>
-<div class="cursor-ring" id="cRing"></div>
+/* ===== páginas interiores (multi-página Pro) ===== */
+.page-hero{position:relative;padding:11rem 0 4.5rem;text-align:center;overflow:hidden;border-bottom:1px solid var(--linea)}
+.page-hero::before{content:"";position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:60%;height:140%;background:radial-gradient(ellipse,rgba(196,70,60,.12),transparent 60%);pointer-events:none}
+.page-hero .eyebrow{margin-bottom:1rem}
+.page-hero h1{font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(2.8rem,8vw,6rem);line-height:.95;color:var(--filo);letter-spacing:.01em}
+.page-hero p{color:var(--niebla);max-width:50ch;margin:1.4rem auto 0;font-size:1.05rem}
+.nav-links a.active{color:var(--filo)}
+.nav-links a.active:not(.nav-cta)::after{transform:scaleX(1)}
 
-<div id="preload">
-  <div class="pl-name">Filo<span class="d">.</span></div>
-  <div class="pl-bar"><i id="plBar"></i></div>
-</div>
+/* CTA band */
+.cta-band{text-align:center;padding:6rem 0;border-top:1px solid var(--linea)}
+.cta-band .h2{margin-bottom:1.6rem}
+.cta-band .btn{margin:0 .4rem}
 
-<div class="demobar">
-  <span class="demo-text"><strong>Sitio demostrativo</strong> · diseñado por Noel Studio para mostrar lo que hacemos</span>
-  <a class="back" href="../index.html#portafolio">← Volver al portafolio</a>
-</div>
+/* vista previa de servicios (inicio) */
+.svc-preview{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1rem}
+.svc-card{background:var(--tinta-2);border:1px solid var(--linea);border-radius:5px;padding:2rem;transition:transform .4s var(--ease),border-color .4s}
+.svc-card:hover{transform:translateY(-6px);border-color:var(--rojo)}
+.svc-card .n{font-family:'Oswald',sans-serif;font-size:.78rem;letter-spacing:.14em;color:var(--rojo-claro);margin-bottom:1rem}
+.svc-card h3{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;font-size:1.4rem;color:var(--filo);margin-bottom:.7rem}
+.svc-card p{color:var(--niebla);font-size:.92rem;margin-bottom:1.2rem}
+.svc-card .p{font-family:'Oswald',sans-serif;font-weight:600;color:var(--filo);font-size:1.3rem}
 
-<nav id="nav">
-  <div class="brand">Filo<span class="d">.</span></div>
-  <div class="nav-links">
-    <a href="#oficio">El oficio</a>
-    <a href="#servicios">Servicios</a>
-    <a href="#galeria">Galería</a>
-    <a class="nav-cta" href="#citas">Agendar</a>
-  </div>
-</nav>
+/* formulario */
+.contacto-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:stretch}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.field{display:flex;flex-direction:column;gap:.5rem}
+.field.full{grid-column:1/-1}
+.field label{font-family:'Oswald',sans-serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--niebla)}
+.field input,.field select,.field textarea{background:var(--tinta-2);border:1px solid var(--linea);border-radius:3px;padding:.85rem 1rem;color:var(--filo);font-family:'Inter',sans-serif;font-size:.95rem;transition:border-color .25s}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--rojo)}
+.field textarea{resize:vertical;min-height:130px}
+.form-ok{color:#39c46b;font-size:.92rem;margin-top:.4rem;min-height:1.2em}
 
-<!-- HERO -->
-<header class="hero">
-  <div class="hero-bg" id="heroBg"><img src="img/barberia-hero.webp" alt="Barbero recortando la barba a un cliente" width="1500" height="1000" fetchpriority="high"></div>
-  <div class="hero-inner">
-    <div class="hero-eyebrow" data-hero="1">Barbería · Chihuahua</div>
-    <h1 class="hero-title">
-      <span class="ln"><span data-hero="2">Corte</span></span>
-      <span class="ln"><span data-hero="3"><span class="thin">&amp;</span> <span class="rojo">navaja</span></span></span>
-    </h1>
-    <p class="hero-sub" data-hero="4">Corte clásico, barba con toalla caliente y el filo de la navaja. Para el hombre que cuida los detalles.</p>
-    <div class="hero-actions" data-hero="5">
-      <a class="btn btn-fill" href="#citas">Agendar cita</a>
-      <a class="btn btn-ghost" href="#servicios">Ver servicios</a>
-    </div>
-  </div>
-  <div class="scroll-cue">Desliza <i></i></div>
-</header>
+/* mapa */
+.mapa{border:1px solid var(--linea);border-radius:6px;overflow:hidden;min-height:380px;position:relative}
+.mapa iframe{width:100%;height:100%;min-height:380px;border:0;display:block;filter:grayscale(.4) invert(.9) hue-rotate(175deg) contrast(.92) brightness(.95)}
+.contacto-info{margin-top:2.5rem;display:flex;gap:2.5rem;flex-wrap:wrap}
+.contacto-info .blk span{display:block;font-family:'Oswald',sans-serif;color:var(--rojo-claro);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.35rem}
+.contacto-info .blk div{color:var(--filo);font-size:.98rem}
 
-<!-- MARQUEE -->
-<div class="marquee">
-  <div class="marquee-track">
-    <span>Corte clásico</span><span class="dot">·</span><span>Barba &amp; toalla caliente</span><span class="dot">·</span><span>Afeitado a navaja</span><span class="dot">·</span><span>Diseño de líneas</span><span class="dot">·</span>
-    <span>Corte clásico</span><span class="dot">·</span><span>Barba &amp; toalla caliente</span><span class="dot">·</span><span>Afeitado a navaja</span><span class="dot">·</span><span>Diseño de líneas</span><span class="dot">·</span>
-  </div>
-</div>
+/* catálogo completo de servicios */
+.svc-cat{display:grid;grid-template-columns:1fr 1fr;gap:0 4rem}
 
-<!-- DATOS -->
-<div class="facts">
-  <div class="fact reveal"><div class="num"><span class="count" data-to="8">0</span> <span class="u">años</span></div><div class="lbl">En Chihuahua</div></div>
-  <div class="fact reveal"><div class="num"><span class="count" data-to="600">0</span><span class="u">+</span></div><div class="lbl">Cortes al mes</div></div>
-  <div class="fact reveal"><div class="num"><span class="count" data-to="4">0</span> <span class="u">barberos</span></div><div class="lbl">Tu cita, sin esperas</div></div>
-</div>
-
-<!-- EL OFICIO -->
-<section class="block wrap" id="oficio">
-  <div class="oficio">
-    <div class="oficio-img reveal"><img src="img/b-navaja.webp" alt="Barbero definiendo con navaja" width="1400" height="2097" id="oficioImg" loading="lazy"></div>
-    <div>
-      <span class="eyebrow reveal">El oficio</span>
-      <h2 class="h2 line-mask">El detalle<br>está en<br>el filo</h2>
-      <p class="lead reveal">Aquí no hay prisa ni atajos. Cada corte se trabaja a mano, como debe ser.</p>
-      <p class="reveal">Toalla caliente, navaja bien afilada y el tiempo que pide un buen trabajo. Sales con el corte exacto que pediste y con ganas de volver.</p>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICIOS -->
-<section class="block wrap" id="servicios">
-  <div class="serv-head">
-    <div>
-      <span class="eyebrow reveal">Servicios</span>
-      <h2 class="h2 line-mask">Lo que<br>hacemos</h2>
-    </div>
-    <p class="serv-note reveal">Precios desde. Pregunta por los paquetes de corte + barba.</p>
-  </div>
-  <div class="serv-list">
-    <div class="serv reveal"><span class="name">Corte de cabello</span><span class="dots"></span><span class="price">$180</span><span class="desc">Lavado, corte a tijera y máquina, peinado.</span></div>
-    <div class="serv reveal"><span class="name">Barba a navaja</span><span class="dots"></span><span class="price">$120</span><span class="desc">Toalla caliente, perfilado y afeitado a navaja.</span></div>
-    <div class="serv reveal"><span class="name">Corte + barba</span><span class="dots"></span><span class="price">$260</span><span class="desc">El paquete completo. Sales listo para lo que sea.</span></div>
-    <div class="serv reveal"><span class="name">Diseño de líneas</span><span class="dots"></span><span class="price">$90</span><span class="desc">Líneas y detalles para personalizar tu corte.</span></div>
-    <div class="serv reveal"><span class="name">Arreglo de cejas</span><span class="dots"></span><span class="price">$60</span><span class="desc">Perfilado a navaja, limpio y natural.</span></div>
-    <div class="serv reveal"><span class="name">Corte para niño</span><span class="dots"></span><span class="price">$130</span><span class="desc">Paciencia y buena mano para los más chicos.</span></div>
-  </div>
-</section>
-
-<!-- MOMENTO -->
-<section class="momento">
-  <div class="momento-bg" id="momentoBg"><img src="img/b-salon.webp" alt="Interior de la barbería" width="1600" height="1067" loading="lazy"></div>
-  <div class="momento-inner wrap">
-    <blockquote class="reveal">Un buen corte no se nota. <b>Se siente</b> toda la semana.</blockquote>
-    <cite class="reveal">— Así trabajamos en Filo</cite>
-  </div>
-</section>
-
-<!-- GALERÍA -->
-<section class="block wrap" id="galeria">
-  <span class="eyebrow reveal">Galería</span>
-  <h2 class="h2 line-mask" style="margin-bottom:2.4rem">El trabajo</h2>
-  <div class="galeria">
-    <div class="g-item g-tall reveal"><img src="img/b-detalle.webp" alt="Detalle de corte a máquina" width="1100" height="1650" loading="lazy"><span class="g-cap">Precisión a máquina</span></div>
-    <div class="g-item g-wide reveal"><img src="img/b-corte.webp" alt="Fade en proceso" width="1400" height="933" loading="lazy"><span class="g-cap">Fade limpio</span></div>
-    <div class="g-item g-wide reveal"><img src="img/barberia-hero.webp" alt="Recorte de barba" width="1500" height="1000" loading="lazy"><span class="g-cap">Barba a navaja</span></div>
-  </div>
-</section>
-
-<!-- CITAS -->
-<section class="block wrap" id="citas">
-  <div class="citas reveal">
-    <div>
-      <span class="eyebrow">Agenda</span>
-      <h2 class="h2">Aparta tu silla</h2>
-      <p>Trabajamos con cita para que no esperes. Escríbenos por WhatsApp y te damos el horario más cercano.</p>
-      <div class="info-row"><span class="k">Horario</span><span class="v">Mar a Dom · 10:00 am – 8:00 pm</span></div>
-      <div class="info-row"><span class="k">Dónde</span><span class="v">Centro, Chihuahua</span></div>
-      <div class="info-row"><span class="k">Tel</span><span class="v">614 000 0000</span></div>
-    </div>
-    <div class="citas-cta">
-      <a class="btn wa-btn" href="#" onclick="return false">Agendar por WhatsApp</a>
-      <a class="btn btn-ghost" style="justify-content:center" href="#servicios">Ver servicios</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <div class="brand">Filo<span class="d">.</span></div>
-    <div class="f-tag">Barbería para hombres con estilo · Chihuahua, México</div>
-    <div class="f-meta">
-      <div><span>Horario</span>Mar a Dom · 10 – 8</div>
-      <div><span>Dónde</span>Centro, Chihuahua</div>
-      <div><span>Citas</span>614 000 0000</div>
-    </div>
-    <div class="f-div"></div>
-    <div class="madeby">Sitio demostrativo diseñado por <a href="../index.html">Noel Studio</a> — ¿quieres uno así para tu negocio?</div>
-  </div>
-</footer>
-
-<script>
-document.documentElement.classList.add('js');
-
-(function(){
-  const bar=document.getElementById('plBar'), pre=document.getElementById('preload');
-  let p=0; const t=setInterval(()=>{p=Math.min(100,p+Math.random()*30);bar.style.width=p+'%';if(p>=100){clearInterval(t);setTimeout(()=>pre.classList.add('done'),250);}},120);
-  setTimeout(()=>pre.classList.add('done'),2600);
-})();
-
-function initAnims(){
-  if(!window.gsap){document.querySelectorAll('.reveal,.line-mask').forEach(e=>e.classList.add('in'));return;}
-  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  gsap.registerPlugin(ScrollTrigger);
-
-  if(window.Lenis && !reduce){
-    const lenis=new Lenis({duration:1.1,smoothWheel:true});
-    lenis.on('scroll',ScrollTrigger.update);
-    gsap.ticker.add(t=>lenis.raf(t*1000));
-    gsap.ticker.lagSmoothing(0);
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{const id=a.getAttribute('href');if(id.length>1){a.addEventListener('click',e=>{const t=document.querySelector(id);if(t){e.preventDefault();lenis.scrollTo(t,{offset:-70});}});}});
-  }
-
-  if(reduce){gsap.set('[data-hero]',{opacity:1,y:0});}
-  else{
-    const tl=gsap.timeline({delay:.5,defaults:{ease:'power3.out'}});
-    tl.from('[data-hero="1"]',{opacity:0,y:18,duration:.7})
-      .from('.hero-title .ln > span',{yPercent:115,duration:1,stagger:.12,ease:'power4.out'},'-=.3')
-      .from('[data-hero="4"]',{opacity:0,y:20,duration:.8},'-=.5')
-      .from('[data-hero="5"]',{opacity:0,y:20,duration:.8},'-=.6');
-  }
-
-  if(!reduce){
-    gsap.to('#heroBg',{yPercent:16,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
-    gsap.fromTo('#oficioImg',{yPercent:-6},{yPercent:6,ease:'none',scrollTrigger:{trigger:'#oficio',start:'top bottom',end:'bottom top',scrub:true}});
-    gsap.fromTo('#momentoBg',{yPercent:-8},{yPercent:8,ease:'none',scrollTrigger:{trigger:'.momento',start:'top bottom',end:'bottom top',scrub:true}});
-  }
-
-  gsap.utils.toArray('.reveal').forEach(el=>ScrollTrigger.create({trigger:el,start:'top 86%',onEnter:()=>el.classList.add('in')}));
-  gsap.utils.toArray('.line-mask').forEach(el=>ScrollTrigger.create({trigger:el,start:'top 85%',onEnter:()=>el.classList.add('in')}));
-  gsap.utils.toArray('.count').forEach(el=>{const to=+el.dataset.to;ScrollTrigger.create({trigger:el,start:'top 90%',once:true,onEnter:()=>{gsap.to({v:+el.textContent},{v:to,duration:1.4,ease:'power2.out',onUpdate(){el.textContent=Math.round(this.targets()[0].v);}});}});});
-  ScrollTrigger.create({start:'top -30',end:99999,toggleClass:{targets:'#nav',className:'scrolled'}});
+@media (max-width:880px){
+  .svc-preview,.contacto-grid,.form-grid,.svc-cat{grid-template-columns:1fr}
+  .page-hero{padding:9rem 0 3.5rem}
 }
-if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initAnims);
-else initAnims();
-
-// cursor personalizado (solo desktop con mouse fino)
-(function(){
-  if(!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-  const dot=document.getElementById('cDot'), ring=document.getElementById('cRing');
-  if(!dot||!ring) return;
-  document.body.classList.add('has-cursor');
-  let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my,seen=false;
-  addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';if(!seen){seen=true;document.body.classList.add('ready');}},{passive:true});
-  (function loop(){rx+=(mx-rx)*.18;ry+=(my-ry)*.18;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
-  const grow=()=>ring.classList.add('hovering'),shrink=()=>ring.classList.remove('hovering');
-  document.querySelectorAll('a,button,.g-item,.serv').forEach(el=>{el.addEventListener('mouseenter',grow);el.addEventListener('mouseleave',shrink);});
-  addEventListener('mouseleave',()=>{dot.style.opacity=ring.style.opacity=0;});
-  addEventListener('mouseenter',()=>{dot.style.opacity=ring.style.opacity='';});
-})();
-</script>
-</body>
-</html>

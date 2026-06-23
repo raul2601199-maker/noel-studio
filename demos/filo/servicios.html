@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Servicios y precios · Filo Barbería — Chihuahua</title>
+<meta name="description" content="Servicios de Filo Barbería: corte, barba a navaja, paquetes, diseño de líneas y más. Precios claros.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script defer src="app.js"></script>
+</head>
+<body>
+
+<div class="cursor-dot" id="cDot"></div>
+<div class="cursor-ring" id="cRing"></div>
+
+<div id="preload">
+  <div class="pl-name">Filo<span class="d">.</span></div>
+  <div class="pl-bar"><i id="plBar"></i></div>
+</div>
+
+<div class="demobar">
+  <span class="demo-text"><strong>Sitio demostrativo</strong> · diseñado por Noel Studio para mostrar lo que hacemos</span>
+  <a class="back" href="../../index.html#portafolio">← Volver al portafolio</a>
+</div>
+
+<nav id="nav">
+  <div class="brand"><a href="index.html">Filo<span class="d">.</span></a></div>
+  <div class="nav-links">
+    <a href="index.html">Inicio</a>
+    <a href="servicios.html" class="active">Servicios</a>
+    <a href="contacto.html" class="nav-cta">Agendar</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<header class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">Servicios y precios</span>
+    <h1>Lo que hacemos</h1>
+    <p>Precios desde. Cada servicio incluye lavado y acabado. Pregunta por los paquetes y la tarjeta de cliente frecuente.</p>
+  </div>
+</header>
+
+<!-- CATÁLOGO -->
+<section class="block wrap">
+  <span class="eyebrow reveal">Cabello</span>
+  <div class="svc-cat" style="margin-top:1.5rem">
+    <div class="serv reveal"><span class="name">Corte de cabello</span><span class="dots"></span><span class="price">$180</span><span class="desc">Lavado, corte a tijera y máquina, peinado.</span></div>
+    <div class="serv reveal"><span class="name">Corte + lavado premium</span><span class="dots"></span><span class="price">$220</span><span class="desc">Con masaje capilar y mascarilla.</span></div>
+    <div class="serv reveal"><span class="name">Diseño de líneas</span><span class="dots"></span><span class="price">$90</span><span class="desc">Líneas y detalles para personalizar tu corte.</span></div>
+    <div class="serv reveal"><span class="name">Corte para niño</span><span class="dots"></span><span class="price">$130</span><span class="desc">Paciencia y buena mano para los más chicos.</span></div>
+  </div>
+</section>
+
+<section class="block wrap" style="padding-top:0">
+  <span class="eyebrow reveal">Barba y rostro</span>
+  <div class="svc-cat" style="margin-top:1.5rem">
+    <div class="serv reveal"><span class="name">Barba a navaja</span><span class="dots"></span><span class="price">$120</span><span class="desc">Toalla caliente, perfilado y afeitado a navaja.</span></div>
+    <div class="serv reveal"><span class="name">Afeitado clásico</span><span class="dots"></span><span class="price">$140</span><span class="desc">Ritual completo con toallas y aceites.</span></div>
+    <div class="serv reveal"><span class="name">Arreglo de cejas</span><span class="dots"></span><span class="price">$60</span><span class="desc">Perfilado a navaja, limpio y natural.</span></div>
+    <div class="serv reveal"><span class="name">Mascarilla negra</span><span class="dots"></span><span class="price">$80</span><span class="desc">Limpieza profunda de puntos negros.</span></div>
+  </div>
+</section>
+
+<section class="block wrap" style="padding-top:0">
+  <span class="eyebrow reveal">Paquetes</span>
+  <div class="svc-cat" style="margin-top:1.5rem">
+    <div class="serv reveal"><span class="name">Corte + barba</span><span class="dots"></span><span class="price">$260</span><span class="desc">El más pedido. Sales listo para lo que sea.</span></div>
+    <div class="serv reveal"><span class="name">Experiencia Filo</span><span class="dots"></span><span class="price">$390</span><span class="desc">Corte, barba, mascarilla y bebida de la casa.</span></div>
+    <div class="serv reveal"><span class="name">Papá e hijo</span><span class="dots"></span><span class="price">$280</span><span class="desc">Corte para los dos, mismo turno.</span></div>
+    <div class="serv reveal"><span class="name">Novio (a domicilio)</span><span class="dots"></span><span class="price">$650</span><span class="desc">Vamos a ti el día de tu boda. Bajo reserva.</span></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band wrap">
+  <h2 class="h2 reveal">Aparta tu silla</h2>
+  <div class="reveal"><a class="btn btn-fill" href="contacto.html">Agendar cita</a></div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">Filo<span class="d">.</span></div>
+    <div class="f-tag">Barbería para hombres con estilo · Chihuahua, México</div>
+    <div class="f-meta">
+      <div><span>Horario</span>Mar a Dom · 10 – 8</div>
+      <div><span>Dónde</span>Centro, Chihuahua</div>
+      <div><span>Citas</span>614 000 0000</div>
+    </div>
+    <div class="f-div"></div>
+    <div class="madeby">Sitio demostrativo diseñado por <a href="../../index.html">Noel Studio</a> — ¿quieres uno así para tu negocio?</div>
+  </div>
+</footer>
+
+</body>
+</html>
