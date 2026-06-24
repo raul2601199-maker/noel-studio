@@ -1384,6 +1384,63 @@ footer {
   }
   nav { background: rgba(0,0,0,0.92) !important; }
 }
+
+/* VIDEO PROMOCIONAL */
+#video {
+  padding: 8rem 3rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.video-promo-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 300px) 1fr;
+  gap: 4rem;
+  align-items: center;
+  max-width: 980px;
+  margin: 0 auto;
+}
+.video-promo-player {
+  position: relative;
+  aspect-ratio: 9 / 16;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.55);
+}
+.video-promo-player video {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+.video-promo-h {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  letter-spacing: 0.02em; line-height: 1.05;
+  color: var(--white); margin-bottom: 1.25rem;
+}
+.video-promo-info > p {
+  font-size: 0.95rem; color: var(--gray-400);
+  line-height: 1.8; font-weight: 300; margin-bottom: 1.75rem;
+}
+.video-promo-list { list-style: none; padding: 0; margin: 0 0 2.25rem; }
+.video-promo-list li {
+  color: var(--gray-200); font-size: 0.95rem;
+  padding: 0.7rem 0 0.7rem 1.7rem; position: relative;
+  border-bottom: 1px solid var(--gray-800);
+}
+.video-promo-list li::before {
+  content: "→"; position: absolute; left: 0; color: var(--white);
+}
+.video-promo-cta {
+  display: inline-block; padding: 0.95rem 2rem;
+  background: var(--white); color: var(--black);
+  text-decoration: none; border-radius: 100px;
+  font-weight: 600; font-size: 0.95rem;
+  transition: transform 0.25s var(--ease-out), opacity 0.2s;
+}
+.video-promo-cta:hover { transform: translateY(-2px); opacity: 0.9; }
+@media (max-width: 760px) {
+  .video-promo-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+  .video-promo-player { max-width: 260px; margin: 0 auto; }
+}
 </style>
 </head>
 <body>
@@ -1404,6 +1461,7 @@ footer {
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#proceso">Cómo trabajo</a></li>
     <li><a href="#portafolio">Portafolio</a></li>
+    <li><a href="#video">Video</a></li>
     <li><a href="#ofertas">Ofertas</a></li>
     <li><a href="#precios">Precios</a></li>
     <li><a href="#preguntas">Preguntas</a></li>
@@ -1525,6 +1583,15 @@ footer {
       <span class="service-tag">Desde $3,000/mes MXN</span>
       <span class="service-arrow">↗</span>
     </div>
+    <div class="service-item reveal">
+      <span class="service-num">05</span>
+      <div>
+        <span class="service-name">Video Promocional para Redes</span>
+        <p class="service-desc">Un video corto y profesional para tus redes (Reels, TikTok, historias). Muestra tu negocio o tu página web con voz, música y movimiento, listo para llamar la atención y que más gente te escriba.</p>
+      </div>
+      <span class="service-tag">Desde $600 MXN</span>
+      <span class="service-arrow">↗</span>
+    </div>
   </div>
 </section>
 
@@ -1615,6 +1682,31 @@ footer {
       <div class="review-stars">★★★★★</div>
       <p class="review-text">En Noel Studio nos hicieron la página web de la llantera y quedó muy profesional, moderna y rápida. Raúl explica todo claro y da seguimiento. Si buscas diseño web en Chihuahua, totalmente recomendados.</p>
       <div class="review-author"><span class="review-name">Montes Tire Center</span><span class="review-meta">Cliente · Google</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO PROMOCIONAL -->
+<section id="video">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title line-mask"><span>VIDEO</span><span>PROMOCIONAL</span></h2>
+    </div>
+    <p class="section-desc reveal">Un video vale más que mil palabras. Así se ve uno hecho para destacar en redes — el mismo tipo que puedo crear para tu negocio.</p>
+  </div>
+  <div class="video-promo-wrap reveal">
+    <div class="video-promo-player">
+      <video src="assets/video-promo-demo.mp4" poster="assets/video-promo-poster.jpg" controls playsinline preload="none"></video>
+    </div>
+    <div class="video-promo-info">
+      <h3 class="video-promo-h">Llama la atención en segundos</h3>
+      <p>Hoy la gente decide en redes. Un video profesional hace que tu negocio se vea serio y moderno, y que más clientes se animen a escribirte.</p>
+      <ul class="video-promo-list">
+        <li>Vertical, listo para Reels, TikTok e historias</li>
+        <li>Con voz, música y la identidad de tu marca</li>
+        <li>Entrega en pocos días</li>
+      </ul>
+      <a class="video-promo-cta" href="https://wa.me/526142251419?text=Hola,%20quiero%20un%20video%20promocional%20para%20mi%20negocio" target="_blank" rel="noopener">Quiero mi video →</a>
     </div>
   </div>
 </section>
@@ -1857,6 +1949,7 @@ footer {
       <a href="#servicios">Servicios</a>
       <a href="#proceso">Cómo trabajo</a>
       <a href="#portafolio">Portafolio</a>
+      <a href="#video">Video</a>
       <a href="#precios">Precios</a>
       <a href="#preguntas">Preguntas</a>
     </div>
