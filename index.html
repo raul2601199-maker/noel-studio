@@ -1539,11 +1539,9 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   .has-gsap .line-mask { clip-path: none; }
 }
-/* En celular los títulos animan con fade suave (el efecto cortina se ve "cortado" mientras anima). */
-@media (max-width: 768px) {
-  .has-gsap .line-mask { clip-path: none !important; opacity: 0; transform: translateY(16px); }
-  .has-gsap .line-mask.in { opacity: 1; transform: none; transition: opacity 0.7s ease, transform 0.7s ease; }
-}
+/* En celular los títulos usan el MISMO efecto cortina (clip-path) que en computadora:
+   aparecen "de lado", dibujándose de izquierda a derecha. (Antes se cambiaba por un
+   fade simple; Raúl prefiere la cortina también en móvil.) */
 
 /* INTRO DEL HERO — primero entran las letras (desvanecidas->potentes), luego el resto.
    Estado inicial oculto SOLO con GSAP, para que no haya parpadeo. Sin GSAP, todo visible. */
