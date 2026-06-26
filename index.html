@@ -123,8 +123,10 @@
 <!-- GSAP con defer: no bloquea el dibujado de la página (carga más rápido).
      La marca .has-gsap se pone en el script principal (DOMContentLoaded), ya que con
      defer GSAP aún no existe en este punto. Si GSAP no carga, TODO queda visible. -->
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<!-- SplitText (gratis desde GSAP 3.13): divide los párrafos en líneas para animarlas una por una. -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
 <!-- Lenis: scroll suave premium (inercia). Con defer no bloquea el dibujado.
      Se inicializa abajo SOLO si carga y el visitante no pidió menos movimiento. -->
 <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
@@ -456,10 +458,11 @@ nav.scrolled {
 }
 .hero-title {
   font-family: 'Unbounded', 'Bebas Neue', sans-serif;
-  /* Unbounded es muy ancha: bajamos tamaño y apretamos para que "STUDIO" no se salga. */
-  font-size: clamp(2.6rem, 7vw, 7rem);
-  line-height: 1.02;
-  letter-spacing: -0.02em;
+  /* MONUMENTAL: el nombre es el protagonista del hero (estilo Igloo/Terminal).
+     Unbounded es ancha, así que apretamos el interletrado para que "STUDIO" quepa. */
+  font-size: clamp(2.8rem, 8.6vw, 9.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
   font-weight: 600;
   position: relative; z-index: 1;
 }
@@ -790,6 +793,22 @@ nav.scrolled {
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
   margin-top: 5rem;
+}
+/* GALERÍA HORIZONTAL del portafolio — desktop: la tira se mueve de lado con GSAP. */
+.horiz-gallery { margin-top: 5rem; }
+.horiz-track { display: flex; gap: 1.5rem; }
+.horiz-track .portfolio-item {
+  flex: 0 0 auto;
+  width: min(64vw, 720px);
+  aspect-ratio: 16/10;
+}
+.has-gsap .horiz-gallery { overflow: hidden; }
+/* Celular (y sin GSAP): carrusel táctil con swipe + snap, sin pin (cómodo en el dedo). */
+@media (max-width: 768px) {
+  .horiz-gallery { overflow-x: auto; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; margin-top: 3rem; padding-bottom: 0.5rem; }
+  .has-gsap .horiz-gallery { overflow-x: auto; }
+  .horiz-track { gap: 1rem; }
+  .horiz-track .portfolio-item { width: 82vw; aspect-ratio: 4/3; scroll-snap-align: center; }
 }
 .portfolio-item {
   position: relative; overflow: hidden;
@@ -1627,7 +1646,7 @@ footer {
   .hero-btn { justify-content: center; width: 100%; padding: 1rem 1.5rem; font-size: 0.92rem; }
   /* Unbounded es ANCHA: en celular el tamaño se calcula para que "STUDIO" quepa con aire
      en pantallas chicas (desde 320px) sin salirse por los lados. */
-  .hero-title { font-size: clamp(2rem, 10vw, 4.2rem); letter-spacing: -0.03em; }
+  .hero-title { font-size: clamp(2.3rem, 12vw, 5rem); letter-spacing: -0.045em; line-height: 0.98; }
   .hero-tag { font-size: 0.66rem; }
   /* El subtítulo y el indicador de scroll fluyen bajo el contenido (ya no van pegados abajo). */
   .hero-sub {
@@ -2225,8 +2244,11 @@ footer {
     </div>
     <p class="section-desc reveal">Trabajo real, resultados reales para negocios en Chihuahua.</p>
   </div>
-  <div class="portfolio-grid">
-    <a href="demos/montes.html" class="portfolio-item reveal" aria-label="Abrir el sitio de Montes Tire Center" style="grid-column: 1 / -1; aspect-ratio: 16/7; text-decoration: none; color: inherit;">
+  <!-- GALERÍA HORIZONTAL: al bajar, las tarjetas se deslizan de lado (pin + scroll).
+       En celular se vuelve un carrusel táctil (swipe), sin pin, para que sea cómodo. -->
+  <div class="horiz-gallery">
+    <div class="horiz-track">
+    <a href="demos/montes.html" class="portfolio-item" aria-label="Abrir el sitio de Montes Tire Center" style="text-decoration: none; color: inherit;">
       <span class="portfolio-badge is-client">Cliente real</span>
       <span class="portfolio-open" aria-hidden="true">→</span>
       <img class="portfolio-thumb" src="assets/montes-local.webp" alt="Local de Montes Tire Center, llantera en Chihuahua" loading="lazy" width="1400" height="787">
@@ -2235,7 +2257,7 @@ footer {
         <div class="portfolio-type">Llantera en Chihuahua · Más llamadas por WhatsApp</div>
       </div>
     </a>
-    <a href="demos/restaurante.html" class="portfolio-item reveal" aria-label="Abrir la demo de Mezquite, casa de cortes" style="text-decoration:none;color:inherit;">
+    <a href="demos/restaurante.html" class="portfolio-item" aria-label="Abrir la demo de Mezquite, casa de cortes" style="text-decoration:none;color:inherit;">
       <span class="portfolio-badge is-demo">Demo</span>
       <span class="portfolio-open" aria-hidden="true">→</span>
       <img class="portfolio-thumb" src="assets/demo-restaurante.webp" alt="Demo de sitio para restaurante de cortes — Mezquite" loading="lazy" width="1200" height="900">
@@ -2244,7 +2266,7 @@ footer {
         <div class="portfolio-type">Restaurante · Menú y reservación en línea</div>
       </div>
     </a>
-    <a href="demos/filo/index.html" class="portfolio-item reveal" aria-label="Abrir la demo de Filo, barbería" style="text-decoration:none;color:inherit;">
+    <a href="demos/filo/index.html" class="portfolio-item" aria-label="Abrir la demo de Filo, barbería" style="text-decoration:none;color:inherit;">
       <span class="portfolio-badge is-demo">Demo</span>
       <span class="portfolio-open" aria-hidden="true">→</span>
       <img class="portfolio-thumb" src="assets/demo-barberia.webp" alt="Demo de sitio para barbería — Filo" loading="lazy" width="1200" height="900">
@@ -2253,6 +2275,7 @@ footer {
         <div class="portfolio-type">Barbería · Sitio de varias páginas con citas</div>
       </div>
     </a>
+    </div>
   </div>
   <p class="section-desc reveal" style="margin-top: 2rem; max-width:100%; text-align:center; color: var(--gray-600);">
     Más proyectos próximamente — <a href="https://wa.me/526142251419?text=Hola,%20quiero%20que%20mi%20negocio%20sea%20tu%20siguiente%20proyecto" style="color:var(--white);">¿quieres ser el siguiente?</a>
@@ -2590,8 +2613,32 @@ function initGsapAnimations() {
   if (!window.gsap) return;
   document.documentElement.classList.add('has-gsap');
   gsap.registerPlugin(ScrollTrigger);
+  if (window.SplitText) gsap.registerPlugin(SplitText);
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // TEXTOS POR LÍNEAS (SplitText) — los párrafos de cuerpo se revelan línea por línea
+  // al hacer scroll. Solo aplica a TEXTOS (no a los títulos, que ya tienen su efecto cortina).
+  // Robusto: si SplitText no cargó, los párrafos quedan visibles tal cual.
+  if (window.SplitText && !reduceMotion) {
+    document.querySelectorAll('.section-desc, .about-body p').forEach(el => {
+      // Le quitamos el reveal genérico para que no choque con la animación por líneas.
+      el.classList.remove('reveal');
+      SplitText.create(el, {
+        type: 'lines',
+        mask: 'lines',
+        autoSplit: true,            // re-divide las líneas si cambia el ancho (responsive)
+        onSplit: (self) => gsap.from(self.lines, {
+          yPercent: 110,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.12,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+        })
+      });
+    });
+  }
 
   // Scroll NATIVO (sin Lenis): aprovecha los 120Hz del Mac (ProMotion) y se siente más fluido.
   // El desplazamiento a las secciones lo maneja el CSS (scroll-behavior + scroll-padding-top).
@@ -2628,6 +2675,27 @@ function initGsapAnimations() {
       scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
     });
   });
+
+  // PORTAFOLIO HORIZONTAL — al bajar, la tira de proyectos se desliza de lado.
+  // Solo en computadora (desktop). En celular es un carrusel táctil por CSS (swipe).
+  const horizTrack = document.querySelector('.horiz-track');
+  const horizGallery = document.querySelector('.horiz-gallery');
+  if (horizTrack && horizGallery && window.matchMedia('(min-width: 769px)').matches && !reduceMotion) {
+    const amount = () => Math.max(0, horizTrack.scrollWidth - horizGallery.clientWidth);
+    gsap.to(horizTrack, {
+      x: () => -amount(),
+      ease: 'none',
+      scrollTrigger: {
+        trigger: horizGallery,
+        start: 'center center',
+        end: () => '+=' + amount(),
+        pin: true,
+        scrub: 1,
+        anticipatePin: 1,
+        invalidateOnRefresh: true
+      }
+    });
+  }
 
   // LINE-MASK — títulos que se "dibujan" de izquierda a derecha (efecto cortina).
   // Revisamos la posición en cada scroll (confiable en TODO celular; nunca se queda sin animar).
