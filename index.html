@@ -34,7 +34,6 @@
 <link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<meta name="theme-color" content="#0a0a0a">
 
 <!-- La dirección "oficial" de esta página (evita contenido duplicado en Google) -->
 <link rel="canonical" href="https://raul2601199-maker.github.io/noel-studio/">
@@ -126,14 +125,35 @@
      defer GSAP aún no existe en este punto. Si GSAP no carga, TODO queda visible. -->
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<!-- Lenis: scroll suave premium. Con defer no bloquea el dibujado. Si no carga, queda el scroll normal. -->
+<!-- Lenis: scroll suave premium (inercia). Con defer no bloquea el dibujado.
+     Se inicializa abajo SOLO si carga y el visitante no pidió menos movimiento. -->
 <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* Quita el destello al tocar en celular y evita que el texto se reescale solo en iOS. */
+/* Quita el destello al tocar en celular y evita que el texto se reescale solo en iOS.
+   touch-action: manipulation elimina el retraso de ~300ms al tocar botones/enlaces. */
 * { -webkit-tap-highlight-color: transparent; }
-html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html {
+  -webkit-text-size-adjust: 100%; text-size-adjust: 100%;
+  /* Le dice al navegador que el sitio es oscuro: barras de scroll y campos nativos
+     se pintan en oscuro en vez de salir blancos. */
+  color-scheme: dark;
+}
+body { touch-action: manipulation; }
+
+/* Texto solo para lectores de pantalla y Google: invisible a la vista, pero leído.
+   Sirve para dar contexto al <h1> sin alterar el diseño. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+/* Los títulos parten sus líneas de forma más pareja (sin una palabra suelta abajo). */
+.section-title, .contact-title, .video-promo-h, .pricing-desc, .section-desc {
+  text-wrap: balance;
+}
 
 :root {
   --black: #000000;
@@ -153,7 +173,12 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 }
 
 html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+/* Estilos recomendados por Lenis para un scroll suave sin saltos ni conflictos. */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 .lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
 
 /* Accesibilidad: anillo de foco visible solo para quien navega con teclado. */
 :focus-visible {
@@ -267,9 +292,10 @@ nav.scrolled {
   display: block;
 }
 .nav-brand-name {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.6rem;
-  letter-spacing: 0.12em;
+  font-family: 'Unbounded', 'Bebas Neue', sans-serif;
+  font-size: 1.05rem;
+  letter-spacing: 0;
+  font-weight: 600;
   color: var(--white);
   line-height: 1;
   white-space: nowrap;
@@ -347,7 +373,8 @@ nav.scrolled {
 
 /* HERO */
 .hero {
-  min-height: 100vh;
+  min-height: 100vh; /* respaldo para navegadores viejos */
+  min-height: 100dvh; /* altura REAL del celular: evita el salto/corte por la barra del navegador */
   position: relative;
   overflow: hidden;
   /* Profundidad: el negro deja de ser plano y "abre" hacia el centro.
@@ -428,10 +455,12 @@ nav.scrolled {
   opacity: 1;
 }
 .hero-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(5rem, 14vw, 14rem);
-  line-height: 0.88;
-  letter-spacing: -0.01em;
+  font-family: 'Unbounded', 'Bebas Neue', sans-serif;
+  /* Unbounded es muy ancha: bajamos tamaño y apretamos para que "STUDIO" no se salga. */
+  font-size: clamp(2.6rem, 7vw, 7rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  font-weight: 600;
   position: relative; z-index: 1;
 }
 .hero-title .line {
@@ -486,6 +515,9 @@ nav.scrolled {
   border-bottom: 1px solid rgba(255,255,255,0.08);
   padding: 1.25rem 0;
   background: var(--gray-900);
+  /* Las palabras se desvanecen suave en los extremos en vez de cortarse de golpe. */
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 9%, #000 91%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 9%, #000 91%, transparent 100%);
 }
 .marquee-track {
   display: flex; gap: 3rem;
@@ -497,10 +529,15 @@ nav.scrolled {
   .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
 }
 .marquee-track span {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Unbounded', 'Bebas Neue', sans-serif;
   font-size: 1.1rem; letter-spacing: 0.15em;
   color: #8a8a8a; /* contraste AA (>=4.5:1) sobre el fondo gris del marquee */
   flex-shrink: 0;
+  transition: color 0.3s var(--ease-out);
+}
+/* Al pasar el cursor (la cinta se pausa), cada palabra se ilumina. */
+@media (hover: hover) and (pointer: fine) {
+  .marquee-track span:not(.dot):hover { color: var(--white); }
 }
 .marquee-track span.dot {
   color: var(--white);
@@ -510,6 +547,126 @@ nav.scrolled {
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
+}
+
+/* PROPUESTA DE VALOR — el "porqué" antes del "qué". Puente tras el hero.
+   Layout editorial: eyebrow con línea, titular grande y texto desfasado a un lado. */
+.intro {
+  padding: 8rem 3rem;
+  background: var(--black);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  position: relative;
+  overflow: hidden;
+}
+/* Resplandor ambiental que respira detrás del titular: da profundidad y vida. */
+.intro::before {
+  content: "";
+  position: absolute;
+  top: 42%; left: 30%;
+  width: 620px; height: 620px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(closest-side, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0) 70%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(8px);
+  animation: introGlowDrift 16s var(--ease-in-out) infinite;
+}
+@keyframes introGlowDrift {
+  0%   { transform: translate(-50%, -50%) scale(1); opacity: 0.9; }
+  50%  { transform: translate(-42%, -54%) scale(1.12); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro::before { animation: none; }
+}
+.intro-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+.intro-eyebrow {
+  display: flex; align-items: center; gap: 1rem;
+  font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gray-400); margin-bottom: 3rem;
+}
+.intro-rule { width: 40px; height: 1px; background: var(--gray-600); flex-shrink: 0; }
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 3rem 4.5rem;
+  align-items: end;
+}
+.intro-headline {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.9rem, 4.2vw, 3.3rem);
+  line-height: 1.18; letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+.intro-headline span { display: block; }
+.intro-dim { color: var(--gray-600); }
+.intro-strong { color: var(--white); font-weight: 500; }
+/* Subrayado que se dibuja bajo la frase clave. Por defecto VISIBLE (scaleX 1);
+   solo con GSAP arranca en 0 y se anima al entrar en vista. */
+.intro-mark {
+  position: relative; display: inline-block;
+  /* Texto plateado con un destello blanco que lo cruza lento (vida sutil, look metálico). */
+  background-image: linear-gradient(100deg, #e8ebf0 0%, #e8ebf0 40%, #ffffff 50%, #e8ebf0 60%, #e8ebf0 100%);
+  background-size: 220% 100%;
+  background-position: 180% 0;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  animation: introShimmer 7s ease-in-out 1.5s infinite;
+}
+@keyframes introShimmer {
+  0%       { background-position: 180% 0; }
+  55%, 100%{ background-position: -80% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-mark { animation: none; }
+}
+.intro-underline {
+  position: absolute; left: 0; bottom: -0.08em;
+  width: 100%; height: 2px; display: block;
+  background: linear-gradient(90deg, #ffffff 0%, rgba(255,255,255,0.3) 100%);
+  transform: scaleX(1); transform-origin: 0 50%;
+}
+/* Estados iniciales SOLO con GSAP — sin GSAP, todo se ve normal (nunca queda en blanco).
+   La timeline en el JS los lleva a su estado final con una entrada coordinada. */
+.has-gsap .intro-eyebrow { opacity: 0; transform: translateY(12px); }
+.has-gsap .intro-rule { transform: scaleX(0); }
+.has-gsap .intro-dim,
+.has-gsap .intro-strong { opacity: 0; transform: translateY(20px); filter: blur(10px); }
+.has-gsap .intro-text { opacity: 0; transform: translateY(16px); }
+.has-gsap .intro-link { opacity: 0; transform: translateY(12px); }
+.has-gsap .intro-underline { transform: scaleX(0); }
+@media (prefers-reduced-motion: reduce) {
+  .has-gsap .intro-eyebrow,
+  .has-gsap .intro-dim,
+  .has-gsap .intro-strong,
+  .has-gsap .intro-text,
+  .has-gsap .intro-link { opacity: 1; transform: none; filter: none; }
+  .has-gsap .intro-rule,
+  .has-gsap .intro-underline { transform: scaleX(1); }
+}
+.intro-aside { display: flex; flex-direction: column; gap: 1.75rem; }
+.intro-text {
+  font-size: clamp(0.95rem, 1.4vw, 1.08rem);
+  color: var(--gray-200); font-weight: 300; line-height: 1.85;
+}
+.intro-link {
+  display: inline-flex; align-items: center; gap: 0.5rem; width: fit-content;
+  font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--white); text-decoration: none;
+  padding-bottom: 0.3rem; border-bottom: 1px solid rgba(255,255,255,0.25);
+  transition: border-color 0.3s var(--ease-out), transform 0.16s var(--ease-out);
+}
+.intro-link span { transition: transform 0.3s var(--ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .intro-link:hover { border-color: var(--white); }
+  .intro-link:hover span { transform: translateX(4px); }
+}
+.intro-link:active { transform: scale(0.97); }
+@media (max-width: 768px) {
+  .intro { padding: 5rem 1.5rem; }
+  .intro-eyebrow { margin-bottom: 2rem; }
+  .intro-grid { grid-template-columns: 1fr; gap: 2rem; align-items: start; }
 }
 
 /* TIRA DE CONFIANZA — promesas clave juntas, debajo del hero */
@@ -529,10 +686,25 @@ nav.scrolled {
   width: 21px; height: 21px; flex-shrink: 0;
   stroke: var(--white); fill: none;
   stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
+  transition: transform 0.3s var(--ease-out);
 }
 .trust-item span {
   font-size: 0.8rem; color: var(--gray-200);
   font-weight: 300; line-height: 1.3;
+  transition: color 0.3s var(--ease-out);
+}
+/* Realce al pasar el cursor: la palomita crece y el texto se aclara. */
+@media (hover: hover) and (pointer: fine) {
+  .trust-item:hover svg { transform: scale(1.18); }
+  .trust-item:hover span { color: var(--white); }
+}
+/* Estados iniciales SOLO con GSAP: items ocultos y palomita "sin dibujar".
+   Sin GSAP todo se ve normal. La timeline del JS los entra en cascada. */
+.has-gsap .trust-item { opacity: 0; transform: translateY(14px); }
+.has-gsap .trust-item svg path { stroke-dasharray: 32; stroke-dashoffset: 32; }
+@media (prefers-reduced-motion: reduce) {
+  .has-gsap .trust-item { opacity: 1; transform: none; }
+  .has-gsap .trust-item svg path { stroke-dashoffset: 0; }
 }
 @media (max-width: 900px) {
   .trust-strip { grid-template-columns: repeat(2, 1fr); gap: 1.1rem 1rem; padding: 1.75rem 1.5rem; }
@@ -556,9 +728,10 @@ nav.scrolled {
   letter-spacing: 0.2em; font-weight: 500;
 }
 .section-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  letter-spacing: 0.02em; line-height: 1;
+  font-family: 'Unbounded', 'Bebas Neue', sans-serif;
+  font-size: clamp(1.7rem, 3.8vw, 3rem);
+  letter-spacing: -0.01em; line-height: 1.12;
+  font-weight: 600;
   overflow: hidden;
 }
 .section-title span { display: block; color: var(--white); }
@@ -587,9 +760,10 @@ nav.scrolled {
   letter-spacing: 0.15em; font-weight: 500;
 }
 .service-name {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(1.6rem, 3.5vw, 2.8rem);
-  letter-spacing: 0.04em; color: var(--white);
+  font-family: 'Unbounded', 'Bebas Neue', sans-serif;
+  font-size: clamp(1.05rem, 2.3vw, 1.7rem);
+  letter-spacing: -0.01em; color: var(--white);
+  font-weight: 600;
 }
 .service-tag {
   font-size: 0.72rem; color: var(--gray-600);
@@ -632,30 +806,64 @@ nav.scrolled {
   width: 100%; height: 100%;
   object-fit: cover;
   transition: transform 0.7s ease, filter 0.4s ease;
-  filter: grayscale(30%);
+  /* A color desde el inicio: las fotos son tu mejor argumento de venta.
+     En celular nunca había hover, así que antes se quedaban en gris. */
+  filter: grayscale(0%);
 }
 @media (hover: hover) and (pointer: fine) {
   .portfolio-item:hover .portfolio-thumb {
     transform: scale(1.05);
-    filter: grayscale(0%);
   }
 }
+/* Overlay VISIBLE SIEMPRE por defecto (cubre celular y táctil): el nombre del
+   proyecto siempre se lee. En equipos con mouse arranca oculto y aparece al pasar. */
 .portfolio-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 45%, transparent 70%);
   display: flex; flex-direction: column;
   justify-content: flex-end;
   padding: 2rem;
-  transform: translateY(20px);
-  opacity: 0;
+  transform: translateY(0);
+  opacity: 1;
   transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
 }
-.portfolio-item:hover .portfolio-overlay {
-  opacity: 1;
-  transform: translateY(0);
+@media (hover: hover) and (pointer: fine) {
+  .portfolio-overlay { opacity: 0; transform: translateY(20px); }
+  .portfolio-item:hover .portfolio-overlay { opacity: 1; transform: translateY(0); }
+}
+
+/* BADGE: distingue de un vistazo cliente real vs demo. Siempre visible. */
+.portfolio-badge {
+  position: absolute; top: 1rem; left: 1rem; z-index: 2;
+  font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase;
+  font-weight: 700; padding: 0.35rem 0.7rem; border-radius: 999px;
+  backdrop-filter: blur(6px);
+}
+.portfolio-badge.is-client { background: var(--white); color: var(--black); }
+.portfolio-badge.is-demo {
+  background: rgba(0,0,0,0.55); color: var(--white);
+  border: 1px solid rgba(255,255,255,0.4);
+}
+
+/* Flecha SIEMPRE visible: señala que la tarjeta se abre (clave en celular). */
+.portfolio-open {
+  position: absolute; top: 1rem; right: 1rem; z-index: 2;
+  width: 34px; height: 34px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.35);
+  color: var(--white); font-size: 1rem;
+  backdrop-filter: blur(6px);
+  transition: transform 0.3s var(--ease-out), background 0.3s;
+}
+@media (hover: hover) and (pointer: fine) {
+  .portfolio-item:hover .portfolio-open {
+    transform: rotate(-45deg);
+    background: var(--white); color: var(--black);
+  }
 }
 .portfolio-name {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Unbounded', 'Bebas Neue', sans-serif;
   font-size: 1.8rem; letter-spacing: 0.05em;
 }
 .portfolio-type {
@@ -706,9 +914,18 @@ nav.scrolled {
   width: 40px; height: 40px;
 }
 .portfolio-label {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Unbounded', 'Bebas Neue', sans-serif;
   font-size: 3rem; letter-spacing: 0.08em;
   color: rgba(255,255,255,0.1);
+}
+/* CELULAR: una sola columna para que las demos no queden diminutas,
+   y el proyecto destacado con una proporción más alta y cómoda. */
+@media (max-width: 768px) {
+  #portafolio { padding: 5rem 1.5rem; }
+  .portfolio-grid { grid-template-columns: 1fr; gap: 1.25rem; margin-top: 3rem; }
+  .portfolio-item, .portfolio-item:first-child { aspect-ratio: 4/3; }
+  .portfolio-overlay { padding: 1.5rem; }
+  .portfolio-name { font-size: 1.5rem; }
 }
 
 /* PRICING */
@@ -731,6 +948,36 @@ nav.scrolled {
 }
 #precios > *:not(.section-header) { position: relative; z-index: 1; }
 .pricing-grid { position: relative; z-index: 1; }
+
+/* NÚMEROS / CONFIANZA */
+.stats {
+  padding: 6rem 3rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  background: var(--black);
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  max-width: 1100px; margin: 0 auto;
+}
+.stat { text-align: center; }
+.stat-num {
+  font-family: 'Unbounded', 'Bebas Neue', sans-serif;
+  font-weight: 600;
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  line-height: 1; letter-spacing: -0.02em;
+  color: var(--white);
+}
+.stat-label {
+  margin-top: 0.9rem;
+  font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gray-400); font-weight: 400;
+}
+@media (max-width: 760px) {
+  .stats { padding: 4rem 1.5rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem 1.5rem; }
+}
 
 /* OFERTA DE LANZAMIENTO */
 #ofertas {
@@ -767,8 +1014,9 @@ nav.scrolled {
 }
 .offer-name { font-size: 1.05rem; color: var(--gray-400); letter-spacing: 0.05em; }
 .offer-price {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(3.5rem, 9vw, 5.5rem); line-height: 1; color: var(--white);
+  font-family: 'Unbounded', 'Bebas Neue', sans-serif;
+  font-size: clamp(2.2rem, 6vw, 3.6rem); line-height: 1; color: var(--white);
+  font-weight: 600;
   margin: 0.5rem 0 0.25rem;
 }
 .offer-price sup { font-size: 0.4em; vertical-align: super; }
@@ -809,24 +1057,16 @@ nav.scrolled {
   .has-gsap .pricing-features li { opacity: 1; transform: none; }
 }
 
-/* Sensación de "compra especial": badge que late, botón con glow y tarjeta que respira */
-.offer-badge { animation: offerBadgePulse 2.4s ease-in-out infinite; }
-@keyframes offerBadgePulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
-  50%      { box-shadow: 0 0 18px 2px rgba(255,255,255,0.28); }
-}
+/* Sensación de "compra especial" SIN saturar: dejamos solo el glow del botón
+   (guía a la acción) y el brillo que recorre la tarjeta. Quitamos el badge que
+   latía y el borde que respiraba — juntos restaban el aire premium. */
 .btn-offer { animation: offerCtaPulse 2.8s ease-in-out infinite; }
 @keyframes offerCtaPulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
   50%      { box-shadow: 0 10px 32px rgba(255,255,255,0.22); }
 }
-.offer-card { animation: offerCardGlow 5s ease-in-out infinite; }
-@keyframes offerCardGlow {
-  0%, 100% { border-color: rgba(255,255,255,0.14); }
-  50%      { border-color: rgba(255,255,255,0.32); }
-}
 @media (prefers-reduced-motion: reduce) {
-  .offer-badge, .btn-offer, .offer-card { animation: none; }
+  .btn-offer { animation: none; }
 }
 .pricing-grid {
   display: grid;
@@ -867,14 +1107,14 @@ nav.scrolled {
 }
 .pricing-card.featured .pricing-tag { color: var(--gray-400); }
 .pricing-name {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Unbounded', 'Bebas Neue', sans-serif;
   font-size: 2rem; letter-spacing: 0.05em;
   margin-bottom: 0.5rem;
 }
 .pricing-price {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 3.5rem; letter-spacing: 0.02em;
-  line-height: 1;
+  font-family: 'Unbounded', 'Bebas Neue', sans-serif;
+  font-size: 2.1rem; letter-spacing: -0.02em;
+  line-height: 1; font-weight: 600;
 }
 .pricing-price sup {
   font-size: 1.2rem; vertical-align: top;
@@ -949,13 +1189,13 @@ nav.scrolled {
   border-image: linear-gradient(90deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.05) 100%) 1;
 }
 .process-step-num {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Unbounded', 'Bebas Neue', sans-serif;
   font-size: 3rem; line-height: 1;
   color: var(--gray-400);
   margin-bottom: 1rem;
 }
 .process-step-title {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Unbounded', 'Bebas Neue', sans-serif;
   font-size: 1.5rem; letter-spacing: 0.05em;
   margin-bottom: 0.75rem;
 }
@@ -990,7 +1230,7 @@ nav.scrolled {
 .faq-item summary:hover { color: var(--gray-200); }
 .faq-item summary::after {
   content: '+';
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Unbounded', 'Bebas Neue', sans-serif;
   font-size: 1.6rem; color: var(--gray-600);
   flex-shrink: 0;
   transition: transform 0.3s;
@@ -1011,7 +1251,7 @@ nav.scrolled {
 }
 .contact-bg-text {
   position: absolute;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Unbounded', 'Bebas Neue', sans-serif;
   font-size: clamp(8rem, 20vw, 18rem);
   color: transparent;
   -webkit-text-stroke: 1px rgba(255,255,255,0.04);
@@ -1027,9 +1267,10 @@ nav.scrolled {
   position: relative; z-index: 1;
 }
 .contact-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(3rem, 7vw, 6rem);
-  letter-spacing: 0.02em; line-height: 0.95;
+  font-family: 'Unbounded', 'Bebas Neue', sans-serif;
+  font-size: clamp(1.8rem, 4.5vw, 3.4rem);
+  letter-spacing: -0.01em; line-height: 1.08;
+  font-weight: 600;
   margin-bottom: 2rem;
 }
 .contact-title em {
@@ -1162,7 +1403,7 @@ footer {
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 .footer-brand {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Unbounded', 'Bebas Neue', sans-serif;
   font-size: 1.6rem; letter-spacing: 0.12em;
   margin-bottom: 1rem;
 }
@@ -1273,7 +1514,7 @@ footer {
 /* RESEÑAS DE GOOGLE */
 .reviews-head { text-align: center; margin: 6rem auto 2.5rem; }
 .reviews-head .rh-stars { color: #ffc83d; letter-spacing: 0.18em; font-size: 1.15rem; }
-.reviews-head .rh-score { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.04em; margin-top: 0.5rem; color: var(--white); }
+.reviews-head .rh-score { font-family: 'Unbounded', 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.04em; margin-top: 0.5rem; color: var(--white); }
 .reviews-head .rh-sub { font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray-400); margin-top: 0.3rem; }
 .reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 .review-card { background: var(--gray-900); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 2rem; display: flex; flex-direction: column; text-align: left; transition: transform 0.4s var(--ease-out), border-color 0.4s; }
@@ -1334,7 +1575,8 @@ footer {
     display: flex;
     position: fixed;
     top: 0; left: 0; right: 0;
-    height: 100vh;
+    height: 100vh; /* respaldo */
+    height: 100dvh; /* el menú cubre la pantalla real del celular */
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -1343,17 +1585,29 @@ footer {
     background: rgba(0,0,0,0.97);
     backdrop-filter: blur(12px);
     transform: translateY(-100%);
-    transition: transform 0.4s ease;
+    /* Cerrado: invisible Y fuera del orden de tabulación/lectores de pantalla.
+       Antes los enlaces seguían siendo enfocables aunque no se vieran. */
+    visibility: hidden;
+    transition: transform 0.4s ease, visibility 0.4s ease;
   }
-  .nav-links.open { transform: translateY(0); }
+  .nav-links.open { transform: translateY(0); visibility: visible; }
   .nav-links a { font-size: 1.15rem; padding: 0.5rem 1rem; }
   .nav-links a:not(.nav-cta)::after { display: none; }
-  .nav-brand-name { font-size: 1.2rem; }
-  .hero { min-height: 100vh; }
-  .hero-content {
+  .nav-brand-name { font-size: 1rem; letter-spacing: 0; }
+  /* Hero en FLUJO NORMAL (sin position:absolute): centrado a prueba de balas que
+     nunca se descuadra ni se sale por los lados, en cualquier ancho de celular. */
+  .hero {
+    min-height: 100dvh;
+    display: flex;
     flex-direction: column;
-    top: 50%;
-    width: calc(100% - 3rem);
+    justify-content: center;
+    padding: 6.5rem 1.25rem 2.5rem; /* deja aire para la barra fija de arriba */
+  }
+  .hero-content {
+    position: static; transform: none;
+    top: auto; left: auto;
+    width: 100%;
+    flex-direction: column;
     gap: 1.5rem;
     text-align: center;
     align-items: center;
@@ -1361,13 +1615,28 @@ footer {
   /* En celular ocultamos el logo (repetía "NOEL STUDIO" debajo del título) */
   .hero-right { display: none; }
   /* Iconos de redes y botones centrados bajo el título en celular */
-  .hero-social { justify-content: center; }
-  .hero-actions { justify-content: center; }
-  .hero-title { font-size: clamp(4rem, 18vw, 6rem); }
-  .hero-sub {
-    flex-direction: column; align-items: flex-start; gap: 1rem;
-    left: 1.5rem; right: 1.5rem; bottom: 1.5rem;
+  .hero-social { justify-content: center; margin-top: 1.75rem; }
+  /* Botones apilados y centrados: caben siempre y son cómodos de tocar con el dedo. */
+  .hero-actions {
+    flex-direction: column; align-items: stretch;
+    width: 100%; max-width: 300px;
+    margin-left: auto; margin-right: auto;
+    gap: 0.75rem;
   }
+  .hero-btn { justify-content: center; width: 100%; padding: 1rem 1.5rem; font-size: 0.92rem; }
+  /* Unbounded es ANCHA: en celular el tamaño se calcula para que "STUDIO" quepa con aire
+     en pantallas chicas (desde 320px) sin salirse por los lados. */
+  .hero-title { font-size: clamp(2rem, 10vw, 4.2rem); letter-spacing: -0.03em; }
+  .hero-tag { font-size: 0.66rem; }
+  /* El subtítulo y el indicador de scroll fluyen bajo el contenido (ya no van pegados abajo). */
+  .hero-sub {
+    position: static;
+    flex-direction: column; align-items: center; gap: 0.85rem;
+    left: auto; right: auto; bottom: auto;
+    margin-top: 2.5rem; padding-top: 1.5rem;
+    text-align: center;
+  }
+  .hero-sub p { max-width: 340px; }
   #servicios, #proceso, #portafolio, #precios, #preguntas, #contacto { padding: 5rem 1.5rem; }
   .section-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
   .section-desc { text-align: left; max-width: 100%; }
@@ -1383,14 +1652,30 @@ footer {
   .process-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .portfolio-grid { grid-template-columns: 1fr; }
   .portfolio-item:first-child { aspect-ratio: 4/3; }
-  .pricing-grid { grid-template-columns: 1fr; }
+  /* PRECIOS en celular: tarjetas COMPACTAS para ver los 3 paquetes con muy poco scroll
+     y poder compararlos rápido (antes cada una era enorme y obligaba a bajar mucho). */
+  .pricing-grid { grid-template-columns: 1fr; gap: 1rem; margin-top: 3rem; }
+  .pricing-card { padding: 1.5rem 1.4rem; border-radius: 12px; }
   .pricing-card.featured { transform: none; }
+  .pricing-tag { margin-bottom: 0.5rem; }
+  .pricing-name { font-size: 1.55rem; margin-bottom: 0.1rem; }
+  .pricing-price { font-size: 1.7rem; }
+  .pricing-price sup { font-size: 0.95rem; margin-top: 0.2rem; }
+  .pricing-currency { margin-bottom: 0.9rem; }
+  .pricing-desc { font-size: 0.78rem; line-height: 1.55; margin-bottom: 0.9rem; }
+  .pricing-features { gap: 0.4rem; margin-bottom: 1.25rem; }
+  .pricing-feature { font-size: 0.76rem; }
+  .btn-pricing { padding: 0.85rem 1.25rem; }
   .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
   footer { padding: 3.5rem 1.5rem 2rem; }
   .footer-top { grid-template-columns: 1fr; gap: 2.5rem; }
   .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
   body { cursor: auto; }
   .cursor, .cursor-follower { display: none; }
+  /* Campos a 16px: si el texto del campo mide menos, iOS hace zoom solo al tocarlo (molesto). */
+  .form-field input, .form-field textarea { font-size: 16px; }
+  /* La barra fija es más compacta en celular: menos hueco al saltar a una sección. */
+  html { scroll-padding-top: 72px; }
 }
 
 /* ===== TÍTULOS PLATEADOS (efecto plateado LEVE en todos los títulos, sobre fondo oscuro) =====
@@ -1437,6 +1722,80 @@ footer {
   nav { background: rgba(0,0,0,0.92) !important; }
 }
 
+/* SOBRE MÍ */
+#sobre-mi {
+  padding: 8rem 3rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.about-wrap {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 4rem;
+  align-items: center;
+  margin-top: 5rem;
+  max-width: 1100px;
+}
+.about-photo {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.12);
+  background:
+    radial-gradient(120% 90% at 50% 0%, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 55%),
+    linear-gradient(145deg, #141414 0%, #070707 100%);
+}
+.about-photo > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Tarjeta de marca (en lugar de foto): logo + nombre + ubicación. */
+.about-card {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 1rem;
+  text-align: center; padding: 2rem;
+}
+.about-card-logo {
+  width: clamp(110px, 42%, 160px); height: auto;
+  opacity: 0.95;
+}
+.about-card-name {
+  font-family: 'Unbounded', 'Bebas Neue', sans-serif;
+  font-size: 1.5rem; letter-spacing: 0.14em; color: var(--white);
+}
+.about-card-meta {
+  font-size: 0.72rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--gray-600);
+}
+.about-eyebrow {
+  font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gray-400); margin-bottom: 1.25rem;
+}
+.about-body p {
+  font-size: 1rem; color: var(--gray-200); font-weight: 300;
+  line-height: 1.85; margin-bottom: 1.1rem; max-width: 560px;
+}
+.about-points {
+  list-style: none; display: flex; flex-direction: column;
+  gap: 0.75rem; margin: 1.75rem 0 2rem; padding: 0;
+}
+.about-points li {
+  display: flex; align-items: center; gap: 0.7rem;
+  font-size: 0.92rem; color: var(--gray-200); font-weight: 300;
+}
+.about-points li svg {
+  width: 18px; height: 18px; flex-shrink: 0;
+  stroke: var(--white); fill: none;
+  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+}
+.about-signature {
+  font-family: 'Unbounded', 'Bebas Neue', sans-serif;
+  font-size: 1.4rem; letter-spacing: 0.08em; color: var(--white);
+}
+@media (max-width: 860px) {
+  #sobre-mi { padding: 5rem 1.5rem; }
+  .about-wrap { grid-template-columns: 1fr; gap: 2.5rem; margin-top: 3rem; }
+  .about-photo { max-width: 320px; margin: 0 auto; }
+}
+
 /* VIDEO PROMOCIONAL */
 #video {
   padding: 8rem 3rem;
@@ -1463,7 +1822,7 @@ footer {
   object-fit: cover; display: block;
 }
 .video-promo-h {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Unbounded', 'Bebas Neue', sans-serif;
   font-size: clamp(1.8rem, 4vw, 3rem);
   letter-spacing: 0.02em; line-height: 1.05;
   color: var(--white); margin-bottom: 1.25rem;
@@ -1493,9 +1852,52 @@ footer {
   .video-promo-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
   .video-promo-player { max-width: 260px; margin: 0 auto; }
 }
+
+/* —— PRELOADER —— pantalla de marca mientras carga el sitio.
+   Vive en CSS+JS vanilla (NO depende de GSAP): siempre se quita, incluso sin JS de animación. */
+#preload {
+  position: fixed; inset: 0; z-index: 10000;
+  background: #000;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.6rem;
+  transition: opacity 0.8s var(--ease-out), visibility 0.8s;
+}
+#preload.done { opacity: 0; visibility: hidden; pointer-events: none; }
+#preload .pl-logo {
+  width: 64px; height: auto; display: block;
+  opacity: 0; transform: translateY(8px) scale(0.96);
+  animation: plLogoIn 0.7s var(--ease-out) forwards;
+}
+#preload .pl-name {
+  font-family: 'Unbounded', 'Bebas Neue', sans-serif;
+  font-size: 0.95rem; font-weight: 600; letter-spacing: 0.42em;
+  color: var(--white); padding-left: 0.42em;
+  opacity: 0; transform: translateY(8px);
+  animation: plLogoIn 0.7s var(--ease-out) 0.12s forwards;
+}
+#preload .pl-bar {
+  width: 120px; height: 2px; border-radius: 2px;
+  background: rgba(255,255,255,0.14); overflow: hidden;
+}
+#preload .pl-bar i {
+  display: block; height: 100%; width: 0;
+  background: var(--white); transition: width 0.2s linear;
+}
+@keyframes plLogoIn { to { opacity: 1; transform: translateY(0) scale(1); } }
+@media (prefers-reduced-motion: reduce) {
+  #preload { transition: opacity 0.25s linear, visibility 0.25s; }
+  #preload .pl-logo, #preload .pl-name { animation: none; opacity: 1; transform: none; }
+  #preload .pl-bar i { transition: none; }
+}
 </style>
 </head>
 <body>
+
+<!-- PRELOADER — marca mientras carga el sitio (se quita solo; failsafe en el script) -->
+<div id="preload" role="status" aria-label="Cargando Noel Studio">
+  <img class="pl-logo" src="assets/logo-hero.png" alt="" aria-hidden="true" width="64" height="76">
+  <div class="pl-name">NOEL STUDIO</div>
+  <div class="pl-bar"><i id="plBar"></i></div>
+</div>
 
 <!-- Accesibilidad: saltar el menú e ir directo al contenido -->
 <a href="#inicio" class="skip-link">Saltar al contenido</a>
@@ -1511,12 +1913,13 @@ footer {
 <nav id="navbar">
   <ul class="nav-links">
     <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#proceso">Cómo trabajo</a></li>
-    <li><a href="#portafolio">Portafolio</a></li>
-    <li><a href="#video">Video</a></li>
     <li><a href="#ofertas">Ofertas</a></li>
     <li><a href="#precios">Precios</a></li>
+    <li><a href="#portafolio">Portafolio</a></li>
+    <li><a href="#proceso">Cómo trabajo</a></li>
+    <li><a href="#video">Video</a></li>
     <li><a href="#preguntas">Preguntas</a></li>
+    <li><a href="#sobre-mi">Sobre mí</a></li>
     <li><a href="#contacto" class="nav-cta">Contacto</a></li>
   </ul>
   <a href="#inicio" class="nav-brand" aria-label="Noel Studio — inicio">
@@ -1535,8 +1938,9 @@ footer {
     <div class="hero-left">
       <div class="hero-tag" id="heroTag">— Diseño Web · Chihuahua, México</div>
       <h1 class="hero-title">
-        <div class="line"><span>NOEL</span></div>
-        <div class="line"><span>STUDIO</span></div>
+        <span class="sr-only">Noel Studio — Diseño web profesional en Chihuahua</span>
+        <div class="line" aria-hidden="true"><span>NOEL</span></div>
+        <div class="line" aria-hidden="true"><span>STUDIO</span></div>
       </h1>
       <div class="hero-actions">
         <a href="https://wa.me/526142251419?text=Hola,%20quiero%20cotizar%20mi%20p%C3%A1gina%20web" target="_blank" rel="noopener" class="hero-btn hero-btn-primary">Cotiza tu página <span aria-hidden="true">→</span></a>
@@ -1566,6 +1970,23 @@ footer {
     <div class="hero-scroll">
       <div class="scroll-line"></div>
       Scroll
+    </div>
+  </div>
+</section>
+
+<!-- PROPUESTA DE VALOR (puente entre el hero y el contenido) -->
+<section class="intro" id="intro">
+  <div class="intro-inner">
+    <div class="intro-eyebrow"><span class="intro-rule" aria-hidden="true"></span>Por qué Noel Studio</div>
+    <div class="intro-grid">
+      <h2 class="intro-headline">
+        <span class="intro-dim">No hago páginas bonitas y ya.</span>
+        <span class="intro-strong">Hago páginas que <span class="intro-mark">te traen clientes<i class="intro-underline" aria-hidden="true"></i></span>.</span>
+      </h2>
+      <div class="intro-aside">
+        <p class="intro-text">Hoy tus clientes te buscan primero en internet. Si no te encuentran —o lo que ven no convence— le compran al de junto. Yo me encargo de que tu página se vea profesional, cargue rápido y convierta a esos curiosos en mensajes de WhatsApp.</p>
+        <a href="#precios" class="intro-link">Ver lo que incluye <span aria-hidden="true">→</span></a>
+      </div>
     </div>
   </div>
 </section>
@@ -1675,118 +2096,24 @@ footer {
   </div>
 </section>
 
-<!-- PROCESO -->
-<section id="proceso">
-  <div class="section-header">
-    <div>
-      <h2 class="section-title line-mask"><span>CÓMO</span><span>TRABAJO</span></h2>
+<!-- NÚMEROS / CONFIANZA -->
+<section id="numeros" class="stats">
+  <div class="stats-grid">
+    <div class="stat reveal">
+      <div class="stat-num" data-count="5" data-decimals="1">5.0</div>
+      <div class="stat-label">Estrellas en Google</div>
     </div>
-    <p class="section-desc reveal">Sin letras chiquitas. Así es el camino desde que me escribes hasta que tu página está funcionando.</p>
-  </div>
-  <div class="process-grid">
-    <div class="process-step reveal">
-      <div class="process-step-num">01</div>
-      <div class="process-step-title">PLATICAMOS</div>
-      <p>Me escribes por WhatsApp y me cuentas de tu negocio. Como una plática normal, sin palabras técnicas.</p>
+    <div class="stat reveal">
+      <div class="stat-num" data-count="2" data-suffix=" días">2 días</div>
+      <div class="stat-label">Entrega desde</div>
     </div>
-    <div class="process-step reveal">
-      <div class="process-step-num">02</div>
-      <div class="process-step-title">TE PROPONGO</div>
-      <p>Te explico qué le conviene a tu negocio, qué incluye exactamente y cuánto cuesta. Todo claro antes de empezar, sin sorpresas.</p>
+    <div class="stat reveal">
+      <div class="stat-num" data-count="100" data-suffix="%">100%</div>
+      <div class="stat-label">La página es tuya</div>
     </div>
-    <div class="process-step reveal">
-      <div class="process-step-num">03</div>
-      <div class="process-step-title">LA CONSTRUYO</div>
-      <p>Diseño y armo tu página. Te voy mostrando avances para que quede exactamente como tú la quieres.</p>
-    </div>
-    <div class="process-step reveal">
-      <div class="process-step-num">04</div>
-      <div class="process-step-title">TE LA ENTREGO</div>
-      <p>Tu página queda en línea funcionando. Te explico cómo usarla y quedo al pendiente por si necesitas algo.</p>
-    </div>
-  </div>
-</section>
-
-<!-- PORTAFOLIO -->
-<section id="portafolio">
-  <div class="section-header">
-    <div>
-      <h2 class="section-title line-mask"><span>PROYECTOS</span></h2>
-    </div>
-    <p class="section-desc reveal">Trabajo real, resultados reales para negocios en Chihuahua.</p>
-  </div>
-  <div class="portfolio-grid">
-    <a href="demos/montes.html" class="portfolio-item reveal" style="grid-column: 1 / -1; aspect-ratio: 16/7; text-decoration: none; color: inherit;">
-      <img class="portfolio-thumb" src="assets/montes-local.webp" alt="Local de Montes Tire Center, llantera en Chihuahua" loading="lazy" width="1400" height="787">
-      <div class="portfolio-overlay">
-        <div class="portfolio-name">Montes Tire Center</div>
-        <div class="portfolio-type">Cliente real · Llantera · Chihuahua · Ábrelo →</div>
-      </div>
-    </a>
-    <a href="demos/restaurante.html" class="portfolio-item reveal" style="text-decoration:none;color:inherit;">
-      <img class="portfolio-thumb" src="assets/demo-restaurante.webp" alt="Demo de sitio para restaurante de cortes — Mezquite" loading="lazy" width="1200" height="900">
-      <div class="portfolio-overlay">
-        <div class="portfolio-name">Mezquite — Casa de cortes</div>
-        <div class="portfolio-type">Demo navegable · Restaurante · Ábrelo →</div>
-      </div>
-    </a>
-    <a href="demos/filo/index.html" class="portfolio-item reveal" style="text-decoration:none;color:inherit;">
-      <img class="portfolio-thumb" src="assets/demo-barberia.webp" alt="Demo de sitio para barbería — Filo" loading="lazy" width="1200" height="900">
-      <div class="portfolio-overlay">
-        <div class="portfolio-name">Filo — Barbería</div>
-        <div class="portfolio-type">Demo · Barbería · Sitio de varias páginas · Ábrelo →</div>
-      </div>
-    </a>
-  </div>
-  <p class="section-desc reveal" style="margin-top: 2rem; max-width:100%; text-align:center; color: var(--gray-600);">
-    Más proyectos próximamente — <a href="https://wa.me/526142251419?text=Hola,%20quiero%20que%20mi%20negocio%20sea%20tu%20siguiente%20proyecto" style="color:var(--white);">¿quieres ser el siguiente?</a>
-  </p>
-
-  <div class="reviews-head reveal">
-    <div class="rh-stars">★★★★★</div>
-    <div class="rh-score">5.0 en Google</div>
-    <div class="rh-sub">Lo que dicen mis clientes</div>
-  </div>
-  <div class="reviews">
-    <div class="review-card reveal">
-      <div class="review-stars">★★★★★</div>
-      <p class="review-text">Contraté a Noel Studio para el desarrollo de mi página web y la experiencia fue muy buena. Raúl siempre fue profesional, cumplió con lo acordado y estuvo atento a cada detalle del proyecto. Todo el proceso fue claro y sin complicaciones. Muy recomendable.</p>
-      <div class="review-author"><span class="review-name">Luis Carlos C.</span><span class="review-meta">Cliente · Google</span></div>
-    </div>
-    <div class="review-card reveal">
-      <div class="review-stars">★★★★★</div>
-      <p class="review-text">Quedé muy satisfecho con el resultado de mi página web. El diseño se ve moderno, profesional y transmite confianza a mis clientes. Noel Studio entendió exactamente lo que necesitaba y logró plasmarlo en el sitio. Sin duda volvería a trabajar con ellos.</p>
-      <div class="review-author"><span class="review-name">ANDR3CHUS</span><span class="review-meta">Local Guide · Google</span></div>
-    </div>
-    <div class="review-card reveal">
-      <div class="review-stars">★★★★★</div>
-      <p class="review-text">En Noel Studio nos hicieron la página web de la llantera y quedó muy profesional, moderna y rápida. Raúl explica todo claro y da seguimiento. Si buscas diseño web en Chihuahua, totalmente recomendados.</p>
-      <div class="review-author"><span class="review-name">Montes Tire Center</span><span class="review-meta">Cliente · Google</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- VIDEO PROMOCIONAL -->
-<section id="video">
-  <div class="section-header">
-    <div>
-      <h2 class="section-title line-mask"><span>VIDEO</span><span>PROMOCIONAL</span></h2>
-    </div>
-    <p class="section-desc reveal">Un video vale más que mil palabras. Así se ve uno hecho para destacar en redes — el mismo tipo que puedo crear para tu negocio.</p>
-  </div>
-  <div class="video-promo-wrap reveal">
-    <div class="video-promo-player">
-      <video src="assets/video-promo-demo.mp4" poster="assets/video-promo-poster.jpg" controls playsinline preload="none"></video>
-    </div>
-    <div class="video-promo-info">
-      <h3 class="video-promo-h">Llama la atención en segundos</h3>
-      <p>Hoy la gente decide en redes. Un video profesional hace que tu negocio se vea serio y moderno, y que más clientes se animen a escribirte.</p>
-      <ul class="video-promo-list">
-        <li>Vertical, listo para Reels, TikTok e historias</li>
-        <li>Con voz, música y la identidad de tu marca</li>
-        <li>Entrega en pocos días</li>
-      </ul>
-      <a class="video-promo-cta" href="https://wa.me/526142251419?text=Hola,%20quiero%20un%20video%20promocional%20para%20mi%20negocio" target="_blank" rel="noopener">Quiero mi video →</a>
+    <div class="stat reveal">
+      <div class="stat-num stat-static">24/7</div>
+      <div class="stat-label">Tu web trabajando</div>
     </div>
   </div>
 </section>
@@ -1889,6 +2216,128 @@ footer {
   </p>
 </section>
 
+<!-- PORTAFOLIO -->
+<section id="portafolio">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title line-mask"><span>PROYECTOS</span></h2>
+    </div>
+    <p class="section-desc reveal">Trabajo real, resultados reales para negocios en Chihuahua.</p>
+  </div>
+  <div class="portfolio-grid">
+    <a href="demos/montes.html" class="portfolio-item reveal" aria-label="Abrir el sitio de Montes Tire Center" style="grid-column: 1 / -1; aspect-ratio: 16/7; text-decoration: none; color: inherit;">
+      <span class="portfolio-badge is-client">Cliente real</span>
+      <span class="portfolio-open" aria-hidden="true">→</span>
+      <img class="portfolio-thumb" src="assets/montes-local.webp" alt="Local de Montes Tire Center, llantera en Chihuahua" loading="lazy" width="1400" height="787">
+      <div class="portfolio-overlay">
+        <div class="portfolio-name">Montes Tire Center</div>
+        <div class="portfolio-type">Llantera en Chihuahua · Más llamadas por WhatsApp</div>
+      </div>
+    </a>
+    <a href="demos/restaurante.html" class="portfolio-item reveal" aria-label="Abrir la demo de Mezquite, casa de cortes" style="text-decoration:none;color:inherit;">
+      <span class="portfolio-badge is-demo">Demo</span>
+      <span class="portfolio-open" aria-hidden="true">→</span>
+      <img class="portfolio-thumb" src="assets/demo-restaurante.webp" alt="Demo de sitio para restaurante de cortes — Mezquite" loading="lazy" width="1200" height="900">
+      <div class="portfolio-overlay">
+        <div class="portfolio-name">Mezquite — Casa de cortes</div>
+        <div class="portfolio-type">Restaurante · Menú y reservación en línea</div>
+      </div>
+    </a>
+    <a href="demos/filo/index.html" class="portfolio-item reveal" aria-label="Abrir la demo de Filo, barbería" style="text-decoration:none;color:inherit;">
+      <span class="portfolio-badge is-demo">Demo</span>
+      <span class="portfolio-open" aria-hidden="true">→</span>
+      <img class="portfolio-thumb" src="assets/demo-barberia.webp" alt="Demo de sitio para barbería — Filo" loading="lazy" width="1200" height="900">
+      <div class="portfolio-overlay">
+        <div class="portfolio-name">Filo — Barbería</div>
+        <div class="portfolio-type">Barbería · Sitio de varias páginas con citas</div>
+      </div>
+    </a>
+  </div>
+  <p class="section-desc reveal" style="margin-top: 2rem; max-width:100%; text-align:center; color: var(--gray-600);">
+    Más proyectos próximamente — <a href="https://wa.me/526142251419?text=Hola,%20quiero%20que%20mi%20negocio%20sea%20tu%20siguiente%20proyecto" style="color:var(--white);">¿quieres ser el siguiente?</a>
+  </p>
+
+  <div class="reviews-head reveal">
+    <div class="rh-stars">★★★★★</div>
+    <div class="rh-score">5.0 en Google</div>
+    <div class="rh-sub">Lo que dicen mis clientes</div>
+  </div>
+  <div class="reviews">
+    <div class="review-card reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">Contraté a Noel Studio para el desarrollo de mi página web y la experiencia fue muy buena. Raúl siempre fue profesional, cumplió con lo acordado y estuvo atento a cada detalle del proyecto. Todo el proceso fue claro y sin complicaciones. Muy recomendable.</p>
+      <div class="review-author"><span class="review-name">Luis Carlos C.</span><span class="review-meta">Cliente · Google</span></div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">Quedé muy satisfecho con el resultado de mi página web. El diseño se ve moderno, profesional y transmite confianza a mis clientes. Noel Studio entendió exactamente lo que necesitaba y logró plasmarlo en el sitio. Sin duda volvería a trabajar con ellos.</p>
+      <div class="review-author"><span class="review-name">ANDR3CHUS</span><span class="review-meta">Local Guide · Google</span></div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">En Noel Studio nos hicieron la página web de la llantera y quedó muy profesional, moderna y rápida. Raúl explica todo claro y da seguimiento. Si buscas diseño web en Chihuahua, totalmente recomendados.</p>
+      <div class="review-author"><span class="review-name">Montes Tire Center</span><span class="review-meta">Cliente · Google</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section id="proceso">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title line-mask"><span>CÓMO</span><span>TRABAJO</span></h2>
+    </div>
+    <p class="section-desc reveal">Sin letras chiquitas. Así es el camino desde que me escribes hasta que tu página está funcionando.</p>
+  </div>
+  <div class="process-grid">
+    <div class="process-step reveal">
+      <div class="process-step-num">01</div>
+      <div class="process-step-title">PLATICAMOS</div>
+      <p>Me escribes por WhatsApp y me cuentas de tu negocio. Como una plática normal, sin palabras técnicas.</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="process-step-num">02</div>
+      <div class="process-step-title">TE PROPONGO</div>
+      <p>Te explico qué le conviene a tu negocio, qué incluye exactamente y cuánto cuesta. Todo claro antes de empezar, sin sorpresas.</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="process-step-num">03</div>
+      <div class="process-step-title">LA CONSTRUYO</div>
+      <p>Diseño y armo tu página. Te voy mostrando avances para que quede exactamente como tú la quieres.</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="process-step-num">04</div>
+      <div class="process-step-title">TE LA ENTREGO</div>
+      <p>Tu página queda en línea funcionando. Te explico cómo usarla y quedo al pendiente por si necesitas algo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO PROMOCIONAL -->
+<section id="video">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title line-mask"><span>VIDEO</span><span>PROMOCIONAL</span></h2>
+    </div>
+    <p class="section-desc reveal">Un video vale más que mil palabras. Así se ve uno hecho para destacar en redes — el mismo tipo que puedo crear para tu negocio.</p>
+  </div>
+  <div class="video-promo-wrap reveal">
+    <div class="video-promo-player">
+      <video src="assets/video-promo-demo.mp4" poster="assets/video-promo-poster.jpg" controls playsinline preload="none"></video>
+    </div>
+    <div class="video-promo-info">
+      <h3 class="video-promo-h">Llama la atención en segundos</h3>
+      <p>Hoy la gente decide en redes. Un video profesional hace que tu negocio se vea serio y moderno, y que más clientes se animen a escribirte.</p>
+      <ul class="video-promo-list">
+        <li>Vertical, listo para Reels, TikTok e historias</li>
+        <li>Con voz, música y la identidad de tu marca</li>
+        <li>Entrega en pocos días</li>
+      </ul>
+      <a class="video-promo-cta" href="https://wa.me/526142251419?text=Hola,%20quiero%20un%20video%20promocional%20para%20mi%20negocio" target="_blank" rel="noopener">Quiero mi video →</a>
+    </div>
+  </div>
+</section>
+
 <!-- PREGUNTAS FRECUENTES -->
 <section id="preguntas">
   <div class="section-header">
@@ -1911,8 +2360,8 @@ footer {
       <p>Solo la información de tu negocio: a qué te dedicas, tus precios o servicios, fotos y tu logo si tienes. Si te falta algo de eso, no te preocupes — te ayudo a resolverlo.</p>
     </details>
     <details class="faq-item reveal">
-      <summary>¿Qué significa "dominio" y "hosting"?</summary>
-      <p>El dominio es el nombre de tu página en internet (por ejemplo: tunegocio.com). El hosting es el espacio donde "vive" tu página para que cualquiera pueda verla. En el paquete Pro, los dos van incluidos — tú no tienes que hacer nada.</p>
+      <summary>¿Qué significa “dominio” y “hosting”?</summary>
+      <p>El dominio es el nombre de tu página en internet (por ejemplo: tunegocio.com). El hosting es el espacio donde “vive” tu página para que cualquiera pueda verla. En el paquete Pro, los dos van incluidos — tú no tienes que hacer nada.</p>
     </details>
     <details class="faq-item reveal">
       <summary>¿La página queda a mi nombre?</summary>
@@ -1926,6 +2375,37 @@ footer {
       <summary>¿Qué pasa después de que me entregas la página?</summary>
       <p>No desaparezco. Te explico cómo usarla y quedo al pendiente por WhatsApp para cualquier duda. Si más adelante quieres cambios o que tu página aparezca más arriba en Google, también te puedo ayudar con eso.</p>
     </details>
+  </div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section id="sobre-mi">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title line-mask"><span>QUIÉN ESTÁ</span><span>DETRÁS</span></h2>
+    </div>
+    <p class="section-desc reveal">Una persona real de Chihuahua, no una agencia enorme ni un robot.</p>
+  </div>
+  <div class="about-wrap reveal">
+    <div class="about-photo">
+      <div class="about-card">
+        <img src="assets/logo-hero.png" alt="" aria-hidden="true" class="about-card-logo" width="160" height="190">
+        <div class="about-card-name">NOEL STUDIO</div>
+        <div class="about-card-meta">Chihuahua, México</div>
+      </div>
+    </div>
+    <div class="about-body">
+      <div class="about-eyebrow">— Fundador de Noel Studio</div>
+      <p>Soy Raúl. Desde Chihuahua ayudo a negocios como el tuyo a tener una página que se vea profesional y, sobre todo, que les traiga clientes.</p>
+      <p>No soy una agencia gigante ni un intermediario: trabajo de cerca contigo, te explico todo en español claro —sin tecnicismos— y quedo al pendiente por WhatsApp después de entregarte tu sitio.</p>
+      <p>Además estudio ingeniería en inteligencia artificial, así que combino diseño cuidado con herramientas modernas para que tu página cargue rápido, se vea increíble y trabaje por ti las 24 horas.</p>
+      <ul class="about-points">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Trato directo, sin intermediarios</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Todo explicado sin tecnicismos</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Seguimiento personal por WhatsApp</li>
+      </ul>
+      <div class="about-signature">— Raúl, Noel Studio</div>
+    </div>
   </div>
 </section>
 
@@ -1986,18 +2466,18 @@ footer {
     <form class="contact-form reveal" onsubmit="sendWhatsApp(event)">
       <div class="form-field">
         <label for="fname">Tu nombre</label>
-        <input type="text" id="fname" placeholder="Nombre completo" required>
+        <input type="text" id="fname" name="nombre" autocomplete="name" placeholder="Nombre completo" required>
       </div>
       <div class="form-field">
         <label for="fbusiness">Tu negocio</label>
-        <input type="text" id="fbusiness" placeholder="Nombre de tu negocio">
+        <input type="text" id="fbusiness" name="negocio" autocomplete="organization" placeholder="Nombre de tu negocio">
       </div>
       <div class="form-field">
         <label for="fmessage">¿Qué necesitas?</label>
-        <textarea id="fmessage" placeholder="Cuéntame sobre tu proyecto..."></textarea>
+        <textarea id="fmessage" name="mensaje" placeholder="Cuéntame sobre tu proyecto…"></textarea>
       </div>
       <button type="submit" class="btn-submit">
-        Enviar mensaje
+        Enviar por WhatsApp
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M5 12h14M12 5l7 7-7 7"/>
         </svg>
@@ -2027,11 +2507,12 @@ footer {
     <div class="footer-col">
       <span class="footer-heading">Navegación</span>
       <a href="#servicios">Servicios</a>
-      <a href="#proceso">Cómo trabajo</a>
-      <a href="#portafolio">Portafolio</a>
-      <a href="#video">Video</a>
       <a href="#precios">Precios</a>
+      <a href="#portafolio">Portafolio</a>
+      <a href="#proceso">Cómo trabajo</a>
+      <a href="#video">Video</a>
       <a href="#preguntas">Preguntas</a>
+      <a href="#sobre-mi">Sobre mí</a>
     </div>
     <div class="footer-col">
       <span class="footer-heading">Contacto</span>
@@ -2082,6 +2563,25 @@ if (finePointer) {
   });
 }
 
+// PRELOADER — barra de carga rápida con la marca. JS vanilla, NO depende de GSAP:
+// se quita siempre (incluso si GSAP falla) gracias al failsafe. No bloquea el render.
+(function(){
+  const pre = document.getElementById('preload');
+  if (!pre) return;
+  const bar = document.getElementById('plBar');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finish = () => pre.classList.add('done');
+  if (reduce) { if (bar) bar.style.width = '100%'; setTimeout(finish, 350); return; }
+  let p = 0;
+  const t = setInterval(() => {
+    p = Math.min(100, p + Math.random() * 28);
+    if (bar) bar.style.width = p + '%';
+    if (p >= 100) { clearInterval(t); setTimeout(finish, 250); }
+  }, 120);
+  // failsafe: nunca dejar el preloader pegado en pantalla
+  setTimeout(() => { clearInterval(t); finish(); }, 2600);
+})();
+
 // ANIMACIONES GSAP — corren SOLO si GSAP cargó (ahora viene con defer, por eso
 // las envolvemos y esperamos a DOMContentLoaded). Si GSAP no carga, nada de esto
 // se ejecuta y TODO el contenido queda visible (robustez).
@@ -2102,7 +2602,9 @@ function initGsapAnimations() {
   if (reduceMotion) {
     gsap.set('.hero-title .line span, #heroTag, #heroSub, .hero-right img, .hero-social', { opacity: 1 });
   } else {
-    const heroIntro = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    // delay ~1s: deja que el preloader termine de desvanecerse antes de la intro,
+    // así el usuario sí ve aparecer las letras (no quedan ocultas tras el preloader).
+    const heroIntro = gsap.timeline({ delay: 1.0, defaults: { ease: 'power3.out' } });
     heroIntro
       .fromTo('.hero-title .line span',
         { opacity: 0, filter: 'blur(20px)', scale: 1.06 },
@@ -2141,6 +2643,60 @@ function initGsapAnimations() {
   addEventListener('scroll', checkLineMask, { passive: true });
   checkLineMask();
 
+  // NÚMEROS — cuentan desde 0 al entrar en vista (si no hay GSAP, quedan en su valor final).
+  document.querySelectorAll('.stat-num[data-count]').forEach(el => {
+    const target = parseFloat(el.dataset.count);
+    const dec = parseInt(el.dataset.decimals || '0', 10);
+    const suf = el.dataset.suffix || '';
+    const render = v => { el.textContent = v.toFixed(dec) + suf; };
+    if (reduceMotion) { render(target); return; }
+    const obj = { v: 0 };
+    render(0);
+    gsap.to(obj, {
+      v: target, duration: 1.6, ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' },
+      onUpdate() { render(obj.v); }
+    });
+  });
+
+  // TIRA DE PROMESAS — entran en cascada y las palomitas se dibujan solas.
+  const trustStrip = document.querySelector('.trust-strip');
+  if (trustStrip) {
+    if (reduceMotion) {
+      gsap.set('.trust-item', { opacity: 1, y: 0 });
+      gsap.set('.trust-item svg path', { strokeDashoffset: 0 });
+    } else {
+      gsap.timeline({
+        scrollTrigger: { trigger: trustStrip, start: 'top 88%', toggleActions: 'play none none none' }
+      })
+      .to('.trust-item', { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: 'power3.out' })
+      .to('.trust-item svg path', { strokeDashoffset: 0, duration: 0.5, stagger: 0.08, ease: 'power2.out' }, '-=0.35');
+    }
+  }
+
+  // PROPUESTA DE VALOR — entrada cinematográfica coordinada (una timeline).
+  // Eyebrow + línea → frases con desenfoque→nítido → subrayado que se traza → texto y enlace.
+  const introEl = document.querySelector('#intro');
+  if (introEl) {
+    if (reduceMotion) {
+      gsap.set('#intro .intro-eyebrow, #intro .intro-dim, #intro .intro-strong, #intro .intro-text, #intro .intro-link',
+        { opacity: 1, y: 0, filter: 'none' });
+      gsap.set('#intro .intro-rule, #intro .intro-underline', { scaleX: 1 });
+    } else {
+      gsap.timeline({
+        defaults: { ease: 'power3.out' },
+        scrollTrigger: { trigger: introEl, start: 'top 72%', toggleActions: 'play none none none' }
+      })
+      .to('.intro-eyebrow', { opacity: 1, y: 0, duration: 0.5 })
+      .to('.intro-rule',    { scaleX: 1, duration: 0.6 }, '<')
+      .to('.intro-dim',     { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.6 }, '-=0.2')
+      .to('.intro-strong',  { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.6 }, '-=0.35')
+      .to('.intro-underline', { scaleX: 1, duration: 0.7, ease: 'power2.out' }, '-=0.15')
+      .to('.intro-text',    { opacity: 1, y: 0, duration: 0.6 }, '-=0.45')
+      .to('.intro-link',    { opacity: 1, y: 0, duration: 0.5 }, '-=0.35');
+    }
+  }
+
   // Premium: viñetas de la OFERTA en cascada
   gsap.to('#ofertas .offer-features li', {
     opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', stagger: 0.1,
@@ -2161,11 +2717,64 @@ function initGsapAnimations() {
     });
   });
 }
-// Los scripts GSAP usan defer, así que ya están listos en DOMContentLoaded.
+// SCROLL SUAVE PREMIUM (Lenis) — inercia tipo estudio.
+// Solo se enciende si la librería cargó y el visitante NO pidió menos movimiento.
+// Si no carga (o hay reduce-motion), queda el scroll nativo: nada se rompe.
+function initLenis() {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || typeof Lenis === 'undefined') return;
+
+  const lenis = new Lenis({
+    duration: 1.1,                                   // qué tan largo es el "deslizamiento"
+    easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true
+  });
+
+  // Con Lenis al mando, apagamos el suavizado nativo del CSS para que no compitan.
+  document.documentElement.style.scrollBehavior = 'auto';
+
+  // Mantener las animaciones de scroll (GSAP) perfectamente sincronizadas con Lenis.
+  if (window.gsap && window.ScrollTrigger) {
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(time => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+  } else {
+    const raf = time => { lenis.raf(time); requestAnimationFrame(raf); };
+    requestAnimationFrame(raf);
+  }
+
+  // Enlaces internos (#sección): desplazamiento suave de Lenis, respetando la barra fija.
+  // El scroll va a velocidad ~constante (proporcional a la distancia) y con arranque/frenado
+  // suaves, para que el cliente ALCANCE A VER las secciones por las que va pasando.
+  const navEl = document.getElementById('navbar');
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    const id = a.getAttribute('href');
+    if (!id || id.length <= 1) return;
+    a.addEventListener('click', e => {
+      const target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      const offset = (navEl ? navEl.offsetHeight : 80) + 12;
+      // Distancia real a recorrer (px) → tiempo, para que la velocidad sea pareja.
+      const dist = Math.abs(target.getBoundingClientRect().top - offset);
+      // ~950 px/seg: lento pero no tedioso. Mínimo 1.1s, máximo 3.4s.
+      const duration = Math.min(3.4, Math.max(1.1, dist / 950));
+      lenis.scrollTo(target, {
+        offset: -offset,
+        duration,
+        // easeInOutCubic: empieza despacio, mantiene el recorrido visible, frena suave.
+        easing: t => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2)
+      });
+    });
+  });
+}
+
+// Los scripts GSAP/Lenis usan defer, así que ya están listos en DOMContentLoaded.
+function initAfterLoad() { initGsapAnimations(); initLenis(); }
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initGsapAnimations);
+  document.addEventListener('DOMContentLoaded', initAfterLoad);
 } else {
-  initGsapAnimations();
+  initAfterLoad();
 }
 
 // HERO CANVAS — partículas
@@ -2173,7 +2782,13 @@ const canvas = document.getElementById('heroCanvas');
 const ctx = canvas.getContext('2d');
 let particles = [];
 
+let lastCanvasW = 0;
 function resizeCanvas() {
+  // En celular, al hacer scroll la barra del navegador aparece/desaparece y dispara
+  // 'resize' aunque solo cambie la ALTURA. Recalcular el canvas en cada uno de esos
+  // eventos traba el scroll, así que solo reaccionamos a cambios reales de ANCHO.
+  if (window.innerWidth === lastCanvasW) return;
+  lastCanvasW = window.innerWidth;
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 }

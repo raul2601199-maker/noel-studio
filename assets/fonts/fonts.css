@@ -1,3 +1,44 @@
+/* Unbounded — display geométrica/redonda (variable, Google Fonts). Para títulos. */
+@font-face {
+  font-family: 'Unbounded';
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
+  src: url(unbounded-latin.woff2) format('woff2');
+}
+
+/* Fraunces — serif de lujo editorial (variable, Google Fonts). Para las promesas. */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url(fraunces-latin.woff2) format('woff2');
+}
+
+/* Clash Display — fuente display exclusiva (Fontshare). Para títulos. */
+@font-face {
+  font-family: 'Clash Display';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(clashdisplay-500.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Clash Display';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(clashdisplay-600.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Clash Display';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(clashdisplay-700.woff2) format('woff2');
+}
+
 /* latin-ext */
 @font-face {
   font-family: 'Bebas Neue';
