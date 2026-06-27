@@ -2017,7 +2017,7 @@ footer {
       disable-zoom
       interaction-prompt="none"
       environment-image="neutral"
-      exposure="0.82"
+      exposure="1.0"
       tone-mapping="neutral"
       shadow-intensity="0"
       camera-orbit="0deg 80deg 105%"
@@ -2903,8 +2903,8 @@ function initLenis() {
     try {
       mv.model.materials.forEach(m => {
         m.pbrMetallicRoughness.setMetallicFactor(1);
-        m.pbrMetallicRoughness.setRoughnessFactor(0.26);
-        m.pbrMetallicRoughness.setBaseColorFactor([0.78, 0.80, 0.84, 1]);
+        m.pbrMetallicRoughness.setRoughnessFactor(0.14);   // bajo = espejo/cromo brillante
+        m.pbrMetallicRoughness.setBaseColorFactor([0.90, 0.91, 0.94, 1]); // plateado claro
       });
     } catch (e) {}
   });
