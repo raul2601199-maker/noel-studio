@@ -2894,8 +2894,21 @@ function initLenis() {
 }
 
 // Los scripts GSAP/Lenis usan defer, así que ya están listos en DOMContentLoaded.
-// El material lo trae el propio modelo (lo ajustaste en Vecto3d), así que NO lo
-// sobrescribimos: se respeta tu acabado plateado tal cual lo dejaste.
+// MATERIAL plateado UNIFORME — se lo aplicamos a TODAS las piezas del logo por igual
+// (así no queda "una parte de un color y otra de otro"). Cromo plateado pulido.
+(function(){
+  const mv = document.querySelector('model-viewer.hero-3d');
+  if (!mv) return;
+  mv.addEventListener('load', () => {
+    try {
+      mv.model.materials.forEach(m => {
+        m.pbrMetallicRoughness.setMetallicFactor(1);
+        m.pbrMetallicRoughness.setRoughnessFactor(0.26);
+        m.pbrMetallicRoughness.setBaseColorFactor([0.78, 0.80, 0.84, 1]);
+      });
+    } catch (e) {}
+  });
+})();
 
 function initAfterLoad() { initGsapAnimations(); initLenis(); }
 if (document.readyState === 'loading') {
