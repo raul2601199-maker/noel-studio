@@ -131,6 +131,8 @@
 <!-- Lenis: scroll suave premium (inercia). Con defer no bloquea el dibujado.
      Se inicializa abajo SOLO si carga y el visitante no pidió menos movimiento. -->
 <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<!-- model-viewer (Google): muestra el modelo 3D del logo NS girando, gratis y ligero. -->
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.0.0/dist/model-viewer.min.js"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -453,6 +455,15 @@ nav.scrolled {
   mix-blend-mode: screen;
   animation: ns-float 6s var(--ease-in-out) infinite;
   filter: drop-shadow(0 26px 50px rgba(255,255,255,0.05));
+}
+/* VISOR 3D del logo NS: gira solo + el usuario puede moverlo. Fondo transparente, flota. */
+.hero-right .hero-3d {
+  width: clamp(320px, 38vw, 580px);
+  height: clamp(320px, 38vw, 580px);
+  background: transparent;
+  --poster-color: transparent;
+  --progress-bar-color: transparent;
+  animation: ns-float 6s var(--ease-in-out) infinite;
 }
 @keyframes ns-float {
   0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -1991,7 +2002,21 @@ footer {
       </div>
     </div>
     <div class="hero-right">
-    <img src="assets/ns-3d.webp" alt="Logo de Noel Studio, estudio de diseño web en Chihuahua" class="hero-logo" width="900" height="900">
+    <model-viewer
+      class="hero-3d"
+      src="assets/ns-3d.glb"
+      alt="Logo 3D de Noel Studio girando"
+      auto-rotate
+      auto-rotate-delay="0"
+      rotation-per-second="26deg"
+      camera-controls
+      disable-zoom
+      interaction-prompt="none"
+      environment-image="neutral"
+      exposure="1.15"
+      shadow-intensity="0"
+      camera-orbit="0deg 80deg 105%"
+      loading="eager"></model-viewer>
   </div>
   </div>
   <div class="hero-sub" id="heroSub">
@@ -2864,6 +2889,22 @@ function initLenis() {
 }
 
 // Los scripts GSAP/Lenis usan defer, así que ya están listos en DOMContentLoaded.
+// MATERIAL CROMADO para el logo 3D — al cargar el modelo le ponemos acabado metálico
+// plateado con brillos (en vez del gris mate que viene de fábrica). Robusto con try/catch.
+(function(){
+  const mv = document.querySelector('model-viewer.hero-3d');
+  if (!mv) return;
+  mv.addEventListener('load', () => {
+    try {
+      mv.model.materials.forEach(m => {
+        m.pbrMetallicRoughness.setMetallicFactor(1);
+        m.pbrMetallicRoughness.setRoughnessFactor(0.18);
+        m.pbrMetallicRoughness.setBaseColorFactor([0.82, 0.84, 0.88, 1]);
+      });
+    } catch (e) {}
+  });
+})();
+
 function initAfterLoad() { initGsapAnimations(); initLenis(); }
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initAfterLoad);
