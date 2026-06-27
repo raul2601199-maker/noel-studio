@@ -444,6 +444,24 @@ nav.scrolled {
   /* Lo recorre un poco hacia el centro para que no quede pegado al borde. */
   margin-right: clamp(1.5rem, 6vw, 6rem);
 }
+/* RESPLANDOR que respira detrás del logo 3D: lo hace lucir como si flotara con luz propia. */
+.hero-right::before {
+  content: '';
+  position: absolute;
+  inset: -18%;
+  z-index: 0;
+  background: radial-gradient(circle at 50% 48%, rgba(255,255,255,0.13) 0%, rgba(255,255,255,0.04) 38%, transparent 66%);
+  filter: blur(48px);
+  pointer-events: none;
+  animation: glow-breathe 8s var(--ease-in-out) infinite;
+}
+@keyframes glow-breathe {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50%      { opacity: 1; transform: scale(1.1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-right::before { animation: none; }
+}
 /* OBJETO 3D METÁLICO que FLOTA: el blend "screen" funde el fondo negro del render,
    así solo queda el metal brillante levitando. Animación suave de flotación. */
 .hero-right img {
@@ -460,6 +478,8 @@ nav.scrolled {
 .hero-right .hero-3d {
   width: clamp(320px, 41vw, 620px);
   height: clamp(320px, 41vw, 620px);
+  position: relative;
+  z-index: 1;
   background: transparent;
   --poster-color: transparent;
   --progress-bar-color: transparent;
