@@ -12,7 +12,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>[PRUEBA] Noel Studio — experimento de diseño</title>
+<title>Noel Studio — Diseño Web en Chihuahua</title>
 <meta name="description" content="Noel Studio. Diseño web profesional en Chihuahua. Páginas modernas, rápidas y que generan clientes. Te explico todo sin tecnicismos.">
 <meta name="theme-color" content="#000000">
 
@@ -380,8 +380,6 @@ nav.scrolled {
   min-height: 100dvh; /* altura REAL del celular: evita el salto/corte por la barra del navegador */
   position: relative;
   overflow: hidden;
-  display: flex;
-  align-items: center;
   /* Profundidad: el negro deja de ser plano y "abre" hacia el centro.
      Patrón premium (Linear/Vercel) adaptado a tu paleta monocroma. */
   background:
@@ -417,40 +415,41 @@ nav.scrolled {
 @media (prefers-reduced-motion: reduce) {
   .hero-aura { animation: none; }
 }
-/* HERO REDISEÑADO: el NOMBRE es el protagonista absoluto (estilo Igloo/Terminal).
-   Ocupa todo el ancho; el monograma pasa a ser una marca de agua gigante y sutil de fondo. */
 .hero-content {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: 1500px;
-  margin: 0 auto;
-  padding: 0 clamp(1.5rem, 5vw, 4.5rem);
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - 6rem);
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: clamp(1.6rem, 3vw, 2.6rem);
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  z-index: 2;
 }
 .hero-left {
-  width: 100%;
+  flex: 1;
   min-width: 0;
 }
-/* El monograma NS, MONUMENTAL pero apenas perceptible: textura de marca detrás del nombre. */
 .hero-right {
-  position: absolute;
-  top: 50%;
-  right: clamp(-3rem, -1vw, 3rem);
-  transform: translateY(-50%);
-  z-index: 0;
-  pointer-events: none;
-  margin: 0;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  position: relative;
+  /* Lo recorre un poco hacia el centro para que no quede pegado al borde. */
+  margin-right: clamp(1.5rem, 6vw, 6rem);
 }
+/* Logo grande, sin tarjeta ni marco: el PNG ya es transparente y se funde con el fondo. */
 .hero-right img {
   width: auto;
-  height: clamp(380px, 78vh, 820px);
+  height: clamp(300px, 32vw, 500px);
   object-fit: contain;
   display: block;
-  opacity: 0.05;
+  margin: auto;
+  opacity: 0.95;
 }
 .hero-tag {
   font-size: 0.72rem; color: var(--gray-400);
@@ -460,22 +459,20 @@ nav.scrolled {
 }
 .hero-title {
   font-family: 'Unbounded', 'Bebas Neue', sans-serif;
-  /* MONUMENTAL de verdad: el nombre llena el ancho y manda en la composición. */
-  font-size: clamp(3rem, 14.5vw, 9rem);
-  line-height: 0.88;
-  letter-spacing: -0.04em;
-  font-weight: 700;
-  text-wrap: balance;
+  /* MONUMENTAL: el nombre es el protagonista del hero (estilo Igloo/Terminal).
+     Unbounded es ancha, así que apretamos el interletrado para que "STUDIO" quepa. */
+  font-size: clamp(2.8rem, 8.6vw, 9.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  font-weight: 600;
   position: relative; z-index: 1;
 }
 .hero-title .line {
   display: block;
-  overflow: hidden;        /* máscara: las letras se revelan subiendo desde abajo */
-  padding-bottom: 0.06em;  /* aire para que no se recorte el trazo inferior */
 }
 .hero-title .line span {
   display: block;
-  will-change: transform;
+  transform: translateY(0);
 }
 .hero-sub {
   display: flex;
@@ -1568,15 +1565,16 @@ footer {
 
 /* INTRO DEL HERO — primero entran las letras (desvanecidas->potentes), luego el resto.
    Estado inicial oculto SOLO con GSAP, para que no haya parpadeo. Sin GSAP, todo visible. */
-/* El nombre se revela con CORTINA: cada línea parte oculta bajo su máscara y sube. */
-.has-gsap .hero-title .line span { transform: translateY(110%); }
+.has-gsap .hero-title .line span,
 .has-gsap #heroTag,
 .has-gsap #heroSub,
+.has-gsap .hero-right img,
 .has-gsap .hero-social { opacity: 0; }
 @media (prefers-reduced-motion: reduce) {
-  .has-gsap .hero-title .line span { transform: none; }
+  .has-gsap .hero-title .line span,
   .has-gsap #heroTag,
   .has-gsap #heroSub,
+  .has-gsap .hero-right img,
   .has-gsap .hero-social { opacity: 1; }
 }
 
@@ -1649,7 +1647,7 @@ footer {
   .hero-btn { justify-content: center; width: 100%; padding: 1rem 1.5rem; font-size: 0.92rem; }
   /* Unbounded es ANCHA: en celular el tamaño se calcula para que "STUDIO" quepa con aire
      en pantallas chicas (desde 320px) sin salirse por los lados. */
-  .hero-title { font-size: clamp(2.7rem, 15.5vw, 5.6rem); letter-spacing: -0.04em; line-height: 0.9; }
+  .hero-title { font-size: clamp(2.3rem, 12vw, 5rem); letter-spacing: -0.045em; line-height: 0.98; }
   .hero-tag { font-size: 0.66rem; }
   /* El subtítulo y el indicador de scroll fluyen bajo el contenido (ya no van pegados abajo). */
   .hero-sub {
@@ -2624,7 +2622,7 @@ function initGsapAnimations() {
   // al hacer scroll. Solo aplica a TEXTOS (no a los títulos, que ya tienen su efecto cortina).
   // Robusto: si SplitText no cargó, los párrafos quedan visibles tal cual.
   if (window.SplitText && !reduceMotion) {
-    document.querySelectorAll('.section-desc, .about-body p').forEach(el => {
+    document.querySelectorAll('.section-desc').forEach(el => {
       // Le quitamos el reveal genérico para que no choque con la animación por líneas.
       el.classList.remove('reveal');
       SplitText.create(el, {
@@ -2643,6 +2641,22 @@ function initGsapAnimations() {
     });
   }
 
+  // TEXTO QUE SE ILUMINA AL SCROLL (estilo Midu) — las palabras pasan de gris tenue
+  // a blanco mientras el cliente las LEE al bajar. Premium y con propósito (engancha la lectura).
+  // Robusto: si SplitText/GSAP no cargan, el texto queda visible y blanco normal.
+  if (window.SplitText && !reduceMotion) {
+    document.querySelectorAll('.about-body p').forEach(el => {
+      el.classList.remove('reveal');
+      const split = SplitText.create(el, { type: 'words' });
+      gsap.fromTo(split.words,
+        { opacity: 0.2 },
+        { opacity: 1, ease: 'none', stagger: 0.06,
+          scrollTrigger: { trigger: el, start: 'top 78%', end: 'bottom 60%', scrub: 0.6 }
+        }
+      );
+    });
+  }
+
   // Scroll NATIVO (sin Lenis): aprovecha los 120Hz del Mac (ProMotion) y se siente más fluido.
   // El desplazamiento a las secciones lo maneja el CSS (scroll-behavior + scroll-padding-top).
 
@@ -2651,25 +2665,20 @@ function initGsapAnimations() {
   //   2) Cuando las letras ya están firmes, entra TODO lo demás del hero (etiqueta, subtítulo, logo, redes).
   // Usamos fromTo porque el estado inicial (opacity 0) ya viene del CSS .has-gsap.
   if (reduceMotion) {
-    gsap.set('.hero-title .line span, #heroTag, #heroSub, .hero-social', { opacity: 1 });
+    gsap.set('.hero-title .line span, #heroTag, #heroSub, .hero-right img, .hero-social', { opacity: 1 });
   } else {
     // delay ~1s: deja que el preloader termine de desvanecerse antes de la intro,
     // así el usuario sí ve aparecer las letras (no quedan ocultas tras el preloader).
-    // ENTRADA CINEMATOGRÁFICA (estilo Awwwards): el eyebrow entra, luego el NOMBRE
-    // se revela con CORTINA (cada línea sube desde su máscara con easing expo), y al
-    // final suben los botones, subtítulo y redes. Lento y elegante = se siente caro.
-    const heroIntro = gsap.timeline({ delay: 1.0, defaults: { ease: 'expo.out' } });
+    const heroIntro = gsap.timeline({ delay: 1.0, defaults: { ease: 'power3.out' } });
     heroIntro
-      .from('#heroTag', { opacity: 0, y: 18, duration: 0.7 })
       .fromTo('.hero-title .line span',
-        { yPercent: 110 },
-        { yPercent: 0, duration: 1.3, stagger: 0.14 },
-        '-=0.35'
+        { opacity: 0, filter: 'blur(20px)', scale: 1.06 },
+        { opacity: 1, filter: 'blur(0px)', scale: 1, duration: 0.5, stagger: 0.06, ease: 'power2.out' }
       )
-      .fromTo(['.hero-actions', '#heroSub', '.hero-social'],
-        { opacity: 0, y: 22 },
-        { opacity: 1, y: 0, duration: 0.85, stagger: 0.1 },
-        '-=0.85'
+      .fromTo(['#heroTag', '#heroSub', '.hero-right img', '.hero-social'],
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 0.35, stagger: 0.05 },
+        '-=0.2'  // el resto entra apenas las letras quedan firmes (más ágil)
       );
   }
 
