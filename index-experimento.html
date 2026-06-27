@@ -1960,6 +1960,23 @@ footer {
   #preload .pl-logo, #preload .pl-name { animation: none; opacity: 1; transform: none; }
   #preload .pl-bar i { transition: none; }
 }
+
+/* CARTAS APILADAS (solo en computadora): "Por qué" → Servicios → Números se pegan
+   arriba y cada una cubre a la anterior al scrollear. Fondo sólido para que tapen bien.
+   En celular NO se aplica (scroll normal, más cómodo). Respeta reduced-motion. */
+@media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+  #intro, #servicios, #numeros {
+    position: sticky;
+    top: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #0a0a0a;
+  }
+  #numeros { box-shadow: 0 -40px 80px rgba(0,0,0,0.6); }
+  #servicios { box-shadow: 0 -40px 80px rgba(0,0,0,0.6); }
+}
 </style>
 </head>
 <body>
