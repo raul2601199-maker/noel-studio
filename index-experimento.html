@@ -1280,6 +1280,23 @@ nav.scrolled {
 }
 .faq-item {
   border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 0 1.4rem;
+  transition: transform 0.35s var(--ease-out), background 0.35s, box-shadow 0.35s, border-color 0.35s;
+}
+/* HOVER 3D: la pregunta se ELEVA, se torna BLANCA y proyecta una sombra/brillo blanco. */
+@media (hover: hover) and (pointer: fine) {
+  .faq-item:hover {
+    background: var(--white);
+    transform: translateY(-5px) scale(1.015);
+    box-shadow: 0 18px 50px rgba(255,255,255,0.20), 0 0 0 1px rgba(255,255,255,0.30);
+    border-bottom-color: transparent;
+    position: relative;
+    z-index: 2;
+  }
+  .faq-item:hover summary { color: var(--black); }
+  .faq-item:hover summary::after { color: var(--black); }
+  .faq-item:hover p { color: #333333; }
 }
 .faq-item summary {
   list-style: none;
@@ -1292,7 +1309,6 @@ nav.scrolled {
   transition: color 0.3s;
 }
 .faq-item summary::-webkit-details-marker { display: none; }
-.faq-item summary:hover { color: var(--gray-200); }
 .faq-item summary::after {
   content: '+';
   font-family: 'Unbounded', 'Bebas Neue', sans-serif;
