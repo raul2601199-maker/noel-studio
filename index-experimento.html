@@ -2017,7 +2017,8 @@ footer {
       disable-zoom
       interaction-prompt="none"
       environment-image="neutral"
-      exposure="1.15"
+      exposure="0.82"
+      tone-mapping="neutral"
       shadow-intensity="0"
       camera-orbit="0deg 80deg 105%"
       loading="eager"></model-viewer>
@@ -2893,21 +2894,8 @@ function initLenis() {
 }
 
 // Los scripts GSAP/Lenis usan defer, así que ya están listos en DOMContentLoaded.
-// MATERIAL CROMADO para el logo 3D — al cargar el modelo le ponemos acabado metálico
-// plateado con brillos (en vez del gris mate que viene de fábrica). Robusto con try/catch.
-(function(){
-  const mv = document.querySelector('model-viewer.hero-3d');
-  if (!mv) return;
-  mv.addEventListener('load', () => {
-    try {
-      mv.model.materials.forEach(m => {
-        m.pbrMetallicRoughness.setMetallicFactor(1);
-        m.pbrMetallicRoughness.setRoughnessFactor(0.34);
-        m.pbrMetallicRoughness.setBaseColorFactor([0.86, 0.88, 0.92, 1]);
-      });
-    } catch (e) {}
-  });
-})();
+// El material lo trae el propio modelo (lo ajustaste en Vecto3d), así que NO lo
+// sobrescribimos: se respeta tu acabado plateado tal cual lo dejaste.
 
 function initAfterLoad() { initGsapAnimations(); initLenis(); }
 if (document.readyState === 'loading') {
