@@ -1673,8 +1673,16 @@ footer {
     text-align: center;
     align-items: center;
   }
-  /* En celular ocultamos el logo (repetía "NOEL STUDIO" debajo del título) */
-  .hero-right { display: none; }
+  /* En celular el logo 3D va ARRIBA del todo, girando (lo pidió Raúl). order:-1 lo sube. */
+  .hero-right {
+    display: flex;
+    order: -1;
+    margin: 0 auto 0.5rem;
+  }
+  .hero-right .hero-3d {
+    width: min(64vw, 300px);
+    height: min(64vw, 300px);
+  }
   /* El indicador "— Scroll" estorba en celular (se encima con el texto) y no aporta:
      en el teléfono todos saben deslizar. Se oculta solo en móvil. */
   .hero-scroll { display: none; }
