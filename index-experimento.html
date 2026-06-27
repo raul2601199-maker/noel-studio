@@ -1961,52 +1961,9 @@ footer {
   #preload .pl-bar i { transition: none; }
 }
 
-/* CARTAS APILADAS (solo en computadora): "Por qué" → Servicios → Números se pegan
-   arriba y cada una SUBE y CUBRE a la anterior. Para que se distinga el cambio de
-   pantalla, cada carta tiene: esquina redondeada arriba, borde fino, sombra fuerte y
-   un FONDO con su propio brillo en distinta posición (distinción visual real).
-   En celular NO se aplica (scroll normal). Respeta reduced-motion. */
-@media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
-  #intro, #servicios, #numeros, #ofertas {
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
-    border-top: 1px solid rgba(255,255,255,0.10);
-    box-shadow: 0 -28px 70px rgba(0,0,0,0.8);
-  }
-  #intro, #servicios, #numeros {
-    position: sticky;
-    top: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    overflow: hidden;
-  }
-  /* Cada carta con un brillo propio en distinta posición + tono ligeramente distinto. */
-  #intro {
-    background:
-      radial-gradient(65% 50% at 26% 24%, rgba(255,255,255,0.07) 0%, transparent 60%),
-      #0b0b0b;
-  }
-  #servicios {
-    background:
-      radial-gradient(60% 55% at 76% 28%, rgba(255,255,255,0.08) 0%, transparent 58%),
-      linear-gradient(180deg, #141414 0%, #0a0a0a 100%);
-  }
-  #numeros {
-    background:
-      radial-gradient(60% 55% at 50% 84%, rgba(255,255,255,0.07) 0%, transparent 56%),
-      #0d0d0d;
-  }
-  /* La sección siguiente (Ofertas) sube y cubre la última carta con el mismo look. */
-  #ofertas {
-    position: relative;
-    z-index: 1;
-    background:
-      radial-gradient(60% 50% at 30% 20%, rgba(255,255,255,0.06) 0%, transparent 58%),
-      #0a0a0a;
-  }
-}
+/* (El efecto de "cartas apiladas" se quitó: se buggeaba con las secciones actuales,
+   que tienen alturas variables y cintas. Para hacerlo bien hay que diseñar secciones
+   dedicadas tipo carta, de altura fija.) */
 </style>
 </head>
 <body>
