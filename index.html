@@ -803,6 +803,9 @@ nav.scrolled {
   .service-item:hover { padding-left: 1rem; }
   .service-item:hover .service-arrow { opacity: 1; transform: rotate(-45deg); }
 }
+/* Cuando un servicio es un enlace (lleva a otra sección), quitarle el subrayado
+   y el azul de link por defecto para que se vea igual que los demás servicios. */
+a.service-item { text-decoration: none; color: inherit; cursor: pointer; }
 .service-num {
   font-size: 0.72rem; color: var(--gray-600);
   letter-spacing: 0.15em; font-weight: 500;
@@ -826,6 +829,25 @@ nav.scrolled {
   font-size: 1.5rem; color: var(--white);
   opacity: 0; transition: opacity 0.3s, transform 0.3s;
   transform: rotate(0deg);
+}
+
+/* PROMO dentro de "LO QUE HAGO": el plan mensual resaltado como oferta destacada,
+   con acento a la izquierda y un fondo muy sutil para que jale la mirada sin gritar. */
+.service-promo {
+  text-decoration: none;
+  background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0) 70%);
+  border-left: 2px solid var(--white);
+  padding-left: 1.25rem;
+}
+.service-promo .service-tag { color: var(--white); font-weight: 500; }
+@media (hover: hover) and (pointer: fine) {
+  .service-promo:hover { padding-left: 1.75rem; }
+}
+.promo-pill {
+  display: inline-block;
+  background: var(--white); color: var(--black);
+  font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase;
+  font-weight: 700; padding: 0.28rem 0.6rem; border-radius: 999px;
 }
 
 /* PORTFOLIO */
@@ -993,12 +1015,17 @@ nav.scrolled {
 }
 
 /* PRICING */
-#precios {
+#precios,
+#plan-mensual,
+#correo {
   padding: 8rem 3rem;
   border-top: 1px solid rgba(255,255,255,0.08);
   position: relative;
   overflow: hidden;
 }
+/* El plan mensual y el correo arrancan un poco más apretados con precios (mismo tema). */
+#plan-mensual,
+#correo { padding-top: 5rem; }
 /* Resplandor suave detrás de la tarjeta destacada: dirige la mirada al plan Pro. */
 #precios::before {
   content: "";
@@ -1234,6 +1261,23 @@ nav.scrolled {
   border: 1px solid var(--black);
 }
 .btn-pricing-solid:hover { background: var(--gray-800); }
+
+/* PLAN MENSUAL: mismas tarjetas de precio, pero centradas de a 2.
+   Va ANTES de la regla móvil de .pricing-grid para que en celular sigan apiladas. */
+.pricing-grid--duo {
+  grid-template-columns: repeat(2, minmax(0, 340px));
+  justify-content: center;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* El "/mes" pegado al número, en tu letra de precios (Unbounded) para que combine. */
+.pricing-per {
+  font-family: 'Unbounded', 'Bebas Neue', sans-serif;
+  font-size: 0.95rem; font-weight: 400; letter-spacing: 0;
+  color: var(--gray-400); margin-left: 0.15rem;
+}
+.pricing-card.featured .pricing-per { color: var(--gray-600); }
 
 /* PROCESO */
 #proceso {
@@ -1724,7 +1768,7 @@ footer {
     text-align: center;
   }
   .hero-sub p { max-width: 340px; }
-  #servicios, #proceso, #portafolio, #precios, #preguntas, #contacto { padding: 5rem 1.5rem; }
+  #servicios, #proceso, #portafolio, #precios, #plan-mensual, #correo, #preguntas, #contacto { padding: 5rem 1.5rem; }
   .section-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
   .section-desc { text-align: left; max-width: 100%; }
   .service-item { grid-template-columns: 60px 1fr; }
@@ -2172,6 +2216,15 @@ footer {
     <p class="section-desc reveal">Cada proyecto es una solución a medida, diseñada para que tu negocio crezca en internet.</p>
   </div>
   <div class="services-list">
+    <a href="#plan-mensual" class="service-item service-promo reveal">
+      <span class="service-num"><span class="promo-pill">Promo</span></span>
+      <div>
+        <span class="service-name">Plan Mensual — sin inversión inicial</span>
+        <p class="service-desc">¿No quieres pagar todo de golpe? Ten tu página profesional pagando por mes: dominio, correos, hosting y soporte, todo incluido y siempre cuidado por mí. Ideal para empezar hoy mismo.</p>
+      </div>
+      <span class="service-tag">Desde $599/mes</span>
+      <span class="service-arrow">↗</span>
+    </a>
     <div class="service-item reveal">
       <span class="service-num">01</span>
       <div>
@@ -2217,6 +2270,15 @@ footer {
       <span class="service-tag">Desde $600 MXN</span>
       <span class="service-arrow">↗</span>
     </div>
+    <a href="#correo" class="service-item reveal">
+      <span class="service-num">06</span>
+      <div>
+        <span class="service-name">Correo Profesional con IA</span>
+        <p class="service-desc">Tu correo con el nombre de tu negocio (como ventas@tunegocio.com), en vez de un @gmail común. Se ve serio y da confianza. Trae un asistente de inteligencia artificial que te resume los mensajes, te ayuda a responder y busca por ti. Yo paso tu Gmail actual sin que pierdas nada.</p>
+      </div>
+      <span class="service-tag">Desde $990/año</span>
+      <span class="service-arrow">↗</span>
+    </a>
   </div>
 </section>
 
@@ -2340,6 +2402,112 @@ footer {
   </p>
 </section>
 
+<!-- PLAN MENSUAL -->
+<section id="plan-mensual">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title line-mask"><span>PLAN</span><span>MENSUAL</span></h2>
+    </div>
+    <p class="section-desc reveal">¿Prefieres empezar sin soltar todo de golpe? Paga tu página por mes, con todo incluido y siempre cuidada por mí.</p>
+  </div>
+  <div class="pricing-grid pricing-grid--duo">
+    <div class="pricing-card reveal">
+      <span class="pricing-tag">Sin inversión inicial</span>
+      <div class="pricing-name">Esencial</div>
+      <div class="pricing-price"><sup>$</sup>599<span class="pricing-per">/mes</span></div>
+      <span class="pricing-currency">MXN · todo incluido · mínimo 12 meses</span>
+      <p class="pricing-desc">Tu presencia en internet, lista y profesional, sin pagar miles de golpe.</p>
+      <ul class="pricing-features">
+        <li class="pricing-feature">Tu página web profesional</li>
+        <li class="pricing-feature">Dominio .com incluido</li>
+        <li class="pricing-feature">Correos con tu dominio (tunegocio.com)</li>
+        <li class="pricing-feature">Hosting y actualizaciones incluidos</li>
+        <li class="pricing-feature">Soporte: cambios menores cada mes</li>
+        <li class="pricing-feature">Optimización inicial para aparecer en Google</li>
+      </ul>
+      <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20el%20Plan%20Esencial%20de%20%24599%2Fmes.%20%C2%BFMe%20pasas%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-pricing btn-pricing-outline">Lo quiero</a>
+    </div>
+    <div class="pricing-card featured reveal">
+      <span class="pricing-tag">El más completo</span>
+      <div class="pricing-name">Crecimiento</div>
+      <div class="pricing-price"><sup>$</sup>1,199<span class="pricing-per">/mes</span></div>
+      <span class="pricing-currency">MXN · todo incluido · mínimo 12 meses</span>
+      <p class="pricing-desc">Para negocios que además quieren aparecer en Google y crecer mes con mes.</p>
+      <ul class="pricing-features">
+        <li class="pricing-feature">Todo lo del plan Esencial</li>
+        <li class="pricing-feature">SEO continuo para aparecer en Google</li>
+        <li class="pricing-feature">Más cambios y ajustes al mes</li>
+        <li class="pricing-feature">Reporte mensual de resultados</li>
+        <li class="pricing-feature">Prioridad en tu soporte</li>
+      </ul>
+      <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20el%20Plan%20Crecimiento%20de%20%241%2C199%2Fmes.%20%C2%BFMe%20pasas%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-pricing btn-pricing-solid">Lo quiero</a>
+    </div>
+  </div>
+  <p class="section-desc reveal" style="margin-top: 2.5rem; max-width:680px; margin-left:auto; margin-right:auto; text-align:center; color: var(--gray-400);">
+    ¿Prefieres pagar una sola vez y ser dueño de tu web para siempre? Mira los <a href="#precios" style="color:var(--white);">paquetes de pago único</a> arriba.
+  </p>
+</section>
+
+<!-- CORREO PROFESIONAL CON IA -->
+<section id="correo">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title line-mask"><span>CORREO</span><span>PROFESIONAL</span></h2>
+    </div>
+    <p class="section-desc reveal">Tu correo con el nombre de tu negocio y un asistente de inteligencia artificial. Yo paso tu Gmail actual sin que pierdas nada.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card reveal">
+      <span class="pricing-tag">Básico</span>
+      <div class="pricing-name">Individual</div>
+      <div class="pricing-price"><sup>$</sup>990<span class="pricing-per">/año</span></div>
+      <span class="pricing-currency">MXN · con migración incluida</span>
+      <p class="pricing-desc">Para verte profesional con un correo que lleva el nombre de tu negocio.</p>
+      <ul class="pricing-features">
+        <li class="pricing-feature">Correo con tu dominio (ventas@tunegocio.com)</li>
+        <li class="pricing-feature">Hasta 5 direcciones de correo</li>
+        <li class="pricing-feature">5 GB de espacio</li>
+        <li class="pricing-feature">Paso tu Gmail actual sin que pierdas nada</li>
+        <li class="pricing-feature">Yo lo configuro y te explico cómo usarlo</li>
+      </ul>
+      <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20el%20correo%20profesional%20Esencial%20de%20%24990%2Fa%C3%B1o.%20%C2%BFMe%20pasas%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-pricing btn-pricing-outline">Lo quiero</a>
+    </div>
+    <div class="pricing-card featured reveal">
+      <span class="pricing-tag">El más recomendado</span>
+      <div class="pricing-name">Con IA</div>
+      <div class="pricing-price"><sup>$</sup>1,200<span class="pricing-per">/año</span></div>
+      <span class="pricing-currency">MXN · con migración incluida</span>
+      <p class="pricing-desc">El correo profesional con inteligencia artificial que trabaja por ti.</p>
+      <ul class="pricing-features">
+        <li class="pricing-feature">Todo lo del plan Esencial</li>
+        <li class="pricing-feature">Asistente de IA: te resume los mensajes</li>
+        <li class="pricing-feature">La IA te ayuda a redactar respuestas</li>
+        <li class="pricing-feature">Búsqueda inteligente de tus correos</li>
+        <li class="pricing-feature">Hasta 10 direcciones y 20 GB de espacio</li>
+      </ul>
+      <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20el%20correo%20profesional%20con%20IA%20de%20%241%2C200%2Fa%C3%B1o.%20%C2%BFMe%20pasas%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-pricing btn-pricing-solid">Lo quiero</a>
+    </div>
+    <div class="pricing-card reveal">
+      <span class="pricing-tag">Premium</span>
+      <div class="pricing-name">Empresa</div>
+      <div class="pricing-price"><sup>$</sup>1,500<span class="pricing-per">/año</span></div>
+      <span class="pricing-currency">MXN · con migración incluida</span>
+      <p class="pricing-desc">Para negocios con varios empleados que necesitan mucho espacio.</p>
+      <ul class="pricing-features">
+        <li class="pricing-feature">Todo lo del plan con IA</li>
+        <li class="pricing-feature">Hasta 30 direcciones de correo</li>
+        <li class="pricing-feature">50 GB de espacio</li>
+        <li class="pricing-feature">Ideal para equipos de trabajo</li>
+        <li class="pricing-feature">Soporte prioritario conmigo</li>
+      </ul>
+      <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20el%20correo%20profesional%20Empresa%20de%20%241%2C500%2Fa%C3%B1o.%20%C2%BFMe%20pasas%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-pricing btn-pricing-outline">Lo quiero</a>
+    </div>
+  </div>
+  <p class="section-desc reveal" style="margin-top: 2.5rem; max-width:680px; margin-left:auto; margin-right:auto; text-align:center; color: var(--gray-400);">
+    ¿No tienes dominio propio todavía? También te lo consigo. <a href="https://wa.me/526142251419?text=Hola,%20quiero%20un%20correo%20profesional%20para%20mi%20negocio.%20%C2%BFMe%20ayudas%3F" style="color:var(--white);">Escríbeme</a> y te lo dejo listo.
+  </p>
+</section>
+
 <!-- PORTAFOLIO -->
 <section id="portafolio">
   <div class="section-header">
@@ -2352,6 +2520,15 @@ footer {
        En celular se vuelve un carrusel táctil (swipe), sin pin, para que sea cómodo. -->
   <div class="horiz-gallery">
     <div class="horiz-track">
+    <a href="https://elgaragesi.com" target="_blank" rel="noopener" class="portfolio-item" aria-label="Abrir el sitio de El Garage" style="text-decoration: none; color: inherit;">
+      <span class="portfolio-badge is-client">Cliente real</span>
+      <span class="portfolio-open" aria-hidden="true">→</span>
+      <img class="portfolio-thumb" src="assets/demo-elgarage.webp" alt="Sitio web de El Garage, distribuidora industrial en Chihuahua" loading="lazy" width="1600" height="700">
+      <div class="portfolio-overlay">
+        <div class="portfolio-name">El Garage</div>
+        <div class="portfolio-type">Distribuidora industrial · Sitio de referencia y catálogo</div>
+      </div>
+    </a>
     <a href="demos/montes.html" class="portfolio-item" aria-label="Abrir el sitio de Montes Tire Center" style="text-decoration: none; color: inherit;">
       <span class="portfolio-badge is-client">Cliente real</span>
       <span class="portfolio-open" aria-hidden="true">→</span>
