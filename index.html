@@ -1943,15 +1943,84 @@ footer {
 .video-promo-player {
   position: relative;
   aspect-ratio: 9 / 16;
+}
+/* —— CARRUSEL DE VIDEOS APILADOS —— */
+.vp-stack {
+  position: absolute; inset: 0;
+  perspective: 1400px;
+  transform-style: preserve-3d;
+}
+.vp-card {
+  position: absolute; inset: 0;
   border-radius: 18px;
   overflow: hidden;
   background: #000;
+  cursor: pointer;
   box-shadow: 0 30px 70px rgba(0,0,0,0.55);
+  transition: transform 0.55s var(--ease-out), opacity 0.45s var(--ease-out), filter 0.45s;
+  will-change: transform, opacity;
 }
-.video-promo-player video {
+.vp-card video {
   width: 100%; height: 100%;
   object-fit: cover; display: block;
+  pointer-events: none;
 }
+.vp-tag {
+  position: absolute; left: 14px; bottom: 14px;
+  padding: 0.35rem 0.85rem;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 100px;
+  color: var(--white); font-size: 0.72rem;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  opacity: 0; transition: opacity 0.4s;
+}
+/* posición 0 = al frente, 1/2/... = detrás y desplazadas */
+.vp-card[data-pos="0"] { transform: translateX(-22%) scale(1); opacity: 1; z-index: 3; filter: none; }
+.vp-card[data-pos="0"] .vp-tag { opacity: 1; }
+.vp-card[data-pos="1"] { transform: translateX(20%) translateZ(-90px) scale(0.9); opacity: 1; z-index: 2; filter: brightness(0.82); }
+.vp-card[data-pos="2"] { transform: translateX(40%) translateZ(-180px) scale(0.82); opacity: 1; z-index: 1; filter: brightness(0.68); }
+.vp-card[data-pos="hidden"] { transform: translateX(50%) translateZ(-260px) scale(0.78); opacity: 0; z-index: 0; pointer-events: none; }
+/* flechas de navegación */
+.vp-nav {
+  position: absolute; top: 50%; z-index: 5;
+  width: 42px; height: 42px; transform: translateY(-50%);
+  display: grid; place-items: center;
+  background: rgba(0,0,0,0.55); backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 50%; color: var(--white);
+  font-size: 1.5rem; line-height: 1; cursor: pointer;
+  transition: background 0.25s, transform 0.25s var(--ease-out);
+}
+.vp-nav:hover { background: rgba(0,0,0,0.8); }
+.vp-prev { left: -14px; }
+.vp-next { right: -14px; }
+.vp-prev:hover { transform: translateY(-50%) translateX(-2px); }
+.vp-next:hover { transform: translateY(-50%) translateX(2px); }
+/* botón de volumen (afecta al video del frente) */
+.vp-vol {
+  position: absolute; top: 12px; right: 12px; z-index: 6;
+  width: 38px; height: 38px;
+  display: grid; place-items: center;
+  background: rgba(0,0,0,0.55); backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 50%; color: var(--white); cursor: pointer;
+  transition: background 0.25s, transform 0.2s var(--ease-out);
+}
+.vp-vol:hover { background: rgba(0,0,0,0.8); transform: scale(1.06); }
+.vp-vol svg { width: 18px; height: 18px; display: block; }
+/* puntos indicadores */
+.vp-dots {
+  position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 8px; z-index: 5;
+}
+.vp-dots button {
+  width: 8px; height: 8px; border-radius: 50%; padding: 0;
+  background: var(--gray-800); border: none; cursor: pointer;
+  transition: background 0.25s, transform 0.25s;
+}
+.vp-dots button.active { background: var(--white); transform: scale(1.3); }
 .video-promo-h {
   font-family: 'Unbounded', 'Bebas Neue', sans-serif;
   font-size: clamp(1.8rem, 4vw, 3rem);
@@ -1980,8 +2049,10 @@ footer {
 }
 .video-promo-cta:hover { transform: translateY(-2px); opacity: 0.9; }
 @media (max-width: 760px) {
-  .video-promo-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
-  .video-promo-player { max-width: 260px; margin: 0 auto; }
+  .video-promo-wrap { grid-template-columns: 1fr; gap: 3.5rem; }
+  .video-promo-player { max-width: 250px; margin: 0 auto; }
+  .vp-prev { left: -8px; }
+  .vp-next { right: -8px; }
 }
 
 /* —— PRELOADER —— pantalla de marca mientras carga el sitio.
@@ -2267,7 +2338,7 @@ footer {
         <span class="service-name">Video Promocional para Redes</span>
         <p class="service-desc">Un video corto y profesional para tus redes (Reels, TikTok, historias). Muestra tu negocio o tu página web con voz, música y movimiento, listo para llamar la atención y que más gente te escriba.</p>
       </div>
-      <span class="service-tag">Desde $600 MXN</span>
+      <span class="service-tag">Desde $1,000 MXN</span>
       <span class="service-arrow">↗</span>
     </div>
     <a href="#correo" class="service-item reveal">
@@ -2628,7 +2699,20 @@ footer {
   </div>
   <div class="video-promo-wrap reveal">
     <div class="video-promo-player">
-      <video src="assets/video-promo-demo.mp4" poster="assets/video-promo-poster.jpg" controls playsinline preload="none"></video>
+      <div class="vp-stack" id="vpStack">
+        <div class="vp-card" data-label="Noel Studio">
+          <video src="assets/video-promo-demo.mp4" poster="assets/video-promo-poster.jpg" playsinline preload="none" muted loop></video>
+          <span class="vp-tag">Noel Studio</span>
+        </div>
+        <div class="vp-card" data-label="El Garage">
+          <video src="assets/video-garage.mp4" poster="assets/video-garage-poster.jpg" playsinline preload="none" muted loop></video>
+          <span class="vp-tag">El Garage</span>
+        </div>
+      </div>
+      <button class="vp-nav vp-prev" aria-label="Video anterior" type="button">‹</button>
+      <button class="vp-nav vp-next" aria-label="Video siguiente" type="button">›</button>
+      <button class="vp-vol" id="vpVol" aria-label="Activar sonido" type="button"></button>
+      <div class="vp-dots" id="vpDots"></div>
     </div>
     <div class="video-promo-info">
       <h3 class="video-promo-h">Llama la atención en segundos</h3>
@@ -3322,6 +3406,82 @@ if (sectionMap.length && 'IntersectionObserver' in window) {
   }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
   sectionMap.forEach(o => navObserver.observe(o.section));
 }
+
+/* —— CARRUSEL DE VIDEOS APILADOS (portafolio) —— */
+(function () {
+  const stack = document.getElementById('vpStack');
+  if (!stack) return;
+  const cards = Array.from(stack.querySelectorAll('.vp-card'));
+  const dotsWrap = document.getElementById('vpDots');
+  const volBtn = document.getElementById('vpVol');
+  const player = stack.closest('.video-promo-player');
+  const total = cards.length;
+  let current = 0; // índice de la card que va al frente
+  let soundOn = false;
+
+  const ICON_MUTE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>';
+  const ICON_SOUND = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>';
+
+  // crear puntos indicadores
+  cards.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-label', 'Ver video ' + (i + 1));
+    b.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(b);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function playSafe(vid) {
+    // intenta reproducir; si el video aún no cargó, reintenta cuando ya tenga datos
+    const attempt = () => vid.play().catch(() => {});
+    attempt();
+    if (vid.readyState < 3) {
+      vid.addEventListener('canplay', attempt, { once: true });
+      vid.load(); // fuerza la carga si estaba en preload="none"
+    }
+  }
+
+  function render() {
+    cards.forEach((card, i) => {
+      let offset = (i - current + total) % total; // 0 = frente
+      const pos = offset > 2 ? 'hidden' : String(offset);
+      card.setAttribute('data-pos', pos);
+      const vid = card.querySelector('video');
+      vid.muted = !(offset === 0 && soundOn); // solo el frente suena, si está activado
+      if (pos !== 'hidden') {
+        if (vid.preload !== 'auto') vid.preload = 'auto';
+        playSafe(vid);
+      } else {
+        vid.pause();
+      }
+    });
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    volBtn.innerHTML = soundOn ? ICON_SOUND : ICON_MUTE;
+    volBtn.setAttribute('aria-label', soundOn ? 'Silenciar' : 'Activar sonido');
+  }
+
+  volBtn.addEventListener('click', () => { soundOn = !soundOn; render(); });
+
+  function goTo(i) { current = (i + total) % total; render(); }
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  player.querySelector('.vp-next').addEventListener('click', next);
+  player.querySelector('.vp-prev').addEventListener('click', prev);
+  // clic en una card de atrás la trae al frente
+  cards.forEach((card, i) => card.addEventListener('click', () => { if (i !== current) goTo(i); }));
+
+  // swipe táctil
+  let sx = 0;
+  stack.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
+  stack.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - sx;
+    if (Math.abs(dx) > 40) (dx < 0 ? next() : prev());
+  }, { passive: true });
+
+  render();
+})();
 </script>
 </body>
 </html>
