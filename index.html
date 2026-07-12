@@ -1640,11 +1640,17 @@ footer {
 .reviews-head .rh-stars { color: #ffc83d; letter-spacing: 0.18em; font-size: 1.15rem; }
 .reviews-head .rh-score { font-family: 'Unbounded', 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.04em; margin-top: 0.5rem; color: var(--white); }
 .reviews-head .rh-sub { font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray-400); margin-top: 0.3rem; }
-.reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.reviews { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 900px; margin: 0 auto; }
 .review-card { background: var(--gray-900); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 2rem; display: flex; flex-direction: column; text-align: left; transition: transform 0.4s var(--ease-out), border-color 0.4s; }
 @media (hover: hover) and (pointer: fine) { .review-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.18); } }
 .review-stars { color: #ffc83d; letter-spacing: 0.14em; font-size: 0.95rem; margin-bottom: 1.1rem; }
 .review-text { font-size: 0.98rem; line-height: 1.65; color: #dcdcdc; flex: 1; }
+/* reseñas cortas: la cita se muestra grande y centrada para que la tarjeta luzca */
+.review-card.is-short .review-text {
+  font-size: 1.5rem; line-height: 1.4; font-weight: 500;
+  color: var(--white); display: flex; align-items: center;
+  letter-spacing: -0.01em;
+}
 .review-author { margin-top: 1.6rem; display: flex; flex-direction: column; gap: 0.25rem; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.2rem; }
 .review-name { font-weight: 600; color: var(--white); }
 .review-meta { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-400); }
@@ -1983,21 +1989,23 @@ footer {
 .vp-card[data-pos="2"] { transform: translateX(40%) translateZ(-180px) scale(0.82); opacity: 1; z-index: 1; filter: brightness(0.68); }
 .vp-card[data-pos="hidden"] { transform: translateX(50%) translateZ(-260px) scale(0.78); opacity: 0; z-index: 0; pointer-events: none; }
 /* flechas de navegación */
+/* barra de controles debajo del video: flechas + puntos, para no tapar la imagen */
+.vp-controls {
+  position: absolute; bottom: -50px; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 16px; z-index: 5;
+}
 .vp-nav {
-  position: absolute; top: 50%; z-index: 5;
-  width: 42px; height: 42px; transform: translateY(-50%);
+  width: 38px; height: 38px;
   display: grid; place-items: center;
   background: rgba(0,0,0,0.55); backdrop-filter: blur(8px);
   border: 1px solid rgba(255,255,255,0.18);
   border-radius: 50%; color: var(--white);
-  font-size: 1.5rem; line-height: 1; cursor: pointer;
-  transition: background 0.25s, transform 0.25s var(--ease-out);
+  font-size: 1.4rem; line-height: 1; cursor: pointer;
+  transition: background 0.25s, transform 0.2s var(--ease-out);
 }
 .vp-nav:hover { background: rgba(0,0,0,0.8); }
-.vp-prev { left: -14px; }
-.vp-next { right: -14px; }
-.vp-prev:hover { transform: translateY(-50%) translateX(-2px); }
-.vp-next:hover { transform: translateY(-50%) translateX(2px); }
+.vp-prev:hover { transform: translateX(-2px); }
+.vp-next:hover { transform: translateX(2px); }
 /* botón de volumen (afecta al video del frente) */
 .vp-vol {
   position: absolute; top: 12px; right: 12px; z-index: 6;
@@ -2012,8 +2020,7 @@ footer {
 .vp-vol svg { width: 18px; height: 18px; display: block; }
 /* puntos indicadores */
 .vp-dots {
-  position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%);
-  display: flex; gap: 8px; z-index: 5;
+  display: flex; gap: 8px;
 }
 .vp-dots button {
   width: 8px; height: 8px; border-radius: 50%; padding: 0;
@@ -2051,8 +2058,6 @@ footer {
 @media (max-width: 760px) {
   .video-promo-wrap { grid-template-columns: 1fr; gap: 3.5rem; }
   .video-promo-player { max-width: 250px; margin: 0 auto; }
-  .vp-prev { left: -8px; }
-  .vp-next { right: -8px; }
 }
 
 /* —— PRELOADER —— pantalla de marca mientras carga el sitio.
@@ -2655,6 +2660,11 @@ footer {
       <p class="review-text">En Noel Studio nos hicieron la página web de la llantera y quedó muy profesional, moderna y rápida. Raúl explica todo claro y da seguimiento. Si buscas diseño web en Chihuahua, totalmente recomendados.</p>
       <div class="review-author"><span class="review-name">Montes Tire Center</span><span class="review-meta">Cliente · Google</span></div>
     </div>
+    <div class="review-card is-short reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">¡Excelente trabajo, muy profesional y rápido!</p>
+      <div class="review-author"><span class="review-name">Kevin Sigala</span><span class="review-meta">Cliente · Google</span></div>
+    </div>
   </div>
 </section>
 
@@ -2710,10 +2720,12 @@ footer {
           <span class="vp-tag">El Garage</span>
         </div>
       </div>
-      <button class="vp-nav vp-prev" aria-label="Video anterior" type="button">‹</button>
-      <button class="vp-nav vp-next" aria-label="Video siguiente" type="button">›</button>
       <button class="vp-vol" id="vpVol" aria-label="Activar sonido" type="button"></button>
-      <div class="vp-dots" id="vpDots"></div>
+      <div class="vp-controls">
+        <button class="vp-nav vp-prev" aria-label="Video anterior" type="button">‹</button>
+        <div class="vp-dots" id="vpDots"></div>
+        <button class="vp-nav vp-next" aria-label="Video siguiente" type="button">›</button>
+      </div>
     </div>
     <div class="video-promo-info">
       <h3 class="video-promo-h">Llama la atención en segundos</h3>
@@ -3078,6 +3090,13 @@ function initGsapAnimations() {
       }
     });
   }
+
+  // Al cargar las fuentes web, las imágenes y los videos, el alto de las secciones cambia.
+  // Si no recalculamos, el pin del portafolio queda descalibrado y la tira se ve
+  // mal posicionada o "por todos lados". Refrescamos cuando el layout ya se estabilizó.
+  const refreshST = () => ScrollTrigger.refresh();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(refreshST);
+  window.addEventListener('load', refreshST);
 
   // LINE-MASK — títulos que se "dibujan" de izquierda a derecha (efecto cortina).
   // Revisamos la posición en cada scroll (confiable en TODO celular; nunca se queda sin animar).
