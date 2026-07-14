@@ -12,7 +12,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Noel Studio — Diseño Web en Chihuahua</title>
-<meta name="description" content="Noel Studio. Diseño web profesional en Chihuahua. Páginas modernas, rápidas y que generan clientes. Te explico todo sin tecnicismos.">
+<meta name="description" content="Noel Studio. Diseño web profesional en Chihuahua. Páginas modernas, rápidas y que generan clientes, y bots de WhatsApp con IA que atienden tu negocio 24/7. Te explico todo sin tecnicismos.">
 <meta name="theme-color" content="#000000">
 
 <!-- Para que se vea bien al compartir por WhatsApp, Facebook, etc. -->
@@ -872,10 +872,14 @@ a.service-item { text-decoration: none; color: inherit; cursor: pointer; }
 .has-gsap .horiz-gallery { overflow: hidden; }
 /* Celular (y sin GSAP): carrusel táctil con swipe + snap, sin pin (cómodo en el dedo). */
 @media (max-width: 768px) {
-  .horiz-gallery { overflow-x: auto; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; margin-top: 3rem; padding-bottom: 0.5rem; }
-  .has-gsap .horiz-gallery { overflow-x: auto; }
-  .horiz-track { gap: 1rem; }
-  .horiz-track .portfolio-item { width: 82vw; aspect-ratio: 4/3; scroll-snap-align: center; }
+  /* En celular: apilamos los proyectos en columna (uno debajo de otro), a
+     pantalla completa. Es lo más cómodo y no se rompe como el carrusel. */
+  .horiz-gallery { overflow: visible; margin-top: 3rem; }
+  .has-gsap .horiz-gallery { overflow: visible; }
+  .horiz-track { flex-direction: column; gap: 1.1rem; transform: none !important; }
+  .horiz-track .portfolio-item { width: 100%; aspect-ratio: 4/3; }
+  .portfolio-name { font-size: 1.5rem; }
+  .portfolio-overlay { padding: 1.4rem; }
 }
 .portfolio-item {
   position: relative; overflow: hidden;
@@ -1665,7 +1669,7 @@ footer {
 
 /* LINE-MASK — el título se "dibuja" de izquierda a derecha (efecto cortina), como en los demos. */
 .has-gsap .line-mask { clip-path: inset(0 100% 0 0); }
-.has-gsap .line-mask.in { clip-path: inset(0 0 0 0); transition: clip-path 1.1s cubic-bezier(0.76,0,0.24,1); }
+.has-gsap .line-mask.in { clip-path: inset(0 0 0 0); transition: clip-path 0.55s cubic-bezier(0.76,0,0.24,1); }
 @media (prefers-reduced-motion: reduce) {
   .has-gsap .line-mask { clip-path: none; }
 }
@@ -1774,7 +1778,7 @@ footer {
     text-align: center;
   }
   .hero-sub p { max-width: 340px; }
-  #servicios, #proceso, #portafolio, #precios, #plan-mensual, #correo, #preguntas, #contacto { padding: 5rem 1.5rem; }
+  #servicios, #proceso, #portafolio, #precios, #plan-mensual, #correo, #bot-whatsapp, #video, #preguntas, #contacto { padding: 5rem 1.5rem; }
   .section-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
   .section-desc { text-align: left; max-width: 100%; }
   .service-item { grid-template-columns: 60px 1fr; }
@@ -1792,17 +1796,19 @@ footer {
   /* PRECIOS en celular: tarjetas COMPACTAS para ver los 3 paquetes con muy poco scroll
      y poder compararlos rápido (antes cada una era enorme y obligaba a bajar mucho). */
   .pricing-grid { grid-template-columns: 1fr; gap: 1rem; margin-top: 3rem; }
-  .pricing-card { padding: 1.5rem 1.4rem; border-radius: 12px; }
-  .pricing-card.featured { transform: none; }
-  .pricing-tag { margin-bottom: 0.5rem; }
-  .pricing-name { font-size: 1.55rem; margin-bottom: 0.1rem; }
-  .pricing-price { font-size: 1.7rem; }
-  .pricing-price sup { font-size: 0.95rem; margin-top: 0.2rem; }
-  .pricing-currency { margin-bottom: 0.9rem; }
-  .pricing-desc { font-size: 0.78rem; line-height: 1.55; margin-bottom: 0.9rem; }
-  .pricing-features { gap: 0.4rem; margin-bottom: 1.25rem; }
-  .pricing-feature { font-size: 0.76rem; }
-  .btn-pricing { padding: 0.85rem 1.25rem; }
+  .pricing-card { padding: 1.1rem 1.05rem; border-radius: 11px; }
+  /* La tarjeta blanca NO se agranda en celular (el scale la sacaba de la pantalla). */
+  .pricing-card.featured { transform: none !important; scale: 1 !important; box-shadow: 0 12px 30px rgba(0,0,0,0.45); }
+  .pricing-tag { margin-bottom: 0.4rem; font-size: 0.58rem; }
+  .pricing-name { font-size: 1.25rem; margin-bottom: 0.1rem; }
+  .pricing-price { font-size: 1.4rem; }
+  .pricing-price sup { font-size: 0.78rem; margin-top: 0.15rem; }
+  .pricing-per { font-size: 0.72rem; }
+  .pricing-currency { font-size: 0.66rem; margin-bottom: 0.7rem; }
+  .pricing-desc { font-size: 0.74rem; line-height: 1.5; margin-bottom: 0.8rem; }
+  .pricing-features { gap: 0.3rem; margin-bottom: 0.9rem; }
+  .pricing-feature { font-size: 0.75rem; }
+  .btn-pricing { padding: 0.72rem 1rem; font-size: 0.72rem; }
   .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
   footer { padding: 3.5rem 1.5rem 2rem; }
   .footer-top { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -2057,7 +2063,15 @@ footer {
 .video-promo-cta:hover { transform: translateY(-2px); opacity: 0.9; }
 @media (max-width: 760px) {
   .video-promo-wrap { grid-template-columns: 1fr; gap: 3.5rem; }
-  .video-promo-player { max-width: 250px; margin: 0 auto; }
+  /* width explícito: sin él, aspect-ratio + tarjetas absolute colapsaban a 0. */
+  .video-promo-player { width: 260px; max-width: 86vw; margin: 0 auto; }
+  /* En celular mostramos SOLO el video del frente, centrado, sin el apilado 3D
+     (que se salía de la pantalla y se veía roto). */
+  .vp-card[data-pos="0"] { transform: none; }
+  .vp-card[data-pos="1"],
+  .vp-card[data-pos="2"],
+  .vp-card[data-pos="hidden"] { opacity: 0; pointer-events: none; }
+  .vp-controls { bottom: -46px; gap: 14px; }
 }
 
 /* —— PRELOADER —— pantalla de marca mientras carga el sitio.
@@ -2141,6 +2155,7 @@ footer {
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#ofertas">Ofertas</a></li>
     <li><a href="#precios">Precios</a></li>
+    <li><a href="#bot-whatsapp">Bot de WhatsApp</a></li>
     <li><a href="#portafolio">Portafolio</a></li>
     <li><a href="#proceso">Cómo trabajo</a></li>
     <li><a href="#video">Video</a></li>
@@ -2296,7 +2311,7 @@ footer {
       <span class="service-num"><span class="promo-pill">Promo</span></span>
       <div>
         <span class="service-name">Plan Mensual — sin inversión inicial</span>
-        <p class="service-desc">¿No quieres pagar todo de golpe? Ten tu página profesional pagando por mes: dominio, correos, hosting y soporte, todo incluido y siempre cuidado por mí. Ideal para empezar hoy mismo.</p>
+        <p class="service-desc">¿No quieres pagar todo de golpe? Ten tu página profesional pagando por mes: dominio, hosting y soporte, todo incluido y siempre cuidado por mí. Ideal para empezar hoy mismo.</p>
       </div>
       <span class="service-tag">Desde $599/mes</span>
       <span class="service-arrow">↗</span>
@@ -2355,6 +2370,15 @@ footer {
       <span class="service-tag">Desde $1,199/año</span>
       <span class="service-arrow">↗</span>
     </a>
+    <a href="#bot-whatsapp" class="service-item reveal">
+      <span class="service-num">07</span>
+      <div>
+        <span class="service-name">Bot de WhatsApp con IA</span>
+        <p class="service-desc">Un asistente inteligente que atiende tu WhatsApp las 24 horas: responde dudas, toma pedidos y te avisa cuando un cliente quiere comprar. Ideal para restaurantes y negocios con muchos mensajes. Tú solo cierras la venta.</p>
+      </div>
+      <span class="service-tag">Desde $1,499/mes</span>
+      <span class="service-arrow">↗</span>
+    </a>
   </div>
 </section>
 
@@ -2390,12 +2414,13 @@ footer {
   </div>
   <div class="offer-card reveal">
     <span class="offer-badge">Oferta de lanzamiento</span>
-    <div class="offer-name">Tu primera página profesional</div>
-    <div class="offer-price"><sup>$</sup>5,900</div>
-    <div class="offer-old">Precio normal $7,000</div>
+    <div class="offer-name">Tu primera página profesional + video de regalo</div>
+    <div class="offer-price"><sup>$</sup>4,900</div>
+    <div class="offer-old">Precio normal $8,000</div>
     <span class="offer-currency">MXN · pago único</span>
     <ul class="offer-features">
       <li>Una página completa y profesional</li>
+      <li>Video de presentación DE REGALO (valor $1,000)</li>
       <li>Animaciones premium (se ve moderna y de lujo)</li>
       <li>Se ve perfecta en cualquier dispositivo</li>
       <li>Botón directo a tu WhatsApp</li>
@@ -2403,7 +2428,7 @@ footer {
       <li>Lista de 1 a 2 días</li>
     </ul>
     <div>
-      <a href="https://wa.me/526142251419?text=Hola,%20vi%20la%20oferta%20de%20lanzamiento%20de%20%245%2C900%20y%20me%20interesa.%20%C2%BFMe%20pasas%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-offer">La quiero a este precio</a>
+      <a href="https://wa.me/526142251419?text=Hola,%20vi%20la%20oferta%20de%20lanzamiento%20de%20%244%2C900%20con%20video%20de%20regalo%20y%20me%20interesa.%20%C2%BFMe%20pasas%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-offer">La quiero a este precio</a>
     </div>
     <p class="offer-note">Para los primeros negocios de este mes. Sin compromiso y sin tecnicismos.</p>
   </div>
@@ -2496,7 +2521,6 @@ footer {
       <ul class="pricing-features">
         <li class="pricing-feature">Tu página web profesional</li>
         <li class="pricing-feature">Dominio .com incluido</li>
-        <li class="pricing-feature">Correos con tu dominio (tunegocio.com)</li>
         <li class="pricing-feature">Hosting y actualizaciones incluidos</li>
         <li class="pricing-feature">Soporte: cambios menores cada mes</li>
         <li class="pricing-feature">Optimización inicial para aparecer en Google</li>
@@ -2511,6 +2535,7 @@ footer {
       <p class="pricing-desc">Para negocios que además quieren aparecer en Google y crecer mes con mes.</p>
       <ul class="pricing-features">
         <li class="pricing-feature">Todo lo del plan Esencial</li>
+        <li class="pricing-feature">Correos profesionales con tu dominio incluidos</li>
         <li class="pricing-feature">SEO continuo para aparecer en Google</li>
         <li class="pricing-feature">Más cambios y ajustes al mes</li>
         <li class="pricing-feature">Reporte mensual de resultados</li>
@@ -2582,6 +2607,66 @@ footer {
   </div>
   <p class="section-desc reveal" style="margin-top: 2.5rem; max-width:680px; margin-left:auto; margin-right:auto; text-align:center; color: var(--gray-400);">
     ¿No tienes dominio propio todavía? También te lo consigo. <a href="https://wa.me/526142251419?text=Hola,%20quiero%20un%20correo%20profesional%20para%20mi%20negocio.%20%C2%BFMe%20ayudas%3F" style="color:var(--white);">Escríbeme</a> y te lo dejo listo.
+  </p>
+</section>
+
+<!-- BOT DE WHATSAPP CON IA -->
+<section id="bot-whatsapp">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title line-mask"><span>BOT DE</span><span>WHATSAPP</span></h2>
+    </div>
+    <p class="section-desc reveal">Un asistente con inteligencia artificial que atiende tu WhatsApp 24/7, toma pedidos y te avisa cuando un cliente quiere comprar. Ideal para restaurantes y negocios con muchos mensajes.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card reveal">
+      <span class="pricing-tag">Básico</span>
+      <div class="pricing-name">Esencial</div>
+      <div class="pricing-price"><sup>$</sup>1,499<span class="pricing-per">/mes</span></div>
+      <span class="pricing-currency">MXN · más instalación desde $4,900</span>
+      <p class="pricing-desc">Para el negocio que solo quiere que le contesten y le avisen de cada pedido.</p>
+      <ul class="pricing-features">
+        <li class="pricing-feature">Asistente que atiende tu WhatsApp 24/7</li>
+        <li class="pricing-feature">Responde dudas y toma pedidos</li>
+        <li class="pricing-feature">Te avisa cada pedido a tu WhatsApp</li>
+        <li class="pricing-feature">Con la información y el menú de tu negocio</li>
+        <li class="pricing-feature">Soporte conmigo</li>
+      </ul>
+      <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20el%20Bot%20de%20WhatsApp%20plan%20Esencial.%20%C2%BFMe%20pasas%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-pricing btn-pricing-outline">Lo quiero</a>
+    </div>
+    <div class="pricing-card featured reveal">
+      <span class="pricing-tag">El más completo</span>
+      <div class="pricing-name">Negocio</div>
+      <div class="pricing-price"><sup>$</sup>2,499<span class="pricing-per">/mes</span></div>
+      <span class="pricing-currency">MXN · más instalación desde $7,900</span>
+      <p class="pricing-desc">Atiende y además organiza tus pedidos en un panel ordenado.</p>
+      <ul class="pricing-features">
+        <li class="pricing-feature">Todo lo del plan Esencial</li>
+        <li class="pricing-feature">Panel para ver y organizar tus pedidos</li>
+        <li class="pricing-feature">Aviso especial cuando un cliente quiere comprar</li>
+        <li class="pricing-feature">Toma de pedidos paso a paso</li>
+        <li class="pricing-feature">Reportes de tus conversaciones</li>
+      </ul>
+      <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20el%20Bot%20de%20WhatsApp%20plan%20Negocio.%20%C2%BFMe%20pasas%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-pricing btn-pricing-solid">Lo quiero</a>
+    </div>
+    <div class="pricing-card reveal">
+      <span class="pricing-tag">Premium</span>
+      <div class="pricing-name">Multiagente</div>
+      <div class="pricing-price"><sup>$</sup>3,999<span class="pricing-per">/mes</span></div>
+      <span class="pricing-currency">MXN · más instalación desde $12,900</span>
+      <p class="pricing-desc">Para negocios con mucho volumen y varios empleados atendiendo.</p>
+      <ul class="pricing-features">
+        <li class="pricing-feature">Todo lo del plan Negocio</li>
+        <li class="pricing-feature">Varios empleados atienden desde el panel</li>
+        <li class="pricing-feature">Secciones de pedidos avanzadas</li>
+        <li class="pricing-feature">Atención prioritaria</li>
+        <li class="pricing-feature">Listo para agregar llamadas por voz</li>
+      </ul>
+      <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20el%20Bot%20de%20WhatsApp%20plan%20Premium.%20%C2%BFMe%20pasas%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-pricing btn-pricing-outline">Lo quiero</a>
+    </div>
+  </div>
+  <p class="section-desc reveal" style="margin-top: 2.5rem; max-width:680px; margin-left:auto; margin-right:auto; text-align:center; color: var(--gray-400);">
+    Las primeras 1,000 conversaciones al mes van incluidas. Ideal para restaurantes, taquerías y negocios que reciben muchos mensajes por WhatsApp.
   </p>
 </section>
 
@@ -2712,11 +2797,11 @@ footer {
     <div class="video-promo-player">
       <div class="vp-stack" id="vpStack">
         <div class="vp-card" data-label="Noel Studio">
-          <video src="assets/video-promo-demo.mp4" poster="assets/video-promo-poster.jpg" playsinline preload="none" muted loop></video>
+          <video src="assets/video-promo-demo.mp4" poster="assets/video-promo-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
           <span class="vp-tag">Noel Studio</span>
         </div>
         <div class="vp-card" data-label="El Garage">
-          <video src="assets/video-garage.mp4" poster="assets/video-garage-poster.jpg" playsinline preload="none" muted loop></video>
+          <video src="assets/video-garage.mp4" poster="assets/video-garage-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
           <span class="vp-tag">El Garage</span>
         </div>
       </div>
@@ -2771,7 +2856,11 @@ footer {
     </details>
     <details class="faq-item reveal">
       <summary>¿Cuánto tiempo tarda?</summary>
-      <p>Entre 5 y 21 días según el paquete. Te doy la fecha exacta antes de empezar y te voy mostrando avances en el camino.</p>
+      <p>Entre 1 y 21 días según el paquete: una página de presentación queda en 1 a 2 días, y los proyectos más completos hasta en 21. Te doy la fecha exacta antes de empezar y te voy mostrando avances en el camino.</p>
+    </details>
+    <details class="faq-item reveal">
+      <summary>¿Qué es el bot de WhatsApp con inteligencia artificial?</summary>
+      <p>Es un asistente que contesta tu WhatsApp por ti, las 24 horas: responde las dudas de tus clientes, toma pedidos y te avisa cuando alguien quiere comprar. Tú solo cierras la venta. Ideal si recibes muchos mensajes y no te das abasto.</p>
     </details>
     <details class="faq-item reveal">
       <summary>¿Qué pasa después de que me entregas la página?</summary>
@@ -3009,8 +3098,8 @@ function initGsapAnimations() {
         onSplit: (self) => gsap.from(self.lines, {
           yPercent: 110,
           opacity: 0,
-          duration: 0.8,
-          stagger: 0.12,
+          duration: 0.5,
+          stagger: 0.07,
           ease: 'power3.out',
           scrollTrigger: { trigger: el, start: 'top 88%', once: true }
         })
@@ -3065,8 +3154,8 @@ function initGsapAnimations() {
     const i = siblings.indexOf(el);
     const delay = i > 0 ? i * 0.08 : 0;
     gsap.to(el, {
-      opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', delay,
-      scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+      opacity: 1, y: 0, duration: 0.45, ease: 'power3.out', delay,
+      scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none none' }
     });
   });
 
@@ -3105,7 +3194,7 @@ function initGsapAnimations() {
     let pend = false;
     for(const el of lmItems){
       if(el.classList.contains('in')) continue;
-      if(el.getBoundingClientRect().top < innerHeight * 0.88) el.classList.add('in');
+      if(el.getBoundingClientRect().top < innerHeight * 0.96) el.classList.add('in');
       else pend = true;
     }
     if(!pend) removeEventListener('scroll', checkLineMask);
@@ -3155,22 +3244,22 @@ function initGsapAnimations() {
     } else {
       gsap.timeline({
         defaults: { ease: 'power3.out' },
-        scrollTrigger: { trigger: introEl, start: 'top 72%', toggleActions: 'play none none none' }
+        scrollTrigger: { trigger: introEl, start: 'top 82%', toggleActions: 'play none none none' }
       })
-      .to('.intro-eyebrow', { opacity: 1, y: 0, duration: 0.5 })
-      .to('.intro-rule',    { scaleX: 1, duration: 0.6 }, '<')
-      .to('.intro-dim',     { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.6 }, '-=0.2')
-      .to('.intro-strong',  { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.6 }, '-=0.35')
-      .to('.intro-underline', { scaleX: 1, duration: 0.7, ease: 'power2.out' }, '-=0.15')
-      .to('.intro-text',    { opacity: 1, y: 0, duration: 0.6 }, '-=0.45')
-      .to('.intro-link',    { opacity: 1, y: 0, duration: 0.5 }, '-=0.35');
+      .to('.intro-eyebrow', { opacity: 1, y: 0, duration: 0.35 })
+      .to('.intro-rule',    { scaleX: 1, duration: 0.4 }, '<')
+      .to('.intro-dim',     { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.4 }, '-=0.2')
+      .to('.intro-strong',  { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.4 }, '-=0.28')
+      .to('.intro-underline', { scaleX: 1, duration: 0.45, ease: 'power2.out' }, '-=0.12')
+      .to('.intro-text',    { opacity: 1, y: 0, duration: 0.4 }, '-=0.3')
+      .to('.intro-link',    { opacity: 1, y: 0, duration: 0.35 }, '-=0.25');
     }
   }
 
   // Premium: viñetas de la OFERTA en cascada
   gsap.to('#ofertas .offer-features li', {
-    opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', stagger: 0.1,
-    scrollTrigger: { trigger: '.offer-card', start: 'top 80%', toggleActions: 'play none none none' }
+    opacity: 1, y: 0, duration: 0.4, ease: 'power3.out', stagger: 0.06,
+    scrollTrigger: { trigger: '.offer-card', start: 'top 88%', toggleActions: 'play none none none' }
   });
 
   // Premium: el PRECIO de la oferta entra con un "pop" llamativo
