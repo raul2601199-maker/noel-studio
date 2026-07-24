@@ -2360,6 +2360,275 @@ textarea:focus-visible {
   50%      { opacity: 1; }
 }
 
+/* --- 7b. TARJETAS DE PLAN: CAPACIDAD Y PARA QUIÉN SON ---------
+   La sección del agente se divide en dos bloques (mensajes y
+   llamadas). Cada tarjeta dice CUÁNTO aguanta y PARA QUIÉN es,
+   porque un dueño no compara funciones: se busca a sí mismo en
+   la descripción. */
+
+/* Encabezado de cada bloque */
+.plan-bloque {
+  max-width: 1100px;
+  margin: 4.5rem auto 0;
+  position: relative;
+  z-index: 1;
+}
+.plan-bloque:first-of-type { margin-top: 3.5rem; }
+.plan-bloque-head {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.plan-bloque-num {
+  font-family: 'Unbounded', 'Bebas Neue', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  color: var(--gray-600);
+  padding-top: 0.5rem;
+  flex-shrink: 0;
+}
+.plan-bloque-title {
+  font-family: 'Unbounded', 'Bebas Neue', sans-serif;
+  font-size: clamp(1.25rem, 2.6vw, 1.75rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+.plan-bloque-desc {
+  margin-top: 0.7rem;
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: var(--gray-400);
+  font-weight: 300;
+  max-width: 620px;
+}
+/* El sello de "nuestro fuerte" en el bloque de llamadas */
+.plan-sello {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--black);
+  background: var(--white);
+  padding: 0.3rem 0.7rem;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+/* El número grande: lo primero que busca el ojo en la tarjeta */
+.plan-capacidad {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  margin: 1.4rem 0 1.2rem;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.pricing-card.featured .plan-capacidad {
+  border-color: rgba(0,0,0,0.12);
+}
+.plan-capacidad-num {
+  font-family: 'Unbounded', 'Bebas Neue', sans-serif;
+  font-size: 1.9rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  font-variant-numeric: tabular-nums;
+}
+.pricing-card.featured .plan-capacidad-num { color: var(--black); }
+.plan-capacidad-txt {
+  font-size: 0.76rem;
+  line-height: 1.5;
+  color: var(--gray-400);
+  font-weight: 300;
+}
+.plan-capacidad-txt i {
+  font-style: normal;
+  color: var(--gray-600);
+  font-size: 0.72rem;
+}
+.pricing-card.featured .plan-capacidad-txt,
+.pricing-card.featured .plan-capacidad-txt i { color: var(--gray-600); }
+
+/* "Para quién es": el párrafo donde el dueño se reconoce */
+.plan-para { margin-bottom: 1.4rem; }
+.plan-para-label {
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gray-600);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+.plan-para p {
+  font-size: 0.83rem;
+  line-height: 1.7;
+  color: var(--gray-400);
+  font-weight: 300;
+}
+.pricing-card.featured .plan-para p { color: var(--gray-600); }
+
+/* El costo del extra: chiquito, pero DICHO. Nunca en letras
+   escondidas al pie de la sección donde nadie lo lee. */
+.plan-extra {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--gray-600);
+  margin-bottom: 1.1rem;
+  letter-spacing: 0.02em;
+}
+
+/* Tres tarjetas para el bloque de llamadas */
+.pricing-grid-3 { margin-top: 2.5rem; }
+
+/* --- EL BLOQUE QUE MÁS VENDE: que el agente VENDE -------------
+   Un empleado cansado no ofrece el extra; el agente lo hace
+   siempre. Se muestra con conversaciones de verdad porque un
+   ejemplo concreto convence más que cualquier lista de
+   beneficios. */
+.plan-vende {
+  max-width: 1100px;
+  margin: 5rem auto 0;
+  padding: 2.5rem 2.25rem;
+  background: linear-gradient(180deg, #111111 0%, #0a0a0a 100%);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  position: relative;
+  z-index: 1;
+}
+.plan-vende-eyebrow {
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gray-600);
+  font-weight: 500;
+}
+.plan-vende-title {
+  font-family: 'Unbounded', 'Bebas Neue', sans-serif;
+  font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-top: 0.7rem;
+}
+.plan-vende-desc {
+  margin-top: 1rem;
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: var(--gray-400);
+  font-weight: 300;
+  max-width: 660px;
+}
+.plan-vende-grid {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+.vende-caso {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 11px;
+  padding: 1.35rem 1.4rem;
+}
+.vende-giro {
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gray-600);
+  margin-bottom: 0.9rem;
+  font-weight: 500;
+}
+/* Lo que dice el cliente: gris, entrecomillado, secundario. */
+.vende-cliente {
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  font-weight: 300;
+  font-style: italic;
+}
+/* Lo que responde el agente: blanco, con una barra al lado.
+   El contraste es el punto: se ve de un vistazo quién vende. */
+.vende-agente {
+  margin-top: 0.8rem;
+  padding-left: 0.9rem;
+  border-left: 2px solid rgba(255,255,255,0.35);
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: var(--white);
+  font-weight: 300;
+}
+.plan-vende-cierre {
+  margin-top: 2.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.plan-vende-cierre p {
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: var(--gray-400);
+  font-weight: 300;
+  max-width: 660px;
+}
+.plan-vende-num {
+  margin-top: 0.9rem;
+  color: var(--white) !important;
+  font-size: 0.95rem !important;
+}
+.plan-vende-num strong { font-weight: 500; }
+
+@media (max-width: 760px) {
+  .plan-vende { padding: 2rem 1.4rem; margin-top: 3.5rem; border-radius: 13px; }
+  .plan-vende-grid { grid-template-columns: 1fr; gap: 1rem; margin-top: 2rem; }
+}
+
+/* Las aclaraciones de abajo: lo que el cliente debe saber ANTES */
+.plan-notas {
+  max-width: 1100px;
+  margin: 4rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+.plan-nota {
+  border-top: 1px solid rgba(255,255,255,0.12);
+  padding-top: 1.1rem;
+}
+.plan-nota-t {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+.plan-nota p {
+  font-size: 0.82rem;
+  line-height: 1.75;
+  color: var(--gray-400);
+  font-weight: 300;
+}
+
+@media (max-width: 900px) {
+  .plan-notas { grid-template-columns: 1fr; gap: 1.75rem; }
+  .plan-bloque { margin-top: 3.5rem; }
+  .plan-bloque-head { gap: 1rem; }
+  .plan-capacidad-num { font-size: 1.7rem; }
+}
+
 /* --- 8. TEXTO Y LIENZO: ACABADO FINO --------------------------
    Suavizado de fuente (el blanco sobre negro se engrosa feo sin
    esto en Mac), color de selección de texto acorde a la marca,
@@ -2629,7 +2898,7 @@ body {
         <span class="service-name">Agente de IA que contesta tus llamadas</span>
         <p class="service-desc">Un agente con voz natural que contesta el teléfono de tu negocio cuando tú no puedes. Atiende, informa, agenda la cita y te pasa el recado por escrito. Se acabó el "nadie contestó" y el buzón de voz que nadie escucha.</p>
       </div>
-      <span class="service-tag">Desde $3,499/mes</span>
+      <span class="service-tag">Desde $3,999/mes</span>
       <span class="service-arrow">↗</span>
     </a>
     <a href="#agente-ia" class="service-item reveal">
@@ -2638,7 +2907,7 @@ body {
         <span class="service-name">Agente de Reservas y Citas</span>
         <p class="service-desc">Para salones, spas, gimnasios, consultorios y salones de eventos. El agente revisa tu agenda, ofrece los horarios libres, aparta el lugar y le manda el recordatorio al cliente un día antes para que no te falle. Tu agenda se llena sola.</p>
       </div>
-      <span class="service-tag">Desde $1,999/mes</span>
+      <span class="service-tag">Desde $1,499/mes</span>
       <span class="service-arrow">↗</span>
     </a>
     <a href="#agente-ia" class="service-item reveal">
@@ -2647,7 +2916,7 @@ body {
         <span class="service-name">Agente de Pedidos</span>
         <p class="service-desc">Para restaurantes, taquerías, tiendas y negocios de comida. El agente enseña el menú, toma la orden completa, confirma la dirección y te manda el pedido listo para preparar. Sin errores y sin tener a alguien pegado al celular.</p>
       </div>
-      <span class="service-tag">Desde $1,999/mes</span>
+      <span class="service-tag">Desde $1,499/mes</span>
       <span class="service-arrow">↗</span>
     </a>
     <a href="#precios" class="service-item reveal">
@@ -2744,61 +3013,226 @@ body {
     <div>
       <h2 class="section-title line-mask"><span>AGENTE DE</span><span>INTELIGENCIA</span><span>ARTIFICIAL</span></h2>
     </div>
-    <p class="section-desc reveal">Un empleado de inteligencia artificial entrenado con la información de tu negocio. Contesta tu WhatsApp y tus llamadas las 24 horas, agenda citas, toma pedidos y te avisa cuando un cliente quiere comprar. No se enferma, no descansa y no deja ni un mensaje sin responder.</p>
+    <p class="section-desc reveal">Un empleado de inteligencia artificial entrenado con la información de tu negocio. Atiende a tus clientes las 24 horas, agenda citas, toma pedidos y te avisa cuando alguien quiere comprar. No se enferma, no descansa y no deja ni un mensaje sin responder.</p>
   </div>
+
+  <!-- ── BLOQUE 1: MENSAJES DE WHATSAPP ────────────────────────── -->
+  <div class="plan-bloque reveal">
+    <div class="plan-bloque-head">
+      <span class="plan-bloque-num">01</span>
+      <div>
+        <h3 class="plan-bloque-title">Atiende tu WhatsApp</h3>
+        <p class="plan-bloque-desc">El agente contesta los mensajes de tu negocio al instante, a cualquier hora. Elige el paquete según cuánta gente te escribe.</p>
+      </div>
+    </div>
+  </div>
+
   <div class="pricing-grid">
     <div class="pricing-card reveal">
-      <span class="pricing-tag">Básico</span>
+      <span class="pricing-tag">Para empezar</span>
       <div class="pricing-name">Esencial</div>
       <div class="pricing-price"><sup>$</sup>1,499<span class="pricing-per">/mes</span></div>
       <span class="pricing-currency">MXN · instalación única $2,200</span>
-      <p class="pricing-desc">Para el negocio que solo quiere que le contesten y le avisen de cada cliente interesado.</p>
+
+      <div class="plan-capacidad">
+        <span class="plan-capacidad-num">500</span>
+        <span class="plan-capacidad-txt">conversaciones al mes<br><i>unas 17 personas al día</i></span>
+      </div>
+
+      <div class="plan-para">
+        <span class="plan-para-label">Para quién es</span>
+        <p>Negocios que reciben mensajes constantes pero manejables: talleres, refaccionarias, veterinarias, estéticas. Si te escriben entre diez y veinte personas al día y se te van las que llegan de noche, este es el tuyo.</p>
+      </div>
+
       <ul class="pricing-features">
         <li class="pricing-feature">Agente de IA en tu WhatsApp, 24/7</li>
         <li class="pricing-feature">Responde dudas, precios y horarios</li>
         <li class="pricing-feature">Te avisa al instante cada cliente interesado</li>
         <li class="pricing-feature">Entrenado con la información de tu negocio</li>
         <li class="pricing-feature">Habla con el tono de tu marca, no como robot</li>
+        <li class="pricing-feature">Ofrece tus promociones y sugiere el complemento</li>
         <li class="pricing-feature">Soporte conmigo</li>
       </ul>
-      <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20el%20Agente%20de%20IA%20plan%20Esencial.%20%C2%BFMe%20pasas%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-pricing btn-pricing-outline">Lo quiero</a>
+      <span class="plan-extra">Conversación adicional $2</span>
+      <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20el%20Agente%20de%20IA%20plan%20Esencial%20(500%20conversaciones).%20%C2%BFMe%20pasas%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-pricing btn-pricing-outline">Lo quiero</a>
     </div>
+
     <div class="pricing-card featured reveal">
       <span class="pricing-tag">El más pedido</span>
       <div class="pricing-name">Negocio</div>
       <div class="pricing-price"><sup>$</sup>2,499<span class="pricing-per">/mes</span></div>
       <span class="pricing-currency">MXN · instalación única $3,599</span>
-      <p class="pricing-desc">El agente no solo contesta: agenda tus citas y levanta tus pedidos completos.</p>
+
+      <div class="plan-capacidad">
+        <span class="plan-capacidad-num">1,500</span>
+        <span class="plan-capacidad-txt">conversaciones al mes<br><i>unas 50 personas al día</i></span>
+      </div>
+
+      <div class="plan-para">
+        <span class="plan-para-label">Para quién es</span>
+        <p>Negocios que viven de la agenda o de los pedidos: salones, spas, gimnasios, consultorios, restaurantes con reparto. Aquí el agente ya no solo contesta — aparta la cita, manda el recordatorio y levanta el pedido completo.</p>
+      </div>
+
       <ul class="pricing-features">
         <li class="pricing-feature">Todo lo del plan Esencial</li>
         <li class="pricing-feature">Agenda citas y reservas en tu calendario</li>
         <li class="pricing-feature">Recordatorio automático al cliente un día antes</li>
         <li class="pricing-feature">Toma pedidos completos paso a paso</li>
         <li class="pricing-feature">Panel para ver y organizar todo</li>
+        <li class="pricing-feature">Sube el ticket: propone el 2x1, el extra o el paquete</li>
         <li class="pricing-feature">Reportes de qué te preguntan tus clientes</li>
       </ul>
-      <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20el%20Agente%20de%20IA%20plan%20Negocio.%20%C2%BFMe%20pasas%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-pricing btn-pricing-solid">Lo quiero</a>
+      <span class="plan-extra">Conversación adicional $1.50</span>
+      <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20el%20Agente%20de%20IA%20plan%20Negocio%20(1%2C500%20conversaciones).%20%C2%BFMe%20pasas%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-pricing btn-pricing-solid">Lo quiero</a>
     </div>
+  </div>
+
+  <!-- ── BLOQUE 2: LLAMADAS POR VOZ (el fuerte) ─────────────────── -->
+  <div class="plan-bloque plan-bloque-fuerte reveal">
+    <div class="plan-bloque-head">
+      <span class="plan-bloque-num">02</span>
+      <div>
+        <h3 class="plan-bloque-title">Contesta tus llamadas <span class="plan-sello">Nuestro fuerte</span></h3>
+        <p class="plan-bloque-desc">La llamada perdida no deja rastro: no sabes quién era ni qué quería. Un agente con voz natural contesta el teléfono de tu negocio, atiende, agenda y te deja el recado por escrito. Incluye todo lo del agente de WhatsApp.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pricing-grid pricing-grid-3">
     <div class="pricing-card reveal">
-      <span class="pricing-tag">Con llamadas por voz</span>
-      <div class="pricing-name">Voz</div>
+      <span class="pricing-tag">Voz · Esencial</span>
+      <div class="pricing-name">250 llamadas</div>
       <div class="pricing-price"><sup>$</sup>3,999<span class="pricing-per">/mes</span></div>
       <span class="pricing-currency">MXN · instalación única $4,900</span>
-      <p class="pricing-desc">El agente además contesta el teléfono de tu negocio con voz natural.</p>
+
+      <div class="plan-capacidad">
+        <span class="plan-capacidad-num">250</span>
+        <span class="plan-capacidad-txt">llamadas al mes<br><i>unas 8 al día</i></span>
+      </div>
+
+      <div class="plan-para">
+        <span class="plan-para-label">Para quién es</span>
+        <p>El negocio donde la gente todavía marca en vez de escribir: talleres, veterinarias, dentistas, spas. Si trae llamadas perdidas en el celular y ni sabe de quién eran, empiece por aquí.</p>
+      </div>
+
       <ul class="pricing-features">
-        <li class="pricing-feature">Todo lo del plan Negocio</li>
+        <li class="pricing-feature">Todo el agente de WhatsApp incluido</li>
         <li class="pricing-feature">Contesta tus llamadas con voz natural</li>
         <li class="pricing-feature">Atiende, informa y agenda por teléfono</li>
         <li class="pricing-feature">Te deja el recado por escrito de cada llamada</li>
-        <li class="pricing-feature">Varios empleados atienden desde el panel</li>
-        <li class="pricing-feature">Atención prioritaria</li>
+        <li class="pricing-feature">1,500 conversaciones de WhatsApp incluidas</li>
       </ul>
-      <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20el%20Agente%20de%20IA%20plan%20Voz%20(llamadas).%20%C2%BFMe%20pasas%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-pricing btn-pricing-outline">Lo quiero</a>
+      <span class="plan-extra">Llamada adicional $12</span>
+      <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20el%20Agente%20de%20Voz%20de%20250%20llamadas.%20%C2%BFMe%20pasas%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-pricing btn-pricing-outline">Lo quiero</a>
+    </div>
+
+    <div class="pricing-card featured reveal">
+      <span class="pricing-tag">El que más se vende</span>
+      <div class="pricing-name">600 llamadas</div>
+      <div class="pricing-price"><sup>$</sup>6,999<span class="pricing-per">/mes</span></div>
+      <span class="pricing-currency">MXN · instalación única $7,900</span>
+
+      <div class="plan-capacidad">
+        <span class="plan-capacidad-num">600</span>
+        <span class="plan-capacidad-txt">llamadas al mes<br><i>unas 20 al día</i></span>
+      </div>
+
+      <div class="plan-para">
+        <span class="plan-para-label">Para quién es</span>
+        <p>Negocios que no paran de sonar: clínicas, hoteles, inmobiliarias, escuelas, salones de eventos. Si tiene a alguien contestando el teléfono todo el día, este plan le cuesta menos que esa persona y trabaja domingos.</p>
+      </div>
+
+      <ul class="pricing-features">
+        <li class="pricing-feature">Todo lo del plan de 250 llamadas</li>
+        <li class="pricing-feature">Varios empleados atienden desde el panel</li>
+        <li class="pricing-feature">Transfiere la llamada a una persona si hace falta</li>
+        <li class="pricing-feature">Reportes de qué preguntan por teléfono</li>
+        <li class="pricing-feature">3,000 conversaciones de WhatsApp incluidas</li>
+      </ul>
+      <span class="plan-extra">Llamada adicional $10</span>
+      <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20el%20Agente%20de%20Voz%20de%20600%20llamadas.%20%C2%BFMe%20pasas%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-pricing btn-pricing-solid">Lo quiero</a>
+    </div>
+
+    <div class="pricing-card reveal">
+      <span class="pricing-tag">Voz · Total</span>
+      <div class="pricing-name">1,200 llamadas</div>
+      <div class="pricing-price"><sup>$</sup>10,999<span class="pricing-per">/mes</span></div>
+      <span class="pricing-currency">MXN · instalación única $12,900</span>
+
+      <div class="plan-capacidad">
+        <span class="plan-capacidad-num">1,200</span>
+        <span class="plan-capacidad-txt">llamadas al mes<br><i>unas 40 al día</i></span>
+      </div>
+
+      <div class="plan-para">
+        <span class="plan-para-label">Para quién es</span>
+        <p>Operaciones grandes con varias líneas o sucursales: hospitales, agencias, distribuidores, cadenas. Donde hoy se necesitan dos o tres personas nada más para contestar el teléfono.</p>
+      </div>
+
+      <ul class="pricing-features">
+        <li class="pricing-feature">Todo lo del plan de 600 llamadas</li>
+        <li class="pricing-feature">Varias líneas o sucursales</li>
+        <li class="pricing-feature">Atención prioritaria y revisión mensual conmigo</li>
+        <li class="pricing-feature">Ajustes ilimitados del agente</li>
+        <li class="pricing-feature">Conversaciones de WhatsApp sin límite</li>
+      </ul>
+      <span class="plan-extra">Llamada adicional $8</span>
+      <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20el%20Agente%20de%20Voz%20de%201%2C200%20llamadas.%20%C2%BFMe%20pasas%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-pricing btn-pricing-outline">Lo quiero</a>
     </div>
   </div>
-  <p class="section-desc reveal" style="margin-top: 2.5rem; max-width:720px; margin-left:auto; margin-right:auto; text-align:center; color: var(--gray-400);">
-    Las primeras 1,000 conversaciones al mes van incluidas. Antes de que pagues nada, te armo tu agente con la información de tu negocio y lo pruebas tú mismo desde tu celular.
-  </p>
+
+  <!-- ── LO QUE DE VERDAD LO PAGA: que además VENDE ────────────── -->
+  <div class="plan-vende reveal">
+    <div class="plan-vende-head">
+      <span class="plan-vende-eyebrow">Lo que ningún empleado hace siempre</span>
+      <h3 class="plan-vende-title">No solo contesta. Vende.</h3>
+      <p class="plan-vende-desc">Un empleado cansado en hora pico no ofrece el postre, se le olvida mencionar la promoción y le da pena insistir. El agente lo hace en el cien por ciento de las conversaciones, sin sonar insistente y sin fallar una sola vez. Ahí es donde el servicio se paga solo.</p>
+    </div>
+
+    <div class="plan-vende-grid">
+      <div class="vende-caso">
+        <span class="vende-giro">Restaurante</span>
+        <p class="vende-cliente">«Quiero dos hamburguesas»</p>
+        <p class="vende-agente">Va, se las anoto. Hoy tenemos la promoción de papas grandes con refresco por $45 más. ¿Se las agrego a las dos?</p>
+      </div>
+      <div class="vende-caso">
+        <span class="vende-giro">Salón de belleza</span>
+        <p class="vende-cliente">«¿Cuánto cuesta el corte?»</p>
+        <p class="vende-agente">El corte son $250. Esta semana traemos corte con tinte por $600, que por separado saldrían $780. ¿Le aparto los dos servicios?</p>
+      </div>
+      <div class="vende-caso">
+        <span class="vende-giro">Tienda</span>
+        <p class="vende-cliente">«Me llevo dos playeras»</p>
+        <p class="vende-agente">Perfecto. Ahorita están al 2x3: llevándose una más, las tres le salen al precio de dos. ¿Le agrego la tercera?</p>
+      </div>
+      <div class="vende-caso">
+        <span class="vende-giro">Taller mecánico</span>
+        <p class="vende-cliente">«Necesito cambio de aceite»</p>
+        <p class="vende-agente">Con gusto. Ya que trae el carro, la revisión de frenos y suspensión va sin costo con el servicio. ¿Se la incluyo?</p>
+      </div>
+    </div>
+
+    <div class="plan-vende-cierre">
+      <p>Tú le cargas tus promociones y qué conviene ofrecer con cada cosa. El agente lo aplica en cada conversación, a cualquier hora.</p>
+      <p class="plan-vende-num">Si sube el ticket promedio solo $20 en 40 pedidos diarios, son <strong>$24,000 al mes</strong> que hoy no estás cobrando.</p>
+    </div>
+  </div>
+
+  <!-- Aclaraciones honestas: lo que el cliente necesita saber ANTES -->
+  <div class="plan-notas reveal">
+    <div class="plan-nota">
+      <span class="plan-nota-t">¿Qué cuenta como una conversación?</span>
+      <p>Un cliente escribiendo durante todo un día cuenta como una sola, no importa cuántos mensajes mande. Por eso 500 conversaciones alcanzan para mucho más de lo que parece.</p>
+    </div>
+    <div class="plan-nota">
+      <span class="plan-nota-t">¿Y si me paso del paquete?</span>
+      <p>No se apaga nada ni se queda nadie sin respuesta. Se cobra el extra al precio de su plan, y si pasa seguido le conviene subir al siguiente, donde cada una sale más barata.</p>
+    </div>
+    <div class="plan-nota">
+      <span class="plan-nota-t">Lo prueba antes de pagar</span>
+      <p>Le armo el agente con la información real de su negocio y le paso un número para que platique con él desde su celular. Si le convence, lo dejamos trabajando.</p>
+    </div>
+  </div>
 </section>
 
 <!-- OFERTA DE LANZAMIENTO -->
