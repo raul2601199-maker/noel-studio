@@ -1798,7 +1798,8 @@ footer {
     text-align: center;
   }
   .hero-sub p { max-width: 340px; }
-  #servicios, #proceso, #portafolio, #precios, #plan-mensual, #correo, #agente-ia, #video, #preguntas, #contacto { padding: 5rem 1.5rem; }
+  #servicios, #proceso, #portafolio, #precios, #plan-mensual, #correo, #agente-ia,
+  #agente-llamadas, #ofertas, #video, #preguntas, #sobre-mi, #contacto { padding: 5rem 1.5rem; }
   .section-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
   .section-desc { text-align: left; max-width: 100%; }
   .service-item { grid-template-columns: 60px 1fr; }
@@ -2906,6 +2907,436 @@ body {
   .demo-stage { max-width: 80vw; }
   .demo-phone video { max-height: 62vh; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   CELULAR — capa final de ajustes. Va al final a propósito: así corrige
+   sin tocar nada de lo que ya funciona más arriba.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* 1. LO QUE TRABA EL SCROLL ─────────────────────────────────────────
+   Un filter: blur() grande obliga al navegador a redibujar esa zona en
+   CADA cuadro del scroll. En una computadora se nota poco; en celular
+   tira los FPS. Se cambian por un degradado radial, que se ve casi
+   igual y no cuesta nada. */
+@media (max-width: 768px) {
+  .hero-aura,
+  .hero-right::before,
+  .demo-stage::before {
+    filter: none !important;
+    -webkit-filter: none !important;
+  }
+  .demo-stage::before { opacity: 0.5; }
+
+  /* El desenfoque de fondo también recalcula al hacer scroll. */
+  .vp-card,
+  .demo-cap,
+  .faq-item,
+  .pricing-card {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  /* Las secciones largas no se dibujan hasta que están por entrar en
+     pantalla. contain-intrinsic-size reserva su alto para que la barra
+     de scroll no dé saltos. */
+  #portafolio, #proceso, #video, #preguntas, #sobre-mi, #contacto {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
+  }
+}
+
+/* 2. LOS SERVICIOS ──────────────────────────────────────────────────
+   En celular el renglón pasa a dos columnas, pero el precio y la flecha
+   quedaban colgando en una fila suelta. Se acomodan debajo del texto. */
+@media (max-width: 768px) {
+  .service-item {
+    grid-template-columns: 44px 1fr;
+    gap: 0.35rem 0.9rem;
+    padding: 1.6rem 0;
+    align-items: start;
+  }
+  .service-num { padding-top: 0.28rem; }
+  .service-name { font-size: 1.02rem; line-height: 1.35; }
+  .service-desc { font-size: 0.82rem; margin-top: 0.45rem; max-width: 100%; }
+  .service-tag {
+    grid-column: 2; font-size: 0.66rem;
+    margin-top: 0.55rem; color: var(--gray-400);
+  }
+  .service-arrow { display: none; }          /* no hay mouse: no hay flecha que animar */
+  .service-promo { padding-left: 0.9rem; }
+  .service-promo .service-tag { color: var(--white); }
+}
+
+/* 3. LAS DOS DEMOSTRACIONES EN VIDEO ────────────────────────────────
+   Nacieron en dos columnas (teléfono + texto). En celular no caben:
+   se apilan, el aparato primero. */
+@media (max-width: 900px) {
+  .demo-wrap {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 520px;
+    margin-left: auto; margin-right: auto;
+  }
+  .demo-info { text-align: left; }
+  .demo-title { font-size: 1.35rem; line-height: 1.25; }
+  .demo-p, .demo-nota { font-size: 0.88rem; line-height: 1.65; }
+  .demo-list li { font-size: 0.86rem; }
+  /* 44 px es el mínimo cómodo para un dedo. */
+  .demo-cap { min-height: 46px; font-size: 0.8rem; padding: 0.7rem 0.9rem; }
+  .demo-cta { display: inline-flex; min-height: 48px; align-items: center; }
+}
+@media (max-width: 520px) {
+  .demo-wrap { max-width: 100%; }
+  .demo-phone { padding: 8px; border-radius: 34px; }
+  .demo-caps { margin-top: 1rem; }
+}
+
+/* 4. LOS PAQUETES ───────────────────────────────────────────────────*/
+@media (max-width: 768px) {
+  .plan-bloque { margin-top: 3rem; }
+  .plan-bloque-head { gap: 0.9rem; }
+  .plan-bloque-num { font-size: 1.5rem; }
+  .plan-bloque-title { font-size: 1.15rem; line-height: 1.3; }
+  .plan-bloque-desc { font-size: 0.86rem; line-height: 1.65; }
+  .plan-sello { display: inline-block; margin-top: 0.4rem; }
+  .plan-capacidad { margin: 1.1rem 0 1rem; padding: 0.8rem 0; }
+  .plan-capacidad-num { font-size: 2rem; }
+  .plan-capacidad-txt { font-size: 0.78rem; }
+  .plan-para p { font-size: 0.82rem; line-height: 1.6; }
+  .pricing-feature { font-size: 0.82rem; }
+  .btn-pricing { min-height: 50px; display: flex; align-items: center; justify-content: center; }
+}
+
+/* 5. NÚMEROS Y SOBRE MÍ (no tenían ajuste) ──────────────────────────*/
+@media (max-width: 768px) {
+  .stats { padding: 3.5rem 1.5rem; }
+  .about-wrap {
+    grid-template-columns: 1fr;
+    gap: 2rem; margin-top: 2.5rem;
+  }
+  #sobre-mi { padding: 5rem 1.5rem; }
+}
+
+/* 6. PREGUNTAS — el resumen debe ser cómodo de tocar ────────────────*/
+@media (max-width: 768px) {
+  .faq-list { margin-top: 2.5rem; }
+  .faq-item { padding: 0 1rem; }
+  .faq-item summary { min-height: 52px; font-size: 0.92rem; line-height: 1.4; }
+  .faq-item p { font-size: 0.86rem; line-height: 1.7; }
+}
+
+/* 7. NADA SE SALE DE PANTALLA ───────────────────────────────────────
+   Un solo elemento más ancho que la ventana hace que TODA la página se
+   pueda mover en horizontal. Es el defecto más común en celular. */
+@media (max-width: 768px) {
+  html, body { overflow-x: hidden; max-width: 100%; }
+  img, video, iframe, svg { max-width: 100%; height: auto; }
+  .section-title { word-break: normal; overflow-wrap: anywhere; }
+  pre, code { white-space: pre-wrap; word-break: break-word; }
+}
+
+/* 8. TODO LO QUE SE TOCA, CÓMODO ────────────────────────────────────
+   Apple y Google recomiendan 44 px de lado. Debajo de eso el dedo falla. */
+@media (max-width: 768px) {
+  .hero-btn, .nav-cta, .btn-offer, .btn-submit,
+  .vp-nav, .demo-play, .nav-toggle {
+    min-height: 46px;
+  }
+  .social-links a { min-width: 42px; min-height: 42px;
+                    display: inline-flex; align-items: center; justify-content: center; }
+  .vp-dots button { min-width: 22px; min-height: 22px; }
+}
+
+/* 9. EL TECLADO NO DEBE HACER ZOOM ──────────────────────────────────
+   Safari en iPhone acerca la pantalla si un campo tiene menos de 16 px.
+   Queda descuadrada y el visitante tiene que alejar a mano. */
+@media (max-width: 768px) {
+  input, textarea, select, button { font-size: 16px; }
+  .form-group input, .form-group textarea { min-height: 48px; }
+  .form-group textarea { min-height: 120px; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   TARJETAS DE PRECIO — jerarquía.
+   Estaban pesadas porque el nombre (2rem), el precio (2.1rem) y el número
+   de capacidad (1.9rem) medían casi lo mismo: tres cosas gritando igual.
+   Aquí manda UNO solo, el precio. Lo demás se acomoda debajo de él.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* El nombre del plan es una etiqueta, no un título. Baja de rango. */
+.pricing-name {
+  font-size: 1.05rem !important;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray-200);
+  margin-bottom: 0.5rem !important;
+}
+
+/* El precio es lo único que crece. */
+.pricing-price { font-size: 2.6rem !important; line-height: 1.05; }
+.pricing-price sup { font-size: 0.42em; top: -0.72em; }
+.pricing-per { font-size: 0.38em; letter-spacing: 0.02em; }
+
+/* La capacidad informa, no compite. */
+.plan-capacidad-num { font-size: 1.45rem !important; }
+.plan-capacidad { margin: 1.1rem 0 1rem !important; padding: 0.85rem 0 !important; }
+
+/* Menos aire dentro y entre renglones: la misma información ocupa menos
+   y la tarjeta se siente ligera sin quitarle nada. */
+.pricing-card { padding: 2rem 1.65rem !important; }
+.pricing-features { gap: 0.55rem !important; margin-bottom: 1.6rem !important; }
+.pricing-feature { font-size: 0.84rem; line-height: 1.45; }
+.plan-para { margin-bottom: 1.1rem !important; }
+.plan-para p { font-size: 0.8rem; line-height: 1.6; }
+.pricing-desc { font-size: 0.84rem; line-height: 1.6; }
+.pricing-tag { margin-bottom: 1.4rem !important; }
+
+@media (max-width: 768px) {
+  .pricing-card { padding: 1.7rem 1.35rem !important; }
+  .pricing-price { font-size: 2.3rem !important; }
+  .pricing-name { font-size: 0.95rem !important; }
+}
+
+/* ── ARREGLO DE CONTRASTE EN LA TARJETA DESTACADA ──────────────────
+   La destacada tiene fondo blanco. El nombre del plan en gris claro
+   quedaba prácticamente invisible sobre él. */
+.pricing-card.featured .pricing-name { color: #111 !important; }
+.pricing-card.featured .pricing-tag  { color: #555 !important; }
+.pricing-card.featured .plan-capacidad-txt { color: #444; }
+.pricing-card.featured .plan-para-label { color: #555; }
+
+/* ── EN CELULAR LA TARJETA NO DEBE PASAR DE UNA PANTALLA ───────────
+   El párrafo de "para quién es" son cinco renglones dentro de cada
+   tarjeta. Con tres tarjetas apiladas, el visitante hace scroll y
+   scroll sin llegar al precio siguiente. Se vuelve desplegable: quien
+   quiera leerlo lo abre, y el resto pasa de largo. */
+@media (max-width: 768px) {
+  .plan-para details { margin: 0; }
+  .plan-para summary {
+    list-style: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: .6rem; min-height: 44px;
+    font-size: .72rem; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--gray-400);
+  }
+  .plan-para summary::-webkit-details-marker { display: none; }
+  .plan-para summary::after {
+    content: '+'; font-size: 1.1rem; line-height: 1;
+    color: var(--gray-400); transition: transform .2s var(--ease-out);
+  }
+  .plan-para details[open] summary::after { content: '−'; }
+  .featured .plan-para summary,
+  .featured .plan-para summary::after { color: #555; }
+  .plan-para details p { margin-top: .6rem; }
+
+  /* Un poco más apretado en general */
+  .pricing-features { gap: .5rem !important; margin-bottom: 1.3rem !important; }
+  .pricing-feature { font-size: .82rem; }
+  .plan-capacidad { margin: .9rem 0 .85rem !important; padding: .75rem 0 !important; }
+  .pricing-tag { margin-bottom: 1rem !important; }
+  /* La destacada no se agranda en celular: ya es la más larga de por sí. */
+  .pricing-card.featured { transform: none !important; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   PRECIOS EN CELULAR — se deslizan de lado.
+   Sin márgenes negativos: antes las tarjetas quedaban cortadas por los
+   dos lados porque el truco del sangrado no cuadraba con el margen de
+   la sección. Ahora la primera arranca alineada con el texto y la
+   última termina con el mismo aire.
+   ═══════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .pricing-grid,
+  .pricing-grid-3,
+  .pricing-grid--duo {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;   /* si se centra, la primera tarjeta se sale */
+    align-items: stretch !important;
+    gap: 0.8rem !important;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0.4rem 0 1rem !important;
+    margin: 0 !important;
+    width: 100%; max-width: 100% !important;
+  }
+  .pricing-grid::-webkit-scrollbar,
+  .pricing-grid-3::-webkit-scrollbar,
+  .pricing-grid--duo::-webkit-scrollbar { display: none; }
+
+  .pricing-grid > .pricing-card,
+  .pricing-grid-3 > .pricing-card,
+  .pricing-grid--duo > .pricing-card {
+    flex: 0 0 80%;
+    scroll-snap-align: start;
+    margin: 0 !important;
+  }
+  /* Cola invisible: sin ella la última tarjeta queda pegada a la orilla
+     porque el padding derecho no se respeta al desbordar. */
+  .pricing-grid::after,
+  .pricing-grid-3::after,
+  .pricing-grid--duo::after {
+    content: ''; flex: 0 0 20%;
+  }
+
+  /* El número ya está en el nombre ("600 LLAMADAS"): no repetirlo. */
+  .pricing-grid-3 .plan-capacidad {
+    border: 0 !important; padding: 0 !important;
+    margin: -0.35rem 0 0.9rem !important; display: block !important;
+  }
+  .pricing-grid-3 .plan-capacidad-num { display: none; }
+  .pricing-grid-3 .plan-capacidad-txt { font-size: 0.76rem; color: var(--gray-400); }
+  .pricing-grid-3 .plan-capacidad-txt br { display: none; }
+  .pricing-grid-3 .plan-capacidad-txt i { font-style: normal; }
+  .featured .plan-capacidad-txt { color: #555; }
+}
+
+/* ── AVISO DE QUE SE DESLIZA ───────────────────────────────────────
+   Un renglón solo no basta: mucha gente no lo lee. Se le suman puntos
+   que marcan en qué tarjeta va, como en las apps. */
+.pricing-nav { display: none; }
+@media (max-width: 768px) {
+  .pricing-nav {
+    display: flex; align-items: center; justify-content: center;
+    gap: .9rem; margin: .2rem 0 1.6rem;
+  }
+  .pricing-nav-dots { display: flex; gap: .4rem; }
+  .pricing-nav-dots span {
+    width: 7px; height: 7px; border-radius: 999px;
+    background: rgba(255,255,255,.22);
+    transition: background .25s var(--ease-out), width .25s var(--ease-out);
+  }
+  .pricing-nav-dots span.on { background: var(--white); width: 20px; }
+  .pricing-nav-txt {
+    font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--gray-600); transition: opacity .3s var(--ease-out);
+  }
+  .pricing-nav.usado .pricing-nav-txt { opacity: 0; }
+}
+
+/* ── LA TARJETA, MÁS CHICA ─────────────────────────────────────────
+   Se veía enorme porque llegaba casi a las orillas de la pantalla y
+   traía mucho relleno adentro. Aquí se encoge sin quitarle una sola
+   línea de información: solo respira menos por dentro y deja aire
+   por fuera. */
+@media (max-width: 768px) {
+  .pricing-card {
+    padding: 1.5rem 1.25rem !important;
+    border-radius: 16px;
+  }
+  .pricing-price { font-size: 2rem !important; }
+  .pricing-name  { font-size: 0.86rem !important; letter-spacing: 0.12em; }
+  .pricing-tag   { font-size: 0.6rem; margin-bottom: 0.85rem !important; }
+  .pricing-currency { font-size: 0.68rem; }
+  .pricing-feature  { font-size: 0.78rem; line-height: 1.4; }
+  .pricing-features { gap: 0.42rem !important; margin-bottom: 1.1rem !important; }
+  .plan-extra { font-size: 0.7rem; }
+  .btn-pricing { min-height: 46px; font-size: 0.78rem; letter-spacing: 0.1em; }
+  .plan-para summary { font-size: 0.66rem; min-height: 38px; }
+  .plan-para details p { font-size: 0.78rem; }
+}
+
+/* En pantallas muy angostas la tarjeta gana un poco de ancho: si no,
+   los renglones se parten en dos y se ve peor que grande. */
+@media (max-width: 380px) {
+  .pricing-grid > .pricing-card,
+  .pricing-grid-3 > .pricing-card,
+  .pricing-grid--duo > .pricing-card { flex: 0 0 85%; }
+  .pricing-grid::after, .pricing-grid-3::after, .pricing-grid--duo::after { flex-basis: 15%; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   FONDO DE LA SECCIÓN DE WHATSAPP
+   Verde MUY oscuro, casi negro. La idea es que se note que empieza otra
+   sección sin que parezca banner de promoción: el sitio es oscuro y
+   elegante, y un verde saturado lo abarataría. El color se toma del
+   verde de WhatsApp (#25D366) pero bajado casi por completo.
+   ═══════════════════════════════════════════════════════════════════ */
+#agente-ia {
+  position: relative;
+  background:
+    radial-gradient(120% 70% at 50% -10%, rgba(37,211,102,0.13) 0%, rgba(37,211,102,0.04) 38%, rgba(37,211,102,0) 68%),
+    linear-gradient(180deg, #071310 0%, #050d0b 45%, #050807 100%);
+  border-top: 1px solid rgba(37,211,102,0.18);
+  border-bottom: 1px solid rgba(37,211,102,0.10);
+  isolation: isolate;
+}
+
+/* Un hilo de luz verde en el borde de arriba: marca dónde empieza. */
+#agente-ia::after {
+  content: '';
+  position: absolute; inset: 0 0 auto 0; height: 1px;
+  background: linear-gradient(90deg,
+    rgba(37,211,102,0) 0%, rgba(37,211,102,0.55) 50%, rgba(37,211,102,0) 100%);
+  pointer-events: none;
+}
+
+/* Los detalles se tiñen apenas: el título, la etiqueta de la demo y los
+   puntos de la lista. Nada de texto verde: se lee peor y grita. */
+#agente-ia .demo-eyebrow { color: #4ade80; }
+#agente-ia .pricing-card { border-color: rgba(37,211,102,0.14); }
+#agente-ia .pricing-card.featured { border-color: transparent; }
+#agente-ia .pricing-feature::before,
+#agente-ia .demo-list li::before { color: #4ade80; }
+#agente-ia .plan-capacidad { border-color: rgba(37,211,102,0.16); }
+
+/* En la tarjeta destacada (fondo blanco) el verde se oscurece para que
+   siga leyéndose bien. */
+#agente-ia .pricing-card.featured .pricing-feature::before { color: #1a9e4b; }
+
+/* La demostración de WhatsApp ya usa verde para la etiqueta AGENTE:
+   aquí solo se le da un poco más de cuerpo al resplandor del aparato. */
+#agente-ia .demo-stage::before {
+  background: radial-gradient(closest-side, rgba(37,211,102,0.22), rgba(37,211,102,0) 72%);
+}
+
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   FONDO DE LA SECCIÓN DE LLAMADAS
+   Misma receta que el verde de WhatsApp, pero con luz BLANCA: negro
+   más profundo que el resto de la página y un resplandor blanco que
+   baja desde arriba. Al ser el servicio principal, la luz es un poco
+   más fuerte que la de la sección verde.
+   ═══════════════════════════════════════════════════════════════════ */
+#agente-llamadas {
+  position: relative;
+  background:
+    radial-gradient(125% 72% at 50% -12%, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.055) 36%, rgba(255,255,255,0) 68%),
+    linear-gradient(180deg, #0e0e0e 0%, #070707 48%, #030303 100%);
+  border-top: 1px solid rgba(255,255,255,0.22);
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+  isolation: isolate;
+}
+
+/* Hilo de luz blanco en el borde de arriba: marca dónde empieza. */
+#agente-llamadas::after {
+  content: '';
+  position: absolute; inset: 0 0 auto 0; height: 1px;
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0) 0%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,0) 100%);
+  pointer-events: none;
+}
+
+/* Los detalles ganan un punto de brillo, sin cambiar de color. */
+#agente-llamadas .demo-eyebrow { color: #ffffff; }
+#agente-llamadas .pricing-card { border-color: rgba(255,255,255,0.16); }
+#agente-llamadas .pricing-card.featured { border-color: transparent; }
+#agente-llamadas .plan-capacidad { border-color: rgba(255,255,255,0.18); }
+#agente-llamadas .plan-sello { border-color: rgba(255,255,255,0.55); color: #ffffff; }
+
+/* El resplandor detrás del teléfono, en blanco y más presente. */
+#agente-llamadas .demo-stage::before {
+  background: radial-gradient(closest-side, rgba(255,255,255,0.20), rgba(255,255,255,0) 72%);
+}
+
+/* PÁGINAS WEB se queda en negro plano: entre el verde y la luz blanca,
+   una sección sin tratamiento descansa la vista. */
+#precios { position: relative; border-top: 1px solid rgba(255,255,255,0.10); }
 </style>
 </head>
 <body>
@@ -2930,10 +3361,11 @@ body {
 <!-- NAV -->
 <nav id="navbar">
   <ul class="nav-links">
-    <li><a href="#agente-ia">Agentes de IA</a></li>
+    <li><a href="#agente-ia">IA en WhatsApp</a></li>
+    <li><a href="#agente-llamadas">IA en llamadas</a></li>
+    <li><a href="#precios">Páginas web</a></li>
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#ofertas">Ofertas</a></li>
-    <li><a href="#precios">Páginas web</a></li>
     <li><a href="#portafolio">Portafolio</a></li>
     <li><a href="#proceso">Cómo trabajo</a></li>
     <li><a href="#video">Video</a></li>
@@ -3079,149 +3511,16 @@ body {
   </div>
 </div>
 
-<!-- SERVICIOS -->
-<section id="servicios">
-  <div class="section-header">
-    <div>
-      <h2 class="section-title line-mask"><span>LO QUE</span><span>HAGO</span></h2>
-    </div>
-    <p class="section-desc reveal">Inteligencia artificial que atiende a tus clientes por ti, a cualquier hora. Y todo lo demás que tu negocio necesita en internet.</p>
-  </div>
-  <div class="services-list">
-    <a href="#agente-ia" class="service-item service-promo reveal">
-      <span class="service-num"><span class="promo-pill">Principal</span></span>
-      <div>
-        <span class="service-name">Agente de IA para tu WhatsApp</span>
-        <p class="service-desc">Una inteligencia artificial entrenada con la información de tu negocio que contesta tu WhatsApp las 24 horas: responde dudas, dice precios, agenda citas, toma pedidos y te avisa al instante cuando alguien quiere comprar. Nunca deja un mensaje sin responder, ni a las 3 de la mañana.</p>
-      </div>
-      <span class="service-tag">Desde $1,499/mes</span>
-      <span class="service-arrow">↗</span>
-    </a>
-    <a href="#agente-ia" class="service-item reveal">
-      <span class="service-num">01</span>
-      <div>
-        <span class="service-name">Agente de IA que contesta tus llamadas</span>
-        <p class="service-desc">Un agente con voz natural que contesta el teléfono de tu negocio cuando tú no puedes. Atiende, informa, agenda la cita y te pasa el recado por escrito. Se acabó el "nadie contestó" y el buzón de voz que nadie escucha.</p>
-      </div>
-      <span class="service-tag">Desde $3,999/mes</span>
-      <span class="service-arrow">↗</span>
-    </a>
-    <a href="#agente-ia" class="service-item reveal">
-      <span class="service-num">02</span>
-      <div>
-        <span class="service-name">Agente de Reservas y Citas</span>
-        <p class="service-desc">Para salones, spas, gimnasios, consultorios y salones de eventos. El agente revisa tu agenda, ofrece los horarios libres, aparta el lugar y le manda el recordatorio al cliente un día antes para que no te falle. Tu agenda se llena sola.</p>
-      </div>
-      <span class="service-tag">Desde $1,499/mes</span>
-      <span class="service-arrow">↗</span>
-    </a>
-    <a href="#agente-ia" class="service-item reveal">
-      <span class="service-num">03</span>
-      <div>
-        <span class="service-name">Agente de Pedidos</span>
-        <p class="service-desc">Para restaurantes, taquerías, tiendas y negocios de comida. El agente enseña el menú, toma la orden completa, confirma la dirección y te manda el pedido listo para preparar. Sin errores y sin tener a alguien pegado al celular.</p>
-      </div>
-      <span class="service-tag">Desde $1,499/mes</span>
-      <span class="service-arrow">↗</span>
-    </a>
-    <a href="#precios" class="service-item reveal">
-      <span class="service-num">04</span>
-      <div>
-        <span class="service-name">Página de Presentación</span>
-        <p class="service-desc">Una sola página con todo lo importante de tu negocio: qué haces, fotos de tu trabajo, dónde estás y un botón para que te escriban directo al WhatsApp. Ideal para empezar.</p>
-      </div>
-      <span class="service-tag">Desde $7,000 MXN</span>
-      <span class="service-arrow">↗</span>
-    </a>
-    <a href="#precios" class="service-item reveal">
-      <span class="service-num">05</span>
-      <div>
-        <span class="service-name">Sitio Web Completo</span>
-        <p class="service-desc">Varias páginas conectadas: inicio, servicios, quiénes somos y contacto. Incluye herramientas para tu negocio, como un inventario bien organizado de tus productos. Para negocios que quieren verse grandes y profesionales en internet.</p>
-      </div>
-      <span class="service-tag">Desde $12,000 MXN</span>
-      <span class="service-arrow">↗</span>
-    </a>
-    <a href="#contacto" class="service-item reveal">
-      <span class="service-num">06</span>
-      <div>
-        <span class="service-name">Tienda en Línea</span>
-        <p class="service-desc">Tus productos en internet con carrito de compras y pagos seguros. Tus clientes te compran a cualquier hora, aunque la tienda física esté cerrada.</p>
-      </div>
-      <span class="service-tag">Desde $18,000 MXN</span>
-      <span class="service-arrow">↗</span>
-    </a>
-    <a href="#contacto" class="service-item reveal">
-      <span class="service-num">07</span>
-      <div>
-        <span class="service-name">Aparecer en Google</span>
-        <p class="service-desc">Trabajo tu página cada mes para que cuando alguien busque en Google lo que tú vendes en Chihuahua, tu negocio salga entre los primeros. (A esto se le llama SEO.)</p>
-      </div>
-      <span class="service-tag">Desde $3,000/mes MXN</span>
-      <span class="service-arrow">↗</span>
-    </a>
-    <a href="#correo" class="service-item reveal">
-      <span class="service-num">08</span>
-      <div>
-        <span class="service-name">Correo Profesional con IA</span>
-        <p class="service-desc">Tu correo con el nombre de tu negocio (como ventas@tunegocio.com), en vez de un @gmail común. Se ve serio y da confianza. Trae un asistente de inteligencia artificial que te resume los mensajes, te ayuda a responder y busca por ti. Yo paso tu Gmail actual sin que pierdas nada.</p>
-      </div>
-      <span class="service-tag">Desde $1,199/año</span>
-      <span class="service-arrow">↗</span>
-    </a>
-    <a href="#contacto" class="service-item reveal">
-      <span class="service-num">09</span>
-      <div>
-        <span class="service-name">Video Promocional para Redes</span>
-        <p class="service-desc">Un video corto y profesional para tus redes (Reels, TikTok, historias). Muestra tu negocio o tu página web con voz, música y movimiento, listo para llamar la atención y que más gente te escriba.</p>
-      </div>
-      <span class="service-tag">Desde $1,000 MXN</span>
-      <span class="service-arrow">↗</span>
-    </a>
-    <a href="#plan-mensual" class="service-item reveal">
-      <span class="service-num">10</span>
-      <div>
-        <span class="service-name">Plan Mensual — página sin inversión inicial</span>
-        <p class="service-desc">¿No quieres pagar todo de golpe? Ten tu página profesional pagando por mes: dominio, hosting y soporte, todo incluido y siempre cuidado por mí. Ideal para empezar hoy mismo.</p>
-      </div>
-      <span class="service-tag">Desde $599/mes</span>
-      <span class="service-arrow">↗</span>
-    </a>
-  </div>
-</section>
-
-<!-- NÚMEROS / CONFIANZA -->
-<section id="numeros" class="stats">
-  <div class="stats-grid">
-    <div class="stat reveal">
-      <div class="stat-num" data-count="5" data-decimals="1">5.0</div>
-      <div class="stat-label">Estrellas en Google</div>
-    </div>
-    <div class="stat reveal">
-      <div class="stat-num" data-count="2" data-suffix=" días">2 días</div>
-      <div class="stat-label">Entrega desde</div>
-    </div>
-    <div class="stat reveal">
-      <div class="stat-num" data-count="100" data-suffix="%">100%</div>
-      <div class="stat-label">La página es tuya</div>
-    </div>
-    <div class="stat reveal">
-      <div class="stat-num stat-static">24/7</div>
-      <div class="stat-label">Tu web trabajando</div>
-    </div>
-  </div>
-</section>
-
 <!-- AGENTE DE INTELIGENCIA ARTIFICIAL (servicio principal) -->
 <section id="agente-ia">
   <div class="section-header">
     <div>
-      <h2 class="section-title line-mask"><span>AGENTE DE</span><span>INTELIGENCIA</span><span>ARTIFICIAL</span></h2>
+      <h2 class="section-title line-mask"><span>AGENTE PARA</span><span>TU WHATSAPP</span></h2>
     </div>
-    <p class="section-desc reveal">Un empleado de inteligencia artificial entrenado con la información de tu negocio. Atiende a tus clientes las 24 horas, agenda citas, toma pedidos y te avisa cuando alguien quiere comprar. No se enferma, no descansa y no deja ni un mensaje sin responder.</p>
+    <p class="section-desc reveal">Un empleado de inteligencia artificial entrenado con la información de tu negocio. Contesta los mensajes al instante y a cualquier hora, responde dudas, aparta citas y toma pedidos completos.</p>
   </div>
 
-  <!-- ── DEMOSTRACIÓN EN VIDEO ─────────────────────────────────── -->
+<!-- ── DEMOSTRACIÓN EN VIDEO ─────────────────────────────────── -->
   <div class="demo-wrap reveal">
     <div class="demo-stage">
       <div class="demo-phone">
@@ -3255,7 +3554,7 @@ body {
         <li>Toma el pedido completo y ofrece el extra</li>
         <li>Te pasa al cliente cuando hace falta</li>
       </ul>
-      <p class="demo-nota">Este es el agente de <strong>mensajes</strong>. El agente que contesta <strong>llamadas telefónicas</strong> con voz natural es un servicio aparte, y su demostración va en camino.</p>
+      <p class="demo-nota">Este es el agente de <strong>mensajes</strong>. El que contesta <strong>llamadas telefónicas</strong> con voz natural es un servicio aparte y también puedes escucharlo: su demostración está <a href="#demo-llamadas">más abajo</a>.</p>
       <a class="demo-cta" href="https://wa.me/526142251419?text=Hola,%20vi%20la%20demostraci%C3%B3n%20del%20agente%20de%20WhatsApp.%20%C2%BFMe%20pasas%20informaci%C3%B3n%3F" target="_blank" rel="noopener">Quiero probarlo con mi negocio <span aria-hidden="true">→</span></a>
     </div>
   </div>
@@ -3263,10 +3562,18 @@ body {
   /* Botón de play propio encima del video. Si el JS no corre, el video
      conserva sus controles nativos y se puede reproducir igual. */
   (function () {
-    var v = document.getElementById('demoAgenteVideo');
+   /* Hay tres demostraciones en la página (WhatsApp, llamadas y páginas web).
+      Cada una maneja SOLO los capítulos que viven dentro de su propio bloque.
+
+      IMPORTANTE: este script está a media página, así que espera a que el
+      documento termine de leerse. Si corriera de inmediato, los bloques que
+      vienen más abajo todavía no existirían y se quedarían sin botón de play. */
+   function arrancar() {
+   Array.prototype.forEach.call(document.querySelectorAll('.demo-wrap'), function (wrap) {
+    var v = wrap.querySelector('video');
     if (!v) return;
     var fase = v.closest('.demo-phone');
-    var caps = Array.prototype.slice.call(document.querySelectorAll('.demo-cap'));
+    var caps = Array.prototype.slice.call(wrap.querySelectorAll('.demo-cap'));
 
     var b = document.createElement('button');
     b.type = 'button';
@@ -3316,19 +3623,20 @@ body {
       caps.forEach(function (c) { if (t + 0.4 >= parseFloat(c.dataset.t)) activo = c; });
       caps.forEach(function (c) { c.classList.toggle('is-on', c === activo); });
     });
+
+    /* Si arranca una demostración, la otra se pausa. */
+    v.addEventListener('play', function () {
+      Array.prototype.forEach.call(document.querySelectorAll('.demo-wrap video'), function (o) {
+        if (o !== v && !o.paused) o.pause();
+      });
+    });
+   });
+   }
+   if (document.readyState === 'loading') {
+     document.addEventListener('DOMContentLoaded', arrancar);
+   } else { arrancar(); }
   })();
   </script>
-
-  <!-- ── BLOQUE 1: MENSAJES DE WHATSAPP ────────────────────────── -->
-  <div class="plan-bloque reveal">
-    <div class="plan-bloque-head">
-      <span class="plan-bloque-num">01</span>
-      <div>
-        <h3 class="plan-bloque-title">Atiende tu WhatsApp</h3>
-        <p class="plan-bloque-desc">El agente contesta los mensajes de tu negocio al instante, a cualquier hora. Elige el paquete según cuánta gente te escribe.</p>
-      </div>
-    </div>
-  </div>
 
   <div class="pricing-grid">
     <div class="pricing-card reveal">
@@ -3390,14 +3698,53 @@ body {
     </div>
   </div>
 
-  <!-- ── BLOQUE 2: LLAMADAS POR VOZ (el fuerte) ─────────────────── -->
-  <div class="plan-bloque plan-bloque-fuerte reveal">
-    <div class="plan-bloque-head">
-      <span class="plan-bloque-num">02</span>
-      <div>
-        <h3 class="plan-bloque-title">Contesta tus llamadas <span class="plan-sello">Nuestro fuerte</span></h3>
-        <p class="plan-bloque-desc">La llamada perdida no deja rastro: no sabes quién era ni qué quería. Un agente con voz natural contesta el teléfono de tu negocio, atiende, agenda y te deja el recado por escrito. Incluye todo lo del agente de WhatsApp.</p>
+  </section>
+
+<!-- AGENTE DE LLAMADAS (nuestro fuerte) -->
+<section id="agente-llamadas">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title line-mask"><span>AGENTE PARA</span><span>TUS LLAMADAS</span></h2>
+    </div>
+    <p class="section-desc reveal">La llamada perdida no deja rastro: no sabes quién era ni qué quería. Un agente con voz natural contesta el teléfono de tu negocio, atiende, agenda y te deja el recado por escrito. Incluye todo lo del agente de WhatsApp.</p>
+  </div>
+
+<!-- ── DEMOSTRACIÓN EN VIDEO · AGENTE DE LLAMADAS ────────────── -->
+  <div class="demo-wrap reveal" id="demo-llamadas">
+    <div class="demo-stage">
+      <div class="demo-phone">
+        <span class="demo-notch" aria-hidden="true"></span>
+        <video id="demoLlamadasVideo"
+               src="assets/demo-agente-llamadas.mp4"
+               poster="assets/demo-agente-llamadas-poster.jpg"
+               controls playsinline preload="metadata"
+               aria-label="Demostración del agente de inteligencia artificial que contesta llamadas"></video>
+        <span class="demo-dur">2:09</span>
       </div>
+      <div class="demo-caps">
+        <button type="button" class="demo-cap" data-t="3">
+          <span class="demo-cap-t">0:03</span> El teléfono que nadie contesta
+        </button>
+        <button type="button" class="demo-cap" data-t="17">
+          <span class="demo-cap-t">0:17</span> La llamada completa
+        </button>
+        <button type="button" class="demo-cap" data-t="93">
+          <span class="demo-cap-t">1:33</span> Quién contestó en realidad
+        </button>
+      </div>
+    </div>
+    <div class="demo-info">
+      <span class="demo-eyebrow">Demostración · Agente de llamadas</span>
+      <h3 class="demo-title">Así contesta el teléfono de tu negocio</h3>
+      <p class="demo-p">Escucha una llamada completa a un restaurante: el cliente pide, pregunta qué le recomiendan, acepta un complemento y le confirman su pedido con dirección, total y tiempo de entrega. <strong>Esa llamada no la contestó una persona.</strong></p>
+      <ul class="demo-list">
+        <li>Contesta al primer timbre, aunque estén todos ocupados</li>
+        <li>Recomienda y sube el ticket sin sonar a vendedor</li>
+        <li>Toma la dirección y confirma el pedido completo</li>
+        <li>Te deja por escrito quién llamó y qué quería</li>
+      </ul>
+      <p class="demo-nota">Mientras el dueño y sus meseros seguían trabajando, alguien contestó al primer timbre. Si uno de cada cuatro clientes acepta el complemento, con cuarenta pedidos al día son <strong>dieciocho mil pesos al mes</strong> que hoy no se están cobrando.</p>
+      <a class="demo-cta" href="https://wa.me/526142251419?text=Hola,%20escuch%C3%A9%20la%20demostraci%C3%B3n%20del%20agente%20de%20llamadas.%20%C2%BFMe%20pasas%20informaci%C3%B3n%3F" target="_blank" rel="noopener">Quiero escucharlo con mi negocio <span aria-hidden="true">→</span></a>
     </div>
   </div>
 
@@ -3538,36 +3885,6 @@ body {
   </div>
 </section>
 
-<!-- OFERTA DE LANZAMIENTO -->
-<section id="ofertas">
-  <div class="section-header">
-    <div>
-      <h2 class="section-title line-mask"><span>OFERTA DE</span><span>LANZAMIENTO</span></h2>
-    </div>
-    <p class="section-desc reveal">Precio especial para los primeros negocios de este mes.</p>
-  </div>
-  <div class="offer-card reveal">
-    <span class="offer-badge">Oferta de lanzamiento</span>
-    <div class="offer-name">Tu primera página profesional + video de regalo</div>
-    <div class="offer-price"><sup>$</sup>4,900</div>
-    <div class="offer-old">Precio normal $8,000</div>
-    <span class="offer-currency">MXN · pago único</span>
-    <ul class="offer-features">
-      <li>Una página completa y profesional</li>
-      <li>Video de presentación DE REGALO (valor $1,000)</li>
-      <li>Animaciones premium (se ve moderna y de lujo)</li>
-      <li>Se ve perfecta en cualquier dispositivo</li>
-      <li>Botón directo a tu WhatsApp</li>
-      <li>Te ayudo con tus textos y fotos</li>
-      <li>Lista de 1 a 2 días</li>
-    </ul>
-    <div>
-      <a href="https://wa.me/526142251419?text=Hola,%20vi%20la%20oferta%20de%20lanzamiento%20de%20%244%2C900%20con%20video%20de%20regalo%20y%20me%20interesa.%20%C2%BFMe%20pasas%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-offer">La quiero a este precio</a>
-    </div>
-    <p class="offer-note">Para los primeros negocios de este mes. Sin compromiso y sin tecnicismos.</p>
-  </div>
-</section>
-
 <!-- PRECIOS -->
 <section id="precios">
   <div class="section-header">
@@ -3576,6 +3893,35 @@ body {
     </div>
     <p class="section-desc reveal">Tu negocio también necesita dónde vivir en internet. Precios claros, sin sorpresas, y sabes exactamente qué incluye cada paquete.</p>
   </div>
+
+  <!-- ── DEMOSTRACIÓN EN VIDEO · PÁGINAS WEB ───────────────────── -->
+  <div class="demo-wrap reveal" id="demo-web">
+    <div class="demo-stage">
+      <div class="demo-phone">
+        <span class="demo-notch" aria-hidden="true"></span>
+        <video id="demoWebVideo"
+               src="assets/video-promo-demo.mp4"
+               poster="assets/video-promo-poster.jpg"
+               controls playsinline preload="metadata"
+               aria-label="Demostración de una página web hecha por Noel Studio"></video>
+        <span class="demo-dur">0:34</span>
+      </div>
+    </div>
+    <div class="demo-info">
+      <span class="demo-eyebrow">Demostración · Páginas web</span>
+      <h3 class="demo-title">Así se ve una página hecha aquí</h3>
+      <p class="demo-p">No es una plantilla con tu logo encima. Cada página se arma desde cero con la identidad de tu negocio, con animaciones que se sienten caras y funcionando igual de bien en la computadora que en el celular.</p>
+      <ul class="demo-list">
+        <li>Se ve perfecta en cualquier pantalla</li>
+        <li>Carga rápido, aunque la red esté lenta</li>
+        <li>Botón directo a tu WhatsApp en todo momento</li>
+        <li>Lista para que Google la encuentre</li>
+      </ul>
+      <p class="demo-nota">La página es <strong>tuya</strong>: dominio a tu nombre y todo el código en tus manos. Si algún día quieres moverte, te llevas todo.</p>
+      <a class="demo-cta" href="https://wa.me/526142251419?text=Hola,%20vi%20la%20demostraci%C3%B3n%20de%20las%20p%C3%A1ginas%20web.%20%C2%BFMe%20pasas%20informaci%C3%B3n%3F" target="_blank" rel="noopener">Quiero mi página <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+
   <div class="pricing-grid">
     <div class="pricing-card reveal">
       <span class="pricing-tag">Básico</span>
@@ -3681,6 +4027,169 @@ body {
   <p class="section-desc reveal" style="margin-top: 2.5rem; max-width:680px; margin-left:auto; margin-right:auto; text-align:center; color: var(--gray-400);">
     ¿Prefieres pagar una sola vez y ser dueño de tu web para siempre? Mira los <a href="#precios" style="color:var(--white);">paquetes de pago único</a> arriba.
   </p>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title line-mask"><span>LO QUE</span><span>HAGO</span></h2>
+    </div>
+    <p class="section-desc reveal">Ya viste los agentes de inteligencia artificial. Esto es todo lo demás que hago para que tu negocio funcione bien en internet.</p>
+  </div>
+  <div class="services-list">
+    <a href="#agente-ia" class="service-item service-promo reveal">
+      <span class="service-num"><span class="promo-pill">Principal</span></span>
+      <div>
+        <span class="service-name">Agente de IA para tu WhatsApp</span>
+        <p class="service-desc">Una inteligencia artificial entrenada con la información de tu negocio que contesta tu WhatsApp las 24 horas: responde dudas, dice precios, agenda citas, toma pedidos y te avisa al instante cuando alguien quiere comprar. Nunca deja un mensaje sin responder, ni a las 3 de la mañana.</p>
+      </div>
+      <span class="service-tag">Desde $1,499/mes</span>
+      <span class="service-arrow">↗</span>
+    </a>
+    <a href="#agente-ia" class="service-item reveal">
+      <span class="service-num">01</span>
+      <div>
+        <span class="service-name">Agente de IA que contesta tus llamadas</span>
+        <p class="service-desc">Un agente con voz natural que contesta el teléfono de tu negocio cuando tú no puedes. Atiende, informa, agenda la cita y te pasa el recado por escrito. Se acabó el "nadie contestó" y el buzón de voz que nadie escucha.</p>
+      </div>
+      <span class="service-tag">Desde $3,999/mes</span>
+      <span class="service-arrow">↗</span>
+    </a>
+    <a href="#agente-ia" class="service-item reveal">
+      <span class="service-num">02</span>
+      <div>
+        <span class="service-name">Agente de Reservas y Citas</span>
+        <p class="service-desc">Para salones, spas, gimnasios, consultorios y salones de eventos. El agente revisa tu agenda, ofrece los horarios libres, aparta el lugar y le manda el recordatorio al cliente un día antes para que no te falle. Tu agenda se llena sola.</p>
+      </div>
+      <span class="service-tag">Desde $1,499/mes</span>
+      <span class="service-arrow">↗</span>
+    </a>
+    <a href="#agente-ia" class="service-item reveal">
+      <span class="service-num">03</span>
+      <div>
+        <span class="service-name">Agente de Pedidos</span>
+        <p class="service-desc">Para restaurantes, taquerías, tiendas y negocios de comida. El agente enseña el menú, toma la orden completa, confirma la dirección y te manda el pedido listo para preparar. Sin errores y sin tener a alguien pegado al celular.</p>
+      </div>
+      <span class="service-tag">Desde $1,499/mes</span>
+      <span class="service-arrow">↗</span>
+    </a>
+    <a href="#precios" class="service-item reveal">
+      <span class="service-num">04</span>
+      <div>
+        <span class="service-name">Página de Presentación</span>
+        <p class="service-desc">Una sola página con todo lo importante de tu negocio: qué haces, fotos de tu trabajo, dónde estás y un botón para que te escriban directo al WhatsApp. Ideal para empezar.</p>
+      </div>
+      <span class="service-tag">Desde $7,000 MXN</span>
+      <span class="service-arrow">↗</span>
+    </a>
+    <a href="#precios" class="service-item reveal">
+      <span class="service-num">05</span>
+      <div>
+        <span class="service-name">Sitio Web Completo</span>
+        <p class="service-desc">Varias páginas conectadas: inicio, servicios, quiénes somos y contacto. Incluye herramientas para tu negocio, como un inventario bien organizado de tus productos. Para negocios que quieren verse grandes y profesionales en internet.</p>
+      </div>
+      <span class="service-tag">Desde $12,000 MXN</span>
+      <span class="service-arrow">↗</span>
+    </a>
+    <a href="#contacto" class="service-item reveal">
+      <span class="service-num">06</span>
+      <div>
+        <span class="service-name">Tienda en Línea</span>
+        <p class="service-desc">Tus productos en internet con carrito de compras y pagos seguros. Tus clientes te compran a cualquier hora, aunque la tienda física esté cerrada.</p>
+      </div>
+      <span class="service-tag">Desde $18,000 MXN</span>
+      <span class="service-arrow">↗</span>
+    </a>
+    <a href="#contacto" class="service-item reveal">
+      <span class="service-num">07</span>
+      <div>
+        <span class="service-name">Aparecer en Google</span>
+        <p class="service-desc">Trabajo tu página cada mes para que cuando alguien busque en Google lo que tú vendes en Chihuahua, tu negocio salga entre los primeros. (A esto se le llama SEO.)</p>
+      </div>
+      <span class="service-tag">Desde $3,000/mes MXN</span>
+      <span class="service-arrow">↗</span>
+    </a>
+    <a href="#correo" class="service-item reveal">
+      <span class="service-num">08</span>
+      <div>
+        <span class="service-name">Correo Profesional con IA</span>
+        <p class="service-desc">Tu correo con el nombre de tu negocio (como ventas@tunegocio.com), en vez de un @gmail común. Se ve serio y da confianza. Trae un asistente de inteligencia artificial que te resume los mensajes, te ayuda a responder y busca por ti. Yo paso tu Gmail actual sin que pierdas nada.</p>
+      </div>
+      <span class="service-tag">Desde $1,199/año</span>
+      <span class="service-arrow">↗</span>
+    </a>
+    <a href="#contacto" class="service-item reveal">
+      <span class="service-num">09</span>
+      <div>
+        <span class="service-name">Video Promocional para Redes</span>
+        <p class="service-desc">Un video corto y profesional para tus redes (Reels, TikTok, historias). Muestra tu negocio o tu página web con voz, música y movimiento, listo para llamar la atención y que más gente te escriba.</p>
+      </div>
+      <span class="service-tag">Desde $1,000 MXN</span>
+      <span class="service-arrow">↗</span>
+    </a>
+    <a href="#plan-mensual" class="service-item reveal">
+      <span class="service-num">10</span>
+      <div>
+        <span class="service-name">Plan Mensual — página sin inversión inicial</span>
+        <p class="service-desc">¿No quieres pagar todo de golpe? Ten tu página profesional pagando por mes: dominio, hosting y soporte, todo incluido y siempre cuidado por mí. Ideal para empezar hoy mismo.</p>
+      </div>
+      <span class="service-tag">Desde $599/mes</span>
+      <span class="service-arrow">↗</span>
+    </a>
+  </div>
+</section>
+
+<!-- NÚMEROS / CONFIANZA -->
+<section id="numeros" class="stats">
+  <div class="stats-grid">
+    <div class="stat reveal">
+      <div class="stat-num" data-count="5" data-decimals="1">5.0</div>
+      <div class="stat-label">Estrellas en Google</div>
+    </div>
+    <div class="stat reveal">
+      <div class="stat-num" data-count="2" data-suffix=" días">2 días</div>
+      <div class="stat-label">Entrega desde</div>
+    </div>
+    <div class="stat reveal">
+      <div class="stat-num" data-count="100" data-suffix="%">100%</div>
+      <div class="stat-label">La página es tuya</div>
+    </div>
+    <div class="stat reveal">
+      <div class="stat-num stat-static">24/7</div>
+      <div class="stat-label">Tu web trabajando</div>
+    </div>
+  </div>
+</section>
+
+<!-- OFERTA DE LANZAMIENTO -->
+<section id="ofertas">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title line-mask"><span>OFERTA DE</span><span>LANZAMIENTO</span></h2>
+    </div>
+    <p class="section-desc reveal">Precio especial para los primeros negocios de este mes.</p>
+  </div>
+  <div class="offer-card reveal">
+    <span class="offer-badge">Oferta de lanzamiento</span>
+    <div class="offer-name">Tu primera página profesional + video de regalo</div>
+    <div class="offer-price"><sup>$</sup>4,900</div>
+    <div class="offer-old">Precio normal $8,000</div>
+    <span class="offer-currency">MXN · pago único</span>
+    <ul class="offer-features">
+      <li>Una página completa y profesional</li>
+      <li>Video de presentación DE REGALO (valor $1,000)</li>
+      <li>Animaciones premium (se ve moderna y de lujo)</li>
+      <li>Se ve perfecta en cualquier dispositivo</li>
+      <li>Botón directo a tu WhatsApp</li>
+      <li>Te ayudo con tus textos y fotos</li>
+      <li>Lista de 1 a 2 días</li>
+    </ul>
+    <div>
+      <a href="https://wa.me/526142251419?text=Hola,%20vi%20la%20oferta%20de%20lanzamiento%20de%20%244%2C900%20con%20video%20de%20regalo%20y%20me%20interesa.%20%C2%BFMe%20pasas%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-offer">La quiero a este precio</a>
+    </div>
+    <p class="offer-note">Para los primeros negocios de este mes. Sin compromiso y sin tecnicismos.</p>
+  </div>
 </section>
 
 <!-- CORREO PROFESIONAL CON IA -->
@@ -3898,7 +4407,11 @@ body {
         </div>
         <div class="vp-card" data-label="Agente de IA">
           <video src="assets/demo-agente-ia.mp4" poster="assets/demo-agente-ia-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
-          <span class="vp-tag">Agente de IA</span>
+          <span class="vp-tag">Agente de IA · WhatsApp</span>
+        </div>
+        <div class="vp-card" data-label="Agente de llamadas">
+          <video src="assets/demo-agente-llamadas.mp4" poster="assets/demo-agente-llamadas-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+          <span class="vp-tag">Agente de IA · Llamadas</span>
         </div>
       </div>
       <button class="vp-vol" id="vpVol" aria-label="Activar sonido" type="button"></button>
@@ -4756,6 +5269,94 @@ if (sectionMap.length && 'IntersectionObserver' in window) {
   }, { passive: true });
 
   render();
+})();
+</script>
+
+<script>
+/* EN CELULAR: "Para quién es" se vuelve desplegable.
+   Ese párrafo son cinco renglones dentro de CADA tarjeta de precio. Con
+   tres tarjetas apiladas el visitante hace scroll sin fin antes de ver el
+   siguiente precio. Aquí se cierra por defecto y quien quiera lo abre.
+   En computadora no se toca: ahí sí hay espacio y el texto vende.
+   Si algo falla, el párrafo se queda visible como estaba. */
+(function () {
+  var CHICO = window.matchMedia('(max-width: 768px)');
+  function plegar() {
+    if (!CHICO.matches) return;
+    var bloques = document.querySelectorAll('.plan-para');
+    Array.prototype.forEach.call(bloques, function (b) {
+      if (b.querySelector('details')) return;                 // ya está hecho
+      var etiqueta = b.querySelector('.plan-para-label');
+      var texto    = b.querySelector('p');
+      if (!etiqueta || !texto) return;
+      var d = document.createElement('details');
+      var s = document.createElement('summary');
+      s.textContent = etiqueta.textContent;
+      d.appendChild(s);
+      d.appendChild(texto);
+      etiqueta.remove();
+      b.appendChild(d);
+    });
+  }
+  function arrancar() { try { plegar(); } catch (e) {} }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', arrancar);
+  } else { arrancar(); }
+  /* Si gira el teléfono o cambia el ancho, se revisa otra vez. */
+  if (CHICO.addEventListener) CHICO.addEventListener('change', arrancar);
+})();
+</script>
+
+<script>
+/* PRECIOS QUE SE DESLIZAN — el aviso y los puntos.
+   En celular las tarjetas van de lado. Mucha gente no lo nota si no se
+   le dice, así que debajo de cada juego se ponen puntos (en cuál va) y
+   un renglón que lo explica. El renglón se borra en cuanto desliza:
+   ya entendió y estorbaría. En computadora nada de esto aparece. */
+(function () {
+  function montar() {
+    var rejillas = document.querySelectorAll('.pricing-grid, .pricing-grid-3, .pricing-grid--duo');
+    Array.prototype.forEach.call(rejillas, function (g) {
+      if (g.nextElementSibling && g.nextElementSibling.classList.contains('pricing-nav')) return;
+      var tarjetas = g.querySelectorAll('.pricing-card');
+      if (tarjetas.length < 2) return;
+
+      var nav = document.createElement('div');
+      nav.className = 'pricing-nav';
+      var dots = document.createElement('div');
+      dots.className = 'pricing-nav-dots';
+      Array.prototype.forEach.call(tarjetas, function (_, i) {
+        var d = document.createElement('span');
+        if (i === 0) d.className = 'on';
+        dots.appendChild(d);
+      });
+      var txt = document.createElement('span');
+      txt.className = 'pricing-nav-txt';
+      txt.textContent = 'Desliza para comparar →';
+      nav.appendChild(dots);
+      nav.appendChild(txt);
+      g.parentNode.insertBefore(nav, g.nextSibling);
+
+      var puntos = dots.children;
+      var pintando = false;
+      g.addEventListener('scroll', function () {
+        nav.classList.add('usado');
+        if (pintando) return;
+        pintando = true;
+        requestAnimationFrame(function () {
+          pintando = false;
+          var paso = g.scrollWidth / tarjetas.length;
+          var i = Math.min(tarjetas.length - 1, Math.round(g.scrollLeft / paso));
+          for (var k = 0; k < puntos.length; k++) {
+            puntos[k].className = (k === i) ? 'on' : '';
+          }
+        });
+      }, { passive: true });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', montar);
+  } else { montar(); }
 })();
 </script>
 </body>
