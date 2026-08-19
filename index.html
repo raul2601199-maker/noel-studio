@@ -881,22 +881,46 @@ a.service-item { text-decoration: none; color: inherit; cursor: pointer; }
   gap: 1.5rem;
   margin-top: 5rem;
 }
-/* GALERÍA HORIZONTAL del portafolio — desktop: la tira se mueve de lado con GSAP. */
-.horiz-gallery { margin-top: 5rem; }
-.horiz-track { display: flex; gap: 1.5rem; }
+/* GALERÍA HORIZONTAL del portafolio — carrusel de scroll REAL (nativo del navegador).
+   Antes se movía con el "pin" de GSAP (position: fixed): si el cálculo se descalibraba
+   —por videos, fuentes o imágenes que cargan tarde— las tarjetas quedaban flotando
+   encima de otras secciones. Con scroll nativo eso es imposible: nunca se sale de su caja. */
+.horiz-gallery {
+  margin-top: 5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;              /* Firefox: sin barra */
+  padding-bottom: 0.5rem;
+  cursor: grab;
+}
+.horiz-gallery::-webkit-scrollbar { display: none; }   /* Chrome/Safari: sin barra */
+.horiz-gallery.is-dragging { cursor: grabbing; scroll-snap-type: none; }
+.horiz-track { display: flex; gap: 1.5rem; transform: none; }
 .horiz-track .portfolio-item {
   flex: 0 0 auto;
   width: min(64vw, 720px);
   aspect-ratio: 16/10;
+  scroll-snap-align: center;
 }
-.has-gsap .horiz-gallery { overflow: hidden; }
+/* Pista visual: "arrastra para ver más" */
+.horiz-hint {
+  margin-top: 1.1rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+}
 /* Celular (y sin GSAP): carrusel táctil con swipe + snap, sin pin (cómodo en el dedo). */
 @media (max-width: 768px) {
   /* En celular: apilamos los proyectos en columna (uno debajo de otro), a
      pantalla completa. Es lo más cómodo y no se rompe como el carrusel. */
-  .horiz-gallery { overflow: visible; margin-top: 3rem; }
+  .horiz-gallery { overflow: visible; margin-top: 3rem; scroll-snap-type: none; cursor: auto; }
   .has-gsap .horiz-gallery { overflow: visible; }
   .horiz-track { flex-direction: column; gap: 1.1rem; transform: none !important; }
+  .horiz-hint { display: none; }
   .horiz-track .portfolio-item { width: 100%; aspect-ratio: 4/3; }
   .portfolio-name { font-size: 1.5rem; }
   .portfolio-overlay { padding: 1.4rem; }
@@ -4301,6 +4325,15 @@ body {
         <div class="portfolio-type">Barbería · Sitio de varias páginas con citas</div>
       </div>
     </a>
+    <a href="demos/inmobiliaria/index.html" class="portfolio-item" aria-label="Abrir la demo de inmobiliaria de terrenos" style="text-decoration:none;color:inherit;">
+      <span class="portfolio-badge is-demo">Demo</span>
+      <span class="portfolio-open" aria-hidden="true">&#8594;</span>
+      <img class="portfolio-thumb" src="assets/demo-inmobiliaria.svg" alt="Demo de sitio para inmobiliaria de terrenos con financiamiento" loading="lazy" width="1200" height="675">
+      <div class="portfolio-overlay">
+        <div class="portfolio-name">Inmobiliaria de terrenos</div>
+        <div class="portfolio-type">Cat&aacute;logo de lotes &middot; Filtro por mensualidad, mapa y WhatsApp</div>
+      </div>
+    </a>
     <a href="demos/hygge/index.html" class="portfolio-item" aria-label="Abrir la demo de HYGGE, salón y spa" style="text-decoration:none;color:inherit;">
       <span class="portfolio-badge is-demo">Demo</span>
       <span class="portfolio-open" aria-hidden="true">→</span>
@@ -4321,6 +4354,7 @@ body {
     </a>
     </div>
   </div>
+  <p class="horiz-hint">Arrastra de lado para ver más proyectos →</p>
   <p class="section-desc reveal" style="margin-top: 2rem; max-width:100%; text-align:center; color: var(--gray-600);">
     Más proyectos próximamente — <a href="https://wa.me/526142251419?text=Hola,%20quiero%20que%20mi%20negocio%20sea%20tu%20siguiente%20proyecto" style="color:var(--white);">¿quieres ser el siguiente?</a>
   </p>
@@ -4785,30 +4819,12 @@ function initGsapAnimations() {
     });
   });
 
-  // PORTAFOLIO HORIZONTAL — al bajar, la tira de proyectos se desliza de lado.
-  // Solo en computadora (desktop). En celular es un carrusel táctil por CSS (swipe).
-  const horizTrack = document.querySelector('.horiz-track');
-  const horizGallery = document.querySelector('.horiz-gallery');
-  if (horizTrack && horizGallery && window.matchMedia('(min-width: 769px)').matches && !reduceMotion) {
-    const amount = () => Math.max(0, horizTrack.scrollWidth - horizGallery.clientWidth);
-    gsap.to(horizTrack, {
-      x: () => -amount(),
-      ease: 'none',
-      scrollTrigger: {
-        trigger: horizGallery,
-        start: 'center center',
-        end: () => '+=' + amount(),
-        pin: true,
-        scrub: 1,
-        anticipatePin: 1,
-        invalidateOnRefresh: true
-      }
-    });
-  }
+  // PORTAFOLIO HORIZONTAL — ya NO usa el "pin" de GSAP (era lo que sacaba las tarjetas
+  // de su sección y las dejaba flotando más arriba). Ahora la tira se mueve con el scroll
+  // normal del navegador y aquí solo agregamos poder arrastrarla con el mouse.
 
   // Al cargar las fuentes web, las imágenes y los videos, el alto de las secciones cambia.
-  // Si no recalculamos, el pin del portafolio queda descalibrado y la tira se ve
-  // mal posicionada o "por todos lados". Refrescamos cuando el layout ya se estabilizó.
+  // Refrescamos las animaciones de scroll cuando el layout ya se estabilizó.
   const refreshST = () => ScrollTrigger.refresh();
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(refreshST);
   window.addEventListener('load', refreshST);
@@ -4902,6 +4918,54 @@ function initGsapAnimations() {
     });
   });
 }
+// CARRUSEL DE PROYECTOS — arrastrar con el mouse (en compu) y deslizar de lado
+// con el trackpad. En celular funciona solo, porque las tarjetas van en columna.
+(function initCarruselProyectos(){
+  function montar(){
+    const gal = document.querySelector('.horiz-gallery');
+    if (!gal) return;
+
+    let abajo = false, xInicio = 0, scrollInicio = 0, movio = false;
+
+    gal.addEventListener('pointerdown', e => {
+      if (e.pointerType !== 'mouse') return;          // en táctil deja el swipe nativo
+      abajo = true; movio = false;
+      xInicio = e.clientX;
+      scrollInicio = gal.scrollLeft;
+      gal.classList.add('is-dragging');
+    });
+
+    gal.addEventListener('pointermove', e => {
+      if (!abajo) return;
+      const dx = e.clientX - xInicio;
+      if (Math.abs(dx) > 4) movio = true;
+      gal.scrollLeft = scrollInicio - dx;
+    });
+
+    const soltar = () => {
+      if (!abajo) return;
+      abajo = false;
+      gal.classList.remove('is-dragging');
+    };
+    gal.addEventListener('pointerup', soltar);
+    gal.addEventListener('pointerleave', soltar);
+
+    // Si arrastró, NO abrimos el link (si no, cada arrastre te sacaba a otra página).
+    gal.addEventListener('click', e => { if (movio) { e.preventDefault(); movio = false; } }, true);
+
+    // Trackpad: gesto horizontal. Solo lo tomamos cuando el movimiento es más
+    // de lado que de arriba-abajo, para no bloquear el scroll normal de la página.
+    gal.addEventListener('wheel', e => {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+        gal.scrollLeft += e.deltaX;
+        e.preventDefault();
+      }
+    }, { passive: false });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', montar);
+  else montar();
+})();
+
 // SCROLL SUAVE PREMIUM (Lenis) — inercia tipo estudio.
 // Solo se enciende si la librería cargó y el visitante NO pidió menos movimiento.
 // Si no carga (o hay reduce-motion), queda el scroll nativo: nada se rompe.

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <pattern id="rej" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0v48" fill="none" stroke="#3d3630" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="fondo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#26211d"/>
+      <stop offset="1" stop-color="#151210"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#fondo)"/>
+  <rect width="1200" height="675" fill="url(#rej)" opacity=".5"/>
+
+  <!-- mojoneras -->
+  <g stroke="#c9a24f" stroke-width="2" fill="none">
+    <path d="M64 100V64h36M1100 64h36v36M1136 575v36h-36M100 611H64v-36"/>
+  </g>
+
+  <!-- cota -->
+  <g stroke="#c9a24f" stroke-width="2">
+    <path d="M112 250v-14M112 243h120M232 250v-14"/>
+  </g>
+  <text x="248" y="248" fill="#b9b0a6" font-family="Helvetica,Arial,sans-serif"
+        font-size="19" font-weight="600" letter-spacing="3">250 m²</text>
+
+  <text x="110" y="360" fill="#f4f0ea" font-family="Helvetica,Arial,sans-serif"
+        font-size="86" font-weight="800" letter-spacing="-3">Terrenos con</text>
+  <text x="110" y="448" fill="#f4f0ea" font-family="Helvetica,Arial,sans-serif"
+        font-size="86" font-weight="800" letter-spacing="-3">financiamiento</text>
+
+  <g font-family="Helvetica,Arial,sans-serif">
+    <text x="110" y="522" fill="#c9a24f" font-size="34" font-weight="800" letter-spacing="-1">$1,202.73</text>
+    <text x="290" y="522" fill="#8d857b" font-size="22" font-weight="500">al mes</text>
+    <text x="110" y="562" fill="#8d857b" font-size="20">Se aparta con $500 · Entrega inmediata</text>
+  </g>
+
+  <!-- alfileres del mapa -->
+  <g>
+    <circle cx="946" cy="286" r="19" fill="#c9a24f"/>
+    <text x="946" y="293" text-anchor="middle" fill="#1c1815"
+          font-family="Helvetica,Arial,sans-serif" font-size="17" font-weight="800">1</text>
+    <circle cx="946" cy="286" r="34" fill="none" stroke="#c9a24f" stroke-width="2" opacity=".38"/>
+    <circle cx="1042" cy="392" r="14" fill="#c9a24f" opacity=".82"/>
+    <circle cx="874" cy="404" r="14" fill="#c9a24f" opacity=".82"/>
+    <circle cx="1004" cy="196" r="11" fill="#c9a24f" opacity=".55"/>
+  </g>
+
+  <text x="110" y="130" fill="#c9a24f" font-family="ui-monospace,Menlo,monospace"
+        font-size="17" letter-spacing="2">28.6353° N · 106.0889° O</text>
+</svg>

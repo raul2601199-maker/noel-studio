@@ -1,0 +1,90 @@
+{
+  "_nota": "DEMO de Noel Studio. Datos completamente ficticios, no corresponden a ningún desarrollo real.",
+  "asesor": {
+    "nombre": "Ricardo Salazar",
+    "titulo": "Lic.",
+    "puesto": "Asesor Inmobiliario",
+    "ciudad": "Chihuahua, Chih.",
+    "telefono": "614 225 1419",
+    "whatsapp": "5216142251419"
+  },
+  "apartado": 500,
+  "ciudad": { "nombre": "Chihuahua", "lat": 28.63528, "lon": -106.08889 },
+  "desarrollos": [
+    {
+      "id": "llanos-del-sol", "nombre": "Llanos del Sol", "sello": "Mensualidad más baja",
+      "m2": 250, "rumbo": "Poniente", "contado": 44000, "enganche": 5350,
+      "planes": [{ "meses": 60, "mensualidad": 1202.73 }],
+      "ubicacion": "Carretera poniente km 22, a un costado del aeródromo",
+      "referencia": "A 300 metros de la carretera",
+      "confirmado": ["Entrega inmediata", "Zona en crecimiento"],
+      "imagen": null, "lat": 28.4045, "lon": -106.2145, "certeza": "demo",
+      "nota_ubicacion": "Carretera poniente km 22",
+      "maps": "https://www.google.com/maps/search/Chihuahua"
+    },
+    {
+      "id": "alameda", "nombre": "Alameda", "sello": "Financiamiento sin intereses",
+      "m2": 200, "rumbo": "Poniente", "contado": 45000, "enganche": 4000,
+      "planes": [
+        { "meses": 12, "mensualidad": 3991.67, "total": 51900 },
+        { "meses": 24, "mensualidad": 2220.42, "total": 57290 },
+        { "meses": 36, "mensualidad": 1644.94, "total": 63218 },
+        { "meses": 48, "mensualidad": 1369.58, "total": 69740 }
+      ],
+      "ubicacion": "Carretera poniente km 24, a 800 metros del monumento",
+      "referencia": "Cerca del parque industrial",
+      "confirmado": ["Posesión inmediata", "Financiamiento congelado, sin intereses", "Contrato de compra-venta y carta posesión"],
+      "imagen": null, "lat": 28.4380, "lon": -106.2050, "certeza": "demo",
+      "nota_ubicacion": "Carretera poniente km 24",
+      "maps": "https://www.google.com/maps/search/Chihuahua"
+    },
+    {
+      "id": "valle-sereno", "nombre": "Valle Sereno", "sello": "Salida norte",
+      "m2": 250, "rumbo": "Poniente", "contado": 49000, "enganche": 4000,
+      "planes": [{ "meses": 48, "mensualidad": 1463.33 }],
+      "ubicacion": "Carretera poniente km 25",
+      "referencia": "A 300 metros de la carretera",
+      "confirmado": ["Entrega inmediata"],
+      "imagen": null, "lat": 28.3955, "lon": -106.2010, "certeza": "demo",
+      "nota_ubicacion": "Carretera poniente km 25",
+      "maps": "https://www.google.com/maps/search/Chihuahua"
+    },
+    {
+      "id": "los-encinos", "nombre": "Rancho Los Encinos", "sello": "Lote de 500 m²",
+      "m2": 500, "rumbo": "Poniente", "contado": 98000, "enganche": 8000,
+      "planes": [{ "meses": 48, "mensualidad": 2822.53 }],
+      "ubicacion": "Carretera poniente km 26",
+      "referencia": "Zona de lotes campestres",
+      "confirmado": ["Entrega inmediata", "El lote más grande disponible"],
+      "imagen": null, "lat": 28.4302, "lon": -106.2627, "certeza": "demo",
+      "nota_ubicacion": "Carretera poniente km 26",
+      "maps": "https://www.google.com/maps/search/Chihuahua"
+    },
+    {
+      "id": "puerta-del-valle", "nombre": "Puerta del Valle", "sello": "Luz a pie de lote",
+      "m2": 200, "rumbo": "Oriente", "contado": 115000, "enganche": 8000,
+      "planes": [{ "meses": 60, "mensualidad": 2450 }],
+      "ubicacion": "Carretera oriente km 18",
+      "referencia": "Fácil acceso, zona de alta plusvalía",
+      "confirmado": ["Entrega inmediata", "Luz a pie de lote"],
+      "imagen": null, "lat": 28.7100, "lon": -106.0100, "certeza": "demo",
+      "nota_ubicacion": "Carretera oriente km 18",
+      "maps": "https://www.google.com/maps/search/Chihuahua"
+    },
+    {
+      "id": "altos-del-mirador", "nombre": "Altos del Mirador", "sello": "Frente a la presa",
+      "m2": 250, "rumbo": "Poniente", "contado": 150000, "enganche": 12000, "enganche_desde": true,
+      "planes": [{ "meses": 60, "mensualidad": 3650, "desde": true }],
+      "ubicacion": "Carretera poniente km 14, junto al embalse",
+      "referencia": "Lotes campestres frente al agua",
+      "confirmado": ["Entrega inmediata", "Zona de alta plusvalía"],
+      "nota": "Este desarrollo maneja costos de apertura. Consúltelos directamente.",
+      "imagen": null, "lat": 28.5634, "lon": -106.1766, "certeza": "demo",
+      "nota_ubicacion": "Carretera poniente km 14",
+      "maps": "https://www.google.com/maps/search/Chihuahua"
+    }
+  ],
+  "referencias": [
+    { "nombre": "Chihuahua", "lat": 28.63528, "lon": -106.08889, "tipo": "ciudad" }
+  ]
+}

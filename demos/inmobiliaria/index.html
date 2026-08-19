@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Demo · Sitio para inmobiliaria de terrenos — Noel Studio</title>
+<meta name="description" content="Demostración de Noel Studio: sitio para inmobiliarias de terrenos, con catálogo, filtros por mensualidad, mapa y contacto directo por WhatsApp.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#191614">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,400..800&family=Literata:opsz,wght@7..72,400;7..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="leaflet.css">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<a class="salto" href="#terrenos">Ir directo a los terrenos</a>
+
+<p class="aviso-demo">
+  Demostración de <b>Noel Studio</b> · Datos y desarrollos ficticios
+</p>
+
+<!-- ================= PORTADA ================= -->
+<header class="portada">
+  <div class="portada__lienzo reticula"></div>
+  <div class="portada__velo"></div>
+
+  <div class="contenedor">
+    <nav class="nav entra entra--1">
+      <span class="nav__marca">
+        <span class="nav__nombre">Ricardo Salazar</span>
+        <span class="nav__puesto">Asesor Inmobiliario</span>
+      </span>
+      <a class="btn btn--fantasma" href="#" data-wa-general>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>
+        WhatsApp
+      </a>
+    </nav>
+  </div>
+
+  <div class="cinta" aria-hidden="true">
+    <div class="cinta__pista" id="cintaPista"></div>
+  </div>
+
+  <div class="contenedor portada__cuerpo">
+    <p class="portada__lugar entra entra--1">28°38′ N · 106°05′ O — Chihuahua</p>
+    <h1 class="entra entra--2">Terrenos<br>para empezar<br>su patrimonio<br>a su ritmo.</h1>
+    <div class="portada__datos entra entra--3">
+      <p class="portada__linea">
+        Desde <b>$44,000</b> de contado · Se aparta con <b>$500</b> · Hasta <b>60 meses</b>
+      </p>
+      <p class="portada__pie">Financiamiento propio · Entrega inmediata</p>
+      <div class="portada__acciones">
+        <a class="btn btn--oro" href="#terrenos">Ver los 6 terrenos</a>
+        <a class="btn btn--linea" href="#" data-wa-general>Hablar con el asesor</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= BARRA DE CONFIANZA ================= -->
+<section class="confianza" aria-label="Condiciones generales">
+  <div class="contenedor confianza__fila">
+    <p><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-llave"/></svg> <b>Entrega inmediata</b></p>
+    <p><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-calendario"/></svg> <b>Financiamiento hasta 60 meses</b></p>
+    <p><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-etiqueta"/></svg> <b>Apartado desde $500</b></p>
+  </div>
+</section>
+
+<!-- ================= QUIÉN LE ATIENDE ================= -->
+<section class="asesor">
+  <div class="contenedor asesor__caja">
+    <div class="asesor__placa" aria-hidden="true">
+      <span class="asesor__iniciales">RS</span>
+      <span class="asesor__grabado">Ricardo<br>Salazar</span>
+      <span class="asesor__linea"></span>
+      <span class="asesor__oficio">Asesor Inmobiliario</span>
+    </div>
+    <div class="asesor__texto">
+      <h2>Aquí no le contesta una oficina. Le contesto yo.</h2>
+      <p>
+        Conozco cada uno de estos terrenos, lo llevo a conocerlos y le explico
+        sus opciones de pago sin letra chica. Lo que acordemos, se lo sostengo.
+      </p>
+      <div class="asesor__acciones">
+        <a class="btn btn--oro" href="#" data-wa-general>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>
+          Escribir por WhatsApp
+        </a>
+        <span class="asesor__tel">614 225 1419</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LA ZONA ================= -->
+<section class="zona">
+  <div class="contenedor">
+    <h2>Dónde queda cada uno.</h2>
+    <p class="zona__bajada">Toque un punto del mapa para ver ese terreno.</p>
+
+    <div class="mapa">
+      <div class="mapa__caja">
+        <div class="mapa__lienzo" id="mapa" role="application" aria-label="Mapa con la ubicación de cada terreno"></div>
+        <button class="mapa__candado" id="mapaCandado" type="button" hidden>
+          <span>Toque para mover el mapa</span>
+        </button>
+        <button class="mapa__salir" id="mapaSalir" type="button" hidden>Listo</button>
+      </div>
+      <p class="mapa__caida" id="mapaCaida" hidden>
+        No se pudo cargar el mapa. Use la lista de abajo.
+      </p>
+    </div>
+
+    <div class="zonas" id="zonas"></div>
+
+    <p class="zona__aviso">
+      Ubicaciones de ejemplo. En un sitio real, cada alfiler lleva la coordenada
+      exacta que proporciona el asesor.
+    </p>
+  </div>
+</section>
+
+<!-- ================= CATÁLOGO ================= -->
+<main id="terrenos" class="catalogo">
+  <div class="contenedor">
+
+    <div class="catalogo__intro">
+      <h2>Seis lugares. Escoja el que le acomode.</h2>
+      <p>Todos con entrega inmediata y apartado de $500. Filtre por lo que puede pagar y por el rumbo que le queda cerca.</p>
+    </div>
+
+    <div class="atajos">
+      <span class="atajos__titulo">¿No sabe por dónde empezar?</span>
+      <div class="atajos__lista">
+        <button type="button" class="atajo" data-abrir="llanos-del-sol">
+          <b>El más accesible</b><span>$1,202.73 al mes</span>
+        </button>
+        <button type="button" class="atajo" data-abrir="los-encinos">
+          <b>El más grande</b><span>500 m², el doble</span>
+        </button>
+        <button type="button" class="atajo" data-abrir="puerta-del-valle">
+          <b>El que ya tiene luz</b><span>Luz a pie de lote</span>
+        </button>
+        <button type="button" class="atajo" data-abrir="alameda">
+          <b>El de más plazos</b><span>De 12 a 48 meses</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="filtros">
+      <div class="filtro">
+        <span class="filtro__titulo" id="lblDinero">¿Cuánto puede pagar al mes?</span>
+        <div class="filtro__opciones" id="opcionesDinero" role="group" aria-labelledby="lblDinero"></div>
+        <div class="modo" role="group" aria-label="Cómo quiere pagarlo">
+          <button type="button" class="modo__btn is-activo" data-modo="mensual" aria-pressed="true">En mensualidades</button>
+          <button type="button" class="modo__btn" data-modo="contado" aria-pressed="false">De contado</button>
+        </div>
+      </div>
+      <div class="filtro">
+        <span class="filtro__titulo" id="lbl-rumbo">¿Por qué rumbo le interesa?</span>
+        <div class="filtro__opciones" role="group" aria-labelledby="lbl-rumbo">
+          <button type="button" class="chip is-activo" data-rumbo="todos" aria-pressed="true">Todos</button>
+          <button type="button" class="chip" data-rumbo="Poniente" aria-pressed="false">Poniente</button>
+          <button type="button" class="chip" data-rumbo="Oriente" aria-pressed="false">Oriente</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="conteo" id="conteo" role="status" aria-live="polite"></p>
+    <div class="rejilla" id="rejilla"></div>
+
+  </div>
+</main>
+
+<!-- ================= CÓMO SE COMPRA ================= -->
+<section class="pasos">
+  <div class="contenedor">
+    <h2>Apartar su terreno es así de claro.</h2>
+    <ol class="pasos__lista">
+      <li><span class="pasos__num">01</span><p>Elija el desarrollo que le interesa.</p></li>
+      <li><span class="pasos__num">02</span><p>Apártelo con $500.</p></li>
+      <li><span class="pasos__num">03</span><p>Firme su contrato.</p></li>
+      <li><span class="pasos__num">04</span><p>Reciba posesión inmediata.</p></li>
+    </ol>
+    <p class="pasos__cierre">
+      ¿Quiere confirmar cuál le conviene?
+      <a href="#" data-wa-general>Pregúntelo por WhatsApp.</a>
+    </p>
+  </div>
+</section>
+
+<!-- ================= CÓMO SABER QUE ES REAL ================= -->
+<section class="palabra">
+  <div class="contenedor">
+    <h2>Cómo saber que esto es real.</h2>
+    <div class="palabra__lista">
+      <div>
+        <h3>Véalo antes de pagar</h3>
+        <p>Ninguno de estos terrenos se aparta a ciegas. Se agenda, vamos, lo camina y hasta entonces decide.</p>
+      </div>
+      <div>
+        <h3>Cada uno tiene nombre y ubicación</h3>
+        <p>No son "terrenos por la carretera". Cada desarrollo está aquí con su nombre, su rumbo y sus referencias.</p>
+      </div>
+      <div>
+        <h3>Los $500 se le descuentan</h3>
+        <p>El apartado no es una cuota que se pierde. Se le abona a su enganche.</p>
+      </div>
+      <div>
+        <h3>El precio que ve es el precio</h3>
+        <p>Lo que dice esta página es lo que se sostiene en la cita. Sin cargos que aparecen después.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PIE ================= -->
+<footer class="pie">
+  <div class="contenedor">
+    <p class="pie__nombre">Lic. Ricardo Salazar</p>
+    <p class="pie__puesto">Asesor Inmobiliario · Chihuahua, México</p>
+    <p class="pie__tel"><a href="#" data-wa-general>614 225 1419</a></p>
+    <p class="pie__legal">
+      Sitio de demostración creado por <b>Noel Studio</b>. Los desarrollos, precios
+      y datos de contacto son ficticios y sirven únicamente como muestra del diseño.
+    </p>
+  </div>
+</footer>
+
+<!-- ================= BOTÓN FLOTANTE DE WHATSAPP ================= -->
+<div class="wa" id="barraWa" hidden>
+  <div class="wa__globo" id="waGlobo">
+    <button class="wa__cerrar" type="button" id="waCerrar" aria-label="Cerrar aviso">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cerrar"/></svg>
+    </button>
+    <p class="wa__titulo">Cotiza ya con nosotros</p>
+    <p class="wa__texto">Obtén tu cotización en cuestión de minutos.</p>
+  </div>
+  <a class="wa__boton" href="#" id="barraWaLink" data-wa-general aria-label="Escribir por WhatsApp">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><use href="#i-wa-lleno"/></svg>
+    <span class="wa__etiqueta" id="barraWaTexto">Cotizar por WhatsApp</span>
+  </a>
+</div>
+
+<!-- ================= FICHA ================= -->
+<div class="ficha" id="ficha" hidden>
+  <div class="ficha__fondo" data-cerrar></div>
+  <div class="ficha__panel" role="dialog" aria-modal="true" aria-labelledby="fichaTitulo">
+    <button class="ficha__cerrar" type="button" data-cerrar aria-label="Cerrar">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cerrar"/></svg>
+    </button>
+    <div class="ficha__scroll" id="fichaCuerpo"></div>
+  </div>
+</div>
+
+<!-- ================= ÍCONOS ================= -->
+<svg style="display:none" aria-hidden="true">
+  <symbol id="i-wa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 21l1.6-4.6A8.4 8.4 0 1 1 7.7 19.6L3 21z"/>
+    <path d="M8.6 9.4c.3 2.6 3.4 5.7 6 6l1-1.6 2 .8-.4 1.7c-2.9.6-7.9-3.6-8.9-8.9l1.7-.4.8 2-1.2.4z"/>
+  </symbol>
+  <symbol id="i-wa-lleno" viewBox="0 0 32 32" fill="currentColor">
+    <path d="M16.1 3.2C9 3.2 3.3 8.9 3.3 16c0 2.5.7 4.9 2 7L3.2 29.4l6.6-2.1c2 1.1 4.2 1.7 6.3 1.7 7.1 0 12.8-5.7 12.8-12.8S23.2 3.2 16.1 3.2zm0 23.2c-2 0-3.9-.5-5.6-1.5l-.4-.2-4 1.3 1.3-3.9-.3-.4c-1.1-1.7-1.6-3.7-1.6-5.7 0-5.8 4.7-10.6 10.6-10.6 5.8 0 10.6 4.7 10.6 10.6s-4.8 10.4-10.6 10.4zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.3-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6s-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.3 1.4 3.5c.2.2 2.4 3.7 5.9 5.2.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 2-.8 2.3-1.6.3-.8.3-1.5.2-1.6-.1-.2-.3-.2-.6-.4z"/>
+  </symbol>
+  <symbol id="i-llave" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="8" cy="8" r="4"/><path d="M11 11l9 9M17 17l2-2M14 14l2-2"/>
+  </symbol>
+  <symbol id="i-calendario" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>
+  </symbol>
+  <symbol id="i-etiqueta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 12V4h8l10 10-8 8L3 12z"/><circle cx="7.5" cy="7.5" r="1.2"/>
+  </symbol>
+  <symbol id="i-cerrar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+    <path d="M6 6l12 12M18 6L6 18"/>
+  </symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/>
+  </symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 12.5l5 5L20 6.5"/>
+  </symbol>
+  <symbol id="i-area" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="4" y="4" width="16" height="16" rx="1"/><path d="M8 4v16M4 8h16"/>
+  </symbol>
+</svg>
+
+<script src="leaflet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
