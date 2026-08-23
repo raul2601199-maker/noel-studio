@@ -1,0 +1,77 @@
+<!-- CHAT EN VIVO — el agente atendiendo de madrugada, dentro de un teléfono.
+     Todas las burbujas están en el HTML y VISIBLES por defecto: si el JS no corre,
+     la conversación se lee completa igual. La animación solo la reproduce por pasos. -->
+<section id="chat-vivo">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title line-mask"><span>SON LAS 11:47</span><span>DE LA NOCHE</span></h2>
+    </div>
+    <p class="section-desc reveal">Tú ya cerraste. Un cliente le acaba de escribir a tu negocio. Esto es lo que pasa cuando hay un agente de inteligencia artificial contestando.</p>
+  </div>
+
+  <div class="chat-vivo-wrap">
+    <div class="chat-tel">
+      <div class="chat-tel-muesca" aria-hidden="true"></div>
+      <div class="chat-vivo" id="chatVivo" aria-label="Ejemplo de conversación entre un cliente y el agente de inteligencia artificial">
+        <div class="chat-cabecera">
+          <span class="chat-atras" aria-hidden="true">‹</span>
+          <div class="chat-avatar" aria-hidden="true">RM</div>
+          <div class="chat-quien">
+            <span class="chat-negocio">Refaccionaria Morales</span>
+            <span class="chat-estado">en línea</span>
+          </div>
+        </div>
+
+        <div class="chat-cuerpo">
+          <div class="chat-dia" aria-hidden="true"><span>HOY</span></div>
+
+          <div class="chat-msg is-cliente"><p>buenas, traen balatas pa una jetta 2016?</p><span class="chat-hora">11:47 p.m.</span></div>
+
+          <div class="chat-msg is-agente"><p>Buenas noches. Sí, tenemos para Jetta 2016. Delanteras $890 el juego, traseras $740. ¿Las quiere solo para llevar o también con instalación?</p><span class="chat-hora">11:47 p.m. <span class="chat-check" aria-hidden="true">✓✓</span></span></div>
+
+          <div class="chat-msg is-cliente"><p>con instalacion, pero nomas las de adelante</p><span class="chat-hora">11:48 p.m.</span></div>
+
+          <div class="chat-msg is-agente"><p>Va. Delanteras puestas: $890 de balatas más $260 de mano de obra, $1,150 en total.<br><br>Una cosa que le sirve saber: si las traseras ya pasaron de 60 mil kilómetros, conviene revisarlas el mismo día. La revisión no se cobra y se ahorra volver a pagar mano de obra después.</p><span class="chat-hora">11:48 p.m. <span class="chat-check" aria-hidden="true">✓✓</span></span></div>
+
+          <div class="chat-msg is-cliente"><p>ah va, si trae como 70 mil. revisamelas pues</p><span class="chat-hora">11:49 p.m.</span></div>
+
+          <div class="chat-msg is-agente"><p>Perfecto. Le aparto una hora y media. Si las traseras sí ocupan cambio, el técnico le pasa el precio antes de tocarlas, usted decide ahí mismo.<br><br>¿Le acomoda mañana 9:00 o 11:30?</p><span class="chat-hora">11:49 p.m. <span class="chat-check" aria-hidden="true">✓✓</span></span></div>
+
+          <div class="chat-msg is-cliente"><p>9 esta bien. ricardo najera, placas FTM-2290</p><span class="chat-hora">11:50 p.m.</span></div>
+
+          <div class="chat-msg is-agente"><p>Listo, señor Nájera. Mañana 9:00, cambio de balatas delanteras en su Jetta 2016, con revisión de traseras sin costo.<br><br>Le mando recordatorio a las 8:00. Que descanse.</p><span class="chat-hora">11:50 p.m. <span class="chat-check" aria-hidden="true">✓✓</span></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-lectura">
+      <p class="chat-lectura-p reveal">Tú te enteras a las 7 de la mañana, cuando abres el teléfono y la cita ya está en tu agenda.</p>
+      <p class="chat-lectura-p reveal">Sin agente, ese mensaje se queda en visto hasta media mañana. Para entonces Ricardo ya preguntó en otros dos lugares y agendó con el que le contestó.</p>
+
+      <ul class="chat-datos">
+        <li class="reveal">
+          <span class="chat-dato-num">12 s</span>
+          <strong>Contestó en 12 segundos</strong>
+          <span>A las 11 de la noche, en domingo, el 24 de diciembre. Le da igual.</span>
+        </li>
+        <li class="reveal">
+          <span class="chat-dato-num">$1,150</span>
+          <strong>Cotizó con tus precios</strong>
+          <span>No improvisa: contesta con la lista de precios y los tiempos que tú le cargaste.</span>
+        </li>
+        <li class="reveal">
+          <span class="chat-dato-num">+1</span>
+          <strong>Ofreció la revisión de traseras</strong>
+          <span>Sube el ticket con lógica, no con presión. Si no conviene, no lo ofrece.</span>
+        </li>
+        <li class="reveal">
+          <span class="chat-dato-num">9:00</span>
+          <strong>Agendó y confirmó</strong>
+          <span>Te deja el recado por escrito y le manda recordatorio al cliente.</span>
+        </li>
+      </ul>
+
+      <a class="demo-cta" href="agentes-ia.html">Ver cómo funciona</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<!-- Google tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EH81SC2V5B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-EH81SC2V5B');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Páginas web profesionales en Chihuahua — Noel Studio</title>
+<meta name="description" content="Diseño de páginas web para negocios de Chihuahua desde $4,900: dominio, hospedaje, correo profesional y video promocional. Todo explicado sin tecnicismos.">
+<meta name="theme-color" content="#000000">
+
+<meta property="og:title" content="Páginas web profesionales en Chihuahua — Noel Studio">
+<meta property="og:description" content="Diseño de páginas web para negocios de Chihuahua desde $4,900: dominio, hospedaje, correo profesional y video promocional. Todo explicado sin tecnicismos.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://raul2601199-maker.github.io/noel-studio/paginas-web.html">
+<meta property="og:image" content="https://raul2601199-maker.github.io/noel-studio/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raul2601199-maker.github.io/noel-studio/assets/og-image.jpg">
+
+<!-- Ícono de la pestaña del navegador y al guardar en el celular -->
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+
+<link rel="canonical" href="https://raul2601199-maker.github.io/noel-studio/paginas-web.html">
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<!-- Fuentes AUTOALOJADAS (en este mismo sitio): carga más rápido y no depende de Google Fonts. -->
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<!-- GSAP con defer: no bloquea el dibujado de la página (carga más rápido).
+     La marca .has-gsap se pone en el script principal (DOMContentLoaded), ya que con
+     defer GSAP aún no existe en este punto. Si GSAP no carga, TODO queda visible. -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<!-- SplitText (gratis desde GSAP 3.13): divide los párrafos en líneas para animarlas una por una. -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
+<!-- Lenis: scroll suave premium (inercia). Con defer no bloquea el dibujado.
+     Se inicializa abajo SOLO si carga y el visitante no pidió menos movimiento. -->
+<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<!-- model-viewer (Google): muestra el modelo 3D del logo NS girando, gratis y ligero. -->
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.0.0/dist/model-viewer.min.js"></script>
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body id="top">
+
+<!-- PRELOADER — marca mientras carga el sitio (se quita solo; failsafe en el script) -->
+<div id="preload" role="status" aria-label="Cargando Noel Studio">
+  <img class="pl-logo" src="assets/logo-hero.png" alt="" aria-hidden="true" width="64" height="76">
+  <div class="pl-name">NOEL STUDIO</div>
+  <div class="pl-bar"><i id="plBar"></i></div>
+</div>
+
+<!-- Accesibilidad: saltar el menú e ir directo al contenido -->
+<a href="#precios" class="skip-link">Saltar al contenido</a>
+
+<!-- Barra de progreso de lectura -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursorFollower"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <ul class="nav-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="agentes-ia.html" class="nav-cta">Agentes de IA</a></li>
+    <li><a href="paginas-web.html" class="active" aria-current="page">Páginas web</a></li>
+    <li><a href="portafolio.html">Portafolio</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+  </ul>
+  <a href="index.html" class="nav-brand" aria-label="Noel Studio — inicio">
+    <span class="nav-brand-name">NOEL STUDIO</span>
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<section id="precios">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title line-mask"><span>PÁGINAS</span><span>WEB</span></h2>
+    </div>
+    <p class="section-desc reveal">Tu negocio también necesita dónde vivir en internet. Precios claros, sin sorpresas, y sabes exactamente qué incluye cada paquete.</p>
+  </div>
+
+  <!-- ── DEMOSTRACIÓN EN VIDEO · PÁGINAS WEB ───────────────────── -->
+  <div class="demo-wrap reveal" id="demo-web">
+    <div class="demo-stage">
+      <div class="demo-phone">
+        <span class="demo-notch" aria-hidden="true"></span>
+        <video id="demoWebVideo"
+               src="assets/video-promo-demo.mp4"
+               poster="assets/video-promo-poster.jpg"
+               controls playsinline preload="metadata"
+               aria-label="Demostración de una página web hecha por Noel Studio"></video>
+        <span class="demo-dur">0:34</span>
+      </div>
+    </div>
+    <div class="demo-info">
+      <span class="demo-eyebrow">Demostración · Páginas web</span>
+      <h3 class="demo-title">Así se ve una página hecha aquí</h3>
+      <p class="demo-p">No es una plantilla con tu logo encima. Cada página se arma desde cero con la identidad de tu negocio, con animaciones que se sienten caras y funcionando igual de bien en la computadora que en el celular.</p>
+      <ul class="demo-list">
+        <li>Se ve perfecta en cualquier pantalla</li>
+        <li>Carga rápido, aunque la red esté lenta</li>
+        <li>Botón directo a tu WhatsApp en todo momento</li>
+        <li>Lista para que Google la encuentre</li>
+      </ul>
+      <p class="demo-nota">La página es <strong>tuya</strong>: dominio a tu nombre y todo el código en tus manos. Si algún día quieres moverte, te llevas todo.</p>
+      <a class="demo-cta" href="https://wa.me/526142251419?text=Hola,%20vi%20la%20demostraci%C3%B3n%20de%20las%20p%C3%A1ginas%20web.%20%C2%BFMe%20pasas%20informaci%C3%B3n%3F" target="_blank" rel="noopener">Quiero mi página <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+
+  <div class="pricing-grid">
+    <div class="pricing-card reveal">
+      <span class="pricing-tag">Básico</span>
+      <div class="pricing-name">Starter</div>
+      <div class="pricing-price"><sup>$</sup>7,000</div>
+      <span class="pricing-currency">MXN · pago único</span>
+      <p class="pricing-desc">Para negocios que necesitan presencia web rápida y profesional.</p>
+      <ul class="pricing-features">
+        <li class="pricing-feature">Una página completa de presentación</li>
+        <li class="pricing-feature">Animaciones premium (se ve moderna y de lujo)</li>
+        <li class="pricing-feature">Se ve perfecta en cualquier dispositivo</li>
+        <li class="pricing-feature">Botón directo a tu WhatsApp</li>
+        <li class="pricing-feature">Te ayudo con tus textos y fotos</li>
+        <li class="pricing-feature">Dominio y hosting incluidos (1 año)</li>
+        <li class="pricing-feature">Entrega de 1 a 2 días</li>
+      </ul>
+      <a href="https://wa.me/526142251419" class="btn-pricing btn-pricing-outline">Cotizar</a>
+    </div>
+    <div class="pricing-card featured reveal">
+      <span class="pricing-tag">Más Popular</span>
+      <div class="pricing-name">Pro</div>
+      <div class="pricing-price"><sup>$</sup>12,000</div>
+      <span class="pricing-currency">MXN · pago único</span>
+      <p class="pricing-desc">El paquete completo para negocios que quieren destacar en Chihuahua.</p>
+      <ul class="pricing-features">
+        <li class="pricing-feature">Varias páginas: inicio, servicios, contacto…</li>
+        <li class="pricing-feature">Inventario de tus productos, bien organizado</li>
+        <li class="pricing-feature">Preparada para aparecer en Google</li>
+        <li class="pricing-feature">Formulario para que te escriban</li>
+        <li class="pricing-feature">Mapa con la ubicación de tu negocio</li>
+        <li class="pricing-feature">Tu dirección .com y hospedaje incluidos</li>
+        <li class="pricing-feature">Entrega en 10 días</li>
+      </ul>
+      <a href="https://wa.me/526142251419" class="btn-pricing btn-pricing-solid">Cotizar</a>
+    </div>
+    <div class="pricing-card reveal">
+      <span class="pricing-tag">Premium</span>
+      <div class="pricing-name">Studio</div>
+      <div class="pricing-price"><sup>$</sup>20,000</div>
+      <span class="pricing-currency">MXN · pago único</span>
+      <p class="pricing-desc">Para empresas que quieren una experiencia web de nivel internacional.</p>
+      <ul class="pricing-features">
+        <li class="pricing-feature">Diseño único hecho a tu medida</li>
+        <li class="pricing-feature">Animaciones de nivel internacional</li>
+        <li class="pricing-feature">Tienda en línea con pagos seguros</li>
+        <li class="pricing-feature">Panel para administrar tu página tú mismo</li>
+        <li class="pricing-feature">Dominio y hosting incluidos (1 año)</li>
+        <li class="pricing-feature">3 meses de soporte: dudas y cambios incluidos</li>
+        <li class="pricing-feature">Entrega en 21 días</li>
+      </ul>
+      <a href="https://wa.me/526142251419" class="btn-pricing btn-pricing-outline">Cotizar</a>
+    </div>
+  </div>
+  <p class="section-desc reveal" style="margin-top: 2.5rem; max-width:100%; text-align:center;">
+    ¿No sabes cuál necesitas? <a href="https://wa.me/526142251419?text=Hola,%20no%20s%C3%A9%20qu%C3%A9%20paquete%20me%20conviene" style="color:var(--white);">Escríbeme</a> y te recomiendo el ideal para tu negocio — sin compromiso y sin tecnicismos.
+  </p>
+  <p class="section-desc reveal" style="margin-top: 1.25rem; max-width:680px; margin-left:auto; margin-right:auto; text-align:center; color: var(--gray-400);">
+    Tu tranquilidad primero: te muestro el diseño antes de que pagues todo, y si algo no te late, lo ajusto sin costo extra hasta que quede a tu gusto.
+  </p>
+</section>
+
+<!-- BANDA EN MOVIMIENTO -->
+<div class="banda" aria-hidden="true">
+  <div class="banda-pista"><div class="banda-grupo"><span class="banda-item is-fuerte">Diseño propio</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Dominio</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Hospedaje</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Correo profesional</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Video</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Google</span><span class="banda-punto" aria-hidden="true"></span></div><div class="banda-grupo"><span class="banda-item is-fuerte">Diseño propio</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Dominio</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Hospedaje</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Correo profesional</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Video</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Google</span><span class="banda-punto" aria-hidden="true"></span></div></div>
+</div>
+
+<section id="plan-mensual">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title line-mask"><span>PLAN</span><span>MENSUAL</span></h2>
+    </div>
+    <p class="section-desc reveal">¿Prefieres empezar sin soltar todo de golpe? Paga tu página por mes, con todo incluido y siempre cuidada por mí.</p>
+  </div>
+  <div class="pricing-grid pricing-grid--duo">
+    <div class="pricing-card reveal">
+      <span class="pricing-tag">Sin inversión inicial</span>
+      <div class="pricing-name">Esencial</div>
+      <div class="pricing-price"><sup>$</sup>599<span class="pricing-per">/mes</span></div>
+      <span class="pricing-currency">MXN · todo incluido · mínimo 12 meses</span>
+      <p class="pricing-desc">Tu presencia en internet, lista y profesional, sin pagar miles de golpe.</p>
+      <ul class="pricing-features">
+        <li class="pricing-feature">Tu página web profesional</li>
+        <li class="pricing-feature">Dominio .com incluido</li>
+        <li class="pricing-feature">Hosting y actualizaciones incluidos</li>
+        <li class="pricing-feature">Soporte: cambios menores cada mes</li>
+        <li class="pricing-feature">Optimización inicial para aparecer en Google</li>
+      </ul>
+      <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20el%20Plan%20Esencial%20de%20%24599%2Fmes.%20%C2%BFMe%20pasas%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-pricing btn-pricing-outline">Lo quiero</a>
+    </div>
+    <div class="pricing-card featured reveal">
+      <span class="pricing-tag">El más completo</span>
+      <div class="pricing-name">Crecimiento</div>
+      <div class="pricing-price"><sup>$</sup>1,199<span class="pricing-per">/mes</span></div>
+      <span class="pricing-currency">MXN · todo incluido · mínimo 12 meses</span>
+      <p class="pricing-desc">Para negocios que además quieren aparecer en Google y crecer mes con mes.</p>
+      <ul class="pricing-features">
+        <li class="pricing-feature">Todo lo del plan Esencial</li>
+        <li class="pricing-feature">Correos profesionales con tu dominio incluidos</li>
+        <li class="pricing-feature">SEO continuo para aparecer en Google</li>
+        <li class="pricing-feature">Más cambios y ajustes al mes</li>
+        <li class="pricing-feature">Reporte mensual de resultados</li>
+        <li class="pricing-feature">Prioridad en tu soporte</li>
+      </ul>
+      <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20el%20Plan%20Crecimiento%20de%20%241%2C199%2Fmes.%20%C2%BFMe%20pasas%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-pricing btn-pricing-solid">Lo quiero</a>
+    </div>
+  </div>
+  <p class="section-desc reveal" style="margin-top: 2.5rem; max-width:680px; margin-left:auto; margin-right:auto; text-align:center; color: var(--gray-400);">
+    ¿Prefieres pagar una sola vez y ser dueño de tu web para siempre? Mira los <a href="#precios" style="color:var(--white);">paquetes de pago único</a> arriba.
+  </p>
+</section>
+
+<section id="correo">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title line-mask"><span>CORREO</span><span>PROFESIONAL</span></h2>
+    </div>
+    <p class="section-desc reveal">Tu correo con el nombre de tu negocio y un asistente de inteligencia artificial. Yo paso tu Gmail actual sin que pierdas nada.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card reveal">
+      <span class="pricing-tag">Básico</span>
+      <div class="pricing-name">Individual</div>
+      <div class="pricing-price"><sup>$</sup>1,199<span class="pricing-per">/año</span></div>
+      <span class="pricing-currency">MXN · con migración incluida</span>
+      <p class="pricing-desc">Para verte profesional con un correo que lleva el nombre de tu negocio.</p>
+      <ul class="pricing-features">
+        <li class="pricing-feature">Correo con tu dominio (ventas@tunegocio.com)</li>
+        <li class="pricing-feature">Hasta 5 direcciones de correo</li>
+        <li class="pricing-feature">5 GB de espacio</li>
+        <li class="pricing-feature">Tu correo nuevo reemplaza al anterior, sin perder nada</li>
+        <li class="pricing-feature">Lo que siga llegando a tu correo viejo se reenvía solo al nuevo</li>
+        <li class="pricing-feature">Yo lo configuro y te explico cómo usarlo</li>
+      </ul>
+      <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20el%20correo%20profesional%20Esencial%20de%20%241%2C199%2Fa%C3%B1o.%20%C2%BFMe%20pasas%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-pricing btn-pricing-outline">Lo quiero</a>
+    </div>
+    <div class="pricing-card featured reveal">
+      <span class="pricing-tag">El más recomendado</span>
+      <div class="pricing-name">Con IA</div>
+      <div class="pricing-price"><sup>$</sup>1,500<span class="pricing-per">/año</span></div>
+      <span class="pricing-currency">MXN · con migración incluida</span>
+      <p class="pricing-desc">El correo profesional con inteligencia artificial que trabaja por ti.</p>
+      <ul class="pricing-features">
+        <li class="pricing-feature">Todo lo del plan Esencial</li>
+        <li class="pricing-feature">Asistente de IA: te resume los mensajes</li>
+        <li class="pricing-feature">La IA te ayuda a redactar respuestas</li>
+        <li class="pricing-feature">Búsqueda inteligente de tus correos</li>
+        <li class="pricing-feature">Hasta 10 direcciones y 20 GB de espacio</li>
+      </ul>
+      <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20el%20correo%20profesional%20con%20IA%20de%20%241%2C500%2Fa%C3%B1o.%20%C2%BFMe%20pasas%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-pricing btn-pricing-solid">Lo quiero</a>
+    </div>
+    <div class="pricing-card reveal">
+      <span class="pricing-tag">Premium</span>
+      <div class="pricing-name">Empresa</div>
+      <div class="pricing-price"><sup>$</sup>1,700<span class="pricing-per">/año</span></div>
+      <span class="pricing-currency">MXN · con migración incluida</span>
+      <p class="pricing-desc">Para negocios con varios empleados que necesitan mucho espacio.</p>
+      <ul class="pricing-features">
+        <li class="pricing-feature">Todo lo del plan con IA</li>
+        <li class="pricing-feature">Hasta 30 direcciones de correo</li>
+        <li class="pricing-feature">50 GB de espacio</li>
+        <li class="pricing-feature">Ideal para equipos de trabajo</li>
+        <li class="pricing-feature">Soporte prioritario conmigo</li>
+      </ul>
+      <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20el%20correo%20profesional%20Empresa%20de%20%241%2C700%2Fa%C3%B1o.%20%C2%BFMe%20pasas%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-pricing btn-pricing-outline">Lo quiero</a>
+    </div>
+  </div>
+  <p class="section-desc reveal" style="margin-top: 2.5rem; max-width:680px; margin-left:auto; margin-right:auto; text-align:center; color: var(--gray-400);">
+    ¿No tienes dominio propio todavía? También te lo consigo. <a href="https://wa.me/526142251419?text=Hola,%20quiero%20un%20correo%20profesional%20para%20mi%20negocio.%20%C2%BFMe%20ayudas%3F" style="color:var(--white);">Escríbeme</a> y te lo dejo listo.
+  </p>
+</section>
+
+<section id="proceso">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title line-mask"><span>CÓMO</span><span>TRABAJO</span></h2>
+    </div>
+    <p class="section-desc reveal">Sin letras chiquitas. Así es el camino desde que me escribes hasta que tu agente está atendiendo clientes.</p>
+  </div>
+  <div class="process-grid">
+    <div class="process-step reveal">
+      <div class="process-step-num">01</div>
+      <div class="process-step-title">PLATICAMOS</div>
+      <p>Me escribes por WhatsApp y me cuentas de tu negocio. Como una plática normal, sin palabras técnicas.</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="process-step-num">02</div>
+      <div class="process-step-title">TE PROPONGO</div>
+      <p>Te explico qué le conviene a tu negocio, qué incluye exactamente y cuánto cuesta. Todo claro antes de empezar, sin sorpresas.</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="process-step-num">03</div>
+      <div class="process-step-title">LO PRUEBAS</div>
+      <p>Entreno tu agente con la información de tu negocio y te paso un número para que platiques con él desde tu celular. Ajustamos lo que quieras hasta que te convenza.</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="process-step-num">04</div>
+      <div class="process-step-title">LO DEJO TRABAJANDO</div>
+      <p>Tu agente queda atendiendo a tus clientes las 24 horas. Te explico cómo verlo todo y quedo al pendiente por si necesitas algo.</p>
+    </div>
+  </div>
+</section>
+
+<section id="ofertas">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title line-mask"><span>OFERTA DE</span><span>LANZAMIENTO</span></h2>
+    </div>
+    <p class="section-desc reveal">Precio especial para los primeros negocios de este mes.</p>
+  </div>
+  <div class="offer-card reveal">
+    <span class="offer-badge">Oferta de lanzamiento</span>
+    <div class="offer-name">Tu primera página profesional + video de regalo</div>
+    <div class="offer-price"><sup>$</sup>4,900</div>
+    <div class="offer-old">Precio normal $8,000</div>
+    <span class="offer-currency">MXN · pago único</span>
+    <ul class="offer-features">
+      <li>Una página completa y profesional</li>
+      <li>Video de presentación DE REGALO (valor $1,000)</li>
+      <li>Animaciones premium (se ve moderna y de lujo)</li>
+      <li>Se ve perfecta en cualquier dispositivo</li>
+      <li>Botón directo a tu WhatsApp</li>
+      <li>Te ayudo con tus textos y fotos</li>
+      <li>Lista de 1 a 2 días</li>
+    </ul>
+    <div>
+      <a href="https://wa.me/526142251419?text=Hola,%20vi%20la%20oferta%20de%20lanzamiento%20de%20%244%2C900%20con%20video%20de%20regalo%20y%20me%20interesa.%20%C2%BFMe%20pasas%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-offer">La quiero a este precio</a>
+    </div>
+    <p class="offer-note">Para los primeros negocios de este mes. Sin compromiso y sin tecnicismos.</p>
+  </div>
+</section>
+
+<!-- CIERRE DE PÁGINA -->
+<section class="cta-final">
+  <h2 class="section-title line-mask"><span>¿EMPEZAMOS</span><span>TU PÁGINA?</span></h2>
+  <p class="cta-final-text reveal">Cuéntame de qué es tu negocio y te digo qué paquete te conviene. Te doy fecha exacta de entrega antes de empezar.</p>
+  <div class="cta-final-acciones reveal">
+    <a class="demo-cta" href="https://wa.me/526142251419?text=Hola,%20quiero%20una%20p%C3%A1gina%20web%20para%20mi%20negocio" target="_blank" rel="noopener">Escríbeme por WhatsApp</a>
+    <a class="cta-final-link" href="portafolio.html">Ver trabajos que ya entregué →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-col">
+      <div class="footer-brand">NOEL STUDIO</div>
+      <p class="footer-tagline">Inteligencia artificial para negocios en Chihuahua. Agentes que atienden tu WhatsApp y tus llamadas 24/7, agendan citas y toman pedidos. También diseño web.</p>
+      <div class="social-links footer-social">
+        <a href="https://www.instagram.com/noelstudioweb" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@noelstudio_" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+        </a>
+        <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20un%20agente%20de%20IA%20para%20mi%20negocio" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <span class="footer-heading">Navegación</span>
+      <a href="index.html">Inicio</a>
+      <a href="agentes-ia.html">Agentes de IA</a>
+      <a href="paginas-web.html">Páginas web</a>
+      <a href="portafolio.html">Portafolio</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+    <div class="footer-col">
+      <span class="footer-heading">Contacto</span>
+      <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20un%20agente%20de%20IA%20para%20mi%20negocio.%20%C2%BFMe%20pasas%20informaci%C3%B3n%3F" target="_blank" rel="noopener">WhatsApp · 614 225 1419</a>
+      <a href="mailto:contacto.noelstudio@gmail.com">contacto.noelstudio@gmail.com</a>
+      <span class="footer-muted">Chihuahua, México</span>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Noel Studio · Todos los derechos reservados</div>
+    <a href="#top" class="footer-top-link">Volver arriba ↑</a>
+  </div>
+</footer>
+
+<!-- WhatsApp flotante -->
+<a href="https://wa.me/526142251419" class="wa-float" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script defer src="assets/site.js"></script>
+</body>
+</html>

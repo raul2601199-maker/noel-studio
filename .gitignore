@@ -20,3 +20,17 @@ posters/
 design-md/
 "Noel Studio - Sitio web"/
 _originales-hygge/
+
+# Material de trabajo de la reestructura (23-ago-2026): no va al sitio publicado
+_fuente-onepage.html
+index.html.bak-*
+prompt-*.json
+plan-*.md
+mejoras-noelstudio.md
+clientes/
+demos-agentes/
+Noel Studio - Sitio web/
+assets/hero-fondo.*
+assets/og-prueba-*.png
+assets/ChatGPT Image *
+assets/Noel Studio - banner cuadrado.png

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<!-- Google tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EH81SC2V5B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-EH81SC2V5B');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Portafolio de proyectos — Noel Studio Chihuahua</title>
+<meta name="description" content="Páginas web y demostraciones hechas por Noel Studio para negocios de Chihuahua: El Garage, Montes Tire Center y más. Trabajo real, resultados reales.">
+<meta name="theme-color" content="#000000">
+
+<meta property="og:title" content="Portafolio de proyectos — Noel Studio Chihuahua">
+<meta property="og:description" content="Páginas web y demostraciones hechas por Noel Studio para negocios de Chihuahua: El Garage, Montes Tire Center y más. Trabajo real, resultados reales.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://raul2601199-maker.github.io/noel-studio/portafolio.html">
+<meta property="og:image" content="https://raul2601199-maker.github.io/noel-studio/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raul2601199-maker.github.io/noel-studio/assets/og-image.jpg">
+
+<!-- Ícono de la pestaña del navegador y al guardar en el celular -->
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+
+<link rel="canonical" href="https://raul2601199-maker.github.io/noel-studio/portafolio.html">
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<!-- Fuentes AUTOALOJADAS (en este mismo sitio): carga más rápido y no depende de Google Fonts. -->
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<!-- GSAP con defer: no bloquea el dibujado de la página (carga más rápido).
+     La marca .has-gsap se pone en el script principal (DOMContentLoaded), ya que con
+     defer GSAP aún no existe en este punto. Si GSAP no carga, TODO queda visible. -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<!-- SplitText (gratis desde GSAP 3.13): divide los párrafos en líneas para animarlas una por una. -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
+<!-- Lenis: scroll suave premium (inercia). Con defer no bloquea el dibujado.
+     Se inicializa abajo SOLO si carga y el visitante no pidió menos movimiento. -->
+<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<!-- model-viewer (Google): muestra el modelo 3D del logo NS girando, gratis y ligero. -->
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.0.0/dist/model-viewer.min.js"></script>
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body id="top">
+
+<!-- PRELOADER — marca mientras carga el sitio (se quita solo; failsafe en el script) -->
+<div id="preload" role="status" aria-label="Cargando Noel Studio">
+  <img class="pl-logo" src="assets/logo-hero.png" alt="" aria-hidden="true" width="64" height="76">
+  <div class="pl-name">NOEL STUDIO</div>
+  <div class="pl-bar"><i id="plBar"></i></div>
+</div>
+
+<!-- Accesibilidad: saltar el menú e ir directo al contenido -->
+<a href="#portafolio" class="skip-link">Saltar al contenido</a>
+
+<!-- Barra de progreso de lectura -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursorFollower"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <ul class="nav-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="agentes-ia.html" class="nav-cta">Agentes de IA</a></li>
+    <li><a href="paginas-web.html">Páginas web</a></li>
+    <li><a href="portafolio.html" class="active" aria-current="page">Portafolio</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+  </ul>
+  <a href="index.html" class="nav-brand" aria-label="Noel Studio — inicio">
+    <span class="nav-brand-name">NOEL STUDIO</span>
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<section id="portafolio">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title line-mask"><span>PROYECTOS</span></h2>
+    </div>
+    <p class="section-desc reveal">Trabajo real, resultados reales para negocios en Chihuahua.</p>
+  </div>
+  <!-- GALERÍA HORIZONTAL: al bajar, las tarjetas se deslizan de lado (pin + scroll).
+       En celular se vuelve un carrusel táctil (swipe), sin pin, para que sea cómodo. -->
+  <div class="horiz-gallery">
+    <div class="horiz-track">
+    <a href="https://elgaragesi.com" target="_blank" rel="noopener" class="portfolio-item" aria-label="Abrir el sitio de El Garage" style="text-decoration: none; color: inherit;">
+      <span class="portfolio-badge is-client">Cliente real</span>
+      <span class="portfolio-open" aria-hidden="true">→</span>
+      <img class="portfolio-thumb" src="assets/demo-elgarage.webp" alt="Sitio web de El Garage, distribuidora industrial en Chihuahua" loading="lazy" width="1600" height="700">
+      <div class="portfolio-overlay">
+        <div class="portfolio-name">El Garage</div>
+        <div class="portfolio-type">Distribuidora industrial · Sitio de referencia y catálogo</div>
+      </div>
+    </a>
+    <a href="demos/montes.html" class="portfolio-item" aria-label="Abrir el sitio de Montes Tire Center" style="text-decoration: none; color: inherit;">
+      <span class="portfolio-badge is-client">Cliente real</span>
+      <span class="portfolio-open" aria-hidden="true">→</span>
+      <img class="portfolio-thumb" src="assets/montes-local.webp" alt="Local de Montes Tire Center, llantera en Chihuahua" loading="lazy" width="1400" height="787">
+      <div class="portfolio-overlay">
+        <div class="portfolio-name">Montes Tire Center</div>
+        <div class="portfolio-type">Llantera en Chihuahua · Más llamadas por WhatsApp</div>
+      </div>
+    </a>
+    <a href="demos/restaurante.html" class="portfolio-item" aria-label="Abrir la demo de Mezquite, casa de cortes" style="text-decoration:none;color:inherit;">
+      <span class="portfolio-badge is-demo">Demo</span>
+      <span class="portfolio-open" aria-hidden="true">→</span>
+      <img class="portfolio-thumb" src="assets/demo-restaurante.webp" alt="Demo de sitio para restaurante de cortes — Mezquite" loading="lazy" width="1200" height="900">
+      <div class="portfolio-overlay">
+        <div class="portfolio-name">Mezquite — Casa de cortes</div>
+        <div class="portfolio-type">Restaurante · Menú y reservación en línea</div>
+      </div>
+    </a>
+    <a href="demos/filo/index.html" class="portfolio-item" aria-label="Abrir la demo de Filo, barbería" style="text-decoration:none;color:inherit;">
+      <span class="portfolio-badge is-demo">Demo</span>
+      <span class="portfolio-open" aria-hidden="true">→</span>
+      <img class="portfolio-thumb" src="assets/demo-barberia.webp" alt="Demo de sitio para barbería — Filo" loading="lazy" width="1200" height="900">
+      <div class="portfolio-overlay">
+        <div class="portfolio-name">Filo — Barbería</div>
+        <div class="portfolio-type">Barbería · Sitio de varias páginas con citas</div>
+      </div>
+    </a>
+    <a href="demos/inmobiliaria/index.html" class="portfolio-item" aria-label="Abrir la demo de inmobiliaria de terrenos" style="text-decoration:none;color:inherit;">
+      <span class="portfolio-badge is-demo">Demo</span>
+      <span class="portfolio-open" aria-hidden="true">&#8594;</span>
+      <img class="portfolio-thumb" src="assets/demo-inmobiliaria.svg" alt="Demo de sitio para inmobiliaria de terrenos con financiamiento" loading="lazy" width="1200" height="675">
+      <div class="portfolio-overlay">
+        <div class="portfolio-name">Inmobiliaria de terrenos</div>
+        <div class="portfolio-type">Cat&aacute;logo de lotes &middot; Filtro por mensualidad, mapa y WhatsApp</div>
+      </div>
+    </a>
+    <a href="demos/hygge/index.html" class="portfolio-item" aria-label="Abrir la demo de HYGGE, salón y spa" style="text-decoration:none;color:inherit;">
+      <span class="portfolio-badge is-demo">Demo</span>
+      <span class="portfolio-open" aria-hidden="true">→</span>
+      <img class="portfolio-thumb" src="assets/demo-hygge.webp" alt="Demo de sitio para salón de belleza y spa — HYGGE" loading="lazy" width="1200" height="675">
+      <div class="portfolio-overlay">
+        <div class="portfolio-name">HYGGE — Salón &amp; Spa</div>
+        <div class="portfolio-type">Belleza y bienestar · Servicios y citas por WhatsApp</div>
+      </div>
+    </a>
+    <a href="demos/lasollas/index.html" class="portfolio-item" aria-label="Abrir la demo de Las Ollas, salón de recepciones" style="text-decoration:none;color:inherit;">
+      <span class="portfolio-badge is-demo">Demo</span>
+      <span class="portfolio-open" aria-hidden="true">→</span>
+      <img class="portfolio-thumb" src="assets/demo-lasollas.webp" alt="Demo de sitio para salón de eventos — Las Ollas" loading="lazy" width="1200" height="675">
+      <div class="portfolio-overlay">
+        <div class="portfolio-name">Las Ollas — Salón de Recepciones</div>
+        <div class="portfolio-type">Bodas y XV años · Galería y cotización por WhatsApp</div>
+      </div>
+    </a>
+    </div>
+  </div>
+  <p class="horiz-hint">Arrastra de lado para ver más proyectos →</p>
+  <p class="section-desc reveal" style="margin-top: 2rem; max-width:100%; text-align:center; color: var(--gray-600);">
+    Más proyectos próximamente — <a href="https://wa.me/526142251419?text=Hola,%20quiero%20que%20mi%20negocio%20sea%20tu%20siguiente%20proyecto" style="color:var(--white);">¿quieres ser el siguiente?</a>
+  </p>
+
+  <div class="reviews">
+    <div class="review-card reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">Contraté a Noel Studio para el desarrollo de mi página web y la experiencia fue muy buena. Raúl siempre fue profesional, cumplió con lo acordado y estuvo atento a cada detalle del proyecto. Todo el proceso fue claro y sin complicaciones. Muy recomendable.</p>
+      <div class="review-author"><span class="review-name">Luis Carlos C.</span><span class="review-meta">Cliente · Google</span></div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">Quedé muy satisfecho con el resultado de mi página web. El diseño se ve moderno, profesional y transmite confianza a mis clientes. Noel Studio entendió exactamente lo que necesitaba y logró plasmarlo en el sitio. Sin duda volvería a trabajar con ellos.</p>
+      <div class="review-author"><span class="review-name">ANDR3CHUS</span><span class="review-meta">Local Guide · Google</span></div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">En Noel Studio nos hicieron la página web de la llantera y quedó muy profesional, moderna y rápida. Raúl explica todo claro y da seguimiento. Si buscas diseño web en Chihuahua, totalmente recomendados.</p>
+      <div class="review-author"><span class="review-name">Montes Tire Center</span><span class="review-meta">Cliente · Google</span></div>
+    </div>
+    <div class="review-card is-short reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">¡Excelente trabajo, muy profesional y rápido!</p>
+      <div class="review-author"><span class="review-name">Kevin Sigala</span><span class="review-meta">Cliente · Google</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- BANDA EN MOVIMIENTO -->
+<div class="banda" aria-hidden="true">
+  <div class="banda-pista"><div class="banda-grupo"><span class="banda-item">Refaccionarias</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Talleres</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Salones</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Spas</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Gimnasios</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Restaurantes</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Consultorios</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Salones de eventos</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Distribuidoras</span><span class="banda-punto" aria-hidden="true"></span></div><div class="banda-grupo"><span class="banda-item">Refaccionarias</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Talleres</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Salones</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Spas</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Gimnasios</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Restaurantes</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Consultorios</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Salones de eventos</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Distribuidoras</span><span class="banda-punto" aria-hidden="true"></span></div></div>
+</div>
+
+<!-- CIERRE DE PÁGINA -->
+<section class="cta-final">
+  <h2 class="section-title line-mask"><span>TU NEGOCIO</span><span>PUEDE SEGUIR</span></h2>
+  <p class="cta-final-text reveal">Cada uno de estos trabajos empezó con un mensaje de WhatsApp. Cuéntame qué necesitas y te digo qué se puede hacer, sin compromiso.</p>
+  <div class="cta-final-acciones reveal">
+    <a class="demo-cta" href="https://wa.me/526142251419?text=Hola,%20vi%20tu%20portafolio%20y%20me%20interesa%20trabajar%20contigo" target="_blank" rel="noopener">Escríbeme por WhatsApp</a>
+    <a class="cta-final-link" href="agentes-ia.html">Conocer los agentes de IA →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-col">
+      <div class="footer-brand">NOEL STUDIO</div>
+      <p class="footer-tagline">Inteligencia artificial para negocios en Chihuahua. Agentes que atienden tu WhatsApp y tus llamadas 24/7, agendan citas y toman pedidos. También diseño web.</p>
+      <div class="social-links footer-social">
+        <a href="https://www.instagram.com/noelstudioweb" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@noelstudio_" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+        </a>
+        <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20un%20agente%20de%20IA%20para%20mi%20negocio" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <span class="footer-heading">Navegación</span>
+      <a href="index.html">Inicio</a>
+      <a href="agentes-ia.html">Agentes de IA</a>
+      <a href="paginas-web.html">Páginas web</a>
+      <a href="portafolio.html">Portafolio</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+    <div class="footer-col">
+      <span class="footer-heading">Contacto</span>
+      <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20un%20agente%20de%20IA%20para%20mi%20negocio.%20%C2%BFMe%20pasas%20informaci%C3%B3n%3F" target="_blank" rel="noopener">WhatsApp · 614 225 1419</a>
+      <a href="mailto:contacto.noelstudio@gmail.com">contacto.noelstudio@gmail.com</a>
+      <span class="footer-muted">Chihuahua, México</span>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Noel Studio · Todos los derechos reservados</div>
+    <a href="#top" class="footer-top-link">Volver arriba ↑</a>
+  </div>
+</footer>
+
+<!-- WhatsApp flotante -->
+<a href="https://wa.me/526142251419" class="wa-float" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script defer src="assets/site.js"></script>
+</body>
+</html>
