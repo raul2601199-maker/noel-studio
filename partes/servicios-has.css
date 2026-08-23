@@ -1,0 +1,16 @@
+
+/* Panel acompañante: qué ficha se ve según el servicio apuntado o enfocado.
+.serv-split:has(.serv-item:hover) .serv-ficha.is-def,
+.serv-split:has(.serv-item:focus-visible) .serv-ficha.is-def { opacity: 0; }
+   Se genera una regla por servicio; :has() lo resuelve sin JavaScript. */
+.serv-split:has(#sv1:hover) #fi1, .serv-split:has(#sv1:focus-visible) #fi1 { opacity: 1; transform: none; z-index: 2; }
+.serv-split:has(#sv2:hover) #fi2, .serv-split:has(#sv2:focus-visible) #fi2 { opacity: 1; transform: none; z-index: 2; }
+.serv-split:has(#sv3:hover) #fi3, .serv-split:has(#sv3:focus-visible) #fi3 { opacity: 1; transform: none; z-index: 2; }
+.serv-split:has(#sv4:hover) #fi4, .serv-split:has(#sv4:focus-visible) #fi4 { opacity: 1; transform: none; z-index: 2; }
+.serv-split:has(#sv5:hover) #fi5, .serv-split:has(#sv5:focus-visible) #fi5 { opacity: 1; transform: none; z-index: 2; }
+.serv-split:has(#sv6:hover) #fi6, .serv-split:has(#sv6:focus-visible) #fi6 { opacity: 1; transform: none; z-index: 2; }
+.serv-split:has(#sv7:hover) #fi7, .serv-split:has(#sv7:focus-visible) #fi7 { opacity: 1; transform: none; z-index: 2; }
+.serv-split:has(#sv8:hover) #fi8, .serv-split:has(#sv8:focus-visible) #fi8 { opacity: 1; transform: none; z-index: 2; }
+.serv-split:has(#sv9:hover) #fi9, .serv-split:has(#sv9:focus-visible) #fi9 { opacity: 1; transform: none; z-index: 2; }
+.serv-split:has(#sv10:hover) #fi10, .serv-split:has(#sv10:focus-visible) #fi10 { opacity: 1; transform: none; z-index: 2; }
+.serv-split:has(#sv11:hover) #fi11, .serv-split:has(#sv11:focus-visible) #fi11 { opacity: 1; transform: none; z-index: 2; }

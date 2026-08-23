@@ -1,0 +1,172 @@
+<!-- LO QUE HAGO — lista a la izquierda, panel a la derecha que cambia solo.
+     El cambio de panel se hace con CSS (:has), no con JavaScript: si el JS falla,
+     la sección sigue funcionando completa. En celular el panel se oculta y cada
+     servicio muestra su propia descripción. -->
+<section id="servicios">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title line-mask"><span>LO QUE</span><span>HAGO</span></h2>
+    </div>
+    <p class="section-desc reveal">Once servicios en tres familias. Apunta cualquiera para verlo en grande.</p>
+  </div>
+
+  <div class="serv-split">
+    <div class="serv-lista">
+      <h3 class="serv-fam">Agentes de inteligencia artificial</h3>
+      <div class="serv-grupo-items">
+        <a href="#agente-ia" class="serv-item is-promo" id="sv1">
+          <img class="serv-item-img" src="assets/serv-whatsapp.webp" alt="Conversación de WhatsApp atendida por el agente de inteligencia artificial" width="1536" height="960" loading="lazy" decoding="async">
+          <span class="serv-num"><span class="promo-pill">Principal</span></span>
+          <span class="serv-nombre">Agente de IA para tu WhatsApp</span>
+          <span class="serv-precio">Desde $1,499/mes</span>
+          <p class="serv-desc-movil">Una inteligencia artificial entrenada con la información de tu negocio que contesta tu WhatsApp las 24 horas: responde dudas, dice precios, agenda citas, toma pedidos y te avisa al instante cuando alguien quiere comprar. Nunca deja un mensaje sin responder, ni a las 3 de la mañana.</p>
+        </a>
+        <a href="#agente-ia" class="serv-item" id="sv2">
+          <img class="serv-item-img" src="assets/serv-llamadas.webp" alt="Demostración del agente que contesta llamadas telefónicas" width="1536" height="960" loading="lazy" decoding="async">
+          <span class="serv-num">02</span>
+          <span class="serv-nombre">Agente de IA que contesta tus llamadas</span>
+          <span class="serv-precio">Desde $3,999/mes</span>
+          <p class="serv-desc-movil">Un agente con voz natural que contesta el teléfono de tu negocio cuando tú no puedes. Atiende, informa, agenda la cita y te pasa el recado por escrito. Se acabó el "nadie contestó" y el buzón de voz que nadie escucha.</p>
+        </a>
+        <a href="#agente-ia" class="serv-item" id="sv3">
+          <img class="serv-item-img" src="assets/serv-citas.webp" alt="Salón y spa donde el agente agenda las citas" width="1536" height="960" loading="lazy" decoding="async">
+          <span class="serv-num">03</span>
+          <span class="serv-nombre">Agente de Reservas y Citas</span>
+          <span class="serv-precio">Desde $1,499/mes</span>
+          <p class="serv-desc-movil">Para salones, spas, gimnasios, consultorios y salones de eventos. El agente revisa tu agenda, ofrece los horarios libres, aparta el lugar y le manda el recordatorio al cliente un día antes para que no te falle. Tu agenda se llena sola.</p>
+        </a>
+        <a href="#agente-ia" class="serv-item" id="sv4">
+          <img class="serv-item-img" src="assets/serv-pedidos.webp" alt="Restaurante donde el agente levanta los pedidos" width="1536" height="960" loading="lazy" decoding="async">
+          <span class="serv-num">04</span>
+          <span class="serv-nombre">Agente de Pedidos</span>
+          <span class="serv-precio">Desde $1,499/mes</span>
+          <p class="serv-desc-movil">Para restaurantes, taquerías, tiendas y negocios de comida. El agente enseña el menú, toma la orden completa, confirma la dirección y te manda el pedido listo para preparar. Sin errores y sin tener a alguien pegado al celular.</p>
+        </a>
+      </div>
+      <h3 class="serv-fam">Tu negocio en internet</h3>
+      <div class="serv-grupo-items">
+        <a href="#precios" class="serv-item" id="sv5">
+          <img class="serv-item-img" src="assets/serv-presentacion.webp" alt="Página de presentación de una barbería" width="1536" height="960" loading="lazy" decoding="async">
+          <span class="serv-num">05</span>
+          <span class="serv-nombre">Página de Presentación</span>
+          <span class="serv-precio">Desde $7,000 MXN</span>
+          <p class="serv-desc-movil">Una sola página con todo lo importante de tu negocio: qué haces, fotos de tu trabajo, dónde estás y un botón para que te escriban directo al WhatsApp. Ideal para empezar.</p>
+        </a>
+        <a href="#precios" class="serv-item" id="sv6">
+          <img class="serv-item-img" src="assets/serv-sitio-completo.webp" alt="Sitio web completo de El Garage, distribuidora industrial" width="1536" height="960" loading="lazy" decoding="async">
+          <span class="serv-num">06</span>
+          <span class="serv-nombre">Sitio Web Completo</span>
+          <span class="serv-precio">Desde $12,000 MXN</span>
+          <p class="serv-desc-movil">Varias páginas conectadas: inicio, servicios, quiénes somos y contacto. Incluye herramientas para tu negocio, como un inventario bien organizado de tus productos. Para negocios que quieren verse grandes y profesionales en internet.</p>
+        </a>
+        <a href="#contacto" class="serv-item" id="sv7">
+          <img class="serv-item-img" src="assets/serv-tienda.webp" alt="Tienda en línea con catálogo y pedidos" width="1536" height="960" loading="lazy" decoding="async">
+          <span class="serv-num">07</span>
+          <span class="serv-nombre">Tienda en Línea</span>
+          <span class="serv-precio">Desde $18,000 MXN</span>
+          <p class="serv-desc-movil">Tus productos en internet con carrito de compras y pagos seguros. Tus clientes te compran a cualquier hora, aunque la tienda física esté cerrada.</p>
+        </a>
+        <a href="#contacto" class="serv-item" id="sv8">
+          <img class="serv-item-img" src="assets/serv-google.webp" alt="Negocio local apareciendo en la búsqueda de Google" width="1536" height="960" loading="lazy" decoding="async">
+          <span class="serv-num">08</span>
+          <span class="serv-nombre">Aparecer en Google</span>
+          <span class="serv-precio">Desde $3,000/mes MXN</span>
+          <p class="serv-desc-movil">Trabajo tu página cada mes para que cuando alguien busque en Google lo que tú vendes en Chihuahua, tu negocio salga entre los primeros. (A esto se le llama SEO.)</p>
+        </a>
+      </div>
+      <h3 class="serv-fam">Lo que lo termina de redondear</h3>
+      <div class="serv-grupo-items">
+        <a href="#correo" class="serv-item" id="sv9">
+          <img class="serv-item-img" src="assets/serv-correo.webp" alt="Correo profesional con el dominio del negocio" width="1536" height="960" loading="lazy" decoding="async">
+          <span class="serv-num">09</span>
+          <span class="serv-nombre">Correo Profesional con IA</span>
+          <span class="serv-precio">Desde $1,199/año</span>
+          <p class="serv-desc-movil">Tu correo con el nombre de tu negocio (como ventas@tunegocio.com), en vez de un @gmail común. Se ve serio y da confianza. Trae un asistente de inteligencia artificial que te resume los mensajes, te ayuda a responder y busca por ti. Yo paso tu Gmail actual sin que pierdas nada.</p>
+        </a>
+        <a href="#contacto" class="serv-item" id="sv10">
+          <img class="serv-item-img" src="assets/serv-video.webp" alt="Video promocional para redes sociales" width="1536" height="960" loading="lazy" decoding="async">
+          <span class="serv-num">10</span>
+          <span class="serv-nombre">Video Promocional para Redes</span>
+          <span class="serv-precio">Desde $1,000 MXN</span>
+          <p class="serv-desc-movil">Un video corto y profesional para tus redes (Reels, TikTok, historias). Muestra tu negocio o tu página web con voz, música y movimiento, listo para llamar la atención y que más gente te escriba.</p>
+        </a>
+        <a href="#plan-mensual" class="serv-item" id="sv11">
+          <img class="serv-item-img" src="assets/serv-plan-mensual.webp" alt="Página entregada con el plan mensual" width="1536" height="960" loading="lazy" decoding="async">
+          <span class="serv-num">11</span>
+          <span class="serv-nombre">Plan Mensual — página sin inversión inicial</span>
+          <span class="serv-precio">Desde $599/mes</span>
+          <p class="serv-desc-movil">¿No quieres pagar todo de golpe? Ten tu página profesional pagando por mes: dominio, hosting y soporte, todo incluido y siempre cuidado por mí. Ideal para empezar hoy mismo.</p>
+        </a>
+      </div>
+    </div>
+
+    <div class="serv-panel" aria-hidden="true">
+      <article class="serv-ficha is-def" id="fi1">
+        <img src="assets/serv-whatsapp.webp" alt="Conversación de WhatsApp atendida por el agente de inteligencia artificial" width="1536" height="960" loading="lazy">
+        <h4 class="serv-ficha-nombre">Agente de IA para tu WhatsApp</h4>
+        <p class="serv-ficha-desc">Una inteligencia artificial entrenada con la información de tu negocio que contesta tu WhatsApp las 24 horas: responde dudas, dice precios, agenda citas, toma pedidos y te avisa al instante cuando alguien quiere comprar. Nunca deja un mensaje sin responder, ni a las 3 de la mañana.</p>
+        <div class="serv-ficha-pie"><span class="serv-ficha-precio">Desde $1,499/mes</span><span class="serv-ficha-cta">Ver detalles →</span></div>
+      </article>
+      <article class="serv-ficha" id="fi2">
+        <img src="assets/serv-llamadas.webp" alt="Demostración del agente que contesta llamadas telefónicas" width="1536" height="960" loading="lazy">
+        <h4 class="serv-ficha-nombre">Agente de IA que contesta tus llamadas</h4>
+        <p class="serv-ficha-desc">Un agente con voz natural que contesta el teléfono de tu negocio cuando tú no puedes. Atiende, informa, agenda la cita y te pasa el recado por escrito. Se acabó el "nadie contestó" y el buzón de voz que nadie escucha.</p>
+        <div class="serv-ficha-pie"><span class="serv-ficha-precio">Desde $3,999/mes</span><span class="serv-ficha-cta">Ver detalles →</span></div>
+      </article>
+      <article class="serv-ficha" id="fi3">
+        <img src="assets/serv-citas.webp" alt="Salón y spa donde el agente agenda las citas" width="1536" height="960" loading="lazy">
+        <h4 class="serv-ficha-nombre">Agente de Reservas y Citas</h4>
+        <p class="serv-ficha-desc">Para salones, spas, gimnasios, consultorios y salones de eventos. El agente revisa tu agenda, ofrece los horarios libres, aparta el lugar y le manda el recordatorio al cliente un día antes para que no te falle. Tu agenda se llena sola.</p>
+        <div class="serv-ficha-pie"><span class="serv-ficha-precio">Desde $1,499/mes</span><span class="serv-ficha-cta">Ver detalles →</span></div>
+      </article>
+      <article class="serv-ficha" id="fi4">
+        <img src="assets/serv-pedidos.webp" alt="Restaurante donde el agente levanta los pedidos" width="1536" height="960" loading="lazy">
+        <h4 class="serv-ficha-nombre">Agente de Pedidos</h4>
+        <p class="serv-ficha-desc">Para restaurantes, taquerías, tiendas y negocios de comida. El agente enseña el menú, toma la orden completa, confirma la dirección y te manda el pedido listo para preparar. Sin errores y sin tener a alguien pegado al celular.</p>
+        <div class="serv-ficha-pie"><span class="serv-ficha-precio">Desde $1,499/mes</span><span class="serv-ficha-cta">Ver detalles →</span></div>
+      </article>
+      <article class="serv-ficha" id="fi5">
+        <img src="assets/serv-presentacion.webp" alt="Página de presentación de una barbería" width="1536" height="960" loading="lazy">
+        <h4 class="serv-ficha-nombre">Página de Presentación</h4>
+        <p class="serv-ficha-desc">Una sola página con todo lo importante de tu negocio: qué haces, fotos de tu trabajo, dónde estás y un botón para que te escriban directo al WhatsApp. Ideal para empezar.</p>
+        <div class="serv-ficha-pie"><span class="serv-ficha-precio">Desde $7,000 MXN</span><span class="serv-ficha-cta">Ver detalles →</span></div>
+      </article>
+      <article class="serv-ficha" id="fi6">
+        <img src="assets/serv-sitio-completo.webp" alt="Sitio web completo de El Garage, distribuidora industrial" width="1536" height="960" loading="lazy">
+        <h4 class="serv-ficha-nombre">Sitio Web Completo</h4>
+        <p class="serv-ficha-desc">Varias páginas conectadas: inicio, servicios, quiénes somos y contacto. Incluye herramientas para tu negocio, como un inventario bien organizado de tus productos. Para negocios que quieren verse grandes y profesionales en internet.</p>
+        <div class="serv-ficha-pie"><span class="serv-ficha-precio">Desde $12,000 MXN</span><span class="serv-ficha-cta">Ver detalles →</span></div>
+      </article>
+      <article class="serv-ficha" id="fi7">
+        <img src="assets/serv-tienda.webp" alt="Tienda en línea con catálogo y pedidos" width="1536" height="960" loading="lazy">
+        <h4 class="serv-ficha-nombre">Tienda en Línea</h4>
+        <p class="serv-ficha-desc">Tus productos en internet con carrito de compras y pagos seguros. Tus clientes te compran a cualquier hora, aunque la tienda física esté cerrada.</p>
+        <div class="serv-ficha-pie"><span class="serv-ficha-precio">Desde $18,000 MXN</span><span class="serv-ficha-cta">Ver detalles →</span></div>
+      </article>
+      <article class="serv-ficha" id="fi8">
+        <img src="assets/serv-google.webp" alt="Negocio local apareciendo en la búsqueda de Google" width="1536" height="960" loading="lazy">
+        <h4 class="serv-ficha-nombre">Aparecer en Google</h4>
+        <p class="serv-ficha-desc">Trabajo tu página cada mes para que cuando alguien busque en Google lo que tú vendes en Chihuahua, tu negocio salga entre los primeros. (A esto se le llama SEO.)</p>
+        <div class="serv-ficha-pie"><span class="serv-ficha-precio">Desde $3,000/mes MXN</span><span class="serv-ficha-cta">Ver detalles →</span></div>
+      </article>
+      <article class="serv-ficha" id="fi9">
+        <img src="assets/serv-correo.webp" alt="Correo profesional con el dominio del negocio" width="1536" height="960" loading="lazy">
+        <h4 class="serv-ficha-nombre">Correo Profesional con IA</h4>
+        <p class="serv-ficha-desc">Tu correo con el nombre de tu negocio (como ventas@tunegocio.com), en vez de un @gmail común. Se ve serio y da confianza. Trae un asistente de inteligencia artificial que te resume los mensajes, te ayuda a responder y busca por ti. Yo paso tu Gmail actual sin que pierdas nada.</p>
+        <div class="serv-ficha-pie"><span class="serv-ficha-precio">Desde $1,199/año</span><span class="serv-ficha-cta">Ver detalles →</span></div>
+      </article>
+      <article class="serv-ficha" id="fi10">
+        <img src="assets/serv-video.webp" alt="Video promocional para redes sociales" width="1536" height="960" loading="lazy">
+        <h4 class="serv-ficha-nombre">Video Promocional para Redes</h4>
+        <p class="serv-ficha-desc">Un video corto y profesional para tus redes (Reels, TikTok, historias). Muestra tu negocio o tu página web con voz, música y movimiento, listo para llamar la atención y que más gente te escriba.</p>
+        <div class="serv-ficha-pie"><span class="serv-ficha-precio">Desde $1,000 MXN</span><span class="serv-ficha-cta">Ver detalles →</span></div>
+      </article>
+      <article class="serv-ficha" id="fi11">
+        <img src="assets/serv-plan-mensual.webp" alt="Página entregada con el plan mensual" width="1536" height="960" loading="lazy">
+        <h4 class="serv-ficha-nombre">Plan Mensual — página sin inversión inicial</h4>
+        <p class="serv-ficha-desc">¿No quieres pagar todo de golpe? Ten tu página profesional pagando por mes: dominio, hosting y soporte, todo incluido y siempre cuidado por mí. Ideal para empezar hoy mismo.</p>
+        <div class="serv-ficha-pie"><span class="serv-ficha-precio">Desde $599/mes</span><span class="serv-ficha-cta">Ver detalles →</span></div>
+      </article>
+    </div>
+  </div>
+</section>

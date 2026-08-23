@@ -1,0 +1,69 @@
+<!-- CALCULADORA — el visitante pone los números de SU negocio y ve la cuenta.
+     Los supuestos están a la vista: no hay número inventado escondido.
+     Sin JS quedan los valores por omisión, que ya cuadran entre sí. -->
+<section id="calculadora">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title line-mask"><span>LA CUENTA QUE</span><span>NADIE TE HACE</span></h2>
+    </div>
+    <p class="section-desc reveal">Escoge tu giro para empezar, luego mueve los controles con tus números reales. La cuenta es tuya, no mía.</p>
+  </div>
+
+  <div class="calc" id="calc">
+    <div class="calc-controles">
+      <div class="calc-giros" role="group" aria-label="Escoge un giro para partir de números típicos">
+        <button type="button" class="calc-giro is-on" data-sin="10" data-ticket="1800" data-tasa="3">Taller o refaccionaria</button>
+        <button type="button" class="calc-giro" data-sin="14" data-ticket="650" data-tasa="3">Salón o spa</button>
+        <button type="button" class="calc-giro" data-sin="20" data-ticket="380" data-tasa="4">Restaurante</button>
+        <button type="button" class="calc-giro" data-sin="6" data-ticket="900" data-tasa="3">Consultorio</button>
+      </div>
+
+      <div class="calc-campo">
+        <label for="calcSin">Mensajes y llamadas que dejas sin contestar al día</label>
+        <input type="range" id="calcSin" min="1" max="40" step="1" value="10" aria-describedby="calcSinVal">
+        <output id="calcSinVal" class="calc-valor" for="calcSin">10 al día</output>
+      </div>
+
+      <div class="calc-campo">
+        <label for="calcTicket">Lo que te deja en promedio un cliente que sí compra</label>
+        <input type="range" id="calcTicket" min="200" max="8000" step="100" value="1800" aria-describedby="calcTicketVal">
+        <output id="calcTicketVal" class="calc-valor" for="calcTicket">$1,800</output>
+      </div>
+
+      <div class="calc-campo">
+        <label for="calcTasa">De cada 10 que no contestas, cuántos sí iban a comprar</label>
+        <input type="range" id="calcTasa" min="1" max="6" step="1" value="3" aria-describedby="calcTasaVal">
+        <output id="calcTasaVal" class="calc-valor" for="calcTasa">3 de 10</output>
+      </div>
+
+      <p class="calc-honesto">Ningún agente recupera el 100% de esos clientes, y quien te diga lo contrario te está vendiendo humo. Esta cuenta es el tamaño del hoyo, no la promesa de taparlo completo.</p>
+    </div>
+
+    <div class="calc-resultado" aria-live="polite">
+      <span class="calc-etiqueta">Se te va al año</span>
+      <div class="calc-cifra" id="calcAnual">$1,944,000</div>
+
+      <div class="calc-escalas">
+        <div><span id="calcDiario">$5,400</span><small>al día</small></div>
+        <div><span id="calcMensual">$162,000</span><small>al mes</small></div>
+      </div>
+
+      <p class="calc-detalle" id="calcDetalle">10 sin contestar al día · 3 de cada 10 compraban · $1,800 cada uno</p>
+
+      <div class="calc-barras">
+        <div class="calc-barra">
+          <div class="calc-barra-cab"><span>Lo que se te va al mes</span><strong id="calcBarraPerdida">$162,000</strong></div>
+          <div class="calc-barra-pista"><i id="calcBarraP" style="width:100%"></i></div>
+        </div>
+        <div class="calc-barra is-costo">
+          <div class="calc-barra-cab"><span>Lo que cuesta el agente</span><strong id="calcBarraCosto">$1,499</strong></div>
+          <div class="calc-barra-pista"><i id="calcBarraC" style="width:1%"></i></div>
+        </div>
+      </div>
+
+      <p class="calc-plan" id="calcPlan">Con tu volumen, el plan <strong>Esencial</strong> te alcanza. Recuperando <strong>1 cliente al mes</strong> ya se pagó solo.</p>
+
+      <a class="demo-cta" href="agentes-ia.html">Ver los planes</a>
+    </div>
+  </div>
+</section>
