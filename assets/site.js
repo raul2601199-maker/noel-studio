@@ -502,7 +502,9 @@ class Particle {
 
 // En celular usamos menos partículas (más fluido, no traba el scroll ni gasta batería).
 const PARTICLE_COUNT = window.innerWidth < 768 ? 14 : 80;
-for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+// Solo si esta página trae el canvas del hero: sin él, Particle() truena y el script
+// entero se detiene (y el menú del celular se queda sin funcionar).
+if (ctx) { for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle()); }
 
 // Pausar el dibujado cuando el hero sale de la pantalla (ahorra batería/CPU)
 let heroVisible = true;
@@ -538,7 +540,7 @@ function animParticles() {
 if (ctx) animParticles();
 
 // Mouse influence on particles
-document.addEventListener('mousemove', e => {
+if (ctx) document.addEventListener('mousemove', e => {
   particles.forEach(p => {
     const dx = e.clientX - p.x;
     const dy = e.clientY - p.y;
@@ -807,32 +809,41 @@ if (sectionMap.length && 'IntersectionObserver' in window) {
 
   const espera = ms => new Promise(r => setTimeout(r, ms));
 
-  // Baja despacio hasta el final, en vez de brincar de golpe.
+  // Baja hasta el final DESPUÉS de que el navegador ya dibujó lo nuevo (doble cuadro),
+  // así el chat nunca se queda a media burbuja ni se desfasa de la animación.
   function abajo(){
-    cuerpo.scrollTo({ top: cuerpo.scrollHeight, behavior: 'smooth' });
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      cuerpo.scrollTop = cuerpo.scrollHeight;
+    }));
   }
 
-  // Cuánto tarda en escribirse un mensaje: como una persona tecleando.
-  const tiempoEscritura = txt => Math.min(3200, Math.max(900, txt.length * 22));
+  // Ritmo de la demostración: alrededor de UN SEGUNDO entre mensaje y mensaje.
+  // Ni tan rápido que parezca falso, ni tan lento que el visitante se vaya.
+  const tiempoEscritura = txt => Math.min(1100, Math.max(550, txt.length * 6));
   // Cuánto tarda el otro en leerlo antes de contestar.
-  const tiempoLectura  = txt => Math.min(2600, Math.max(900, txt.length * 12));
+  const tiempoLectura  = txt => Math.min(550, Math.max(300, txt.length * 2.5));
 
   let terminado = false;
 
   async function reproducir(){
-    await espera(700);
+    await espera(150);
     for (let k = 0; k < msgs.length; k++) {
       const msg = msgs[k];
       const esAgente = msg.classList.contains('is-agente');
-      const texto = msg.textContent;
+      const parrafo = msg.querySelector('p');
+      const texto = parrafo ? parrafo.textContent : msg.textContent;
 
-      // Aparecen los puntitos del lado de quien va a escribir.
-      puntos.classList.toggle('is-cliente', !esAgente);
-      puntos.style.display = 'inline-flex';
-      cuerpo.appendChild(puntos);
-      abajo();
-      await espera(tiempoEscritura(texto));
-      puntos.style.display = 'none';
+      if (esAgente) {
+        // El agente "escribe" y enseguida suelta su respuesta.
+        puntos.style.display = 'inline-flex';
+        cuerpo.appendChild(puntos);
+        abajo();
+        await espera(tiempoEscritura(texto));
+        puntos.style.display = 'none';
+      } else if (k > 0) {
+        // El cliente entra directo, sin puntitos.
+        await espera(450);
+      }
 
       msg.classList.add('is-visible');
       abajo();
@@ -863,11 +874,40 @@ if (sectionMap.length && 'IntersectionObserver' in window) {
   const tel = cuerpo.closest('.chat-tel');
   tel.parentElement.insertBefore(boton, tel.nextSibling);
 
-  new IntersectionObserver((entradas, obs) => {
-    entradas.forEach(e => {
-      if (e.isIntersecting) { obs.disconnect(); reproducir(); }
-    });
-  }, { threshold: 0.4 }).observe(cuerpo);
+  // Arranca cuando el TELÉFONO COMPLETO está a la vista, no antes: si empieza
+  // con el aparato a medias, la conversación termina fuera de la pantalla.
+  // El umbral se calcula: si el teléfono no cabe entero en la ventana, se pide
+  // menos, porque si no NUNCA arrancaría y el chat se quedaría vacío.
+  let arrancado = false;
+  const umbral = Math.max(0.2, Math.min(0.92, (window.innerHeight - 60) / (tel.offsetHeight || 1)));
+
+  function arrancar(obs){
+    if (arrancado) return;
+    arrancado = true;
+    if (obs) obs.disconnect();
+    reproducir();
+  }
+
+  const observador = new IntersectionObserver((entradas, obs) => {
+    entradas.forEach(e => { if (e.isIntersecting) arrancar(obs); });
+  }, { threshold: umbral });
+  observador.observe(tel);
+
+  // Red de seguridad: Chrome no avisa de intersecciones en pestañas de fondo.
+  // Si el visitante abrió el sitio en otra pestaña, al volver revisamos a mano.
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden || arrancado) return;
+    const r = tel.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom > 0) arrancar(observador);
+  });
+
+  // Última red: si por lo que sea no arrancó, la conversación se muestra completa
+  // en vez de dejar el teléfono en blanco.
+  setTimeout(() => {
+    if (arrancado) return;
+    const r = tel.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom > 0) arrancar(observador);
+  }, 6000);
 })();
 
 /* ============================================================

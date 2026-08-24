@@ -3252,18 +3252,19 @@ body {
 /* ============================================================
    CHAT EN VIVO (Inicio) — el agente atendiendo, dentro de un teléfono
    ============================================================ */
-#chat-vivo { padding: 8rem 3rem; border-top: 1px solid rgba(255,255,255,0.08); }
+#chat-vivo { padding: 6rem 3rem; border-top: 1px solid rgba(255,255,255,0.08); }
 .chat-vivo-wrap {
   display: grid;
-  grid-template-columns: minmax(0, 380px) minmax(0, 1fr);
-  gap: 5rem;
+  grid-template-columns: minmax(0, 430px) minmax(0, 1fr);
+  gap: 4rem;
   align-items: start;
-  margin-top: 4.5rem;
+  margin-top: 3.2rem;
 }
 
 /* El teléfono: marco real, no una caja plana. */
 .chat-tel {
   position: relative;
+  width: 100%; max-width: 430px;
   padding: 12px;
   border-radius: 40px;
   background: #131313;
@@ -3279,6 +3280,10 @@ body {
   border-radius: 30px;
   background: #0b0b0b;
   overflow: hidden;
+  /* Alto atado a la ventana: el teléfono entero se ve sin bajar la página,
+     así el desenlace de la charla nunca queda debajo del borde. */
+  height: clamp(28rem, 72vh, 44rem);
+  display: flex; flex-direction: column;
 }
 .chat-cabecera {
   display: flex; align-items: center; gap: 0.7rem;
@@ -3288,18 +3293,18 @@ body {
 }
 .chat-atras { color: var(--gray-400); font-size: 1.4rem; line-height: 1; margin-right: -0.2rem; }
 .chat-avatar {
-  width: 36px; height: 36px; border-radius: 50%;
+  width: 40px; height: 40px; border-radius: 50%;
   display: grid; place-items: center; flex-shrink: 0;
   background: var(--white); color: var(--black);
-  font-family: 'Unbounded', sans-serif; font-size: 0.72rem;
+  font-family: 'Unbounded', sans-serif; font-size: 0.78rem;
 }
 .chat-quien { display: flex; flex-direction: column; line-height: 1.25; }
-.chat-negocio { color: var(--white); font-weight: 600; font-size: 0.9rem; }
-.chat-estado { color: #4ade80; font-size: 0.72rem; }
+.chat-negocio { color: var(--white); font-weight: 600; font-size: 0.98rem; }
+.chat-estado { color: #4ade80; font-size: 0.76rem; }
 .chat-cuerpo {
   display: flex; flex-direction: column; gap: 0.55rem;
   padding: 1.1rem 0.85rem 1.5rem;
-  height: 30rem; overflow-y: auto;
+  flex: 1 1 auto; min-height: 0; overflow-y: auto;
   /* Trama muy tenue: da textura de aplicación de mensajería sin imitar marcas. */
   background:
     radial-gradient(circle at 20% 15%, rgba(255,255,255,0.022), transparent 45%),
@@ -3309,7 +3314,6 @@ body {
   /* El texto se desvanece al llegar al borde en vez de cortarse a media letra. */
   -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 26px, #000 calc(100% - 12px), transparent 100%);
           mask-image: linear-gradient(to bottom, transparent 0, #000 26px, #000 calc(100% - 12px), transparent 100%);
-  scroll-behavior: smooth;
 }
 .chat-cuerpo::-webkit-scrollbar { display: none; }
 .chat-dia { text-align: center; margin: 0.2rem 0 0.6rem; }
@@ -3321,15 +3325,15 @@ body {
 }
 .chat-msg {
   max-width: 84%;
-  padding: 0.62rem 0.8rem 1.25rem;
-  border-radius: 14px;
+  padding: 0.7rem 0.9rem 1.4rem;
+  border-radius: 15px;
   position: relative;
-  font-size: 0.855rem; line-height: 1.5;
+  font-size: 1.02rem; line-height: 1.55;
 }
 .chat-msg p { margin: 0; }
 .chat-hora {
   position: absolute; right: 0.7rem; bottom: 0.42rem;
-  font-size: 0.63rem; opacity: 0.6; white-space: nowrap;
+  font-size: 0.68rem; opacity: 0.6; white-space: nowrap;
 }
 .chat-check { color: #53bdeb; opacity: 0.95; letter-spacing: -0.12em; }
 .chat-msg.is-cliente {
@@ -3364,58 +3368,76 @@ body {
 .chat-escribiendo i:nth-child(2) { animation-delay: 0.15s; }
 .chat-escribiendo i:nth-child(3) { animation-delay: 0.3s; }
 @keyframes chatPunto { 0%, 60%, 100% { opacity: 0.3; transform: translateY(0); } 30% { opacity: 1; transform: translateY(-3px); } }
-/* Reproducción: solo se activa desde JS y nunca es el estado por omisión. */
-.chat-cuerpo.is-reproduciendo .chat-msg { opacity: 0; transform: translateY(8px) scale(0.98); }
+/* Reproducción: solo se activa desde JS y nunca es el estado por omisión.
+   Los mensajes que todavía no llegan se quitan del todo (display:none). Si solo
+   se hicieran transparentes seguirían ocupando su lugar, el chat se desplazaría
+   hasta el final de un contenido invisible y el mensaje de verdad quedaría
+   fuera de cuadro. */
+.chat-cuerpo.is-reproduciendo .chat-msg { display: none; }
 .chat-cuerpo.is-reproduciendo .chat-msg.is-visible {
-  opacity: 1; transform: none;
-  transition: opacity 0.3s var(--ease-out), transform 0.4s var(--ease-out);
+  display: block;
+  animation: chatEntra 0.32s var(--ease-out) both;
+}
+@keyframes chatEntra {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to   { opacity: 1; transform: none; }
 }
 
 /* Botón para volver a ver la conversación desde el principio. */
 .chat-repetir {
-  display: block; margin: 1.1rem auto 0;
+  /* Va SIEMPRE debajo del teléfono (columna 1). Sin esto, en escritorio se
+     colaba en la celda del texto y empujaba toda la columna de lectura. */
+  grid-column: 1;
+  display: block; margin: 1.3rem auto 0;
   font-family: inherit; font-size: 0.78rem;
   letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--gray-600); background: none; border: 0;
-  padding: 0.4rem 0.2rem; cursor: pointer;
+  color: var(--gray-200); background: none;
+  border: 1px solid rgba(255,255,255,0.22); border-radius: 99px;
+  padding: 0.62rem 1.35rem; cursor: pointer;
   opacity: 0; pointer-events: none;
-  transition: opacity 0.4s var(--ease-out), color 0.2s var(--ease-out);
+  transition: opacity 0.4s var(--ease-out), color 0.2s var(--ease-out),
+              border-color 0.2s var(--ease-out), background 0.2s var(--ease-out);
 }
 .chat-repetir.is-on { opacity: 1; pointer-events: auto; }
-.chat-repetir:hover { color: var(--white); }
+.chat-repetir:hover { color: var(--black); background: var(--white); border-color: var(--white); }
 .chat-repetir:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; opacity: 1; }
 
 /* Columna de lectura */
-.chat-lectura-p { color: var(--gray-200); line-height: 1.75; margin-bottom: 1.4rem; max-width: 62ch; font-size: 1.02rem; }
+.chat-lectura-p { color: var(--gray-200); line-height: 1.7; margin-bottom: 1.1rem; max-width: 62ch; font-size: 1.02rem; }
 .chat-lectura-p + .chat-lectura-p { color: var(--gray-400); }
-.chat-datos { list-style: none; margin: 3rem 0; padding: 0; }
+.chat-datos {
+  list-style: none; margin: 2.4rem 0; padding: 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0 2.5rem;
+}
 .chat-datos li {
   display: grid;
-  grid-template-columns: 5.5rem 1fr;
-  grid-template-areas: "num titulo" "num texto";
-  gap: 0.1rem 1.5rem;
-  padding: 1.3rem 0;
+  grid-template-columns: 1fr;
+  grid-template-areas: "num" "titulo" "texto";
+  gap: 0.25rem 0;
+  padding: 1.15rem 0;
   border-top: 1px solid rgba(255,255,255,0.08);
 }
-.chat-datos li:last-child { border-bottom: 1px solid rgba(255,255,255,0.08); }
 .chat-dato-num {
-  grid-area: num;
+  grid-area: num; justify-self: start;
   font-family: 'Unbounded', sans-serif;
   font-size: 1.15rem; color: var(--white);
   letter-spacing: -0.02em; font-variant-numeric: tabular-nums;
-  align-self: center;
 }
 .chat-datos strong { grid-area: titulo; color: var(--white); font-weight: 600; font-size: 0.98rem; }
 .chat-datos li > span:last-child { grid-area: texto; color: var(--gray-400); font-size: 0.87rem; line-height: 1.55; }
 
 @media (max-width: 980px) {
   .chat-vivo-wrap { grid-template-columns: 1fr; gap: 3.5rem; }
-  .chat-tel { max-width: 360px; margin: 0 auto; }
+  .chat-tel { margin: 0 auto; }
 }
 @media (max-width: 768px) {
-  #chat-vivo { padding: 5rem 1.5rem; }
-  .chat-cuerpo { height: 26rem; }
-  .chat-datos li { grid-template-columns: 4.5rem 1fr; gap: 0.1rem 1rem; }
+  #chat-vivo { padding: 3.8rem 1.5rem; }
+  .chat-datos { gap: 0 1.4rem; }
+  .chat-datos li { padding: 0.95rem 0; }
+  .chat-dato-num { font-size: 1.05rem; }
+}
+@media (max-width: 460px) {
+  .chat-datos { grid-template-columns: 1fr; }
 }
 
 /* ============================================================
@@ -3701,8 +3723,9 @@ body {
   clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
 }
 @media (hover: hover) and (pointer: fine) {
-  .serv-lista:hover .serv-item { opacity: 0.4; }
-  .serv-item:hover { opacity: 1; padding-left: 0.75rem; }
+  /* Antes los demás servicios se atenuaban al pasar el cursor por la lista;
+     se veía todo apagado. Ahora nada se oscurece: solo se resalta el apuntado. */
+  .serv-item:hover { padding-left: 0.75rem; }
   .serv-item:hover::after { transform: scaleX(1); }
   .serv-item:hover .serv-precio { color: var(--white); }
 }

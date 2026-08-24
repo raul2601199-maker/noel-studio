@@ -83,7 +83,7 @@
 <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <!-- model-viewer (Google): muestra el modelo 3D del logo NS girando, gratis y ligero. -->
 <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.0.0/dist/model-viewer.min.js"></script>
-<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/styles.css?v=12">
 </head>
 <body id="top">
 
@@ -283,6 +283,77 @@
 </section>
 
 
+<!-- CALCULADORA — el visitante pone los números de SU negocio y ve la cuenta.
+     Los supuestos están a la vista: no hay número inventado escondido.
+     Sin JS quedan los valores por omisión, que ya cuadran entre sí. -->
+<section id="calculadora">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title line-mask"><span>LA CUENTA QUE</span><span>NADIE TE HACE</span></h2>
+    </div>
+    <p class="section-desc reveal">Escoge tu giro para empezar, luego mueve los controles con tus números reales. La cuenta es tuya, no mía.</p>
+  </div>
+
+  <div class="calc" id="calc">
+    <div class="calc-controles">
+      <div class="calc-giros" role="group" aria-label="Escoge un giro para partir de números típicos">
+        <button type="button" class="calc-giro is-on" data-sin="10" data-ticket="1800" data-tasa="3">Taller o refaccionaria</button>
+        <button type="button" class="calc-giro" data-sin="14" data-ticket="650" data-tasa="3">Salón o spa</button>
+        <button type="button" class="calc-giro" data-sin="20" data-ticket="380" data-tasa="4">Restaurante</button>
+        <button type="button" class="calc-giro" data-sin="6" data-ticket="900" data-tasa="3">Consultorio</button>
+      </div>
+
+      <div class="calc-campo">
+        <label for="calcSin">Mensajes y llamadas que dejas sin contestar al día</label>
+        <input type="range" id="calcSin" min="1" max="40" step="1" value="10" aria-describedby="calcSinVal">
+        <output id="calcSinVal" class="calc-valor" for="calcSin">10 al día</output>
+      </div>
+
+      <div class="calc-campo">
+        <label for="calcTicket">Lo que te deja en promedio un cliente que sí compra</label>
+        <input type="range" id="calcTicket" min="200" max="8000" step="100" value="1800" aria-describedby="calcTicketVal">
+        <output id="calcTicketVal" class="calc-valor" for="calcTicket">$1,800</output>
+      </div>
+
+      <div class="calc-campo">
+        <label for="calcTasa">De cada 10 que no contestas, cuántos sí iban a comprar</label>
+        <input type="range" id="calcTasa" min="1" max="6" step="1" value="3" aria-describedby="calcTasaVal">
+        <output id="calcTasaVal" class="calc-valor" for="calcTasa">3 de 10</output>
+      </div>
+
+      <p class="calc-honesto">Ningún agente recupera el 100% de esos clientes, y quien te diga lo contrario te está vendiendo humo. Esta cuenta es el tamaño del hoyo, no la promesa de taparlo completo.</p>
+    </div>
+
+    <div class="calc-resultado" aria-live="polite">
+      <span class="calc-etiqueta">Se te va al año</span>
+      <div class="calc-cifra" id="calcAnual">$1,944,000</div>
+
+      <div class="calc-escalas">
+        <div><span id="calcDiario">$5,400</span><small>al día</small></div>
+        <div><span id="calcMensual">$162,000</span><small>al mes</small></div>
+      </div>
+
+      <p class="calc-detalle" id="calcDetalle">10 sin contestar al día · 3 de cada 10 compraban · $1,800 cada uno</p>
+
+      <div class="calc-barras">
+        <div class="calc-barra">
+          <div class="calc-barra-cab"><span>Lo que se te va al mes</span><strong id="calcBarraPerdida">$162,000</strong></div>
+          <div class="calc-barra-pista"><i id="calcBarraP" style="width:100%"></i></div>
+        </div>
+        <div class="calc-barra is-costo">
+          <div class="calc-barra-cab"><span>Lo que cuesta el agente</span><strong id="calcBarraCosto">$1,499</strong></div>
+          <div class="calc-barra-pista"><i id="calcBarraC" style="width:1%"></i></div>
+        </div>
+      </div>
+
+      <p class="calc-plan" id="calcPlan">Con tu volumen, el plan <strong>Esencial</strong> te alcanza. Recuperando <strong>1 cliente al mes</strong> ya se pagó solo.</p>
+
+      <a class="demo-cta" href="agentes-ia.html">Ver los planes</a>
+    </div>
+  </div>
+</section>
+
+
 <!-- LO QUE HAGO — lista a la izquierda, panel a la derecha que cambia solo.
      El cambio de panel se hace con CSS (:has), no con JavaScript: si el JS falla,
      la sección sigue funcionando completa. En celular el panel se oculta y cada
@@ -311,7 +382,7 @@
           <span class="serv-num">02</span>
           <span class="serv-nombre">Agente de IA que contesta tus llamadas</span>
           <span class="serv-precio">Desde $3,999/mes</span>
-          <p class="serv-desc-movil">Un agente con voz natural que contesta el teléfono de tu negocio cuando tú no puedes. Atiende, informa, agenda la cita y te pasa el recado por escrito. Se acabó el "nadie contestó" y el buzón de voz que nadie escucha.</p>
+          <p class="serv-desc-movil">Un agente con voz natural que contesta el teléfono de tu negocio cuando tú no puedes. Atiende, informa, agenda la cita y te pasa el recado por escrito. Se acabó el “nadie contestó” y el buzón de voz que nadie escucha.</p>
         </a>
         <a href="agentes-ia.html#agente-ia" class="serv-item" id="sv3">
           <img class="serv-item-img" src="assets/serv-citas.webp" alt="Salón y spa donde el agente agenda las citas" width="1536" height="960" loading="lazy" decoding="async">
@@ -395,7 +466,7 @@
       <article class="serv-ficha" id="fi2">
         <img src="assets/serv-llamadas.webp" alt="Demostración del agente que contesta llamadas telefónicas" width="1536" height="960" loading="lazy">
         <h4 class="serv-ficha-nombre">Agente de IA que contesta tus llamadas</h4>
-        <p class="serv-ficha-desc">Un agente con voz natural que contesta el teléfono de tu negocio cuando tú no puedes. Atiende, informa, agenda la cita y te pasa el recado por escrito. Se acabó el "nadie contestó" y el buzón de voz que nadie escucha.</p>
+        <p class="serv-ficha-desc">Un agente con voz natural que contesta el teléfono de tu negocio cuando tú no puedes. Atiende, informa, agenda la cita y te pasa el recado por escrito. Se acabó el “nadie contestó” y el buzón de voz que nadie escucha.</p>
         <div class="serv-ficha-pie"><span class="serv-ficha-precio">Desde $3,999/mes</span><span class="serv-ficha-cta">Ver detalles →</span></div>
       </article>
       <article class="serv-ficha" id="fi3">
@@ -452,77 +523,6 @@
         <p class="serv-ficha-desc">¿No quieres pagar todo de golpe? Ten tu página profesional pagando por mes: dominio, hosting y soporte, todo incluido y siempre cuidado por mí. Ideal para empezar hoy mismo.</p>
         <div class="serv-ficha-pie"><span class="serv-ficha-precio">Desde $599/mes</span><span class="serv-ficha-cta">Ver detalles →</span></div>
       </article>
-    </div>
-  </div>
-</section>
-
-
-<!-- CALCULADORA — el visitante pone los números de SU negocio y ve la cuenta.
-     Los supuestos están a la vista: no hay número inventado escondido.
-     Sin JS quedan los valores por omisión, que ya cuadran entre sí. -->
-<section id="calculadora">
-  <div class="section-header">
-    <div>
-      <h2 class="section-title line-mask"><span>LA CUENTA QUE</span><span>NADIE TE HACE</span></h2>
-    </div>
-    <p class="section-desc reveal">Escoge tu giro para empezar, luego mueve los controles con tus números reales. La cuenta es tuya, no mía.</p>
-  </div>
-
-  <div class="calc" id="calc">
-    <div class="calc-controles">
-      <div class="calc-giros" role="group" aria-label="Escoge un giro para partir de números típicos">
-        <button type="button" class="calc-giro is-on" data-sin="10" data-ticket="1800" data-tasa="3">Taller o refaccionaria</button>
-        <button type="button" class="calc-giro" data-sin="14" data-ticket="650" data-tasa="3">Salón o spa</button>
-        <button type="button" class="calc-giro" data-sin="20" data-ticket="380" data-tasa="4">Restaurante</button>
-        <button type="button" class="calc-giro" data-sin="6" data-ticket="900" data-tasa="3">Consultorio</button>
-      </div>
-
-      <div class="calc-campo">
-        <label for="calcSin">Mensajes y llamadas que dejas sin contestar al día</label>
-        <input type="range" id="calcSin" min="1" max="40" step="1" value="10" aria-describedby="calcSinVal">
-        <output id="calcSinVal" class="calc-valor" for="calcSin">10 al día</output>
-      </div>
-
-      <div class="calc-campo">
-        <label for="calcTicket">Lo que te deja en promedio un cliente que sí compra</label>
-        <input type="range" id="calcTicket" min="200" max="8000" step="100" value="1800" aria-describedby="calcTicketVal">
-        <output id="calcTicketVal" class="calc-valor" for="calcTicket">$1,800</output>
-      </div>
-
-      <div class="calc-campo">
-        <label for="calcTasa">De cada 10 que no contestas, cuántos sí iban a comprar</label>
-        <input type="range" id="calcTasa" min="1" max="6" step="1" value="3" aria-describedby="calcTasaVal">
-        <output id="calcTasaVal" class="calc-valor" for="calcTasa">3 de 10</output>
-      </div>
-
-      <p class="calc-honesto">Ningún agente recupera el 100% de esos clientes, y quien te diga lo contrario te está vendiendo humo. Esta cuenta es el tamaño del hoyo, no la promesa de taparlo completo.</p>
-    </div>
-
-    <div class="calc-resultado" aria-live="polite">
-      <span class="calc-etiqueta">Se te va al año</span>
-      <div class="calc-cifra" id="calcAnual">$1,944,000</div>
-
-      <div class="calc-escalas">
-        <div><span id="calcDiario">$5,400</span><small>al día</small></div>
-        <div><span id="calcMensual">$162,000</span><small>al mes</small></div>
-      </div>
-
-      <p class="calc-detalle" id="calcDetalle">10 sin contestar al día · 3 de cada 10 compraban · $1,800 cada uno</p>
-
-      <div class="calc-barras">
-        <div class="calc-barra">
-          <div class="calc-barra-cab"><span>Lo que se te va al mes</span><strong id="calcBarraPerdida">$162,000</strong></div>
-          <div class="calc-barra-pista"><i id="calcBarraP" style="width:100%"></i></div>
-        </div>
-        <div class="calc-barra is-costo">
-          <div class="calc-barra-cab"><span>Lo que cuesta el agente</span><strong id="calcBarraCosto">$1,499</strong></div>
-          <div class="calc-barra-pista"><i id="calcBarraC" style="width:1%"></i></div>
-        </div>
-      </div>
-
-      <p class="calc-plan" id="calcPlan">Con tu volumen, el plan <strong>Esencial</strong> te alcanza. Recuperando <strong>1 cliente al mes</strong> ya se pagó solo.</p>
-
-      <a class="demo-cta" href="agentes-ia.html">Ver los planes</a>
     </div>
   </div>
 </section>
@@ -611,6 +611,6 @@
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
-<script defer src="assets/site.js"></script>
+<script defer src="assets/site.js?v=12"></script>
 </body>
 </html>
