@@ -395,15 +395,13 @@ nav.scrolled {
   100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
 }
 /* Fuera de horario el letrero cambia de mensaje, no de tono: el punto sigue verde
-   porque lo que sigue despierto es el producto. El texto es más largo, así que respira. */
-.hero-status.is-off {
-  white-space: normal;
-  max-width: 30rem;
-  line-height: 1.45;
-  text-align: left;
-}
-.hero-status .hs-dim { color: var(--gray-400); }
-.hero-status .hs-hi  { color: var(--white); font-weight: 500; }
+   porque lo que sigue despierto es el producto.
+   El texto vive en dos trozos para que cambiarlo NUNCA altere la altura de la caja
+   (era el origen de un CLS de 0.205 en celular). */
+.hero-status .hs-l2::before { content: " · "; color: var(--gray-600); }
+.hero-status.is-off .hs-l2::before { content: " "; }
+.hero-status.is-off .hs-l1 { color: var(--gray-400); }
+.hero-status.is-off .hs-l2 { color: var(--white); font-weight: 500; }
 @media (prefers-reduced-motion: reduce) {
   .hero-status-dot { animation: none; box-shadow: none; }
 }
@@ -1707,7 +1705,18 @@ footer {
     padding: 0.45rem 0.8rem;
   }
   .hero-status ~ .hero-actions { margin-top: 1rem; }
-  .hero-status.is-off { text-align: center; max-width: 22rem; }
+  /* Dos líneas fijas: la caja mide lo mismo con cualquiera de los dos mensajes. */
+  .hero-status {
+    white-space: normal;
+    text-align: center;
+    max-width: 20rem;
+    line-height: 1.4;
+    min-height: calc(2 * 1.4em + 0.9rem);   /* espacio reservado desde el primer dibujado */
+  }
+  .hero-status .hs-l1,
+  .hero-status .hs-l2 { display: block; }
+  .hero-status .hs-l2::before,
+  .hero-status.is-off .hs-l2::before { content: none; }
   .hero-right .hero-3d { display: none !important; }
   .hero-right img.hero-3d-img {
     display: block;

@@ -153,37 +153,17 @@
       </h1>
       <!-- SEÑAL DE DISPONIBILIDAD: en horario dice que contesto en minutos.
            FUERA de horario NO se disculpa: se convierte en la demostración del producto
-           ("yo ya no contesto, un agente de IA sí"). El punto se queda verde siempre. -->
+           ("yo ya no contesto, un agente de IA sí"). El punto se queda verde siempre.
+
+           El texto va en dos trozos (hs-l1 / hs-l2) que en celular son dos líneas fijas,
+           para que cambiarlo desde el script nunca altere la altura de la caja. El script
+           que lo decide vive AL FINAL DEL BODY, no aquí: ver la nota de allá abajo. -->
       <div class="hero-status" id="heroStatus">
         <span class="hero-status-dot" aria-hidden="true"></span>
-        <span class="hero-status-text">En línea · te contesto en minutos</span>
+        <span class="hero-status-text">
+          <span class="hs-l1">En línea</span><span class="hs-l2">te contesto en minutos</span>
+        </span>
       </div>
-      <script>
-        (function () {
-          var caja = document.getElementById('heroStatus');
-          if (!caja) return;
-          try {
-            // Hora de Chihuahua, no la del visitante (puede estar en otro estado o país).
-            var partes = new Intl.DateTimeFormat('en-US', {
-              timeZone: 'America/Chihuahua', weekday: 'short', hour: 'numeric', hour12: false
-            }).formatToParts(new Date());
-            var dia = '', hora = 0;
-            partes.forEach(function (x) {
-              if (x.type === 'weekday') dia = x.value;
-              if (x.type === 'hour') hora = parseInt(x.value, 10);
-            });
-            if (dia !== 'Sun' && hora >= 8 && hora < 21) return;  // en horario: se queda el verde
-
-            // Fuera de horario: la hora en formato de la calle (8pm, 3am, 12am).
-            var h12 = hora % 12; if (h12 === 0) h12 = 12;
-            var reloj = h12 + (hora < 12 ? 'am' : 'pm');
-            caja.classList.add('is-off');
-            caja.querySelector('.hero-status-text').innerHTML =
-              '<span class="hs-dim">Son las ' + reloj + ' y yo ya no contesto.</span> ' +
-              '<span class="hs-hi">Un agente de IA sí.</span>';
-          } catch (e) { /* si algo falla, se queda el texto por defecto */ }
-        })();
-      </script>
       <div class="hero-actions">
         <a href="https://wa.me/526142251419?text=Hola,%20quiero%20un%20agente%20de%20IA%20para%20mi%20negocio.%20%C2%BFMe%20pasas%20informaci%C3%B3n%3F" target="_blank" rel="noopener" class="hero-btn hero-btn-primary">Quiero mi agente de IA <span aria-hidden="true">→</span></a>
         <a href="agentes-ia.html#agente-ia" class="hero-btn hero-btn-ghost">Ver cómo funciona</a>
@@ -663,6 +643,36 @@
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
+<!-- El texto de la señal del hero se decide AQUÍ, al final del body, nunca en medio del
+     hero. Un <script> inline en mitad del HTML detiene la lectura de la página hasta que
+     termina de bajar styles.css (136 KB): el navegador pintaba medio hero, y al continuar
+     metía el resto de golpe. Eso solo costaba 0.198 de CLS. Medido: aquí abajo da 0. -->
+<script>
+        (function () {
+          var caja = document.getElementById('heroStatus');
+          if (!caja) return;
+          try {
+            // Hora de Chihuahua, no la del visitante (puede estar en otro estado o país).
+            var partes = new Intl.DateTimeFormat('en-US', {
+              timeZone: 'America/Chihuahua', weekday: 'short', hour: 'numeric', hour12: false
+            }).formatToParts(new Date());
+            var dia = '', hora = 0;
+            partes.forEach(function (x) {
+              if (x.type === 'weekday') dia = x.value;
+              if (x.type === 'hour') hora = parseInt(x.value, 10);
+            });
+            if (dia !== 'Sun' && hora >= 8 && hora < 21) return;  // en horario: se queda el verde
+
+            // Fuera de horario: la hora en formato de la calle (8pm, 3am, 12am).
+            var h12 = hora % 12; if (h12 === 0) h12 = 12;
+            var reloj = h12 + (hora < 12 ? 'am' : 'pm');
+            caja.classList.add('is-off');
+            // Solo se reemplaza el TEXTO de cada línea: la caja mide igual que antes.
+            caja.querySelector('.hs-l1').textContent = 'Son las ' + reloj + ' y yo ya no contesto.';
+            caja.querySelector('.hs-l2').textContent = 'Un agente de IA sí.';
+          } catch (e) { /* si algo falla, se queda el texto por defecto */ }
+        })();
+      </script>
 <script defer src="assets/site.js?v=14"></script>
 </body>
 </html>
