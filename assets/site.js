@@ -109,7 +109,7 @@ function initGsapAnimations() {
   //   2) Cuando las letras ya están firmes, entra TODO lo demás del hero (etiqueta, subtítulo, logo, redes).
   // Usamos fromTo porque el estado inicial (opacity 0) ya viene del CSS .has-gsap.
   if (reduceMotion) {
-    gsap.set('.hero-title .line span, #heroTag, #heroSub, .hero-social', { opacity: 1 });
+    gsap.set('.hero-title .line span, #heroTag, #heroSub, #heroStatus, .hero-social', { opacity: 1 });
   } else {
     // delay ~1s: deja que el preloader termine de desvanecerse antes de la intro,
     // así el usuario sí ve aparecer las letras (no quedan ocultas tras el preloader).
@@ -119,7 +119,7 @@ function initGsapAnimations() {
         { opacity: 0, filter: 'blur(20px)', scale: 1.06 },
         { opacity: 1, filter: 'blur(0px)', scale: 1, duration: 0.5, stagger: 0.06, ease: 'power2.out' }
       )
-      .fromTo(['#heroTag', '#heroSub', '.hero-social'],
+      .fromTo(['#heroTag', '#heroSub', '#heroStatus', '.hero-social'],
         { opacity: 0, y: 24 },
         { opacity: 1, y: 0, duration: 0.35, stagger: 0.05 },
         '-=0.2'  // el resto entra apenas las letras quedan firmes (más ágil)
