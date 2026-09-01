@@ -42,35 +42,371 @@
 
 <link rel="canonical" href="https://raul2601199-maker.github.io/noel-studio/">
 
-<!-- Datos estructurados: le dicen a Google que eres un negocio local -->
+<!-- ============================================================
+     DATOS ESTRUCTURADOS (Schema.org)
+     Esto es lo que Google LEE para entender a qué se dedica el negocio.
+     Va todo en un @graph enlazado por @id, que es la forma que Google recomienda:
+       Organization  -> quién soy
+       ProfessionalService -> el negocio local + CATÁLOGO de los 11 servicios con precio
+       WebSite / WebPage -> la página
+       FAQPage -> las preguntas de la sección "PREGUNTAS FRECUENTES" (deben existir
+                  visibles en la página, si no Google lo marca como engaño)
+     Si cambias un precio o una pregunta ABAJO, cámbialo también aquí.
+     ============================================================ -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "Noel Studio",
-  "url": "https://raul2601199-maker.github.io/noel-studio/",
-  "image": "https://raul2601199-maker.github.io/noel-studio/assets/og-image.jpg",
-  "description": "Agentes de inteligencia artificial que atienden WhatsApp y llamadas telefónicas, agendan citas y toman pedidos para negocios en Chihuahua, México. También diseño de páginas web profesionales.",
-  "telephone": "+526142251419",
-  "email": "contacto.noelstudio@gmail.com",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Chihuahua",
-    "addressRegion": "Chihuahua",
-    "addressCountry": "MX"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 28.6353,
-    "longitude": -106.0889
-  },
-  "areaServed": "Chihuahua, México",
-  "priceRange": "$7,000 - $20,000 MXN",
-  "openingHours": "Mo-Sa 08:00-21:00",
-  "sameAs": [
-    "https://www.instagram.com/noelstudioweb",
-    "https://www.facebook.com/profile.php?id=61589966980458",
-    "https://www.tiktok.com/@noelstudio_"
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://raul2601199-maker.github.io/noel-studio/#organizacion",
+      "name": "Noel Studio",
+      "alternateName": "Noel Studio Chihuahua",
+      "url": "https://raul2601199-maker.github.io/noel-studio/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://raul2601199-maker.github.io/noel-studio/assets/logo-hero.png",
+        "width": 263,
+        "height": 313
+      },
+      "image": "https://raul2601199-maker.github.io/noel-studio/assets/og-image.jpg",
+      "description": "Noel Studio desarrolla agentes de inteligencia artificial que atienden el WhatsApp y las llamadas telefónicas de negocios en Chihuahua las 24 horas: contestan dudas, dan precios, agendan citas y toman pedidos. También diseña páginas web, tiendas en línea y correo profesional.",
+      "founder": {
+        "@type": "Person",
+        "name": "Raúl Noel",
+        "jobTitle": "Desarrollador de agentes de inteligencia artificial"
+      },
+      "email": "contacto.noelstudio@gmail.com",
+      "telephone": "+526142251419",
+      "areaServed": {
+        "@type": "State",
+        "name": "Chihuahua, México"
+      },
+      "sameAs": [
+        "https://www.instagram.com/noelstudioweb",
+        "https://www.facebook.com/profile.php?id=61589966980458",
+        "https://www.tiktok.com/@noelstudio_"
+      ]
+    },
+    {
+      "@type": ["ProfessionalService", "LocalBusiness"],
+      "@id": "https://raul2601199-maker.github.io/noel-studio/#negocio",
+      "name": "Noel Studio",
+      "parentOrganization": { "@id": "https://raul2601199-maker.github.io/noel-studio/#organizacion" },
+      "url": "https://raul2601199-maker.github.io/noel-studio/",
+      "image": "https://raul2601199-maker.github.io/noel-studio/assets/og-image.jpg",
+      "description": "Agentes de inteligencia artificial que contestan WhatsApp y llamadas 24/7, agendan citas y toman pedidos para negocios de Chihuahua. También páginas web, tiendas en línea, correo profesional y posicionamiento en Google.",
+      "slogan": "El cliente al que no le contestas, le compra al de al lado.",
+      "telephone": "+526142251419",
+      "email": "contacto.noelstudio@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Chihuahua",
+        "addressRegion": "Chihuahua",
+        "addressCountry": "MX"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 28.6353,
+        "longitude": -106.0889
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Chihuahua" },
+        { "@type": "State", "name": "Chihuahua" },
+        { "@type": "Country", "name": "México" }
+      ],
+      "priceRange": "$$",
+      "currenciesAccepted": "MXN",
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "opens": "08:00",
+        "closes": "21:00"
+      }],
+      "knowsAbout": [
+        "Agentes de inteligencia artificial",
+        "Automatización de WhatsApp para negocios",
+        "Agentes de voz que contestan llamadas",
+        "Agendado automático de citas",
+        "Toma de pedidos por WhatsApp",
+        "Diseño de páginas web",
+        "Tiendas en línea",
+        "Posicionamiento en Google (SEO local)",
+        "Correo profesional con dominio propio"
+      ],
+      "sameAs": [
+        "https://www.instagram.com/noelstudioweb",
+        "https://www.facebook.com/profile.php?id=61589966980458",
+        "https://www.tiktok.com/@noelstudio_"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Servicios de Noel Studio",
+        "itemListElement": [
+          {
+            "@type": "OfferCatalog",
+            "name": "Agentes de inteligencia artificial",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "price": "1499",
+                "priceCurrency": "MXN",
+                "url": "https://raul2601199-maker.github.io/noel-studio/agentes-ia.html#agente-ia",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Agente de IA para WhatsApp",
+                  "serviceType": "Agente de inteligencia artificial para atención por WhatsApp",
+                  "description": "Una inteligencia artificial entrenada con la información de tu negocio que contesta tu WhatsApp las 24 horas: responde dudas, dice precios, agenda citas, toma pedidos y te avisa cuando alguien quiere comprar.",
+                  "provider": { "@id": "https://raul2601199-maker.github.io/noel-studio/#negocio" },
+                  "areaServed": { "@type": "State", "name": "Chihuahua, México" }
+                }
+              },
+              {
+                "@type": "Offer",
+                "price": "3999",
+                "priceCurrency": "MXN",
+                "url": "https://raul2601199-maker.github.io/noel-studio/agentes-ia.html#agente-ia",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Agente de IA que contesta llamadas telefónicas",
+                  "serviceType": "Agente de voz con inteligencia artificial para llamadas",
+                  "description": "Un agente con voz natural que contesta el teléfono de tu negocio cuando tú no puedes: atiende, informa, agenda la cita y te pasa el recado por escrito.",
+                  "provider": { "@id": "https://raul2601199-maker.github.io/noel-studio/#negocio" },
+                  "areaServed": { "@type": "State", "name": "Chihuahua, México" }
+                }
+              },
+              {
+                "@type": "Offer",
+                "price": "1499",
+                "priceCurrency": "MXN",
+                "url": "https://raul2601199-maker.github.io/noel-studio/agentes-ia.html#agente-ia",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Agente de reservas y citas",
+                  "serviceType": "Agendado automático de citas con inteligencia artificial",
+                  "description": "Para salones, spas, gimnasios, consultorios y salones de eventos: revisa tu agenda, ofrece los horarios libres, aparta el lugar y manda el recordatorio al cliente.",
+                  "provider": { "@id": "https://raul2601199-maker.github.io/noel-studio/#negocio" }
+                }
+              },
+              {
+                "@type": "Offer",
+                "price": "1499",
+                "priceCurrency": "MXN",
+                "url": "https://raul2601199-maker.github.io/noel-studio/agentes-ia.html#agente-ia",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Agente de pedidos",
+                  "serviceType": "Toma de pedidos automatizada con inteligencia artificial",
+                  "description": "Para restaurantes, taquerías, tiendas y negocios de comida: enseña el menú, toma la orden completa, confirma la dirección y te manda el pedido listo para preparar.",
+                  "provider": { "@id": "https://raul2601199-maker.github.io/noel-studio/#negocio" }
+                }
+              }
+            ]
+          },
+          {
+            "@type": "OfferCatalog",
+            "name": "Tu negocio en internet",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "price": "7000",
+                "priceCurrency": "MXN",
+                "url": "https://raul2601199-maker.github.io/noel-studio/paginas-web.html#precios",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Página de presentación",
+                  "serviceType": "Diseño de página web",
+                  "description": "Una sola página con todo lo importante de tu negocio: qué haces, fotos de tu trabajo, dónde estás y un botón directo a tu WhatsApp.",
+                  "provider": { "@id": "https://raul2601199-maker.github.io/noel-studio/#negocio" }
+                }
+              },
+              {
+                "@type": "Offer",
+                "price": "12000",
+                "priceCurrency": "MXN",
+                "url": "https://raul2601199-maker.github.io/noel-studio/paginas-web.html#precios",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Sitio web completo",
+                  "serviceType": "Desarrollo de sitio web profesional",
+                  "description": "Varias páginas conectadas: inicio, servicios, quiénes somos y contacto, con herramientas como un catálogo de productos bien organizado.",
+                  "provider": { "@id": "https://raul2601199-maker.github.io/noel-studio/#negocio" }
+                }
+              },
+              {
+                "@type": "Offer",
+                "price": "18000",
+                "priceCurrency": "MXN",
+                "url": "https://raul2601199-maker.github.io/noel-studio/contacto.html#contacto",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Tienda en línea",
+                  "serviceType": "Desarrollo de tienda en línea (e-commerce)",
+                  "description": "Tus productos en internet con carrito de compras y pagos seguros, para que te compren a cualquier hora.",
+                  "provider": { "@id": "https://raul2601199-maker.github.io/noel-studio/#negocio" }
+                }
+              },
+              {
+                "@type": "Offer",
+                "price": "3000",
+                "priceCurrency": "MXN",
+                "url": "https://raul2601199-maker.github.io/noel-studio/contacto.html#contacto",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Aparecer en Google (SEO local)",
+                  "serviceType": "Posicionamiento en buscadores para negocios locales",
+                  "description": "Trabajo tu página cada mes para que cuando alguien busque en Google lo que tú vendes en Chihuahua, tu negocio salga entre los primeros.",
+                  "provider": { "@id": "https://raul2601199-maker.github.io/noel-studio/#negocio" }
+                }
+              }
+            ]
+          },
+          {
+            "@type": "OfferCatalog",
+            "name": "Servicios complementarios",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "price": "1199",
+                "priceCurrency": "MXN",
+                "url": "https://raul2601199-maker.github.io/noel-studio/paginas-web.html#correo",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Correo profesional con IA",
+                  "serviceType": "Correo electrónico corporativo con dominio propio",
+                  "description": "Tu correo con el nombre de tu negocio en vez de un @gmail, con un asistente de inteligencia artificial que te resume los mensajes y te ayuda a responder.",
+                  "provider": { "@id": "https://raul2601199-maker.github.io/noel-studio/#negocio" }
+                }
+              },
+              {
+                "@type": "Offer",
+                "price": "1000",
+                "priceCurrency": "MXN",
+                "url": "https://raul2601199-maker.github.io/noel-studio/contacto.html#contacto",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Video promocional para redes sociales",
+                  "serviceType": "Producción de video publicitario para redes sociales",
+                  "description": "Un video corto y profesional para Reels, TikTok e historias, con voz, música y movimiento.",
+                  "provider": { "@id": "https://raul2601199-maker.github.io/noel-studio/#negocio" }
+                }
+              },
+              {
+                "@type": "Offer",
+                "price": "599",
+                "priceCurrency": "MXN",
+                "url": "https://raul2601199-maker.github.io/noel-studio/paginas-web.html#plan-mensual",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Plan mensual: página web sin inversión inicial",
+                  "serviceType": "Página web por suscripción mensual",
+                  "description": "Tu página profesional pagando por mes: dominio, hosting y soporte incluidos, sin pagar todo de golpe.",
+                  "provider": { "@id": "https://raul2601199-maker.github.io/noel-studio/#negocio" }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://raul2601199-maker.github.io/noel-studio/#sitio",
+      "url": "https://raul2601199-maker.github.io/noel-studio/",
+      "name": "Noel Studio",
+      "inLanguage": "es-MX",
+      "publisher": { "@id": "https://raul2601199-maker.github.io/noel-studio/#organizacion" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://raul2601199-maker.github.io/noel-studio/#pagina",
+      "url": "https://raul2601199-maker.github.io/noel-studio/",
+      "name": "Agentes de IA para negocios | Noel Studio Chihuahua",
+      "description": "Agentes de inteligencia artificial que contestan el WhatsApp y las llamadas de tu negocio 24/7: agendan citas y toman pedidos. Chihuahua, México.",
+      "isPartOf": { "@id": "https://raul2601199-maker.github.io/noel-studio/#sitio" },
+      "about": { "@id": "https://raul2601199-maker.github.io/noel-studio/#negocio" },
+      "inLanguage": "es-MX",
+      "primaryImageOfPage": "https://raul2601199-maker.github.io/noel-studio/assets/og-image.jpg"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://raul2601199-maker.github.io/noel-studio/#preguntas",
+      "isPartOf": { "@id": "https://raul2601199-maker.github.io/noel-studio/#pagina" },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué es un agente de inteligencia artificial para un negocio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Es un asistente de inteligencia artificial entrenado con la información de tu negocio (precios, servicios, horarios, ubicación) que atiende a tus clientes por WhatsApp o por teléfono las 24 horas. Contesta dudas, cotiza, agenda la cita, levanta el pedido y te pasa el aviso cuando alguien está listo para comprar. Trabaja aunque tú estés dormido, atendiendo a otro cliente o de descanso."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿En qué se diferencia de un chatbot de los de antes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Un chatbot viejo sigue un menú fijo: si el cliente no escribe la opción exacta, se traba. Un agente de inteligencia artificial entiende lo que le escriben con las palabras de cada quien, con faltas de ortografía y con audios, y responde con la información real de tu negocio. Además hace cosas, no solo platica: revisa la agenda, aparta el lugar, arma el pedido y te lo manda."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto cuesta un agente de IA para WhatsApp en Chihuahua?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El agente que atiende WhatsApp arranca en 1,499 pesos al mes. El agente que contesta llamadas telefónicas con voz arranca en 3,999 pesos al mes. El precio final depende de cuántos mensajes maneje tu negocio y de si necesita conectarse a tu agenda, a tu catálogo o a tu sistema de pedidos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto cuesta una página web en Chihuahua?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Una página de presentación arranca en 7,000 pesos, un sitio web completo de varias páginas en 12,000 pesos y una tienda en línea con carrito y pagos en 18,000 pesos. Si no quieres pagar todo de golpe, existe el plan mensual desde 599 pesos al mes con dominio, hosting y soporte incluidos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Sirve para mi tipo de negocio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sirve para cualquier negocio que pierda ventas por no alcanzar a contestar. Hoy trabajo con talleres y refaccionarias, salones de belleza y spas, gimnasios, consultorios, restaurantes y taquerías, salones de eventos, distribuidoras y despachos. Si a ti te llegan mensajes o llamadas y no siempre puedes responder, te sirve."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Necesito saber de tecnología para usarlo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Yo lo configuro, lo entreno con la información de tu negocio y lo dejo funcionando. Tú sigues usando tu WhatsApp de siempre: la diferencia es que ahora te llegan los clientes ya atendidos y las citas ya agendadas. Cuando algo se tenga que cambiar, me escribes y yo lo cambio."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿El agente puede agendar citas y tomar pedidos solo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Revisa los horarios que tengas libres, le ofrece opciones al cliente, aparta la cita y le manda un recordatorio antes para que no te falle. Para pedidos enseña el menú o el catálogo, toma la orden completa, confirma la dirección y te la manda lista para preparar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Solo trabajas en Chihuahua?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Soy de Chihuahua y ahí está la mayoría de mis clientes, pero todo el trabajo se hace en línea, así que puedo atender negocios de cualquier parte de México. Las juntas son por videollamada o por WhatsApp."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo empezamos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Me escribes por WhatsApp al 614 225 1419, me cuentas de tu negocio y qué es lo que más se te está escapando. Te digo qué te conviene, cuánto cuesta y cómo quedaría. Sin compromiso y sin tecnicismos."
+          }
+        }
+      ]
+    }
   ]
 }
 </script>
@@ -100,7 +436,7 @@
     document.head.appendChild(mv3d);
   }
 </script>
-<link rel="stylesheet" href="assets/styles.css?v=14">
+<link rel="stylesheet" href="assets/styles.css?v=15">
 </head>
 <body id="top">
 
@@ -185,7 +521,7 @@
     </div>
     <div class="hero-right">
     <!-- En celular se ve esta imagen (15 KB); en computadora, el modelo 3D de abajo. -->
-    <img class="hero-3d-img" src="assets/logo-hero.png" alt="Logo de Noel Studio" width="263" height="313" fetchpriority="high" decoding="async">
+    <img class="hero-3d-img" src="assets/logo-hero.png" alt="Noel Studio: agentes de inteligencia artificial y páginas web en Chihuahua" width="263" height="313" fetchpriority="high" decoding="async">
     <model-viewer
       class="hero-3d"
       src="assets/ns-3d.glb"
@@ -589,6 +925,61 @@
     <div class="rh-score">5.0 en Google</div>
     <div class="rh-sub">Lo que dicen mis clientes</div>
   </div>
+</section>
+
+<!-- PREGUNTAS FRECUENTES — las mismas que van en el bloque FAQPage del <head>.
+     Google exige que la pregunta y la respuesta estén VISIBLES en la página para
+     mostrarlas en los resultados. Si cambias una aquí, cámbiala también arriba.
+     Usa <details>/<summary> del navegador: abre y cierra sin JavaScript, así que
+     el contenido nunca depende de una animación para poder leerse. -->
+<section id="preguntas">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title line-mask"><span class="sr-only">Preguntas frecuentes sobre agentes de inteligencia artificial y páginas web</span><span aria-hidden="true">PREGUNTAS</span><span aria-hidden="true">FRECUENTES</span></h2>
+    </div>
+    <p class="section-desc reveal">Lo que más me preguntan antes de contratar. Si te falta algo, escríbeme y te lo aclaro.</p>
+  </div>
+
+  <div class="faq-lista">
+    <details class="faq-item">
+      <summary class="faq-q"><span>¿Qué es un agente de inteligencia artificial para un negocio?</span><i class="faq-mas" aria-hidden="true"></i></summary>
+      <div class="faq-a"><p>Es un asistente de inteligencia artificial entrenado con la información de tu negocio (precios, servicios, horarios, ubicación) que atiende a tus clientes por WhatsApp o por teléfono las 24 horas. Contesta dudas, cotiza, agenda la cita, levanta el pedido y te pasa el aviso cuando alguien está listo para comprar. Trabaja aunque tú estés dormido, atendiendo a otro cliente o de descanso.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q"><span>¿En qué se diferencia de un chatbot de los de antes?</span><i class="faq-mas" aria-hidden="true"></i></summary>
+      <div class="faq-a"><p>Un chatbot viejo sigue un menú fijo: si el cliente no escribe la opción exacta, se traba. Un agente de inteligencia artificial entiende lo que le escriben con las palabras de cada quien, con faltas de ortografía y con audios, y responde con la información real de tu negocio. Además hace cosas, no solo platica: revisa la agenda, aparta el lugar, arma el pedido y te lo manda.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q"><span>¿Cuánto cuesta un agente de IA para WhatsApp en Chihuahua?</span><i class="faq-mas" aria-hidden="true"></i></summary>
+      <div class="faq-a"><p>El agente que atiende WhatsApp arranca en 1,499 pesos al mes. El agente que contesta llamadas telefónicas con voz arranca en 3,999 pesos al mes. El precio final depende de cuántos mensajes maneje tu negocio y de si necesita conectarse a tu agenda, a tu catálogo o a tu sistema de pedidos.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q"><span>¿Cuánto cuesta una página web en Chihuahua?</span><i class="faq-mas" aria-hidden="true"></i></summary>
+      <div class="faq-a"><p>Una página de presentación arranca en 7,000 pesos, un sitio web completo de varias páginas en 12,000 pesos y una tienda en línea con carrito y pagos en 18,000 pesos. Si no quieres pagar todo de golpe, existe el plan mensual desde 599 pesos al mes con dominio, hosting y soporte incluidos.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q"><span>¿Sirve para mi tipo de negocio?</span><i class="faq-mas" aria-hidden="true"></i></summary>
+      <div class="faq-a"><p>Sirve para cualquier negocio que pierda ventas por no alcanzar a contestar. Hoy trabajo con talleres y refaccionarias, salones de belleza y spas, gimnasios, consultorios, restaurantes y taquerías, salones de eventos, distribuidoras y despachos. Si a ti te llegan mensajes o llamadas y no siempre puedes responder, te sirve.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q"><span>¿Necesito saber de tecnología para usarlo?</span><i class="faq-mas" aria-hidden="true"></i></summary>
+      <div class="faq-a"><p>No. Yo lo configuro, lo entreno con la información de tu negocio y lo dejo funcionando. Tú sigues usando tu WhatsApp de siempre: la diferencia es que ahora te llegan los clientes ya atendidos y las citas ya agendadas. Cuando algo se tenga que cambiar, me escribes y yo lo cambio.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q"><span>¿El agente puede agendar citas y tomar pedidos solo?</span><i class="faq-mas" aria-hidden="true"></i></summary>
+      <div class="faq-a"><p>Sí. Revisa los horarios que tengas libres, le ofrece opciones al cliente, aparta la cita y le manda un recordatorio antes para que no te falle. Para pedidos enseña el menú o el catálogo, toma la orden completa, confirma la dirección y te la manda lista para preparar.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q"><span>¿Solo trabajas en Chihuahua?</span><i class="faq-mas" aria-hidden="true"></i></summary>
+      <div class="faq-a"><p>Soy de Chihuahua y ahí está la mayoría de mis clientes, pero todo el trabajo se hace en línea, así que puedo atender negocios de cualquier parte de México. Las juntas son por videollamada o por WhatsApp.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q"><span>¿Cómo empezamos?</span><i class="faq-mas" aria-hidden="true"></i></summary>
+      <div class="faq-a"><p>Me escribes por WhatsApp al 614 225 1419, me cuentas de tu negocio y qué es lo que más se te está escapando. Te digo qué te conviene, cuánto cuesta y cómo quedaría. Sin compromiso y sin tecnicismos.</p></div>
+    </details>
+  </div>
+
+  <p class="faq-pie reveal">¿Tu duda no está aquí? <a href="https://wa.me/526142251419?text=Hola,%20tengo%20una%20duda%20sobre%20los%20agentes%20de%20IA" target="_blank" rel="noopener">Pregúntamela por WhatsApp</a>.</p>
 </section>
 
 <!-- CIERRE DE PÁGINA -->

@@ -3910,3 +3910,69 @@ body {
 .serv-split:has(#sv9:hover) #fi9, .serv-split:has(#sv9:focus-visible) #fi9 { opacity: 1; transform: none; z-index: 2; }
 .serv-split:has(#sv10:hover) #fi10, .serv-split:has(#sv10:focus-visible) #fi10 { opacity: 1; transform: none; z-index: 2; }
 .serv-split:has(#sv11:hover) #fi11, .serv-split:has(#sv11:focus-visible) #fi11 { opacity: 1; transform: none; z-index: 2; }
+
+/* ===== PREGUNTAS FRECUENTES =====
+   Acordeón nativo con <details>/<summary>: sin JavaScript, accesible con teclado
+   y buscable por el navegador (Cmd+F abre la respuesta escondida en Chrome).
+   El signo + gira a × al abrir; es el único movimiento, así que si el motor de
+   animaciones no corre, la sección sigue funcionando igual. */
+#preguntas {
+  padding: 8rem 3rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.faq-lista {
+  max-width: 900px;
+  margin: 0 auto;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.faq-item { border-bottom: 1px solid rgba(255,255,255,0.08); }
+.faq-q {
+  display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+  padding: 1.6rem 0;
+  cursor: pointer;
+  list-style: none;                 /* quita el triangulito de Safari/Firefox */
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(0.95rem, 1.5vw, 1.08rem);
+  font-weight: 500; line-height: 1.4;
+  color: var(--white);
+  transition: color 0.25s var(--ease-out);
+}
+.faq-q::-webkit-details-marker { display: none; }   /* y el de Chrome */
+.faq-q:focus-visible { outline: 2px solid var(--white); outline-offset: 4px; border-radius: 4px; }
+@media (hover: hover) and (pointer: fine) {
+  .faq-q:hover { color: var(--gray-200); }
+  .faq-q:hover .faq-mas::before, .faq-q:hover .faq-mas::after { background: var(--white); }
+}
+/* El signo + dibujado con dos rayas: siempre se ve, no depende de una fuente de íconos. */
+.faq-mas {
+  position: relative; flex: 0 0 auto;
+  width: 16px; height: 16px;
+  transition: transform 0.35s var(--ease-out);
+}
+.faq-mas::before, .faq-mas::after {
+  content: ''; position: absolute; inset: 50% 0 auto 0;
+  height: 1.5px; background: var(--gray-400);
+  transition: background 0.25s var(--ease-out);
+}
+.faq-mas::after { transform: rotate(90deg); }
+.faq-item[open] .faq-mas { transform: rotate(135deg); }
+.faq-item[open] .faq-q { color: var(--white); }
+.faq-a {
+  padding: 0 3rem 1.9rem 0;
+  max-width: 68ch;
+}
+.faq-a p {
+  font-size: 0.92rem; line-height: 1.85; font-weight: 300;
+  color: var(--gray-400);
+}
+.faq-pie {
+  max-width: 900px; margin: 3rem auto 0;
+  font-size: 0.875rem; color: var(--gray-600); font-weight: 300;
+}
+.faq-pie a { color: var(--white); text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 768px) {
+  #preguntas { padding: 4.5rem 1.5rem; }
+  .faq-q { padding: 1.3rem 0; gap: 1rem; }
+  .faq-a { padding: 0 0 1.5rem 0; }
+  .faq-pie { margin-top: 2.2rem; }
+}
