@@ -1,0 +1,32 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+*/
+.elector { justify-self: center; display: grid; justify-items: center; gap: clamp(16px, 2.2vw, 26px); }
+.orbe__foto { position: absolute; inset: 0; border-radius: 50%; background-position: center; background-size: cover; }
+.orbe__centro { overflow: hidden; }
+.orbe__centro > *:not(.orbe__foto) { position: relative; z-index: 1; }
+.orbe--con-foto .orbe__foto::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(transparent 28%, rgba(3, 3, 5, .86) 76%); }
+.orbe--con-foto .orbe__centro { justify-content: flex-end; padding-bottom: 12%; color: var(--blanco); }
+.orbe--con-foto .barras { display: none; }
+.orbe--con-foto:hover .orbe__centro { color: var(--blanco); background: #030305; }
+.hero.voz-sonando .orbe__anillo { animation-duration: 1.2s; }
+.hero.voz-sonando .barras i { animation-duration: .5s; }
+.elector__lista { display: flex; gap: 10px; }
+.elector__lista button { width: 48px; height: 48px; display: grid; place-items: center; padding: 0; color: var(--blanco); background-color: #030305; background-image: var(--foto, none); background-position: center; background-size: cover; border: 1px solid rgba(255, 255, 255, .42); border-radius: 50%; font: 700 .95rem 'Unbounded', sans-serif; cursor: pointer; transition: transform .22s var(--curva), border-color .22s, box-shadow .22s; }
+.elector__lista button.con-foto span { opacity: 0; }
+.elector__lista button:hover { transform: translateY(-2px); }
+.elector__lista button[aria-pressed="true"] { border-color: var(--blanco); box-shadow: 0 0 0 2px var(--blanco), 0 0 18px rgba(232, 238, 255, .8); }
+.voz__foto { background-position: center; background-size: cover; }
+.voz__foto.con-foto { color: transparent; background-image: var(--foto); background-position: center; background-size: cover; }

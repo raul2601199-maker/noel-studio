@@ -1,0 +1,24 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+*/
+@media (max-width: 860px) {
+  body { font-size: 1.0625rem; padding-bottom: env(safe-area-inset-bottom); }
+  .contenedor { padding-inline: 18px; }
+  .btn { min-height: 52px; width: 100%; }
+  .acciones { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .acciones .btn { padding-inline: 8px; }
+  .servicios > .contenedor { padding-top: 0; }
+  .raul > .contenedor { padding-top: 0; }
+}

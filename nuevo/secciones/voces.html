@@ -1,0 +1,51 @@
+<!--
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+-->
+<section class="voces" id="prueba" data-mundo="lectura" data-prueba data-llave="{{RETELL_LLAVE}}" data-agente="{{RETELL_AGENTE}}">
+  <div class="contenedor">
+    <h2 data-aparece>Prueba maestra.</h2>
+    <p class="voces__nota">Elige una voz y habla con ella en vivo. Cuéntale de tu negocio como si llamaras a Noel Studio.</p>
+    <div class="voces__lista" role="group" aria-label="Elige con quién hablar">
+      <button class="voz" type="button" data-voz-id="retell-Claudia" data-nombre="Claudia" aria-pressed="true">
+        <span class="voz__foto" data-foto="voces/fotos/claudia.jpg" aria-hidden="true">C</span>
+        <span class="voz__nombre">Claudia</span>
+        <span class="voz__tipo">Mexicana · Adulta</span>
+        <span class="voz__desc">Clara y profesional.</span>
+      </button>
+      <button class="voz" type="button" data-voz-id="retell-Andrea" data-nombre="Andrea" aria-pressed="false">
+        <span class="voz__foto" data-foto="voces/fotos/andrea.jpg" aria-hidden="true">A</span>
+        <span class="voz__nombre">Andrea</span>
+        <span class="voz__tipo">Mexicana · Adulta</span>
+        <span class="voz__desc">Serena y segura.</span>
+      </button>
+      <button class="voz" type="button" data-voz-id="retell-Gaby" data-nombre="Gaby" aria-pressed="false">
+        <span class="voz__foto" data-foto="voces/fotos/gaby.jpg" aria-hidden="true">G</span>
+        <span class="voz__nombre">Gaby</span>
+        <span class="voz__tipo">Mexicana · Joven</span>
+        <span class="voz__desc">Cercana y ágil.</span>
+      </button>
+      <button class="voz" type="button" data-voz-id="retell-Alejandro" data-nombre="Alejandro" aria-pressed="false">
+        <span class="voz__foto" data-foto="voces/fotos/alejandro.jpg" aria-hidden="true">A</span>
+        <span class="voz__nombre">Alejandro</span>
+        <span class="voz__tipo">Mexicano · Joven</span>
+        <span class="voz__desc">Natural y directo.</span>
+      </button>
+    </div>
+    <div class="prueba__accion">
+      <button class="btn btn--solido prueba__hablar" type="button" data-hablar><span class="punto" aria-hidden="true"></span><span data-hablar-texto>Hablar con Claudia</span></button>
+      <p class="prueba__estado" data-estado aria-live="polite">Llamada en vivo · máximo 2 minutos · usa tu micrófono</p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,25 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+*/
+@media (min-width: 821px) { .preguntas h2 { position: sticky; top: 100px; align-self: start; } }
+.resenas, .preguntas, .cierre, .pie { position: relative; z-index: 1; }
+.viaje-lienzo { position: fixed; top: 0; left: 0; z-index: -1; width: 100%; height: 100lvh; }
+html { background: var(--negro); }
+html.viaje body { background: transparent; }
+html.viaje .hero, html.viaje .problema, html.viaje .llamada, html.viaje .dia, html.viaje .servicios, html.viaje .proceso, html.viaje .portafolio, html.viaje .resenas, html.viaje .raul, html.viaje .preguntas, html.viaje .cierre, html.viaje .planes, html.viaje .contacto, html.viaje .giros, html.viaje .voces, html.viaje .linea-servicio { background: transparent; }
+main > section { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; overflow: clip; }
+main > section > * { width: 100%; }
+.cierre, .contacto, .planes { min-height: auto !important; }
+.globo, .recado, .plan h3, .plan p, .plan li, .formulario label, .servicio h3, .etiqueta { text-shadow: none; }

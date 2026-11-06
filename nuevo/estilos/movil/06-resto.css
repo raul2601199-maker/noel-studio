@@ -1,0 +1,29 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+*/
+@media (max-width: 860px) {
+  .servicio--llamadas { min-height: 280px; }
+  .pasos { gap: 28px; }
+  .pasos li { display: grid; grid-template-columns: 58px 1fr; column-gap: 10px; }
+  .pasos li::before { grid-row: span 2; margin: 0; font-size: 2.5rem; }
+  .pasos p { margin-top: 4px; }
+  .carril { margin-top: 26px; padding-inline: 18px; scroll-padding-inline: 18px; scroll-snap-type: x mandatory; }
+  .proyecto, .proyecto--grande { flex-basis: 84%; }
+  .proyecto img { height: 220px; }
+  .resena--grande p { font-size: 1.62rem; }
+  .contacto__rejilla { grid-template-columns: 1fr; }
+  .liga { display: inline-flex; align-items: center; min-height: 44px; }
+  .pie { padding-bottom: calc(92px + env(safe-area-inset-bottom)); }
+}

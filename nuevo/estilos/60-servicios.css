@@ -1,0 +1,37 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+*/
+.servicios { position: relative; z-index: 1; padding-bottom: var(--seccion); background: var(--negro); }
+.servicios > .contenedor { padding-top: clamp(64px, 8vw, 110px); }
+.servicios__mosaico { perspective: 1200px; }
+.servicios h2 { max-width: 17ch; }
+.servicios__mosaico { display: grid; grid-template-columns: 1.25fr 1fr; grid-template-rows: repeat(3, minmax(165px, auto)); gap: 14px; margin-top: clamp(34px, 5vw, 62px); }
+.servicio { display: flex; flex-direction: column; gap: 12px; padding: clamp(24px, 3vw, 38px); border-radius: 16px; text-decoration: none; transition: transform .25s var(--curva); }
+.servicio:hover { transform: translateY(-4px); }
+.servicio p { max-width: 36ch; }
+.servicio--llamadas { grid-row: span 3; justify-content: flex-end; color: var(--negro); background: var(--luz); text-shadow: none; }
+.servicio--llamadas h3 { font-size: clamp(1.9rem, 1.2rem + 3vw, 3.5rem); }
+.servicio--whatsapp { background: var(--panel); color: var(--blanco); }
+.servicio--web { color: var(--blanco); background: var(--panel-claro); }
+.precio { margin-top: auto; padding-top: 10px; font-weight: 700; }
+.servicio--llamadas .precio { margin-top: 0; }
+.extras { margin-top: 34px; border-top: 2px solid var(--blanco); }
+.extras li { display: flex; justify-content: space-between; gap: 18px; padding-block: 15px; border-bottom: 1px solid var(--linea); }
+.extras span:last-child { font-weight: 600; white-space: nowrap; }
+@media (max-width: 760px) { .servicios__mosaico { grid-template-columns: 1fr; grid-template-rows: none; } .servicio--llamadas { grid-row: auto; min-height: 330px; } }
+.servicio p, .servicio h3, .servicio .precio { text-shadow: none; }
+.barras--tarjeta { justify-content: flex-start; height: clamp(70px, 9vw, 130px); margin: 0 0 auto; }
+.barras--tarjeta i { background: var(--negro); }
+.servicio:active { transform: scale(.985); }

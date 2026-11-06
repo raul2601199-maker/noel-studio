@@ -1,0 +1,37 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+*/
+.portafolio { position: relative; z-index: 1; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding-block: clamp(84px, 9vw, 120px); overflow: hidden; color: var(--blanco); background: var(--negro); }
+.titulo-fila { display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 18px; }
+.liga { font-weight: 600; text-underline-offset: 5px; }
+.carril { display: flex; gap: 14px; margin-top: 40px; padding-inline: max(clamp(16px, 4vw, 48px), calc((100vw - 1184px) / 2)); overflow-x: auto; scroll-snap-type: x proximity; scroll-padding-inline: clamp(16px, 4vw, 48px); scrollbar-width: none; }
+.proyecto { position: relative; flex: 0 0 min(76vw, 340px); scroll-snap-align: start; text-decoration: none; }
+.proyecto--grande { flex-basis: min(86vw, 620px); }
+.proyecto img { width: 100%; height: clamp(250px, 32vw, 400px); object-fit: cover; border-radius: 12px; transition: transform .35s var(--curva); }
+.proyecto:hover img { transform: scale(1.015); }
+.proyecto h3 { margin-top: 16px; }
+.proyecto p { color: var(--gris); }
+.etiqueta { position: absolute; top: 12px; left: 12px; padding: 6px 12px; border-radius: 999px; color: var(--negro); background: var(--luz); font-size: .9rem; font-weight: 600; }
+.carril--fijo { width: max-content; overflow: visible; }
+.carril--fijo .proyecto { flex-basis: min(36vw, 500px); }
+.carril--fijo .proyecto--grande { flex-basis: min(54vw, 760px); }
+.proyecto { overflow: clip; }
+.proyecto img { will-change: transform; }
+@media (min-width: 861px) and (max-height: 840px) {
+  .portafolio { padding-block: 78px 18px; }
+  .portafolio h2 { font-size: clamp(2.6rem, 6.6vh, 4rem); }
+  .carril { margin-top: 18px; }
+  .proyecto img { height: 46vh; }
+}

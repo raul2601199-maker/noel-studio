@@ -1,0 +1,21 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+*/
+.proceso { position: relative; z-index: 1; min-height: 100svh; display: flex; align-items: center; padding-block: var(--seccion); background: var(--negro); }
+.pasos { counter-reset: paso; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(26px, 4vw, 54px); margin-top: clamp(38px, 5vw, 66px); }
+.pasos li { counter-increment: paso; }
+.pasos li::before { content: counter(paso); display: block; margin-bottom: 18px; color: var(--blanco); font: 700 clamp(3.6rem, 2.5rem + 4vw, 6rem)/1 'Unbounded', sans-serif; }
+.pasos p { margin-top: 10px; }
+@media (max-width: 760px) { .pasos { grid-template-columns: 1fr; } }

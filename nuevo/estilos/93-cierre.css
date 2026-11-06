@@ -1,0 +1,25 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+*/
+.cierre { padding-block: clamp(70px, 8vw, 120px); text-align: center; background: var(--negro); }
+.cierre h2 { max-width: 16ch; margin-inline: auto; font-size: clamp(2.2rem, 1.2rem + 5vw, 5.2rem); }
+.cierre p { margin-block: 20px 28px; font-weight: 500; }
+.pie { padding-block: 62px 26px; color: var(--blanco); background: var(--negro); border-top: 1px solid var(--linea); }
+.pie__rejilla { display: grid; grid-template-columns: 1.4fr .8fr 1fr; gap: 34px; }
+.pie a { display: block; padding-block: 5px; text-decoration: none; }
+.pie a:hover { color: var(--gris); }
+.pie__marca { margin-bottom: 10px; font: 700 1.1rem 'Unbounded', sans-serif; }
+.pie__legal { margin-top: 34px; color: var(--gris); font-size: .92rem; }
+@media (max-width: 720px) { .pie__rejilla { grid-template-columns: 1fr; } }

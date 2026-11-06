@@ -1,0 +1,33 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+*/
+.linea-servicio { padding-block: var(--seccion); background: var(--negro); }
+.linea-servicio__cabeza { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(20px, 5vw, 70px); align-items: end; }
+.linea-servicio__cabeza p { color: var(--texto-suave); }
+.linea-servicio__cabeza--sola { display: block; }
+.linea-servicio__cabeza--sola p { margin-top: 14px; }
+.ventajas { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.ventajas li { padding: 8px 15px; background: rgba(3, 3, 5, .72); border: 1px solid var(--linea); border-radius: 999px; font-weight: 500; }
+.planes__lista { margin-top: clamp(26px, 4vw, 44px); padding-bottom: 0; }
+.linea-servicio .grupos { margin-top: 30px; }
+.creativos__rejilla { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(250px, .75fr); gap: clamp(30px, 6vw, 86px); align-items: center; }
+.creativos__lista { margin-block: 28px; border-top: 1px solid var(--linea); }
+.creativos__lista li { display: flex; justify-content: space-between; gap: 18px; padding-block: 15px; border-bottom: 1px solid var(--linea); }
+.creativos__lista p { color: var(--texto-suave); }
+.creativos__lista span { flex: none; font-weight: 700; }
+.creativos__video { margin: 0; }
+.creativos__video video { display: block; width: 100%; max-height: 72vh; background: var(--panel); border: 1px solid var(--linea); border-radius: 14px; }
+.creativos__video figcaption { margin-top: 10px; color: var(--gris); font-size: .96rem; }
+.servicio--creativos { color: var(--blanco); background: var(--panel-claro); }

@@ -1,0 +1,36 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+*/
+.planes { padding-block: var(--seccion); background: var(--negro); }
+.planes__intro { max-width: 52ch; margin-top: 16px; color: var(--texto-suave); }
+.grupos { margin-top: clamp(28px, 4vw, 50px); border-top: 1px solid var(--linea); }
+.grupo { border-bottom: 1px solid var(--linea); }
+.grupo summary { min-height: 74px; display: flex; justify-content: space-between; align-items: center; gap: 18px; padding-block: 16px; font: 700 clamp(1.1rem, 1rem + .9vw, 1.65rem)/1.2 'Unbounded', sans-serif; cursor: pointer; list-style: none; }
+.grupo summary::-webkit-details-marker { display: none; }
+.grupo summary small { flex: none; color: var(--gris); font: 500 1rem 'Outfit', sans-serif; }
+.grupo__planes { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; padding-bottom: 28px; }
+.plan { display: flex; flex-direction: column; padding: 24px; color: var(--blanco); background: var(--panel); border: 1px solid var(--linea); border-radius: 14px; }
+.plan--destacado { color: var(--negro); background: var(--blanco); border-color: var(--blanco); }
+.plan h3 { margin: 0; font: 700 1.25rem 'Unbounded', sans-serif; letter-spacing: -0.02em; }
+.plan p, .plan li { text-shadow: none; }
+.plan__cap { margin-top: 6px; opacity: .78; }
+.plan__precio { margin-top: 18px; font: 700 1.55rem 'Unbounded', sans-serif; letter-spacing: -0.02em; }
+.plan__extra { margin-top: 6px; opacity: .78; font-size: .96rem; }
+.plan ul { display: grid; gap: 7px; margin-block: 18px 22px; }
+.plan li { padding-left: 16px; position: relative; font-size: 1rem; }
+.plan li::before { content: ""; position: absolute; left: 0; top: .62em; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.plan .btn { margin-top: auto; }
+.plan--destacado .btn--solido { color: var(--blanco); background: var(--negro); }
+.planes__nota { margin-top: 22px; color: var(--texto-suave); }

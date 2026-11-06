@@ -1,0 +1,45 @@
+<!--
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+-->
+<section class="hero" id="inicio" data-mundo="pleno" data-llamada>
+  <div class="contenedor hero__rejilla">
+    <div class="hero__texto">
+      <h1>Tu negocio contesta. Aunque tú no puedas.</h1>
+      <p class="hero__sub">Un agente de inteligencia artificial atiende tus llamadas, resuelve dudas y te deja el recado por escrito. Tú sigues trabajando.</p>
+      <div class="acciones">
+        <a class="btn btn--solido" href="{{WA}}?text=Hola,%20quiero%20un%20agente%20para%20mi%20negocio">Quiero mi agente</a>
+        <a class="btn btn--linea" href="#prueba">Hablar en vivo</a>
+      </div>
+    </div>
+    <div class="elector" data-elector>
+      <button class="orbe" type="button" data-hablar>
+        <span class="orbe__anillo" aria-hidden="true"></span>
+        <span class="orbe__anillo" aria-hidden="true"></span>
+        <span class="orbe__centro">
+          <span class="orbe__foto" data-orbe-foto aria-hidden="true"></span>
+          <span class="barras" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          <span class="orbe__texto" data-orbe-texto>Escucha a Claudia</span>
+          <span class="orbe__sub" data-estado aria-live="polite">Ejemplo de voz</span>
+        </span>
+      </button>
+      <div class="elector__lista" role="group" aria-label="Elige una voz">
+        <button type="button" data-persona="claudia" data-nombre="Claudia" data-audio="voces/claudia.mp3" data-foto="voces/fotos/claudia.jpg" aria-label="Claudia" aria-pressed="true"><span>C</span></button>
+        <button type="button" data-persona="andrea" data-nombre="Andrea" data-audio="voces/andrea.mp3" data-foto="voces/fotos/andrea.jpg" aria-label="Andrea" aria-pressed="false"><span>A</span></button>
+        <button type="button" data-persona="gaby" data-nombre="Gaby" data-audio="voces/gaby.mp3" data-foto="voces/fotos/gaby.jpg" aria-label="Gaby" aria-pressed="false"><span>G</span></button>
+        <button type="button" data-persona="alejandro" data-nombre="Alejandro" data-audio="voces/alejandro.mp3" data-foto="voces/fotos/alejandro.jpg" aria-label="Alejandro" aria-pressed="false"><span>A</span></button>
+      </div>
+    </div>
+  </div>
+</section>

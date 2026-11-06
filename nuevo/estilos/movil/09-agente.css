@@ -1,0 +1,28 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+*/
+@media (max-width: 860px) {
+  .agente-boton { right: 14px; bottom: calc(14px + env(safe-area-inset-bottom)); min-height: 46px; padding: 8px 15px; font-size: .96rem; }
+  .barra-movil--visible ~ .agente-boton { bottom: calc(84px + env(safe-area-inset-bottom)); }
+  .agente-boton__largo { display: none; }
+  .agente-boton__corto { display: inline; }
+  .agente { width: 100%; max-width: none; max-height: 88dvh; margin: auto 0 0; padding: 20px 18px calc(18px + env(safe-area-inset-bottom)); border-width: 1px 0 0; border-radius: 18px 18px 0 0; }
+  .agente__campo .btn { width: auto; }
+}
+@media (max-width: 860px) {
+  .agente-boton { opacity: 0; pointer-events: none; }
+  .barra-movil--visible ~ .agente-boton { opacity: 1; pointer-events: auto; }
+  .barra-movil--visible ~ .agente-boton--oculto { opacity: 0; pointer-events: none; }
+}

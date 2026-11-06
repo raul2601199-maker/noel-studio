@@ -1,0 +1,46 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+*/
+.nav { position: fixed; top: calc(12px + env(safe-area-inset-top)); left: 0; right: 0; z-index: var(--z-nav); width: min(1180px, calc(100% - 28px)); margin-inline: auto; min-height: 62px; display: flex; align-items: center; gap: 18px; padding: 8px 9px 8px 22px; color: var(--blanco); }
+/* El vidrio va en una capa aparte para que el menu de telefono pueda cubrir toda la pantalla. */
+.nav::before { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(12, 13, 18, .34); border: 1px solid rgba(255, 255, 255, .15); border-radius: 999px; -webkit-backdrop-filter: blur(18px) saturate(1.25); backdrop-filter: blur(18px) saturate(1.25); transition: background-color .25s; }
+.nav--solida::before { background: rgba(12, 13, 18, .56); }
+.nav__marca { margin-right: auto; font: 700 .98rem 'Unbounded', sans-serif; letter-spacing: -0.01em; text-decoration: none; white-space: nowrap; }
+.nav__ligas { display: flex; gap: 2px; }
+.nav__ligas a { min-height: 42px; display: inline-flex; align-items: center; padding-inline: 14px; border-radius: 999px; color: rgba(255, 255, 255, .78); font-size: 1rem; font-weight: 500; text-decoration: none; transition: color .2s, background-color .2s; }
+.nav__ligas a:hover { color: var(--blanco); background: rgba(255, 255, 255, .1); }
+.nav__ligas a.activa { color: var(--blanco); background: rgba(255, 255, 255, .15); }
+.nav__accion { width: auto; min-height: 46px; padding: 8px 20px; }
+.nav__menu { display: none; }
+.nav__menu summary { width: 46px; height: 46px; position: relative; display: block; border-radius: 50%; cursor: pointer; list-style: none; background: rgba(255, 255, 255, .1); }
+.nav__menu summary::-webkit-details-marker { display: none; }
+.nav__menu summary::before, .nav__menu summary::after { content: ""; position: absolute; left: 13px; width: 20px; height: 2px; background: currentColor; border-radius: 2px; transition: transform .25s var(--curva), top .25s var(--curva); }
+.nav__menu summary::before { top: 18px; }
+.nav__menu summary::after { top: 26px; }
+.nav__menu[open] summary::before { top: 22px; transform: rotate(45deg); }
+.nav__menu[open] summary::after { top: 22px; transform: rotate(-45deg); }
+.nav__panel { position: fixed; inset: 0; z-index: -2; display: flex; flex-direction: column; justify-content: center; padding: 96px 22px calc(26px + env(safe-area-inset-bottom)); color: var(--blanco); background: rgba(3, 3, 5, .97); -webkit-backdrop-filter: blur(26px); backdrop-filter: blur(26px); animation: panel-entra .28s var(--curva); }
+.nav__panel a { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; padding-block: 15px; border-bottom: 1px solid var(--linea); font: 700 clamp(1.45rem, 7vw, 2rem)/1.1 'Unbounded', sans-serif; letter-spacing: -0.025em; text-decoration: none; }
+.nav__panel small { flex: none; color: var(--gris); font: 500 .96rem 'Outfit', sans-serif; letter-spacing: 0; }
+.nav__panel .btn { justify-content: center; margin-top: 22px; border-bottom: 0; font: 700 1.05rem 'Outfit', sans-serif; letter-spacing: 0; }
+@keyframes panel-entra { from { opacity: 0; } }
+html.menu-abierto { overflow: hidden; }
+@media (max-width: 1040px) { .nav__ligas a { padding-inline: 10px; } }
+@media (max-width: 860px) {
+  .nav { top: calc(8px + env(safe-area-inset-top)); width: calc(100% - 16px); min-height: 60px; gap: 8px; padding: 7px 7px 7px 18px; }
+  .nav__ligas { display: none; }
+  .nav__menu { display: block; }
+  .nav__accion { min-height: 46px; padding-inline: 16px; font-size: .98rem; }
+}

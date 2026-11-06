@@ -1,0 +1,39 @@
+<!--
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+-->
+<section class="dia" id="dia" data-dia data-momento="manana" data-mundo="escena" data-escena="dia">
+  <div class="contenedor">
+    <h2 data-aparece>Tú trabajas. Ella contesta.</h2>
+    <p class="dia__intro">Un día de ejemplo en un taller.</p>
+    <div class="dia__horas" role="tablist" aria-label="Momentos del día">
+      <span class="dia__avance" aria-hidden="true"></span>
+      <button role="tab" aria-selected="true" aria-controls="dia-panel" data-hora="manana" data-lugar="Estás debajo de un carro." data-accion="Claudia dio la información del servicio y tomó los datos para la cita.">9:40 am</button>
+      <button role="tab" aria-selected="false" aria-controls="dia-panel" data-hora="comida" data-lugar="Saliste a comer." data-accion="Atendió a un cliente nuevo y te dejó su recado por escrito.">1:15 pm</button>
+      <button role="tab" aria-selected="false" aria-controls="dia-panel" data-hora="tarde" data-lugar="Tienes clientes en el mostrador." data-accion="Contestó sin que tuvieras que soltar lo que estabas haciendo.">4:30 pm</button>
+      <button role="tab" aria-selected="false" aria-controls="dia-panel" data-hora="noche" data-lugar="Ya cerraste." data-accion="Recibió la llamada y mañana temprano ya tienes el recado.">9:05 pm</button>
+    </div>
+    <ol class="dia-movil">
+      <li><time>9:40 am</time><h3>Estás debajo de un carro.</h3><p>Claudia dio la información del servicio y tomó los datos para la cita.</p></li>
+      <li><time>1:15 pm</time><h3>Saliste a comer.</h3><p>Atendió a un cliente nuevo y te dejó su recado por escrito.</p></li>
+      <li><time>4:30 pm</time><h3>Tienes clientes en el mostrador.</h3><p>Contestó sin que tuvieras que soltar lo que estabas haciendo.</p></li>
+      <li><time>9:05 pm</time><h3>Ya cerraste.</h3><p>Recibió la llamada y mañana temprano ya tienes el recado.</p></li>
+    </ol>
+    <div class="dia__panel" id="dia-panel" role="tabpanel" aria-live="polite">
+      <p class="dia__reloj" data-reloj aria-hidden="true">9:40<small>am</small></p>
+      <p class="dia__lugar" data-lugar-texto>Estás debajo de un carro.</p>
+      <p class="dia__accion" data-accion-texto>Claudia dio la información del servicio y tomó los datos para la cita.</p>
+    </div>
+  </div>
+</section>

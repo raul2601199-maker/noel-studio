@@ -1,0 +1,20 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+*/
+.problema { position: relative; z-index: 1; min-height: 100svh; display: flex; align-items: center; padding-block: var(--seccion); background: var(--negro); }
+.problema h2 { max-width: 15ch; color: var(--gris); font-size: clamp(2.2rem, 1.2rem + 5vw, 5.4rem); }
+.problema em { color: var(--blanco); font-style: normal; }
+.problema__columnas { display: grid; grid-template-columns: repeat(2, minmax(0, 34ch)); justify-content: start; gap: clamp(24px, 6vw, 88px); margin-top: clamp(32px, 5vw, 64px); color: var(--texto-suave); }
+@media (max-width: 720px) { .problema__columnas { grid-template-columns: 1fr; } }

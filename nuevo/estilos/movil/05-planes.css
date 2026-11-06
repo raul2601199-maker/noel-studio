@@ -1,0 +1,22 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+*/
+@media (max-width: 860px) {
+  .grupo summary { min-height: 72px; gap: 10px; font-size: 1.06rem; }
+  .grupo summary small { max-width: 44%; font-size: .94rem; text-align: right; }
+  .grupo__planes { display: flex; gap: 12px; margin-inline: -18px; padding: 0 18px 24px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 18px; scrollbar-width: none; }
+  .grupo__planes::-webkit-scrollbar { display: none; }
+  .plan { flex: 0 0 86%; scroll-snap-align: start; }
+}

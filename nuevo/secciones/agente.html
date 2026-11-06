@@ -1,0 +1,43 @@
+<!--
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+-->
+<!-- Vista previa: todavia no hay un modelo conectado. Antes de publicar, conectarlo o cambiar el texto. -->
+<button class="agente-boton" type="button" data-agente-abrir aria-haspopup="dialog">
+  <span class="agente-boton__luz" aria-hidden="true"></span>
+  <span class="agente-boton__largo">¿No sabes qué buscas?</span>
+  <span class="agente-boton__corto">¿Dudas?</span>
+</button>
+<dialog class="agente" data-panel-agente aria-labelledby="agente-titulo">
+  <header class="agente__cabeza">
+    <div>
+      <h2 id="agente-titulo" tabindex="-1" autofocus>Habla con nuestro agente de inteligencia artificial</h2>
+      <p>Vista previa. Muy pronto contestará en vivo.</p>
+    </div>
+    <button class="agente__cerrar" type="button" data-agente-cerrar aria-label="Cerrar">×</button>
+  </header>
+  <p class="agente__globo">¿No sabes lo que buscas? Dime qué necesitas y te llevo a la opción correcta.</p>
+  <div class="agente__opciones">
+    <button type="button" data-destino="#planes">Que contesten mis llamadas</button>
+    <button type="button" data-destino="#whatsapp">Atender mi WhatsApp</button>
+    <button type="button" data-destino="#web">Una página web</button>
+    <button type="button" data-destino="#creativos">Videos y diseño</button>
+    <button type="button" data-destino="#contacto">No sé qué necesito</button>
+  </div>
+  <form class="agente__campo" data-agente-formulario data-whatsapp="{{WA}}">
+    <label class="oculto" for="agente-mensaje">Escribe tu duda</label>
+    <input id="agente-mensaje" name="mensaje" placeholder="Escribe tu duda" autocomplete="off" required>
+    <button class="btn btn--solido" type="submit">Enviar</button>
+  </form>
+</dialog>

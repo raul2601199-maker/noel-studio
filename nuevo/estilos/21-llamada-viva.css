@@ -1,0 +1,30 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+*/
+.orbe { --tam: clamp(240px, 23vw, 320px); position: relative; width: var(--tam); height: var(--tam); padding: 0; color: var(--blanco); background: none; border: 0; border-radius: 50%; cursor: pointer; -webkit-user-select: none; user-select: none; }
+.orbe__centro { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 14%; background: #030305; border: 2px solid var(--blanco); border-radius: 50%; box-shadow: 0 0 22px rgba(232, 238, 255, .78), 0 0 70px rgba(232, 238, 255, .34), inset 0 0 26px rgba(232, 238, 255, .2); transition: transform .3s var(--curva), background-color .25s, color .25s, box-shadow .25s; }
+.orbe:hover .orbe__centro { color: var(--negro); background: var(--blanco); box-shadow: 0 0 34px rgba(255, 255, 255, .95), 0 0 110px rgba(232, 238, 255, .6); }
+.orbe:active .orbe__centro { transform: scale(.95); }
+.orbe .barras { width: 62%; height: 44px; margin: 0 0 4px; }
+.orbe__texto { font: 700 clamp(1.08rem, .9rem + .75vw, 1.45rem)/1.12 'Unbounded', sans-serif; letter-spacing: -0.02em; text-align: center; text-wrap: balance; }
+.orbe__sub { font-size: .95rem; font-weight: 500; opacity: .86; }
+.orbe__anillo { position: absolute; inset: 0; pointer-events: none; border: 1px solid rgba(255, 255, 255, .7); border-radius: 50%; animation: orbe-onda 2.8s cubic-bezier(.2, .7, .3, 1) infinite; }
+.orbe__anillo + .orbe__anillo { animation-delay: 1.4s; }
+.hero[data-fase="viva"] .orbe__anillo { animation-duration: 1.2s; }
+.hero[data-fase="viva"] .barras i { animation-duration: .5s; }
+.hero[data-fase="viva"] .orbe__centro { color: var(--negro); background: var(--blanco); }
+.hero[data-fase="conectando"] .orbe { cursor: progress; }
+.orbe:disabled { opacity: .8; }
+@keyframes orbe-onda { from { opacity: .85; transform: scale(1); } to { opacity: 0; transform: scale(1.55); } }

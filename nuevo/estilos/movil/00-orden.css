@@ -1,0 +1,83 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+*/
+/* Orden del telefono: ninguna seccion mide una pantalla si su contenido no la llena. */
+@media (max-width: 860px) {
+  main > section:not(.hero),
+  .problema, .llamada, .dia, .giros, .proceso, .portafolio, .raul, .preguntas {
+    display: block;
+    min-height: 0 !important;
+    padding-block: 46px;
+    border-top: 1px solid var(--linea);
+  }
+  .cierre { border-top: 0 !important; padding-block: 52px 8px !important; }
+  .contacto { border-top: 0 !important; padding-top: 26px !important; }
+  h2 { font-size: clamp(1.8rem, 8.2vw, 2.4rem); line-height: 1.1; }
+  .problema h2, .cierre h2, .preguntas h2 { font-size: clamp(1.9rem, 8.8vw, 2.5rem); }
+  .problema__columnas { gap: 12px; margin-top: 18px; }
+  .llamada__texto { margin-block: 12px; }
+  .lista-simple { gap: 6px; margin-bottom: 18px; }
+  .llamada__rejilla, .raul__rejilla, .preguntas__rejilla, .contacto__rejilla { gap: 20px; }
+  .dia__intro, .planes__intro { margin-top: 8px; }
+  .dia-movil { margin-top: 18px; }
+  .dia-movil li { min-height: 0; padding: 18px; }
+  .dia-movil time { margin-bottom: 14px; }
+  .giros__lista { margin-top: 18px; }
+  .giros__lista li { display: block; padding-block: 13px; }
+  .giros__lista h3 { font-size: 1.05rem; }
+  .giros__lista p { margin-top: 4px; }
+  .servicios__mosaico { gap: 10px; margin-top: 20px; }
+  .servicio { padding: 20px; }
+  .servicio--llamadas { min-height: 0; }
+  .barras--tarjeta { height: 54px; margin-bottom: 8px; }
+  .precio { padding-top: 2px; }
+  .grupos { margin-top: 18px; }
+  .pasos { gap: 18px; margin-top: 20px; }
+  .carril { margin-top: 16px; }
+  .proyecto img { height: 200px; }
+  .resena--grande { margin-block: 12px 24px; }
+  .resena--grande p { font-size: 1.42rem; }
+  .resenas__par { gap: 18px; }
+  .raul p + p { margin-top: 10px; }
+  .acordeon summary { min-height: 54px; padding-block: 10px; }
+  .contacto__datos { margin-top: 12px; gap: 4px; }
+  .contacto__datos a { display: inline-flex; align-items: center; min-height: 44px; }
+  .pie { padding-top: 34px; }
+  .pie__rejilla { gap: 18px; }
+}
+@media (max-width: 860px) {
+  .cierre { text-align: left; }
+  .cierre h2 { margin-inline: 0; }
+  .contacto h2 { font-size: 1.3rem; }
+}
+@media (max-width: 860px) {
+  .nav__marca { white-space: nowrap; }
+  .btn { white-space: nowrap; }
+}
+@media (max-width: 350px) {
+  .nav__marca { font-size: .84rem; }
+  .nav__accion { padding-inline: 12px; font-size: .92rem; }
+  .hero h1 { font-size: 2.2rem; }
+  .acciones .btn { font-size: .98rem; }
+}
+/* Telefono acostado: el mensaje primero, sin barra fija. */
+@media (max-width: 960px) and (max-height: 500px) {
+  .hero { min-height: 0; padding-block: 76px 26px; }
+  .hero h1 { font-size: 2rem; }
+  .hero__sub { max-width: 58ch; }
+  .acciones { max-width: 430px; }
+  .elector { display: none; }
+  .barra-movil { display: none; }
+}

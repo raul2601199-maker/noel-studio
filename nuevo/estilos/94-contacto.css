@@ -1,0 +1,26 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+*/
+.contacto { padding-block: var(--seccion); background: var(--negro); }
+.contacto__rejilla { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 86px); align-items: start; }
+.contacto__datos { display: grid; gap: 10px; margin-top: 26px; }
+.formulario { display: grid; gap: 16px; padding: clamp(20px, 3vw, 32px); background: var(--panel); border: 1px solid var(--linea); border-radius: 14px; }
+.formulario label { display: grid; gap: 7px; font-weight: 600; }
+.formulario input, .formulario textarea { width: 100%; min-height: 50px; padding: 12px 14px; color: var(--blanco); background: var(--negro); border: 1px solid var(--linea); border-radius: 10px; font: inherit; font-size: 16px; }
+.formulario button { width: 100%; cursor: pointer; }
+.barra-movil { display: none; }
+.dia-movil { display: none; }
+.contacto { padding-top: 0; }
+.contacto h2 { font-size: clamp(1.7rem, 1.2rem + 1.8vw, 2.8rem); }

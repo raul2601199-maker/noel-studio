@@ -1,0 +1,41 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+*/
+@media (max-width: 860px) {
+  .hero { min-height: 100svh; padding-block: calc(92px + env(safe-area-inset-top)) 22px; align-items: stretch; }
+  .hero__rejilla { height: 100%; display: flex; flex-direction: column-reverse; justify-content: space-between; gap: 24px; }
+  .hero h1 { font-size: clamp(2.3rem, 11vw, 3.4rem); line-height: 1.03; }
+  .hero__sub { max-width: none; margin-block: 12px 16px; font-size: 1.08rem; line-height: 1.36; }
+  .elector { align-self: center; flex: none; gap: 12px; }
+  .orbe { --tam: min(48vw, 21svh, 210px); }
+  .elector__lista { gap: 12px; }
+  .elector__lista button { width: 44px; height: 44px; font-size: .86rem; }
+  .orbe__centro { gap: 3px; padding: 11%; }
+  .orbe .barras { height: 26px; gap: 3px; }
+  .orbe .barras i { width: 4px; }
+  .orbe__texto { font-size: clamp(.9rem, 4.1vw, 1.08rem); }
+  .orbe__sub { font-size: .84rem; }
+}
+@media (max-width: 860px) and (max-height: 620px) {
+  .hero { padding-top: calc(78px + env(safe-area-inset-top)); }
+  .hero__rejilla { gap: 12px; }
+  .elector { gap: 8px; }
+  .orbe { --tam: 150px; }
+  .orbe__sub { display: none; }
+  .elector__lista button { width: 44px; height: 44px; }
+  .hero h1 { font-size: 2rem; }
+  .hero__sub { display: none; }
+  .acciones { margin-top: 14px; }
+}

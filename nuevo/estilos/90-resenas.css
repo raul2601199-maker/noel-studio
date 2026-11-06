@@ -1,0 +1,23 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+*/
+.resenas { padding-block: var(--seccion); background: var(--negro); }
+.resenas__nota { font-weight: 600; }
+.resenas__nota span { color: var(--blanco); }
+.resena--grande { margin-block: 26px clamp(38px, 6vw, 72px); }
+.resena--grande p { max-width: 24ch; font: 700 clamp(1.7rem, 1.1rem + 2.6vw, 3.4rem)/1.14 'Unbounded', sans-serif; letter-spacing: -0.025em; }
+.resena cite { display: block; margin-top: 14px; font-style: normal; font-weight: 600; }
+.resenas__par { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 5vw, 70px); }
+@media (max-width: 720px) { .resenas__par { grid-template-columns: 1fr; } }
