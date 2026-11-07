@@ -1,0 +1,21 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+*/
+.chat-wa { padding-block: var(--seccion); background: var(--negro); }
+.chat-wa__rejilla { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(32px, 6vw, 90px); align-items: center; }
+.chat-wa__texto { max-width: 42ch; margin-top: 18px; padding: 18px 20px; color: var(--texto-suave); background: rgba(14, 15, 21, .74); border: 1px solid rgba(255, 255, 255, .1); border-radius: 14px; }
+.charla--wa .globo--claudia { background: #1f5f3f; }
+html.viaje .chat-wa { background: transparent; }
+@media (max-width: 860px) { .chat-wa { padding-block: 64px; } .chat-wa__rejilla { display: block; } .charla--wa { margin-top: 24px; } .chat-wa__texto { padding: 15px 16px; font-size: .97rem; } }

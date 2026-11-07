@@ -43,7 +43,7 @@ PAGINAS = {
     "index.html": {
         "titulo": "Agentes de IA que contestan tu negocio | Noel Studio Chihuahua",
         "descripcion": "Agentes de inteligencia artificial que contestan llamadas y WhatsApp, páginas web y creativos para negocios. Chihuahua, México.",
-        "secciones": ["hero", "problema", "servicios", "portafolio", "resenas", "cierre"],
+        "secciones": ["hero", "problema", "servicios", "voces", "portafolio", "resenas", "cierre"],
     },
     "llamadas.html": {
         "titulo": "Agente de llamadas con IA | Noel Studio",
@@ -55,19 +55,19 @@ PAGINAS = {
         "titulo": "WhatsApp automático para negocios | Noel Studio",
         "descripcion": "Un agente de inteligencia artificial que responde dudas, aparta citas y toma pedidos por WhatsApp.",
         "cabecera": ("WhatsApp automático", "Cada mensaje recibe respuesta.", "Responde con la información de tu negocio y te avisa cuando alguien quiere comprar."),
-        "secciones": ["whatsapp", "proceso", "cierre"],
+        "secciones": ["whatsapp", "chat-whatsapp", "proceso", "preguntas", "cierre"],
     },
     "paginas-web.html": {
         "titulo": "Páginas web en Chihuahua | Noel Studio",
         "descripcion": "Páginas web desde 4,500 pesos, tienda con terminal de pago, correo profesional y Google.",
         "cabecera": ("Páginas web", "Tu negocio, bien presentado en internet.", "Páginas hechas desde cero, rápidas y listas para que Google las encuentre."),
-        "secciones": ["web", "portafolio", "cierre"],
+        "secciones": ["web", "portafolio", "resenas", "preguntas", "cierre"],
     },
     "creativos.html": {
         "titulo": "Estudio creativo: videos y diseño | Noel Studio",
         "descripcion": "Videos para redes, diseño para campañas, logo, marca, catálogos y menús.",
         "cabecera": ("Estudio creativo", "Piezas que hacen que se detengan a verte.", "Videos, diseño y marca para que tu negocio se vea profesional en redes."),
-        "secciones": ["creativos", "cierre"],
+        "secciones": ["creativos", "portafolio", "cierre"],
     },
     "contacto.html": {
         "titulo": "Contacto | Noel Studio Chihuahua",
