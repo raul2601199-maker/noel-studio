@@ -28,3 +28,5 @@
 .hero[data-fase="conectando"] .orbe { cursor: progress; }
 .orbe:disabled { opacity: .8; }
 @keyframes orbe-onda { from { opacity: .85; transform: scale(1); } to { opacity: 0; transform: scale(1.55); } }
+.hero__texto > * { flex: none; }
+.confianza { position: relative; z-index: 1; }

@@ -54,3 +54,8 @@
   .nav::before { background: rgba(10, 11, 16, .78); }
   .barra-movil .btn { min-height: 48px; font-size: .96rem; cursor: pointer; }
 }
+@media (max-width: 860px) {
+  .nav .nav__accion { width: auto; flex: none; padding-inline: 18px; }
+  .nav__marca { margin-right: auto; }
+}
+@media (max-width: 860px) and (max-height: 620px) { .confianza { display: none; } }
