@@ -26,7 +26,7 @@
 .voz__nombre { font: 700 clamp(1.15rem, 1rem + .7vw, 1.6rem)/1.1 'Unbounded', sans-serif; letter-spacing: -0.02em; }
 .voz__desc { margin-top: 2px; }
 .prueba__accion { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 20px; margin-top: 26px; }
-.prueba__hablar { gap: 10px; min-width: 240px; font: 700 1.05rem 'Outfit', sans-serif; cursor: pointer; }
+.prueba__hablar { gap: 10px; min-width: 240px; font: 700 1.05rem 'Hanken Grotesk', sans-serif; cursor: pointer; }
 .prueba__hablar .punto { background: oklch(0.6 0.2 150); }
 .prueba__estado { color: var(--texto-suave); }
 .voces[data-fase="viva"] .prueba__hablar { color: var(--blanco); background: oklch(0.55 0.2 27); }

@@ -22,7 +22,8 @@
   --panel: #14151c;
   --panel-claro: #272934;
   --linea: rgba(255, 255, 255, .2);
-  --texto-suave: #c2c4d0;
+  --texto-suave: #c4c6d2;
+  --acento: #8fe3ff;
   --z-nav: 20;
   --z-saltar: 30;
   --curva: cubic-bezier(0.22, 1, 0.36, 1);
@@ -32,7 +33,8 @@
 * { -webkit-tap-highlight-color: transparent; }
 body { touch-action: manipulation; }
 html { scroll-behavior: smooth; scroll-padding-top: 92px; -webkit-text-size-adjust: 100%; }
-body { margin: 0; background: var(--negro); color: var(--blanco); font: 400 clamp(1.08rem, 1rem + .42vw, 1.32rem)/1.5 'Outfit', system-ui, sans-serif; overflow-x: clip; }
+html, body { overscroll-behavior: none; }
+body { margin: 0; background: var(--negro); color: var(--blanco); font: 400 clamp(1.06rem, 1rem + .36vw, 1.26rem)/1.6 'Hanken Grotesk', system-ui, sans-serif; overflow-x: clip; }
 h1, h2, h3, p, ul, ol, blockquote { margin: 0; padding: 0; }
 ul, ol { list-style: none; }
 img { display: block; max-width: 100%; height: auto; }

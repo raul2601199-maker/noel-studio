@@ -33,6 +33,11 @@
 
   document.fonts.ready.then(() => ScrollTrigger.refresh());
   addEventListener('load', () => ScrollTrigger.refresh());
+  // En computadora los proyectos se cargan antes para que el carril fijo no se trabe.
+  if (matchMedia('(min-width: 861px)').matches) document.querySelectorAll('.carril img[loading="lazy"]').forEach((imagen) => {
+    imagen.loading = 'eager';
+    imagen.decode && imagen.decode().catch(() => {});
+  });
 })();
 
 (function () {
@@ -529,7 +534,7 @@
         invalidateOnRefresh: true,
       },
     });
-    linea.to(carril, { x: () => -distancia(), ease: 'none', duration: 1 }, 0);
+    linea.to(carril, { x: () => -distancia(), ease: 'none', duration: 1, force3D: true }, 0);
     return () => carril.classList.remove('carril--fijo');
   };
 })();

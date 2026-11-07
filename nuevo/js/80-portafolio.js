@@ -29,7 +29,7 @@
         invalidateOnRefresh: true,
       },
     });
-    linea.to(carril, { x: () => -distancia(), ease: 'none', duration: 1 }, 0);
+    linea.to(carril, { x: () => -distancia(), ease: 'none', duration: 1, force3D: true }, 0);
     return () => carril.classList.remove('carril--fijo');
   };
 })();

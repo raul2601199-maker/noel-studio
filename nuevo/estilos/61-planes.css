@@ -19,7 +19,7 @@
 .grupo { border-bottom: 1px solid var(--linea); }
 .grupo summary { min-height: 74px; display: flex; justify-content: space-between; align-items: center; gap: 18px; padding-block: 16px; font: 700 clamp(1.1rem, 1rem + .9vw, 1.65rem)/1.2 'Unbounded', sans-serif; cursor: pointer; list-style: none; }
 .grupo summary::-webkit-details-marker { display: none; }
-.grupo summary small { flex: none; color: var(--gris); font: 500 1rem 'Outfit', sans-serif; }
+.grupo summary small { flex: none; color: var(--gris); font: 500 1rem 'Hanken Grotesk', sans-serif; }
 .grupo__planes { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; padding-bottom: 28px; }
 .plan { display: flex; flex-direction: column; padding: 24px; color: var(--blanco); background: var(--panel); border: 1px solid var(--linea); border-radius: 14px; }
 .plan--destacado { color: var(--negro); background: var(--blanco); border-color: var(--blanco); }

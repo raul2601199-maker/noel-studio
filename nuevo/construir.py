@@ -44,36 +44,44 @@ PAGINAS = {
         "titulo": "Agentes de IA que contestan tu negocio | Noel Studio Chihuahua",
         "descripcion": "Agentes de inteligencia artificial que contestan llamadas y WhatsApp, páginas web y creativos para negocios. Chihuahua, México.",
         "secciones": ["hero", "problema", "servicios", "voces", "portafolio", "resenas", "cierre"],
+        "cierre": "Que la siguiente llamada sí se conteste.",
     },
     "llamadas.html": {
         "titulo": "Agente de llamadas con IA | Noel Studio",
         "descripcion": "Un agente con voz natural que contesta tu teléfono, informa y te deja el recado. Escucha las voces y pruébalo en vivo.",
         "cabecera": ("Llamadas con IA", "Tu teléfono contesta al primer timbre.", "Claudia atiende, informa y te deja cada recado por escrito, aunque tú estés ocupado."),
         "secciones": ["llamada", "voces", "giros", "planes", "proceso", "preguntas"],
+        "temas": ["agentes", "general"],
     },
     "whatsapp.html": {
         "titulo": "WhatsApp automático para negocios | Noel Studio",
         "descripcion": "Un agente de inteligencia artificial que responde dudas, aparta citas y toma pedidos por WhatsApp.",
         "cabecera": ("WhatsApp automático", "Cada mensaje recibe respuesta.", "Responde con la información de tu negocio y te avisa cuando alguien quiere comprar."),
         "secciones": ["whatsapp", "chat-whatsapp", "proceso", "preguntas", "cierre"],
+        "temas": ["agentes", "general"],
+        "cierre": "Que ningún mensaje se quede sin respuesta.",
     },
     "paginas-web.html": {
         "titulo": "Páginas web en Chihuahua | Noel Studio",
         "descripcion": "Páginas web desde 4,500 pesos, tienda con terminal de pago, correo profesional y Google.",
         "cabecera": ("Páginas web", "Tu negocio, bien presentado en internet.", "Páginas hechas desde cero, rápidas y listas para que Google las encuentre."),
         "secciones": ["web", "portafolio", "resenas", "preguntas", "cierre"],
+        "temas": ["web", "general"],
+        "cierre": "Tu próxima página puede ser esta.",
     },
     "creativos.html": {
         "titulo": "Estudio creativo: videos y diseño | Noel Studio",
         "descripcion": "Videos para redes, diseño para campañas, logo, marca, catálogos y menús.",
         "cabecera": ("Estudio creativo", "Piezas que hacen que se detengan a verte.", "Videos, diseño y marca para que tu negocio se vea profesional en redes."),
-        "secciones": ["creativos", "portafolio", "cierre"],
+        "secciones": ["creativos", "cierre"],
+        "cierre": "Hagamos que tu negocio se vea.",
     },
     "contacto.html": {
         "titulo": "Contacto | Noel Studio Chihuahua",
         "descripcion": "Habla con Raúl de Noel Studio por WhatsApp o correo. Chihuahua, México.",
         "cabecera": ("Contacto", "Hablemos de tu negocio.", "Escríbeme por WhatsApp o déjame tus datos. Te digo qué te conviene y cuánto cuesta."),
         "secciones": ["contacto", "raul", "preguntas"],
+        "temas": ["agentes", "web", "general"],
     },
 }
 
@@ -114,6 +122,21 @@ def esquema_preguntas(cuerpo):
     return json.dumps(datos, ensure_ascii=False)
 
 
+def filtrar(html_seccion, datos):
+    """Deja solo las preguntas del tema de la pagina y pone su cierre."""
+    html_seccion = html_seccion.replace("{{CIERRE}}", datos.get("cierre", "Que la siguiente llamada sí se conteste."))
+    temas = datos.get("temas")
+    if not temas or "data-tema" not in html_seccion:
+        return html_seccion
+    html_seccion = re.sub(
+        r'\s*<details data-tema="([a-z]+)">.*?</details>',
+        lambda m: m.group(0) if m.group(1) in temas else "",
+        html_seccion,
+        flags=re.S,
+    )
+    return html_seccion.replace("<details data-tema", "<details open data-tema", 1)
+
+
 def cabecera(datos):
     miga, titulo, texto = datos
     return f"""<section class="cabecera" data-mundo="pleno">
@@ -132,7 +155,7 @@ def main():
         antes = "\n".join(leer(RAIZ / "secciones" / f"{n}.html") for n in COMUNES_ANTES)
         antes = antes.replace(f'href="{archivo}"', f'href="{archivo}" aria-current="page"')
         partes = [cabecera(datos["cabecera"])] if "cabecera" in datos else []
-        partes += [leer(RAIZ / "secciones" / f"{n}.html") for n in datos["secciones"]]
+        partes += [filtrar(leer(RAIZ / "secciones" / f"{n}.html"), datos) for n in datos["secciones"]]
         principal = "\n".join(partes)
         despues = "\n".join(leer(RAIZ / "secciones" / f"{n}.html") for n in COMUNES_DESPUES)
         cuerpo = antes + '\n<main id="principal">\n' + principal + "\n</main>\n" + despues
