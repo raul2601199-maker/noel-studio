@@ -1,0 +1,32 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+*/
+.cabecera { min-height: 0 !important; padding-block: clamp(140px, 16vw, 210px) clamp(36px, 5vw, 70px); }
+.migas { display: flex; gap: 8px; margin-bottom: 18px; color: var(--gris); font-size: .95rem; }
+.migas a { color: var(--gris); text-decoration: none; }
+.migas a:hover { color: var(--blanco); }
+.cabecera h1 { max-width: 16ch; font-size: clamp(2.3rem, 1.4rem + 4vw, 4.8rem); }
+.cabecera p { max-width: 54ch; margin-top: 18px; color: var(--texto-suave); font-size: clamp(1.02rem, .95rem + .4vw, 1.25rem); }
+.nav__ligas a[aria-current="page"] { color: var(--blanco); background: rgba(255, 255, 255, .15); }
+@media (max-width: 860px) {
+  .cabecera { padding-block: calc(110px + env(safe-area-inset-top)) 26px !important; border-top: 0 !important; }
+  .cabecera h1 { font-size: clamp(1.9rem, 8.6vw, 2.5rem); line-height: 1.08; }
+  .cabecera p { font-size: .98rem; }
+}
+/* En paginas internas el encabezado ya presenta el tema: no se repite. */
+.cabecera + .linea-servicio .linea-servicio__cabeza, .cabecera + .contacto h2 { display: none; }
+.cabecera + .linea-servicio { padding-top: 0 !important; }
+.cabecera + .linea-servicio .ventajas { margin-top: 0; }
+.cabecera + .contacto { padding-top: 10px !important; }

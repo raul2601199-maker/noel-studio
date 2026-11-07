@@ -27,8 +27,10 @@
   }
 
   document.addEventListener('click', (evento) => {
-    const liga = evento.target.closest('a[href^="#"]');
-    const destino = liga && document.querySelector(liga.getAttribute('href'));
+    const liga = evento.target.closest('a[href]');
+    if (!liga) return;
+    const url = new URL(liga.href, location.href);
+    const destino = url.pathname === location.pathname && url.hash ? document.querySelector(url.hash) : null;
     if (!destino || !lenis) return;
     evento.preventDefault();
     lenis.scrollTo(destino, { offset: -72, duration: 1.3 });

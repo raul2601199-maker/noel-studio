@@ -30,6 +30,8 @@
   let ancho = 0, alto = 0, foco = 0, aros = 42, focos = 72, chispas = [];
   let pos = 0, velocidad = 0, fuerza = 1, metaFuerza = 1, sombra = null, anchoAnterior = 0, metaX = 0, metaY = 0, velo = 0, metaVelo = 0;
 
+  const orbeVivo = document.querySelector('.orbe__centro');
+
   // Un punto de luz dibujado una vez y reutilizado en cada LED.
   const led = document.createElement('canvas');
   led.width = led.height = 64;
@@ -98,6 +100,11 @@
     ctx.fillRect(0, 0, ancho, alto);
     // En telefono el tunel arranca arriba y baja al centro con el scroll.
     const inicio = Math.max(0, 1 - scrollY / (alto * 0.7));
+    if (inicio > 0 && orbeVivo) {
+      const caja = orbeVivo.getBoundingClientRect();
+      metaX = caja.left + caja.width / 2;
+      metaY = caja.top + caja.height / 2;
+    }
     const finalX = ancho * (ancho < 861 ? 0.5 : 0.63);
     ctx.translate(finalX + (metaX - finalX) * inicio, alto * 0.5 + (metaY - alto * 0.5) * inicio);
     const movil = ancho < 861;

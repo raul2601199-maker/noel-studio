@@ -13,8 +13,10 @@
   }
 
   document.addEventListener('click', (evento) => {
-    const liga = evento.target.closest('a[href^="#"]');
-    const destino = liga && document.querySelector(liga.getAttribute('href'));
+    const liga = evento.target.closest('a[href]');
+    if (!liga) return;
+    const url = new URL(liga.href, location.href);
+    const destino = url.pathname === location.pathname && url.hash ? document.querySelector(url.hash) : null;
     if (!destino || !lenis) return;
     evento.preventDefault();
     lenis.scrollTo(destino, { offset: -72, duration: 1.3 });
@@ -50,6 +52,8 @@
   const RIEL = 0.42;
   let ancho = 0, alto = 0, foco = 0, aros = 42, focos = 72, chispas = [];
   let pos = 0, velocidad = 0, fuerza = 1, metaFuerza = 1, sombra = null, anchoAnterior = 0, metaX = 0, metaY = 0, velo = 0, metaVelo = 0;
+
+  const orbeVivo = document.querySelector('.orbe__centro');
 
   // Un punto de luz dibujado una vez y reutilizado en cada LED.
   const led = document.createElement('canvas');
@@ -119,6 +123,11 @@
     ctx.fillRect(0, 0, ancho, alto);
     // En telefono el tunel arranca arriba y baja al centro con el scroll.
     const inicio = Math.max(0, 1 - scrollY / (alto * 0.7));
+    if (inicio > 0 && orbeVivo) {
+      const caja = orbeVivo.getBoundingClientRect();
+      metaX = caja.left + caja.width / 2;
+      metaY = caja.top + caja.height / 2;
+    }
     const finalX = ancho * (ancho < 861 ? 0.5 : 0.63);
     ctx.translate(finalX + (metaX - finalX) * inicio, alto * 0.5 + (metaY - alto * 0.5) * inicio);
     const movil = ancho < 861;
@@ -255,6 +264,7 @@
 (function () {
   if (!window.NS) return;
   const hero = document.querySelector('.hero');
+  if (!hero) return;
   const orbe = hero.querySelector('.orbe');
 
   function entrada() {
@@ -589,18 +599,20 @@
     panel.close();
   }
 
-  function irA(selector, grupo) {
+  function irA(destino) {
     cerrar();
     detenerScroll(false);
-    if (grupo !== undefined) {
-      const elegido = document.querySelectorAll('.grupo')[Number(grupo)];
-      if (elegido) elegido.open = true;
+    const url = new URL(destino, location.href);
+    const aqui = url.pathname === location.pathname;
+    const objetivo = aqui && url.hash ? document.querySelector(url.hash) : null;
+    if (!objetivo) {
+      location.href = url.href;
+      return;
     }
-    const destino = document.querySelector(selector);
-    if (!destino) return;
-    if (window.NS && NS.lenis) NS.lenis.scrollTo(destino, { offset: -72, duration: 1.2 });
-    else destino.scrollIntoView();
+    if (window.NS && NS.lenis) NS.lenis.scrollTo(objetivo, { offset: -72, duration: 1.2 });
+    else objetivo.scrollIntoView();
   }
+
 
   function mostrar() {
     panel.showModal();
@@ -614,7 +626,7 @@
     if (evento.target === panel) cerrar();
   });
   panel.querySelectorAll('[data-destino]').forEach((opcion) => {
-    opcion.addEventListener('click', () => irA(opcion.dataset.destino, opcion.dataset.grupo));
+    opcion.addEventListener('click', () => irA(opcion.dataset.destino));
   });
   formulario.addEventListener('submit', (evento) => {
     evento.preventDefault();
@@ -745,17 +757,8 @@
 (function () {
   const nav = document.querySelector('[data-nav]');
   const hero = document.querySelector('.hero');
-  if (!nav || !hero) return;
-  const ligas = [...nav.querySelectorAll('.nav__ligas a')];
-  const destinos = ligas.map((liga) => document.querySelector(liga.getAttribute('href')));
-  function marcarActiva() {
-    const linea = innerHeight * 0.4;
-    let actual = -1;
-    destinos.forEach((destino, i) => {
-      if (destino && destino.getBoundingClientRect().top <= linea) actual = i;
-    });
-    ligas.forEach((liga, i) => liga.classList.toggle('activa', i === actual));
-  }
+  if (!nav) return;
+  function marcarActiva() {}
 
   function revisar() {
     nav.classList.toggle('nav--solida', scrollY > 40);

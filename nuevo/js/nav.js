@@ -14,17 +14,8 @@
 (function () {
   const nav = document.querySelector('[data-nav]');
   const hero = document.querySelector('.hero');
-  if (!nav || !hero) return;
-  const ligas = [...nav.querySelectorAll('.nav__ligas a')];
-  const destinos = ligas.map((liga) => document.querySelector(liga.getAttribute('href')));
-  function marcarActiva() {
-    const linea = innerHeight * 0.4;
-    let actual = -1;
-    destinos.forEach((destino, i) => {
-      if (destino && destino.getBoundingClientRect().top <= linea) actual = i;
-    });
-    ligas.forEach((liga, i) => liga.classList.toggle('activa', i === actual));
-  }
+  if (!nav) return;
+  function marcarActiva() {}
 
   function revisar() {
     nav.classList.toggle('nav--solida', scrollY > 40);

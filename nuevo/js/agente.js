@@ -27,18 +27,20 @@
     panel.close();
   }
 
-  function irA(selector, grupo) {
+  function irA(destino) {
     cerrar();
     detenerScroll(false);
-    if (grupo !== undefined) {
-      const elegido = document.querySelectorAll('.grupo')[Number(grupo)];
-      if (elegido) elegido.open = true;
+    const url = new URL(destino, location.href);
+    const aqui = url.pathname === location.pathname;
+    const objetivo = aqui && url.hash ? document.querySelector(url.hash) : null;
+    if (!objetivo) {
+      location.href = url.href;
+      return;
     }
-    const destino = document.querySelector(selector);
-    if (!destino) return;
-    if (window.NS && NS.lenis) NS.lenis.scrollTo(destino, { offset: -72, duration: 1.2 });
-    else destino.scrollIntoView();
+    if (window.NS && NS.lenis) NS.lenis.scrollTo(objetivo, { offset: -72, duration: 1.2 });
+    else objetivo.scrollIntoView();
   }
+
 
   function mostrar() {
     panel.showModal();
@@ -52,7 +54,7 @@
     if (evento.target === panel) cerrar();
   });
   panel.querySelectorAll('[data-destino]').forEach((opcion) => {
-    opcion.addEventListener('click', () => irA(opcion.dataset.destino, opcion.dataset.grupo));
+    opcion.addEventListener('click', () => irA(opcion.dataset.destino));
   });
   formulario.addEventListener('submit', (evento) => {
     evento.preventDefault();

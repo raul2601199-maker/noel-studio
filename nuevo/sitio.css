@@ -140,6 +140,28 @@ html.menu-abierto { overflow: hidden; }
 .elector__info .orbe__sub { color: var(--gris); font-size: .95rem; }
 .orbe__centro > .orbe__play { position: absolute; }
 @media (max-width: 860px) { .orbe__play { right: 4%; bottom: 4%; width: 36px; height: 36px; } .orbe__play::after { left: 13px; top: 10px; border-block-width: 8px; border-left-width: 12px; } .hero.voz-sonando .orbe__play::after { left: 11px; top: 10px; width: 14px; height: 16px; } }
+.elector { gap: clamp(18px, 2.4vw, 28px); }
+.elector__info { gap: 6px; }
+.elector__info .orbe__sub { font-size: .9rem; letter-spacing: .01em; }
+@media (max-width: 860px) { .elector { gap: 16px; } .elector__info { gap: 5px; } .elector__info .orbe__texto { font-size: 1.02rem; } }
+
+.cabecera { min-height: 0 !important; padding-block: clamp(140px, 16vw, 210px) clamp(36px, 5vw, 70px); }
+.migas { display: flex; gap: 8px; margin-bottom: 18px; color: var(--gris); font-size: .95rem; }
+.migas a { color: var(--gris); text-decoration: none; }
+.migas a:hover { color: var(--blanco); }
+.cabecera h1 { max-width: 16ch; font-size: clamp(2.3rem, 1.4rem + 4vw, 4.8rem); }
+.cabecera p { max-width: 54ch; margin-top: 18px; color: var(--texto-suave); font-size: clamp(1.02rem, .95rem + .4vw, 1.25rem); }
+.nav__ligas a[aria-current="page"] { color: var(--blanco); background: rgba(255, 255, 255, .15); }
+@media (max-width: 860px) {
+  .cabecera { padding-block: calc(110px + env(safe-area-inset-top)) 26px !important; border-top: 0 !important; }
+  .cabecera h1 { font-size: clamp(1.9rem, 8.6vw, 2.5rem); line-height: 1.08; }
+  .cabecera p { font-size: .98rem; }
+}
+/* En paginas internas el encabezado ya presenta el tema: no se repite. */
+.cabecera + .linea-servicio .linea-servicio__cabeza, .cabecera + .contacto h2 { display: none; }
+.cabecera + .linea-servicio { padding-top: 0 !important; }
+.cabecera + .linea-servicio .ventajas { margin-top: 0; }
+.cabecera + .contacto { padding-top: 10px !important; }
 
 .problema { position: relative; z-index: 1; min-height: 100svh; display: flex; align-items: center; padding-block: var(--seccion); background: var(--negro); }
 .problema h2 { max-width: 15ch; color: var(--gris); font-size: clamp(2.2rem, 1.2rem + 5vw, 5.4rem); }
@@ -349,6 +371,7 @@ main > section { min-height: 100svh; display: flex; flex-direction: column; just
 main > section > * { width: 100%; }
 .cierre, .contacto, .planes { min-height: auto !important; }
 .globo, .recado, .plan h3, .plan p, .plan li, .formulario label, .servicio h3, .etiqueta { text-shadow: none; }
+html.viaje .cabecera { background: transparent; }
 
 .oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 html.agente-abierto { overflow: hidden; }

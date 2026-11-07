@@ -23,3 +23,4 @@ main > section { min-height: 100svh; display: flex; flex-direction: column; just
 main > section > * { width: 100%; }
 .cierre, .contacto, .planes { min-height: auto !important; }
 .globo, .recado, .plan h3, .plan p, .plan li, .formulario label, .servicio h3, .etiqueta { text-shadow: none; }
+html.viaje .cabecera { background: transparent; }
