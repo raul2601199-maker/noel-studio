@@ -14,14 +14,13 @@
   ──────── by Raúl · Chihuahua, MX ────────
 */
 /* Acento LED: solo para datos clave, nunca para textos largos. */
-.plan__precio, .precio, .creativos__lista span, .extras span:last-child { color: var(--acento); }
+.plan__precio, .precio, .creativos__lista span { color: var(--acento); }
 .plan--destacado .plan__precio, .servicio--llamadas .precio { color: var(--negro); }
-.punto, .prueba__hablar .punto { background: var(--acento); box-shadow: 0 0 10px var(--acento); }
+.punto { background: var(--acento); }
 .migas span:last-child { color: var(--acento); }
 .voz[aria-pressed="true"] { border-color: var(--acento); box-shadow: 0 0 0 1px var(--acento), 0 0 30px var(--brillo); }
 .elector__lista button[aria-pressed="true"] { border-color: var(--acento); box-shadow: 0 0 0 2px var(--acento), 0 0 18px var(--brillo); }
 .etiqueta { background: var(--acento); }
-a:not(.btn):hover { color: var(--acento); }
 .acordeon summary::after { color: var(--acento); }
 /* Texto: numeros alineados y lectura mas fina. */
 body { font-kerning: normal; font-feature-settings: "kern"; }

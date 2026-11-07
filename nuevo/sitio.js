@@ -47,7 +47,7 @@
 
   // Cuanta luz da el tunel en cada momento de la pagina.
   const MUNDOS = {
-    pleno: { luz: 1, velo: 0 },
+    pleno: { luz: 0.85, velo: 0 },
     escena: { luz: 0.75, velo: 0.08 },
     lectura: { luz: 0.6, velo: 0.42 },
     tenue: { luz: 0.45, velo: 0.55 },
@@ -66,8 +66,8 @@
   const ledCtx = led.getContext('2d');
   const halo = ledCtx.createRadialGradient(32, 32, 0, 32, 32, 32);
   halo.addColorStop(0, 'rgba(230,255,240,1)');
-  halo.addColorStop(0.14, 'rgba(110,255,170,.95)');
-  halo.addColorStop(0.32, 'rgba(40,255,140,.3)');
+  halo.addColorStop(0.14, 'rgba(170,255,205,.9)');
+  halo.addColorStop(0.32, 'rgba(60,240,140,.2)');
   halo.addColorStop(1, 'rgba(40,255,140,0)');
   ledCtx.fillStyle = halo;
   ledCtx.fillRect(0, 0, 64, 64);
@@ -152,7 +152,7 @@
       const radio = RADIO * p.zoom;
 
       // Tres pasadas dan el brillo de un aro de LED: halo, cuerpo y nucleo.
-      ctx.strokeStyle = '#5dffa6';
+      ctx.strokeStyle = '#a8ffd0';
       [[0.95, 0.07], [0.32, 0.24], [0.09, 1]].forEach(([grosor, intensidad]) => {
         ctx.beginPath();
         ctx.arc(p.x, p.y, radio, 0, Math.PI * 2);
