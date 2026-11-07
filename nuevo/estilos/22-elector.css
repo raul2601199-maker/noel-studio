@@ -44,3 +44,9 @@
 .elector__info { gap: 6px; }
 .elector__info .orbe__sub { font-size: .9rem; letter-spacing: .01em; }
 @media (max-width: 860px) { .elector { gap: 16px; } .elector__info { gap: 5px; } .elector__info .orbe__texto { font-size: 1.02rem; } }
+.orbe__play { display: none; }
+.elector__titulo { display: inline-flex; align-items: center; gap: 10px; }
+.elector__icono { position: relative; flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--blanco); box-shadow: 0 0 14px rgba(255, 255, 255, .55); }
+.elector__icono::after { content: ""; position: absolute; left: 11px; top: 8px; border-block: 7px solid transparent; border-left: 11px solid var(--negro); }
+.hero.voz-sonando .elector__icono::after { left: 10px; top: 9px; width: 10px; height: 12px; border: 0; border-inline: 3px solid var(--negro); }
+@media (max-width: 860px) { .elector__icono { width: 26px; height: 26px; } .elector__icono::after { left: 10px; top: 7px; border-block-width: 6px; border-left-width: 9px; } .hero.voz-sonando .elector__icono::after { left: 8px; top: 8px; } }
