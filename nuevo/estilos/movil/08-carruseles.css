@@ -18,11 +18,8 @@
   .puntos i { width: 7px; height: 7px; border-radius: 50%; background: var(--linea); transition: width .25s var(--curva), background-color .25s; }
   .puntos i.activo { width: 22px; border-radius: 4px; background: var(--blanco); }
   .grupo .puntos { margin: -8px 0 20px; }
-  .dia-movil time { font: 700 2.5rem/1 'Unbounded', sans-serif; letter-spacing: -0.03em; color: var(--blanco); }
   .barras--tarjeta { height: 70px; }
   .btn:active { transform: scale(.96); }
-  .dia-movil li, .plan, .proyecto, .voz { transition: opacity .35s, filter .35s; }
-  .dia-movil li:not(.en-foco), .plan:not(.en-foco), .proyecto:not(.en-foco), .voz:not(.en-foco) { opacity: .82; }
   .servicios__mosaico { perspective: 900px; }
 }
 @media (min-width: 861px) { .puntos { display: none; } }

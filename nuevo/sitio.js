@@ -496,75 +496,6 @@
 })();
 
 (function () {
-  const seccion = document.querySelector('[data-dia]');
-  if (!seccion) return;
-  const botones = [...seccion.querySelectorAll('[data-hora]')];
-  const lugar = seccion.querySelector('[data-lugar-texto]');
-  const accion = seccion.querySelector('[data-accion-texto]');
-  const avance = seccion.querySelector('.dia__avance');
-  const reloj = seccion.querySelector('[data-reloj]');
-  const MUNDO = { manana: 'escena', comida: 'lectura', tarde: 'escena', noche: 'tenue' };
-  let turno = -1;
-  let disparador = null;
-
-  function elegir(indice) {
-    if (indice === turno) return;
-    turno = indice;
-    const boton = botones[indice];
-    botones.forEach((b) => b.setAttribute('aria-selected', String(b === boton)));
-    seccion.dataset.momento = boton.dataset.hora;
-    lugar.textContent = boton.dataset.lugar;
-    accion.textContent = boton.dataset.accion;
-    const [hora, periodo] = boton.textContent.split(' ');
-    reloj.innerHTML = hora + '<small>' + periodo + '</small>';
-    seccion.dataset.mundo = MUNDO[boton.dataset.hora];
-    if (window.gsap && window.NS) {
-      gsap.fromTo([reloj, lugar, accion], { y: 26, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.6, stagger: 0.07, overwrite: true });
-    }
-    if (!disparador && avance) avance.style.transform = 'scaleX(' + indice / (botones.length - 1) + ')';
-  }
-
-  botones.forEach((boton, i) => {
-    boton.addEventListener('click', () => {
-      if (disparador && window.NS && NS.lenis) {
-        NS.lenis.scrollTo(disparador.start + (disparador.end - disparador.start) * ((i + 0.45) / botones.length), { duration: 1 });
-      } else {
-        elegir(i);
-      }
-    });
-    boton.addEventListener('keydown', (evento) => {
-      const cambio = { ArrowRight: 1, ArrowLeft: -1 }[evento.key];
-      if (!cambio) return;
-      evento.preventDefault();
-      const siguiente = (i + cambio + botones.length) % botones.length;
-      botones[siguiente].focus();
-      botones[siguiente].click();
-    });
-  });
-
-  if (!window.NS) return;
-  NS.escenas.dia = function (zona) {
-    const linea = gsap.timeline({
-      scrollTrigger: {
-        trigger: zona,
-        start: 'top top',
-        end: '+=260%',
-        pin: true,
-        scrub: 0.5,
-        anticipatePin: 1,
-        onUpdate(estado) {
-          const parte = Math.min(0.999, estado.progress);
-          elegir(Math.floor(parte * botones.length));
-        },
-        onRefresh(estado) { disparador = estado; },
-      },
-    });
-    linea.fromTo(avance, { scaleX: 0 }, { scaleX: 1, ease: 'none' }, 0);
-    return () => { disparador = null; };
-  };
-})();
-
-(function () {
   if (!window.NS) return;
   NS.escenas.portafolio = function (seccion) {
     const carril = seccion.querySelector('.carril');
@@ -720,7 +651,7 @@
   }
 
   // Puntos que dicen en que tarjeta vas.
-  document.querySelectorAll('.dia-movil, .grupo__planes, .carril, .voces__lista').forEach((carril) => {
+  document.querySelectorAll('.grupo__planes, .carril, .voces__lista').forEach((carril) => {
     const tarjetas = [...carril.children];
     if (tarjetas.length < 2) return;
     const puntos = document.createElement('div');
@@ -795,7 +726,6 @@
       gsap.from(fila, { y: 26, opacity: 0.68, ease: 'power2.out', scrollTrigger: dedo(fila, 'top 98%', 'top 82%') });
     });
 
-    gsap.from('.dia-movil li', { x: 80, stagger: 0.08, duration: 0.8, scrollTrigger: { trigger: '.dia-movil', start: 'top 90%', once: true } });
     gsap.from('.proyecto', { x: 90, stagger: 0.08, duration: 0.8, scrollTrigger: { trigger: '.carril', start: 'top 90%', once: true } });
     gsap.fromTo('.cierre h2', { scale: 1.16 }, { scale: 1, ease: 'none', transformOrigin: 'left center', scrollTrigger: dedo('.cierre', 'top 100%', 'top 45%') });
   });

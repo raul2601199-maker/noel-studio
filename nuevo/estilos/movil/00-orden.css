@@ -16,7 +16,7 @@
 /* Orden del telefono: ninguna seccion mide una pantalla si su contenido no la llena. */
 @media (max-width: 860px) {
   main > section:not(.hero),
-  .problema, .llamada, .dia, .giros, .proceso, .portafolio, .raul, .preguntas {
+  .problema, .llamada, .giros, .proceso, .portafolio, .raul, .preguntas {
     display: block;
     min-height: 0 !important;
     padding-block: 46px;
@@ -31,9 +31,6 @@
   .lista-simple { gap: 6px; margin-bottom: 18px; }
   .llamada__rejilla, .raul__rejilla, .preguntas__rejilla, .contacto__rejilla { gap: 20px; }
   .dia__intro, .planes__intro { margin-top: 8px; }
-  .dia-movil { margin-top: 18px; }
-  .dia-movil li { min-height: 0; padding: 18px; }
-  .dia-movil time { margin-bottom: 14px; }
   .giros__lista { margin-top: 18px; }
   .giros__lista li { display: block; padding-block: 13px; }
   .giros__lista h3 { font-size: 1.05rem; }

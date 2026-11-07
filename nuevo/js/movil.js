@@ -24,7 +24,7 @@
   }
 
   // Puntos que dicen en que tarjeta vas.
-  document.querySelectorAll('.dia-movil, .grupo__planes, .carril, .voces__lista').forEach((carril) => {
+  document.querySelectorAll('.grupo__planes, .carril, .voces__lista').forEach((carril) => {
     const tarjetas = [...carril.children];
     if (tarjetas.length < 2) return;
     const puntos = document.createElement('div');
@@ -99,7 +99,6 @@
       gsap.from(fila, { y: 26, opacity: 0.68, ease: 'power2.out', scrollTrigger: dedo(fila, 'top 98%', 'top 82%') });
     });
 
-    gsap.from('.dia-movil li', { x: 80, stagger: 0.08, duration: 0.8, scrollTrigger: { trigger: '.dia-movil', start: 'top 90%', once: true } });
     gsap.from('.proyecto', { x: 90, stagger: 0.08, duration: 0.8, scrollTrigger: { trigger: '.carril', start: 'top 90%', once: true } });
     gsap.fromTo('.cierre h2', { scale: 1.16 }, { scale: 1, ease: 'none', transformOrigin: 'left center', scrollTrigger: dedo('.cierre', 'top 100%', 'top 45%') });
   });

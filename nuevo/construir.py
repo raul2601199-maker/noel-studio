@@ -38,7 +38,7 @@ DATOS = {
 
 # Orden de la página. Para mover una sección, mueve su nombre.
 SECCIONES = [
-    "nav", "hero", "problema", "llamada", "voces", "dia", "giros", "planes", "proceso",
+    "nav", "hero", "problema", "llamada", "voces", "giros", "planes", "proceso",
     "servicios", "whatsapp", "web", "creativos", "portafolio", "resenas", "raul", "preguntas", "cierre", "contacto", "pie",
     "movil-barra", "agente",
 ]
