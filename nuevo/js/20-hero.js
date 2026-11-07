@@ -30,7 +30,7 @@
     });
     gsap.timeline({ delay: 0.45 })
       .from('.hero__sub', { y: 28, autoAlpha: 0, duration: 0.9 })
-      .from('.hero .btn', { y: 22, autoAlpha: 0, stagger: 0.09, duration: 0.8 }, '-=.65')
+      .from(['.hero .acciones', '.confianza'], { y: 22, autoAlpha: 0, stagger: 0.09, duration: 0.8, clearProps: 'transform' }, '-=.65')
       .from(orbe, { scale: 0.3, autoAlpha: 0, duration: 1.6 }, 0);
   }
 
