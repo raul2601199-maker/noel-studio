@@ -30,3 +30,13 @@
 .elector__lista button[aria-pressed="true"] { border-color: var(--blanco); box-shadow: 0 0 0 2px var(--blanco), 0 0 18px rgba(232, 238, 255, .8); }
 .voz__foto { background-position: center; background-size: cover; }
 .voz__foto.con-foto { color: transparent; background-image: var(--foto); background-position: center; background-size: cover; }
+.orbe--con-foto .orbe__foto::after { display: none; }
+.orbe--con-foto .orbe__centro { justify-content: center; padding: 0; }
+.orbe__play { position: absolute; z-index: 2; right: 9%; bottom: 9%; width: 42px; height: 42px; border-radius: 50%; background: var(--blanco); box-shadow: 0 0 18px rgba(255, 255, 255, .7); }
+.orbe__play::after { content: ""; position: absolute; left: 16px; top: 12px; border-block: 9px solid transparent; border-left: 14px solid var(--negro); }
+.hero.voz-sonando .orbe__play::after { left: 14px; top: 13px; width: 14px; height: 16px; border: 0; border-inline: 5px solid var(--negro); }
+.elector__info { display: grid; justify-items: center; gap: 2px; margin: 0; text-align: center; }
+.elector__info .orbe__texto { font: 700 clamp(1.05rem, .9rem + .6vw, 1.35rem)/1.15 'Unbounded', sans-serif; letter-spacing: -0.02em; }
+.elector__info .orbe__sub { color: var(--gris); font-size: .95rem; }
+.orbe__centro > .orbe__play { position: absolute; }
+@media (max-width: 860px) { .orbe__play { right: 4%; bottom: 4%; width: 36px; height: 36px; } .orbe__play::after { left: 13px; top: 10px; border-block-width: 8px; border-left-width: 12px; } .hero.voz-sonando .orbe__play::after { left: 11px; top: 10px; width: 14px; height: 16px; } }

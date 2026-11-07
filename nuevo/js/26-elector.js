@@ -51,6 +51,7 @@
     sub.textContent = 'Ejemplo de voz';
     foto.style.backgroundImage = persona.classList.contains('con-foto') ? 'url("' + persona.dataset.foto + '")' : 'none';
     orbe.classList.toggle('orbe--con-foto', persona.classList.contains('con-foto'));
+    orbe.setAttribute('aria-label', 'Escuchar ejemplo de voz de ' + nombre);
   }
 
   function elegir(indice) {

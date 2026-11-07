@@ -130,6 +130,16 @@ html.menu-abierto { overflow: hidden; }
 .elector__lista button[aria-pressed="true"] { border-color: var(--blanco); box-shadow: 0 0 0 2px var(--blanco), 0 0 18px rgba(232, 238, 255, .8); }
 .voz__foto { background-position: center; background-size: cover; }
 .voz__foto.con-foto { color: transparent; background-image: var(--foto); background-position: center; background-size: cover; }
+.orbe--con-foto .orbe__foto::after { display: none; }
+.orbe--con-foto .orbe__centro { justify-content: center; padding: 0; }
+.orbe__play { position: absolute; z-index: 2; right: 9%; bottom: 9%; width: 42px; height: 42px; border-radius: 50%; background: var(--blanco); box-shadow: 0 0 18px rgba(255, 255, 255, .7); }
+.orbe__play::after { content: ""; position: absolute; left: 16px; top: 12px; border-block: 9px solid transparent; border-left: 14px solid var(--negro); }
+.hero.voz-sonando .orbe__play::after { left: 14px; top: 13px; width: 14px; height: 16px; border: 0; border-inline: 5px solid var(--negro); }
+.elector__info { display: grid; justify-items: center; gap: 2px; margin: 0; text-align: center; }
+.elector__info .orbe__texto { font: 700 clamp(1.05rem, .9rem + .6vw, 1.35rem)/1.15 'Unbounded', sans-serif; letter-spacing: -0.02em; }
+.elector__info .orbe__sub { color: var(--gris); font-size: .95rem; }
+.orbe__centro > .orbe__play { position: absolute; }
+@media (max-width: 860px) { .orbe__play { right: 4%; bottom: 4%; width: 36px; height: 36px; } .orbe__play::after { left: 13px; top: 10px; border-block-width: 8px; border-left-width: 12px; } .hero.voz-sonando .orbe__play::after { left: 11px; top: 10px; width: 14px; height: 16px; } }
 
 .problema { position: relative; z-index: 1; min-height: 100svh; display: flex; align-items: center; padding-block: var(--seccion); background: var(--negro); }
 .problema h2 { max-width: 15ch; color: var(--gris); font-size: clamp(2.2rem, 1.2rem + 5vw, 5.4rem); }
@@ -367,6 +377,27 @@ html.agente-abierto { overflow: hidden; }
 .planes__agente { margin-top: 16px; cursor: pointer; font: 600 1rem 'Outfit', sans-serif; white-space: normal; }
 .agente h2:focus { outline: none; }
 
+/* Paneles detras del texto que quedaba encima del tunel. */
+.problema__columnas p, .llamada__texto, .lista-simple, .giros__lista, .pasos li, .raul__rejilla > div, .resenas__par .resena, .acordeon, .linea-servicio__cabeza p, .creativos__lista, .contacto__datos, .planes__intro, .voces__nota {
+  padding: 18px 20px;
+  background: rgba(14, 15, 21, .74);
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 14px;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.giros__lista, .creativos__lista { padding-block: 4px; border-top: 1px solid rgba(255, 255, 255, .1); }
+.giros__lista li:last-child, .creativos__lista li:last-child { border-bottom: 0; }
+.acordeon { padding-block: 4px; }
+.acordeon details:last-child { border-bottom: 0; }
+.lista-simple { width: fit-content; }
+.planes__intro, .voces__nota, .linea-servicio__cabeza p { width: fit-content; max-width: 62ch; }
+@media (max-width: 860px) {
+  .problema__columnas p, .llamada__texto, .lista-simple, .pasos li, .raul__rejilla > div, .resenas__par .resena, .linea-servicio__cabeza p, .contacto__datos, .planes__intro, .voces__nota { padding: 15px 16px; }
+  .giros__lista, .creativos__lista, .acordeon { padding-inline: 16px; }
+  .lista-simple { width: auto; }
+}
+
 /* Orden del telefono: ninguna seccion mide una pantalla si su contenido no la llena. */
 @media (max-width: 860px) {
   main > section:not(.hero),
@@ -486,10 +517,12 @@ html.agente-abierto { overflow: hidden; }
 
 @media (max-width: 860px) {
   .voces__nota { margin-top: 10px; }
-  .voces__lista { display: flex; gap: 12px; margin: 18px -18px 0; padding-inline: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 18px; scrollbar-width: none; }
+  .voces__lista { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 18px 0 0; padding: 0; overflow: visible; }
   .voces__lista::-webkit-scrollbar { display: none; }
-  .voz { flex: 0 0 82%; padding: 20px; scroll-snap-align: start; }
-  .voz__foto { width: 74px; height: 74px; margin-bottom: 12px; font-size: 1.6rem; }
+  .voz { padding: 15px; align-items: center; text-align: center; }
+  .voz__tipo { font-size: .84rem; }
+  .voz__desc { display: none; }
+  .voz__foto { width: 64px; height: 64px; margin-bottom: 10px; font-size: 1.4rem; }
   .prueba__accion { display: block; margin-top: 14px; }
   .prueba__hablar { width: 100%; }
   .prueba__estado { margin-top: 10px; text-align: center; font-size: .96rem; }
@@ -571,7 +604,7 @@ html.agente-abierto { overflow: hidden; }
   .charla { gap: 9px; }
   .globo, .recado { font-size: .95rem; line-height: 1.42; padding: 11px 14px; }
   .servicios__mosaico, .planes__lista, .voces__lista { margin-top: 26px; }
-  .servicio, .plan, .voz { padding: 22px; }
+  .servicio, .plan { padding: 22px; }
   .servicio h3 { font-size: 1.2rem; }
   .servicio--llamadas h3 { font-size: 1.55rem; }
   .servicio p, .plan li, .voz__desc { font-size: .95rem; }

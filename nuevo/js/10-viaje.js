@@ -68,11 +68,13 @@
   const rutaX = (z) => Math.sin(z * 0.03) * 5 + Math.sin(z * 0.012) * 8;
   const rutaY = (z) => Math.cos(z * 0.024) * 3.5;
 
+  // En el inicio la curva se apaga para que el tunel nazca justo detras del circulo.
+  let curva = 1;
   function proyectar(x, y, z) {
     const zoom = (foco * (1 - Math.min(velocidad, 3) * 0.07)) / (z - pos);
     return {
-      x: (x + rutaX(z) - rutaX(pos + 5)) * zoom,
-      y: (y + rutaY(z) - rutaY(pos + 5)) * zoom,
+      x: (x + (rutaX(z) - rutaX(pos + 5)) * curva) * zoom,
+      y: (y + (rutaY(z) - rutaY(pos + 5)) * curva) * zoom,
       zoom,
     };
   }
@@ -98,7 +100,9 @@
     const inicio = Math.max(0, 1 - scrollY / (alto * 0.7));
     const finalX = ancho * (ancho < 861 ? 0.5 : 0.63);
     ctx.translate(finalX + (metaX - finalX) * inicio, alto * 0.5 + (metaY - alto * 0.5) * inicio);
-    ctx.rotate(Math.sin(pos * 0.009) * 0.14);
+    const movil = ancho < 861;
+    curva = 1 - inicio;
+    ctx.rotate(movil ? pos * 0.006 + Math.sin(pos * 0.02) * 0.25 : Math.sin(pos * 0.009) * 0.14);
     ctx.globalCompositeOperation = 'lighter';
 
     const lejos = aros * SEPARACION;
@@ -204,6 +208,8 @@
 
   ajustar();
   addEventListener('load', ajustar);
+  document.fonts && document.fonts.ready.then(ajustar);
+  setTimeout(ajustar, 1600);
   document.documentElement.classList.add('viaje');
   // En telefono la barra del navegador cambia el alto; solo importa el ancho.
   addEventListener('resize', () => {

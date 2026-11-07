@@ -15,10 +15,12 @@
 */
 @media (max-width: 860px) {
   .voces__nota { margin-top: 10px; }
-  .voces__lista { display: flex; gap: 12px; margin: 18px -18px 0; padding-inline: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 18px; scrollbar-width: none; }
+  .voces__lista { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 18px 0 0; padding: 0; overflow: visible; }
   .voces__lista::-webkit-scrollbar { display: none; }
-  .voz { flex: 0 0 82%; padding: 20px; scroll-snap-align: start; }
-  .voz__foto { width: 74px; height: 74px; margin-bottom: 12px; font-size: 1.6rem; }
+  .voz { padding: 15px; align-items: center; text-align: center; }
+  .voz__tipo { font-size: .84rem; }
+  .voz__desc { display: none; }
+  .voz__foto { width: 64px; height: 64px; margin-bottom: 10px; font-size: 1.4rem; }
   .prueba__accion { display: block; margin-top: 14px; }
   .prueba__hablar { width: 100%; }
   .prueba__estado { margin-top: 10px; text-align: center; font-size: .96rem; }

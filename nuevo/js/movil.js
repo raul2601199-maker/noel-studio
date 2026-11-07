@@ -24,7 +24,7 @@
   }
 
   // Puntos que dicen en que tarjeta vas.
-  document.querySelectorAll('.grupo__planes, .carril, .voces__lista').forEach((carril) => {
+  document.querySelectorAll('.grupo__planes, .carril').forEach((carril) => {
     const tarjetas = [...carril.children];
     if (tarjetas.length < 2) return;
     const puntos = document.createElement('div');
@@ -56,8 +56,12 @@
 
     // Cada seccion llega desde el fondo del tunel.
     gsap.utils.toArray('main > section:not(.hero)').forEach((seccion) => {
-      gsap.fromTo(seccion.children, { scale: 0.88, y: 34 }, { scale: 1, y: 0, ease: 'power2.out', scrollTrigger: dedo(seccion, 'top 104%', 'top 62%') });
+      const capas = seccion.children;
+      gsap.fromTo(capas, { scale: 0.8, y: 70, opacity: 0.35 }, { scale: 1, y: 0, opacity: 1, ease: 'power2.out', immediateRender: false, scrollTrigger: dedo(seccion, 'top 100%', 'top 55%') });
+      gsap.fromTo(capas, { scale: 1, opacity: 1 }, { scale: 1.08, opacity: 0.35, ease: 'power1.in', immediateRender: false, scrollTrigger: { trigger: seccion, start: 'bottom 40%', end: 'bottom 0%', scrub: 0.35 } });
     });
+    gsap.to('.hero__texto', { y: -60, opacity: 0.4, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.3 } });
+    gsap.to('.elector', { y: -110, scale: 0.85, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.3 } });
 
     // Titulos: las lineas suben desde abajo.
     document.querySelectorAll('main h2:not(.problema h2)').forEach((titulo) => {
@@ -85,7 +89,7 @@
     });
 
     // Tarjetas con giro 3D.
-    gsap.from('.voz', { x: 80, stagger: 0.08, duration: 0.8, scrollTrigger: { trigger: '.voces__lista', start: 'top 90%', once: true } });
+    gsap.from('.voz', { y: 40, scale: 0.9, stagger: 0.07, duration: 0.7, scrollTrigger: { trigger: '.voces__lista', start: 'top 90%', once: true } });
 
     gsap.utils.toArray('.servicio').forEach((tarjeta) => {
       gsap.from(tarjeta, { y: 72, rotationX: -18, scale: 0.92, opacity: 0.68, transformOrigin: 'center top', ease: 'power2.out', scrollTrigger: dedo(tarjeta, 'top 100%', 'top 66%') });

@@ -75,16 +75,16 @@
       </div>
     </div>
     <div class="elector" data-elector>
-      <button class="orbe" type="button" data-hablar>
+      <button class="orbe" type="button" data-hablar aria-label="Escuchar ejemplo de voz">
         <span class="orbe__anillo" aria-hidden="true"></span>
         <span class="orbe__anillo" aria-hidden="true"></span>
         <span class="orbe__centro">
           <span class="orbe__foto" data-orbe-foto aria-hidden="true"></span>
           <span class="barras" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-          <span class="orbe__texto" data-orbe-texto>Escucha a Claudia</span>
-          <span class="orbe__sub" data-estado aria-live="polite">Ejemplo de voz</span>
+          <span class="orbe__play" aria-hidden="true"></span>
         </span>
       </button>
+      <p class="elector__info"><span class="orbe__texto" data-orbe-texto>Escucha a Claudia</span><span class="orbe__sub" data-estado aria-live="polite">Ejemplo de voz</span></p>
       <div class="elector__lista" role="group" aria-label="Elige una voz">
         <button type="button" data-persona="claudia" data-nombre="Claudia" data-audio="voces/claudia.mp3" data-foto="voces/fotos/claudia.jpg" aria-label="Claudia" aria-pressed="true"><span>C</span></button>
         <button type="button" data-persona="andrea" data-nombre="Andrea" data-audio="voces/andrea.mp3" data-foto="voces/fotos/andrea.jpg" aria-label="Andrea" aria-pressed="false"><span>A</span></button>
