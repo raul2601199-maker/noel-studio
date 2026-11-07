@@ -26,17 +26,6 @@
   let turno = 0;
   let reloj = null;
 
-  // Si existe la foto, reemplaza la inicial. Si no, se queda la inicial.
-  document.querySelectorAll('[data-foto]').forEach((elemento) => {
-    const imagen = new Image();
-    imagen.onload = () => {
-      elemento.style.setProperty('--foto', 'url("' + elemento.dataset.foto + '")');
-      elemento.classList.add('con-foto');
-      if (elemento === personas[turno]) pintar();
-    };
-    imagen.src = elemento.dataset.foto;
-  });
-
   function detenerAudio() {
     audio.pause();
     hero.classList.remove('voz-sonando');
@@ -94,6 +83,7 @@
     sub.textContent = 'Ejemplo de voz';
   });
 
+  document.addEventListener('foto-lista', (evento) => { if (evento.detail === personas[turno]) pintar(); });
   pintar();
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   reloj = setInterval(() => {

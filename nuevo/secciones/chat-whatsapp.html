@@ -17,16 +17,21 @@
   <div class="contenedor chat-wa__rejilla">
     <div>
       <h2 data-aparece>Así contesta por mensaje.</h2>
-      <p class="chat-wa__texto">Entiende cómo escribe la gente, da la información de tu negocio y deja lista la cita o el pedido.</p>
+      <p class="chat-wa__texto">Entiende cómo escribe la gente, aunque sea con faltas. Da la información de tu negocio y deja lista la cita o el pedido, incluso a las 8 de la noche.</p>
+      <p class="chat-wa__nota">Ejemplo de conversación de un salón de belleza.</p>
     </div>
-    <div class="charla charla--wa" aria-label="Ejemplo de conversación por WhatsApp">
-      <p class="charla__nota">Ejemplo de conversación · Salón de belleza</p>
-      <p class="globo">hola cuanto el corte y tinte?? tienen para mañana</p>
-      <p class="globo globo--claudia">¡Hola! El corte con tinte está en 600 pesos. Mañana tengo lugar a las 11:00 y a las 4:00. ¿Cuál te acomoda?</p>
-      <p class="globo">a las 4</p>
-      <p class="globo globo--claudia">Listo. ¿Me compartes tu nombre para apartarte el lugar?</p>
-      <p class="globo">Karla</p>
-      <p class="recado"><strong>Cita solicitada</strong> Karla · corte con tinte · mañana 4:00 pm</p>
+    <div class="wa" aria-label="Ejemplo de conversación por WhatsApp">
+      <div class="wa__cabeza"><span class="wa__avatar">S</span><span><strong>Salón Luna</strong><small>en línea · agente de IA</small></span></div>
+      <div class="wa__chat charla">
+        <p class="wa__dia">Hoy</p>
+        <p class="globo wa__in">hola cuánto el corte y tinte?? tienen para mañana<span class="wa__hora">8:42 pm</span></p>
+        <p class="globo globo--claudia wa__out">¡Hola! El corte con tinte está en 600 pesos. Mañana tengo lugar a las 11:00 y a las 4:00. ¿Cuál te acomoda?<span class="wa__hora">8:42 pm ✓✓</span></p>
+        <p class="globo wa__in">a las 4<span class="wa__hora">8:43 pm</span></p>
+        <p class="globo globo--claudia wa__out">Listo. ¿Me compartes tu nombre para apartarte el lugar?<span class="wa__hora">8:43 pm ✓✓</span></p>
+        <p class="globo wa__in">Karla<span class="wa__hora">8:43 pm</span></p>
+        <p class="recado">{{ICONO:circle-check}} <span><strong>Cita apartada</strong> Karla · corte con tinte · mañana 4:00 pm</span></p>
+      </div>
+      <div class="wa__barra"><span>Escribe un mensaje</span><span class="wa__mic">{{ICONO:mic}}</span></div>
     </div>
   </div>
 </section>

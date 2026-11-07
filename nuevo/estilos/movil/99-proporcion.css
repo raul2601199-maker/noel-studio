@@ -59,3 +59,13 @@
   .nav__marca { margin-right: auto; }
 }
 @media (max-width: 860px) and (max-height: 620px) { .confianza { display: none; } }
+@media (max-width: 860px) {
+  .carril { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; padding-inline: 20px; overflow: visible; scroll-snap-type: none; }
+  .proyecto, .proyecto--grande { flex-basis: auto; opacity: 1 !important; }
+  .proyecto--grande { grid-column: 1 / -1; }
+  .proyecto img { height: 150px; }
+  .proyecto--grande img { height: 210px; }
+  .proyecto h3 { margin-top: 10px; font-size: 1rem; }
+  .proyecto p { font-size: .88rem; }
+  .portafolio + .puntos, .carril + .puntos { display: none; }
+}

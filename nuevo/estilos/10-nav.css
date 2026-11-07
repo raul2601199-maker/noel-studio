@@ -32,9 +32,6 @@
 .nav__menu[open] summary::before { top: 22px; transform: rotate(45deg); }
 .nav__menu[open] summary::after { top: 22px; transform: rotate(-45deg); }
 .nav__panel { position: fixed; inset: 0; z-index: -2; display: flex; flex-direction: column; justify-content: center; padding: 96px 22px calc(26px + env(safe-area-inset-bottom)); color: var(--blanco); background: rgba(3, 3, 5, .97); -webkit-backdrop-filter: blur(26px); backdrop-filter: blur(26px); animation: panel-entra .28s var(--curva); }
-.nav__panel a { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; padding-block: 15px; border-bottom: 1px solid var(--linea); font: 700 clamp(1.45rem, 7vw, 2rem)/1.1 'Unbounded', sans-serif; letter-spacing: -0.025em; text-decoration: none; }
-.nav__panel small { flex: none; color: var(--gris); font: 500 .96rem 'Hanken Grotesk', sans-serif; letter-spacing: 0; }
-.nav__panel .btn { justify-content: center; margin-top: 22px; border-bottom: 0; font: 700 1.05rem 'Hanken Grotesk', sans-serif; letter-spacing: 0; }
 @keyframes panel-entra { from { opacity: 0; } }
 html.menu-abierto { overflow: hidden; }
 @media (max-width: 1040px) { .nav__ligas a { padding-inline: 10px; } }

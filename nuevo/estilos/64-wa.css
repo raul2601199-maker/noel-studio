@@ -1,0 +1,48 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+*/
+.wa { width: min(100%, 420px); justify-self: center; overflow: hidden; background: #0b141a; border: 1px solid rgba(255, 255, 255, .12); border-radius: 24px; box-shadow: 0 0 0 6px rgba(255, 255, 255, .03); }
+.wa__cabeza { display: flex; align-items: center; gap: 11px; padding: 13px 16px; background: #1f2c34; }
+.wa__cabeza strong { display: block; font-weight: 700; line-height: 1.1; }
+.wa__cabeza small { color: #8fe3b6; font-size: .84rem; }
+.wa__avatar { display: grid; place-items: center; width: 38px; height: 38px; color: #02140a; background: var(--acento); border-radius: 50%; font-weight: 800; }
+.wa__chat { gap: 7px; min-height: 360px; padding: 16px 12px; background: #0b141a radial-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px) 0 0 / 18px 18px; }
+.wa__dia { justify-self: center; padding: 3px 10px; color: #c7d0d6; background: #1f2c34; border-radius: 8px; font-size: .78rem; }
+.wa .globo { position: relative; max-width: 82%; padding: 7px 10px 18px; border-radius: 10px; font-size: .95rem; line-height: 1.35; text-shadow: none; }
+.wa__in { justify-self: start; color: #e9edef; background: #202c33; border-radius: 0 10px 10px 10px !important; }
+.wa__out { justify-self: end; color: #e9edef; background: #005c4b; border: 0; border-radius: 10px 0 10px 10px !important; }
+.wa__hora { position: absolute; right: 8px; bottom: 3px; color: rgba(233, 237, 239, .62); font-size: .68rem; }
+.wa .recado { display: flex; align-items: center; gap: 10px; justify-self: center; margin-top: 6px; padding: 10px 14px; color: #02140a; background: var(--acento); border-radius: 12px; font-size: .9rem; }
+.wa .recado strong { margin-right: 4px; }
+.wa__barra { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; background: #1f2c34; color: #8696a0; font-size: .92rem; }
+.wa__barra span:first-child { flex: 1; padding: 9px 14px; background: #2a3942; border-radius: 999px; }
+.wa__mic { display: grid; place-items: center; width: 40px; height: 40px; color: #02140a; background: var(--acento); border-radius: 50%; }
+.chat-wa__nota { margin-top: 12px; color: var(--gris); font-size: .92rem; }
+.ventajas--tarjetas { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 26px; }
+.ventajas--tarjetas li { display: grid; gap: 6px; align-content: start; padding: 18px; background: rgba(14, 15, 21, .78); border: 1px solid rgba(255, 255, 255, .1); border-radius: 14px; }
+.ventajas--tarjetas li::before { display: none; }
+.ventajas--tarjetas strong { font: 700 1rem/1.2 'Unbounded', sans-serif; letter-spacing: -0.01em; }
+.ventajas--tarjetas span:not(.ventaja__icono) { color: var(--texto-suave); font-size: .95rem; line-height: 1.45; }
+.ventaja__icono { display: grid; place-items: center; width: 40px; height: 40px; margin-bottom: 6px; color: var(--acento); background: rgba(77, 255, 154, .1); border-radius: 11px; }
+@media (max-width: 860px) {
+  .ventajas--tarjetas { grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+  .ventajas--tarjetas li { padding: 14px; }
+  .ventajas--tarjetas strong { font-size: .92rem; }
+  .ventajas--tarjetas span:not(.ventaja__icono) { font-size: .86rem; }
+  .wa { margin-top: 22px; }
+  .wa__chat { min-height: 0; }
+}
+.chat-wa h2 { font-size: clamp(2rem, 1.3rem + 2.6vw, 3.6rem); }
+@media (max-width: 860px) { .chat-wa h2 { font-size: clamp(1.55rem, 6.7vw, 2rem); } }

@@ -24,7 +24,7 @@
   }
 
   // Puntos que dicen en que tarjeta vas.
-  document.querySelectorAll('.grupo__planes, .carril').forEach((carril) => {
+  document.querySelectorAll('.grupo__planes').forEach((carril) => {
     const tarjetas = [...carril.children];
     if (tarjetas.length < 2) return;
     const puntos = document.createElement('div');
@@ -89,7 +89,6 @@
     });
 
     // Tarjetas con giro 3D.
-    gsap.from('.voz', { y: 40, scale: 0.9, stagger: 0.07, duration: 0.7, scrollTrigger: { trigger: '.voces__lista', start: 'top 90%', once: true } });
 
     gsap.utils.toArray('.servicio').forEach((tarjeta) => {
       gsap.from(tarjeta, { y: 72, rotationX: -18, scale: 0.92, opacity: 0.85, transformOrigin: 'center top', ease: 'power2.out', scrollTrigger: dedo(tarjeta, 'top 100%', 'top 66%') });
@@ -103,7 +102,6 @@
       gsap.from(fila, { y: 26, opacity: 0.68, ease: 'power2.out', scrollTrigger: dedo(fila, 'top 98%', 'top 82%') });
     });
 
-    gsap.from('.proyecto', { x: 90, stagger: 0.08, duration: 0.8, scrollTrigger: { trigger: '.carril', start: 'top 90%', once: true } });
     gsap.fromTo('.cierre h2', { scale: 1.16 }, { scale: 1, ease: 'none', transformOrigin: 'left center', scrollTrigger: dedo('.cierre', 'top 100%', 'top 45%') });
   });
 })();
