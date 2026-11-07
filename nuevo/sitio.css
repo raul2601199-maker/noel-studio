@@ -554,3 +554,45 @@ html.agente-abierto { overflow: hidden; }
   .barra-movil--visible ~ .agente-boton { opacity: 1; pointer-events: auto; }
   .barra-movil--visible ~ .agente-boton--oculto { opacity: 0; pointer-events: none; }
 }
+
+/* Proporcion final del telefono: menos grito, mas aire y lectura comoda. */
+@media (max-width: 860px) {
+  body { font-size: 1rem; line-height: 1.62; }
+  .contenedor { padding-inline: 20px; }
+  h1, h2, h3, main p, main li, main summary { text-shadow: 0 1px 12px rgba(0, 0, 0, .85); }
+  h2, .problema h2, .cierre h2, .preguntas h2 { font-size: clamp(1.55rem, 6.7vw, 2rem); line-height: 1.14; letter-spacing: -0.02em; }
+  h3 { font-size: 1.08rem; line-height: 1.25; }
+  .hero h1 { font-size: clamp(2.05rem, 9.6vw, 2.75rem); line-height: 1.06; }
+  .hero__sub { font-size: 1rem; line-height: 1.5; margin-block: 14px 20px; }
+  main > section:not(.hero), .linea-servicio { padding-block: 64px; border-top: 0; }
+  .problema__columnas, .llamada__texto, .planes__intro, .voces__nota, .linea-servicio__cabeza p, .creativos__lista p { font-size: .97rem; color: var(--texto-suave); }
+  .problema__columnas { gap: 14px; margin-top: 22px; }
+  .lista-simple { gap: 9px; margin-block: 18px 24px; font-size: .97rem; }
+  .charla { gap: 9px; }
+  .globo, .recado { font-size: .95rem; line-height: 1.42; padding: 11px 14px; }
+  .servicios__mosaico, .planes__lista, .voces__lista { margin-top: 26px; }
+  .servicio, .plan, .voz { padding: 22px; }
+  .servicio h3 { font-size: 1.2rem; }
+  .servicio--llamadas h3 { font-size: 1.55rem; }
+  .servicio p, .plan li, .voz__desc { font-size: .95rem; }
+  .plan__precio { font-size: 1.45rem; margin-top: 14px; }
+  .plan ul { gap: 8px; margin-block: 16px 22px; }
+  .pasos { gap: 22px; margin-top: 28px; }
+  .pasos li::before { font-size: 2.1rem; }
+  .pasos p, .giros__lista p { font-size: .95rem; }
+  .giros__lista li { padding-block: 16px; }
+  .resena--grande p { font-size: 1.28rem; line-height: 1.26; }
+  .resena p { font-size: .97rem; }
+  .acordeon summary { font-size: .98rem; min-height: 58px; }
+  .acordeon p { font-size: .95rem; }
+  .grupo summary { font-size: 1rem; }
+  .ventajas li { font-size: .9rem; }
+  .cierre h2 { font-size: clamp(1.7rem, 7.6vw, 2.2rem); }
+  .orbe__texto { font-size: .98rem; }
+  .btn { min-height: 50px; font-size: .98rem; }
+}
+@media (max-width: 860px) {
+  .agente-boton, .barra-movil--visible ~ .agente-boton { display: none; }
+  .nav::before { background: rgba(10, 11, 16, .78); }
+  .barra-movil .btn { min-height: 48px; font-size: .96rem; cursor: pointer; }
+}
