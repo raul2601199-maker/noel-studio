@@ -389,6 +389,7 @@ html.viaje .chat-wa { background: transparent; }
   .pieza figcaption strong { font-size: .86rem; }
   .pieza figcaption span { font-size: .76rem; }
 }
+.pieza--alta img { object-fit: contain; background: #0b0c10; }
 
 .proceso { position: relative; z-index: 1; min-height: 100svh; display: flex; align-items: center; padding-block: var(--seccion); background: var(--negro); }
 .pasos { counter-reset: paso; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(26px, 4vw, 54px); margin-top: clamp(38px, 5vw, 66px); }

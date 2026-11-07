@@ -34,3 +34,4 @@
   .pieza figcaption strong { font-size: .86rem; }
   .pieza figcaption span { font-size: .76rem; }
 }
+.pieza--alta img { object-fit: contain; background: #0b0c10; }
