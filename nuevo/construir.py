@@ -166,6 +166,10 @@ def cabecera(datos, icono):
 </section>"""
 
 
+# Cambia en cada construccion para que el navegador no use archivos viejos.
+VERSION = str(int(__import__("time").time()))
+
+
 def main():
     plantilla = leer(RAIZ / "plantilla.html")
     firma = (RAIZ / "plantilla.html").read_text(encoding="utf-8").split("-->")[0] + "-->\n"
@@ -178,6 +182,7 @@ def main():
         despues = "\n".join(leer(RAIZ / "secciones" / f"{n}.html") for n in COMUNES_DESPUES)
         cuerpo = antes + '\n<main id="principal">\n' + principal + "\n</main>\n" + despues
         pagina = plantilla.replace("{{CUERPO}}", cuerpo)
+        pagina = pagina.replace("sitio.css", f"sitio.css?v={VERSION}").replace("sitio.js", f"sitio.js?v={VERSION}")
         pagina = pagina.replace("{{ESQUEMA}}", esquema_preguntas(principal))
         pagina = pagina.replace("{{TITULO}}", datos["titulo"]).replace("{{DESCRIPCION}}", datos["descripcion"])
         # Solo se pide una foto si el archivo existe; si no, queda la inicial.
