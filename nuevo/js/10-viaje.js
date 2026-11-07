@@ -37,10 +37,10 @@
   led.width = led.height = 64;
   const ledCtx = led.getContext('2d');
   const halo = ledCtx.createRadialGradient(32, 32, 0, 32, 32, 32);
-  halo.addColorStop(0, 'rgba(255,255,255,1)');
-  halo.addColorStop(0.14, 'rgba(255,255,255,.95)');
-  halo.addColorStop(0.32, 'rgba(225,235,255,.26)');
-  halo.addColorStop(1, 'rgba(225,235,255,0)');
+  halo.addColorStop(0, 'rgba(230,255,240,1)');
+  halo.addColorStop(0.14, 'rgba(110,255,170,.95)');
+  halo.addColorStop(0.32, 'rgba(40,255,140,.3)');
+  halo.addColorStop(1, 'rgba(40,255,140,0)');
   ledCtx.fillStyle = halo;
   ledCtx.fillRect(0, 0, 64, 64);
 
@@ -124,7 +124,7 @@
       const radio = RADIO * p.zoom;
 
       // Tres pasadas dan el brillo de un aro de LED: halo, cuerpo y nucleo.
-      ctx.strokeStyle = '#e8eeff';
+      ctx.strokeStyle = '#5dffa6';
       [[0.95, 0.07], [0.32, 0.24], [0.09, 1]].forEach(([grosor, intensidad]) => {
         ctx.beginPath();
         ctx.arc(p.x, p.y, radio, 0, Math.PI * 2);
@@ -164,7 +164,7 @@
       ctx.moveTo(a.x, a.y);
       ctx.lineTo(b.x, b.y);
       ctx.globalAlpha = visibilidad(chispa.z - pos, lejos) * luz * 0.7;
-      ctx.strokeStyle = '#ffffff';
+      ctx.strokeStyle = '#b6ffd3';
       ctx.lineWidth = Math.max(0.8, 0.06 * a.zoom);
       ctx.stroke();
     });

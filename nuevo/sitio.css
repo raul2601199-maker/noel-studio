@@ -8,7 +8,9 @@
   --panel-claro: #272934;
   --linea: rgba(255, 255, 255, .2);
   --texto-suave: #c4c6d2;
-  --acento: #8fe3ff;
+  --acento: #4dff9a;
+  --acento-hondo: #1fd679;
+  --brillo: rgba(77, 255, 154, .45);
   --z-nav: 20;
   --z-saltar: 30;
   --curva: cubic-bezier(0.22, 1, 0.36, 1);
@@ -446,8 +448,8 @@ html.agente-abierto { overflow: hidden; }
 .plan--destacado .plan__precio, .servicio--llamadas .precio { color: var(--negro); }
 .punto, .prueba__hablar .punto { background: var(--acento); box-shadow: 0 0 10px var(--acento); }
 .migas span:last-child { color: var(--acento); }
-.voz[aria-pressed="true"] { border-color: var(--acento); box-shadow: 0 0 0 1px var(--acento), 0 0 30px rgba(143, 227, 255, .35); }
-.elector__lista button[aria-pressed="true"] { border-color: var(--acento); box-shadow: 0 0 0 2px var(--acento), 0 0 18px rgba(143, 227, 255, .7); }
+.voz[aria-pressed="true"] { border-color: var(--acento); box-shadow: 0 0 0 1px var(--acento), 0 0 30px var(--brillo); }
+.elector__lista button[aria-pressed="true"] { border-color: var(--acento); box-shadow: 0 0 0 2px var(--acento), 0 0 18px var(--brillo); }
 .etiqueta { background: var(--acento); }
 a:not(.btn):hover { color: var(--acento); }
 .acordeon summary::after { color: var(--acento); }
@@ -456,6 +458,62 @@ body { font-kerning: normal; font-feature-settings: "kern"; }
 .plan__precio, .precio, .pasos li::before { font-variant-numeric: tabular-nums; }
 p, li, summary { letter-spacing: .005em; }
 .globo, .recado { line-height: 1.45; }
+
+/* LED verde en toda la pagina. */
+.icono { width: 1.15em; height: 1.15em; flex: none; vertical-align: -0.18em; }
+.btn { gap: 9px; }
+.btn--solido { color: #02140a; background: var(--acento); box-shadow: 0 0 22px rgba(77, 255, 154, .35); }
+.btn--solido:hover { color: #02140a; background: #8dffc0; box-shadow: 0 0 34px rgba(77, 255, 154, .6); }
+.btn--linea { border-color: rgba(77, 255, 154, .6); }
+.btn--linea:hover, button.btn--linea:hover { color: #02140a; background: var(--acento); border-color: var(--acento); }
+.plan--destacado .btn--solido { color: #02140a; background: var(--acento); }
+.nav__accion { box-shadow: 0 0 18px rgba(77, 255, 154, .4); }
+.nav::before { border-color: rgba(77, 255, 154, .22); }
+.barra-avance { background: var(--acento); box-shadow: 0 0 12px var(--acento); }
+.orbe__centro { border-color: var(--acento); box-shadow: 0 0 22px rgba(77, 255, 154, .8), 0 0 70px rgba(77, 255, 154, .35), inset 0 0 26px rgba(77, 255, 154, .2); }
+.orbe__anillo { border-color: rgba(77, 255, 154, .75); }
+.elector__icono { background: var(--acento); box-shadow: 0 0 14px var(--brillo); }
+h1 em, h2 em, .problema em { color: var(--acento); text-shadow: 0 0 24px rgba(77, 255, 154, .45); }
+.servicio, .plan, .voz, .chat-wa__texto, .formulario { transition: border-color .25s, box-shadow .25s, transform .25s var(--curva); }
+@media (hover: hover) {
+  .servicio:hover, .plan:hover, .voz:hover { border-color: rgba(77, 255, 154, .55); box-shadow: 0 0 0 1px rgba(77, 255, 154, .35), 0 0 30px rgba(77, 255, 154, .18); }
+}
+.servicio--llamadas { background: var(--acento); color: #02140a; }
+.servicio--llamadas .barras--tarjeta i { background: #02140a; }
+.servicio__icono { display: grid; place-items: center; width: 46px; height: 46px; margin-bottom: 4px; color: var(--acento); background: rgba(77, 255, 154, .1); border: 1px solid rgba(77, 255, 154, .35); border-radius: 12px; }
+.servicio__icono .icono { width: 24px; height: 24px; }
+.precio { display: inline-flex; align-items: center; gap: 8px; }
+.servicio--llamadas .precio { color: #02140a; }
+.giros__lista li { grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr); align-items: center; }
+.giro__icono, .paso__icono { display: grid; place-items: center; width: 42px; height: 42px; color: var(--acento); background: rgba(77, 255, 154, .1); border: 1px solid rgba(77, 255, 154, .3); border-radius: 11px; }
+.giro__icono .icono, .paso__icono .icono { width: 22px; height: 22px; }
+.paso__icono { margin-bottom: 12px; }
+.pasos li::before { color: var(--acento); text-shadow: 0 0 22px rgba(77, 255, 154, .5); }
+.confianza { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 22px; color: var(--gris); font-size: .95rem; }
+.confianza span { display: inline-flex; align-items: center; gap: 6px; }
+.confianza .icono { color: var(--acento); }
+.contacto__datos li { display: flex; align-items: center; gap: 10px; }
+.contacto__datos .icono { color: var(--acento); }
+.plan { position: relative; }
+.plan__tag { position: absolute; top: -12px; right: 18px; padding: 4px 11px; color: #02140a; background: var(--acento); border-radius: 999px; font-size: .82rem; font-weight: 700; box-shadow: 0 0 16px var(--brillo); }
+.plan--destacado { border-color: var(--acento); box-shadow: 0 0 0 1px var(--acento), 0 0 34px rgba(77, 255, 154, .25); }
+.plan li::before { background: var(--acento); }
+.plan--destacado li::before { background: var(--acento-hondo); }
+.lista-simple li::before { background: var(--acento); box-shadow: 0 0 8px var(--acento); }
+.globo--claudia { border: 1px solid rgba(77, 255, 154, .3); }
+.recado { background: var(--acento); color: #02140a; }
+.ventajas li { border-color: rgba(77, 255, 154, .35); }
+.ventajas li::before { content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 8px; border-radius: 50%; background: var(--acento); box-shadow: 0 0 8px var(--acento); vertical-align: middle; }
+.dia__avance, .proceso__linea { background: var(--acento); }
+.pie { border-top-color: rgba(77, 255, 154, .25); }
+.pie__legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 20px; }
+.etiqueta { color: #02140a; }
+.cabecera h1 { text-shadow: 0 0 40px rgba(77, 255, 154, .18); }
+:focus-visible { outline-color: var(--acento); }
+.agente-boton { background: var(--acento); color: #02140a; box-shadow: 0 0 26px var(--brillo); }
+.agente-boton__luz { background: #02140a; }
+.voz[aria-pressed="true"] { background: rgba(77, 255, 154, .08); }
+.prueba__hablar .punto { background: #02140a; box-shadow: none; }
 
 /* Orden del telefono: ninguna seccion mide una pantalla si su contenido no la llena. */
 @media (max-width: 860px) {
@@ -645,6 +703,14 @@ p, li, summary { letter-spacing: .005em; }
   .agente-boton { opacity: 0; pointer-events: none; }
   .barra-movil--visible ~ .agente-boton { opacity: 1; pointer-events: auto; }
   .barra-movil--visible ~ .agente-boton--oculto { opacity: 0; pointer-events: none; }
+}
+
+@media (max-width: 860px) {
+  .giros__lista li { display: grid; grid-template-columns: auto 1fr; column-gap: 14px; row-gap: 2px; align-items: start; }
+  .giros__lista li h3 { align-self: end; }
+  .giros__lista li p { grid-column: 2; }
+  .giro__icono { grid-row: span 2; width: 38px; height: 38px; }
+  .confianza { font-size: .88rem; gap: 6px 14px; margin-top: 16px; }
 }
 
 /* Proporcion final del telefono: menos grito, mas aire y lectura comoda. */

@@ -65,10 +65,10 @@
   led.width = led.height = 64;
   const ledCtx = led.getContext('2d');
   const halo = ledCtx.createRadialGradient(32, 32, 0, 32, 32, 32);
-  halo.addColorStop(0, 'rgba(255,255,255,1)');
-  halo.addColorStop(0.14, 'rgba(255,255,255,.95)');
-  halo.addColorStop(0.32, 'rgba(225,235,255,.26)');
-  halo.addColorStop(1, 'rgba(225,235,255,0)');
+  halo.addColorStop(0, 'rgba(230,255,240,1)');
+  halo.addColorStop(0.14, 'rgba(110,255,170,.95)');
+  halo.addColorStop(0.32, 'rgba(40,255,140,.3)');
+  halo.addColorStop(1, 'rgba(40,255,140,0)');
   ledCtx.fillStyle = halo;
   ledCtx.fillRect(0, 0, 64, 64);
 
@@ -152,7 +152,7 @@
       const radio = RADIO * p.zoom;
 
       // Tres pasadas dan el brillo de un aro de LED: halo, cuerpo y nucleo.
-      ctx.strokeStyle = '#e8eeff';
+      ctx.strokeStyle = '#5dffa6';
       [[0.95, 0.07], [0.32, 0.24], [0.09, 1]].forEach(([grosor, intensidad]) => {
         ctx.beginPath();
         ctx.arc(p.x, p.y, radio, 0, Math.PI * 2);
@@ -192,7 +192,7 @@
       ctx.moveTo(a.x, a.y);
       ctx.lineTo(b.x, b.y);
       ctx.globalAlpha = visibilidad(chispa.z - pos, lejos) * luz * 0.7;
-      ctx.strokeStyle = '#ffffff';
+      ctx.strokeStyle = '#b6ffd3';
       ctx.lineWidth = Math.max(0.8, 0.06 * a.zoom);
       ctx.stroke();
     });
@@ -708,8 +708,8 @@
     // Cada seccion llega desde el fondo del tunel.
     gsap.utils.toArray('main > section:not(.hero)').forEach((seccion) => {
       const capas = seccion.children;
-      gsap.fromTo(capas, { scale: 0.8, y: 70, opacity: 0.35 }, { scale: 1, y: 0, opacity: 1, ease: 'power2.out', immediateRender: false, scrollTrigger: dedo(seccion, 'top 100%', 'top 55%') });
-      gsap.fromTo(capas, { scale: 1, opacity: 1 }, { scale: 1.08, opacity: 0.35, ease: 'power1.in', immediateRender: false, scrollTrigger: { trigger: seccion, start: 'bottom 40%', end: 'bottom 0%', scrub: 0.35 } });
+      gsap.fromTo(capas, { scale: 0.8, y: 70, opacity: 0.6 }, { scale: 1, y: 0, opacity: 1, ease: 'power2.out', immediateRender: false, scrollTrigger: dedo(seccion, 'top 100%', 'top 55%') });
+      gsap.fromTo(capas, { scale: 1, opacity: 1 }, { scale: 1.08, opacity: 0.6, ease: 'power1.in', immediateRender: false, scrollTrigger: { trigger: seccion, start: 'bottom 40%', end: 'bottom 0%', scrub: 0.35 } });
     });
     gsap.to('.hero__texto', { y: -60, opacity: 0.4, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.3 } });
     gsap.to('.elector', { y: -110, scale: 0.85, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.3 } });
@@ -743,7 +743,7 @@
     gsap.from('.voz', { y: 40, scale: 0.9, stagger: 0.07, duration: 0.7, scrollTrigger: { trigger: '.voces__lista', start: 'top 90%', once: true } });
 
     gsap.utils.toArray('.servicio').forEach((tarjeta) => {
-      gsap.from(tarjeta, { y: 72, rotationX: -18, scale: 0.92, opacity: 0.68, transformOrigin: 'center top', ease: 'power2.out', scrollTrigger: dedo(tarjeta, 'top 100%', 'top 66%') });
+      gsap.from(tarjeta, { y: 72, rotationX: -18, scale: 0.92, opacity: 0.85, transformOrigin: 'center top', ease: 'power2.out', scrollTrigger: dedo(tarjeta, 'top 100%', 'top 66%') });
     });
 
     gsap.utils.toArray('.giros__lista li, .pasos li').forEach((fila, i) => {

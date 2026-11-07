@@ -18,8 +18,8 @@
 .plan--destacado .plan__precio, .servicio--llamadas .precio { color: var(--negro); }
 .punto, .prueba__hablar .punto { background: var(--acento); box-shadow: 0 0 10px var(--acento); }
 .migas span:last-child { color: var(--acento); }
-.voz[aria-pressed="true"] { border-color: var(--acento); box-shadow: 0 0 0 1px var(--acento), 0 0 30px rgba(143, 227, 255, .35); }
-.elector__lista button[aria-pressed="true"] { border-color: var(--acento); box-shadow: 0 0 0 2px var(--acento), 0 0 18px rgba(143, 227, 255, .7); }
+.voz[aria-pressed="true"] { border-color: var(--acento); box-shadow: 0 0 0 1px var(--acento), 0 0 30px var(--brillo); }
+.elector__lista button[aria-pressed="true"] { border-color: var(--acento); box-shadow: 0 0 0 2px var(--acento), 0 0 18px var(--brillo); }
 .etiqueta { background: var(--acento); }
 a:not(.btn):hover { color: var(--acento); }
 .acordeon summary::after { color: var(--acento); }

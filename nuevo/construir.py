@@ -122,6 +122,16 @@ def esquema_preguntas(cuerpo):
     return json.dumps(datos, ensure_ascii=False)
 
 
+def iconos(texto):
+    """Cambia {{ICONO:nombre}} por el dibujo de linea de iconos/nombre.svg."""
+    def poner(m):
+        svg = (RAIZ / "iconos" / f"{m.group(1)}.svg").read_text(encoding="utf-8")
+        svg = re.sub(r"<!--.*?-->", "", svg, flags=re.S).strip()
+        svg = re.sub(r'class="[^"]*"', 'class="icono" aria-hidden="true" focusable="false"', svg, count=1)
+        return re.sub(r"\s+", " ", svg)
+    return re.sub(r"\{\{ICONO:([a-z-]+)\}\}", poner, texto)
+
+
 def filtrar(html_seccion, datos):
     """Deja solo las preguntas del tema de la pagina y pone su cierre."""
     html_seccion = html_seccion.replace("{{CIERRE}}", datos.get("cierre", "Que la siguiente llamada sí se conteste."))
@@ -168,7 +178,7 @@ def main():
             lambda m: m.group(0) if (RAIZ / m.group(1)).exists() else "",
             pagina,
         )
-        (RAIZ / archivo).write_text(firma + poner_datos(pagina), encoding="utf-8")
+        (RAIZ / archivo).write_text(firma + iconos(poner_datos(pagina)), encoding="utf-8")
 
     archivos = sorted((RAIZ / "estilos").glob("*.css"))
     archivos += sorted((RAIZ / "estilos" / "movil").glob("*.css"))
