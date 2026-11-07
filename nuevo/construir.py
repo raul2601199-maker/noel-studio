@@ -49,6 +49,7 @@ PAGINAS = {
     "llamadas.html": {
         "titulo": "Agente de llamadas con IA | Noel Studio",
         "descripcion": "Un agente con voz natural que contesta tu teléfono, informa y te deja el recado. Escucha las voces y pruébalo en vivo.",
+        "icono": "phone",
         "cabecera": ("Llamadas con IA", "Tu teléfono contesta al primer timbre.", "Claudia atiende, informa y te deja cada recado por escrito, aunque tú estés ocupado."),
         "secciones": ["llamada", "voces", "giros", "planes", "proceso", "preguntas"],
         "temas": ["agentes", "general"],
@@ -56,6 +57,7 @@ PAGINAS = {
     "whatsapp.html": {
         "titulo": "WhatsApp automático para negocios | Noel Studio",
         "descripcion": "Un agente de inteligencia artificial que responde dudas, aparta citas y toma pedidos por WhatsApp.",
+        "icono": "message-circle",
         "cabecera": ("WhatsApp automático", "Cada mensaje recibe respuesta.", "Responde con la información de tu negocio y te avisa cuando alguien quiere comprar."),
         "secciones": ["whatsapp", "chat-whatsapp", "proceso", "preguntas", "cierre"],
         "temas": ["agentes", "general"],
@@ -64,6 +66,7 @@ PAGINAS = {
     "paginas-web.html": {
         "titulo": "Páginas web en Chihuahua | Noel Studio",
         "descripcion": "Páginas web desde 4,500 pesos, tienda con terminal de pago, correo profesional y Google.",
+        "icono": "globe",
         "cabecera": ("Páginas web", "Tu negocio, bien presentado en internet.", "Páginas hechas desde cero, rápidas y listas para que Google las encuentre."),
         "secciones": ["web", "portafolio", "resenas", "preguntas", "cierre"],
         "temas": ["web", "general"],
@@ -72,6 +75,7 @@ PAGINAS = {
     "creativos.html": {
         "titulo": "Estudio creativo: videos y diseño | Noel Studio",
         "descripcion": "Videos para redes, diseño para campañas, logo, marca, catálogos y menús.",
+        "icono": "clapperboard",
         "cabecera": ("Estudio creativo", "Piezas que hacen que se detengan a verte.", "Videos, diseño y marca para que tu negocio se vea profesional en redes."),
         "secciones": ["creativos", "cierre"],
         "cierre": "Hagamos que tu negocio se vea.",
@@ -79,6 +83,7 @@ PAGINAS = {
     "contacto.html": {
         "titulo": "Contacto | Noel Studio Chihuahua",
         "descripcion": "Habla con Raúl de Noel Studio por WhatsApp o correo. Chihuahua, México.",
+        "icono": "mail",
         "cabecera": ("Contacto", "Hablemos de tu negocio.", "Escríbeme por WhatsApp o déjame tus datos. Te digo qué te conviene y cuánto cuesta."),
         "secciones": ["contacto", "raul", "preguntas"],
         "temas": ["agentes", "web", "general"],
@@ -147,13 +152,16 @@ def filtrar(html_seccion, datos):
     return html_seccion.replace("<details data-tema", "<details open data-tema", 1)
 
 
-def cabecera(datos):
+def cabecera(datos, icono):
     miga, titulo, texto = datos
     return f"""<section class="cabecera" data-mundo="pleno">
-  <div class="contenedor">
-    <nav class="migas" aria-label="Ruta"><a href="index.html">Inicio</a><span aria-hidden="true">/</span><span>{miga}</span></nav>
-    <h1>{titulo}</h1>
-    <p>{texto}</p>
+  <div class="contenedor cabecera__rejilla">
+    <div class="cabecera__texto">
+      <nav class="migas" aria-label="Ruta"><a href="index.html">Inicio</a><span aria-hidden="true">/</span><span>{miga}</span></nav>
+      <h1>{titulo}</h1>
+      <p>{texto}</p>
+    </div>
+    <div class="emblema" aria-hidden="true"><span class="emblema__anillo"></span><span class="emblema__anillo"></span><span class="emblema__centro">{{{{ICONO:{icono}}}}}</span></div>
   </div>
 </section>"""
 
@@ -164,7 +172,7 @@ def main():
     for archivo, datos in PAGINAS.items():
         antes = "\n".join(leer(RAIZ / "secciones" / f"{n}.html") for n in COMUNES_ANTES)
         antes = antes.replace(f'href="{archivo}"', f'href="{archivo}" aria-current="page"')
-        partes = [cabecera(datos["cabecera"])] if "cabecera" in datos else []
+        partes = [cabecera(datos["cabecera"], datos.get("icono", "sparkles"))] if "cabecera" in datos else []
         partes += [filtrar(leer(RAIZ / "secciones" / f"{n}.html"), datos) for n in datos["secciones"]]
         principal = "\n".join(partes)
         despues = "\n".join(leer(RAIZ / "secciones" / f"{n}.html") for n in COMUNES_DESPUES)

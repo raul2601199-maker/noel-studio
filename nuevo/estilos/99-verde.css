@@ -52,3 +52,18 @@ h1 em, h2 em, .problema em { color: var(--blanco); }
 .etiqueta { color: #02140a; }
 :focus-visible { outline-color: var(--acento); }
 .voz[aria-pressed="true"] { background: rgba(77, 255, 154, .08); }
+.estrellas { display: inline-flex; gap: 2px; color: var(--acento); vertical-align: -0.15em; }
+.estrellas .icono { width: 1em; height: 1em; fill: currentColor; }
+.resenas__nota { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; color: var(--texto-suave); }
+.resenas__nota strong { color: var(--blanco); }
+.resena cite { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.resena cite small { width: 100%; margin-left: 46px; margin-top: -8px; color: var(--gris); font-weight: 400; font-size: .86rem; }
+.autor { display: grid; place-items: center; width: 36px; height: 36px; color: #02140a; background: var(--acento); border-radius: 50%; font-size: .9rem; font-weight: 800; }
+.pie__banda { display: flex; justify-content: space-between; align-items: center; gap: 18px 30px; flex-wrap: wrap; margin-bottom: 46px; padding: 24px 26px; background: rgba(77, 255, 154, .06); border: 1px solid rgba(77, 255, 154, .25); border-radius: 16px; }
+.pie__banda p { display: grid; gap: 4px; }
+.pie__banda strong { font: 700 clamp(1.1rem, 1rem + .6vw, 1.45rem)/1.2 'Unbounded', sans-serif; letter-spacing: -0.015em; }
+.pie__banda span { color: var(--texto-suave); }
+.pie a { display: flex; align-items: center; gap: 8px; }
+.pie .icono, .pie__lugar .icono { color: var(--acento); }
+.pie__lugar { display: flex; align-items: center; gap: 8px; margin-top: 10px; color: var(--gris); font-size: .95rem; }
+@media (max-width: 860px) { .pie__banda { padding: 20px; margin-bottom: 30px; } .pie__banda .btn { width: 100%; } }
