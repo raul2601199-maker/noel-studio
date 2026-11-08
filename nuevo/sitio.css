@@ -602,6 +602,8 @@ h1 em, h2 em, .problema em { color: var(--blanco); }
 .pie .icono, .pie__lugar .icono { color: var(--acento); }
 .pie__lugar { display: flex; align-items: center; gap: 8px; margin-top: 10px; color: var(--gris); font-size: .95rem; }
 @media (max-width: 860px) { .pie__banda { padding: 20px; margin-bottom: 30px; } .pie__banda .btn { width: 100%; } }
+.planes__promo { display: flex; gap: 10px; align-items: flex-start; max-width: 62ch; margin-top: 22px; padding: 14px 16px; background: rgba(77, 255, 154, .07); border: 1px solid rgba(77, 255, 154, .3); border-radius: 12px; }
+.planes__promo .icono { color: var(--acento); margin-top: 3px; }
 
 /* Orden del telefono: ninguna seccion mide una pantalla si su contenido no la llena. */
 @media (max-width: 860px) {
