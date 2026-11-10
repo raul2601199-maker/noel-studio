@@ -863,6 +863,63 @@ main:has(.cierre) + .pie .pie__banda, main:has(.cierre) ~ .pie .pie__banda { dis
   .agenda__dias { margin-inline: -18px; padding-inline: 18px; }
 }
 
+/* Estudio creativo: reel en celulares, feed tipo Instagram y precios en tarjetas. */
+.estudio { padding-top: clamp(24px, 4vw, 48px); }
+.estudio__etiqueta { margin: 0 0 12px; font-size: .78rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--acento); }
+.estudio__rejilla { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: clamp(30px, 6vw, 90px); align-items: center; }
+.estudio__texto p:not(.estudio__etiqueta) { max-width: 38ch; margin: 18px 0 26px; color: var(--texto-suave); font-size: 1.08rem; }
+
+/* Dos celulares encimados: uno al frente, otro atras y girado. */
+.estudio__reel { position: relative; display: grid; grid-template-columns: 1fr 1fr; align-items: center; width: min(100%, 470px); justify-self: center; padding-block: 20px 34px; }
+.telefono { position: relative; margin: 0; z-index: 2; }
+.telefono--atras { z-index: 1; transform: translateY(30px) rotate(-6deg) scale(.88); opacity: .85; }
+.telefono--frente { margin-left: -22%; }
+.telefono__pantalla { position: relative; aspect-ratio: 9 / 16; overflow: hidden; background: #0b0c10; border: 9px solid #15161c; border-radius: 34px; box-shadow: 0 0 0 1px rgba(255, 255, 255, .14), 0 30px 70px rgba(0, 0, 0, .6), 0 0 60px rgba(77, 255, 154, .08); }
+.telefono__pantalla::before { content: ""; position: absolute; top: 8px; left: 50%; z-index: 2; width: 28%; height: 18px; translate: -50% 0; background: #15161c; border-radius: 999px; }
+.telefono video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.telefono__sonido { position: absolute; right: 10px; bottom: 10px; z-index: 2; display: grid; place-items: center; width: 38px; height: 38px; color: var(--blanco); background: rgba(3, 3, 5, .6); border: 1px solid rgba(255, 255, 255, .25); border-radius: 50%; cursor: pointer; }
+.telefono__sonido[aria-pressed="true"] { color: #02140a; background: var(--acento); border-color: var(--acento); }
+.telefono figcaption { display: grid; gap: 2px; margin-top: 14px; text-align: center; }
+.telefono figcaption strong { font-size: .95rem; }
+.telefono figcaption span { color: var(--gris); font-size: .84rem; }
+
+/* Feed: publicaciones con cabecera de perfil, como se ven en Instagram. */
+.feed, .menu-creativo { margin-top: clamp(70px, 10vw, 140px); }
+.feed__cabeza h2 { max-width: 18ch; }
+.feed__rejilla { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: clamp(24px, 3vw, 40px); }
+.post { overflow: hidden; background: #0e0f15; border: 1px solid rgba(255, 255, 255, .12); border-radius: 16px; transition: transform .3s var(--curva), border-color .3s var(--curva); }
+@media (hover: hover) and (pointer: fine) { .post:hover { transform: translateY(-4px); border-color: rgba(77, 255, 154, .45); } }
+.post__cabeza { display: flex; align-items: center; gap: 10px; padding: 10px 12px; }
+.post__avatar { display: grid; place-items: center; width: 32px; height: 32px; flex: none; border-radius: 50%; font: 700 .7rem 'Unbounded', sans-serif; color: var(--negro); background: var(--blanco); box-shadow: 0 0 0 2px #0e0f15, 0 0 0 3px var(--acento); }
+.post__cabeza span:last-child { display: grid; line-height: 1.2; }
+.post__cabeza strong { font-size: .88rem; }
+.post__cabeza small { color: var(--gris); font-size: .78rem; }
+.post img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
+
+/* Precios: tarjetas que llevan directo a cotizar. */
+.menu-creativo__rejilla { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: clamp(24px, 3vw, 40px); }
+.pieza-precio { display: flex; flex-direction: column; gap: 8px; padding: 20px; color: inherit; text-decoration: none; background: linear-gradient(160deg, rgba(40, 44, 56, .78), rgba(14, 15, 21, .82) 60%); border: 1px solid rgba(255, 255, 255, .14); border-radius: 16px; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14); transition: border-color .25s var(--curva), transform .25s var(--curva); }
+@media (hover: hover) and (pointer: fine) { .pieza-precio:hover { transform: translateY(-3px); border-color: rgba(77, 255, 154, .5); } .pieza-precio:hover .pieza-precio__precio .icono { transform: translateX(3px); } }
+.pieza-precio__icono { display: grid; place-items: center; width: 40px; height: 40px; margin-bottom: 6px; color: var(--acento); background: rgba(77, 255, 154, .1); border-radius: 11px; }
+.pieza-precio h3 { margin: 0; font: 700 1.05rem/1.2 'Unbounded', sans-serif; }
+.pieza-precio p { margin: 0; color: var(--texto-suave); font-size: .95rem; }
+.pieza-precio__precio { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: 12px; font-weight: 700; color: var(--acento); }
+.pieza-precio__precio .icono { transition: transform .25s var(--curva); }
+
+@media (max-width: 1000px) { .menu-creativo__rejilla { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 860px) {
+  .estudio__rejilla { grid-template-columns: 1fr; }
+  .estudio__reel { max-width: 420px; margin-inline: auto; width: 100%; }
+  .telefono__pantalla { border-width: 7px; border-radius: 28px; }
+  .feed__rejilla { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 10px; margin-inline: -18px; padding: 0 18px 6px; scrollbar-width: none; }
+  .feed__rejilla::-webkit-scrollbar { display: none; }
+  .post { flex: 0 0 80%; scroll-snap-align: start; }
+  .menu-creativo__rejilla { grid-template-columns: 1fr; }
+  .pieza-precio { display: grid; grid-template-columns: 40px 1fr; column-gap: 14px; }
+  .pieza-precio__icono { grid-row: span 3; margin: 0; }
+  .pieza-precio__precio { padding-top: 4px; }
+}
+
 /* Orden del telefono: ninguna seccion mide una pantalla si su contenido no la llena. */
 @media (max-width: 860px) {
   main > section:not(.hero),

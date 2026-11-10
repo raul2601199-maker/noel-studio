@@ -71,6 +71,8 @@ PAGINAS = {
         "secciones": ["portafolio", "web", "resenas", "preguntas", "cierre"],
         "temas": ["web", "general"],
         "cierre": "Tu próxima página puede ser esta.",
+        "cierre_boton": "Quiero mi página",
+        "cierre_texto": "Te enseño cómo se vería tu página antes de empezar.",
     },
     "creativos.html": {
         "titulo": "Estudio creativo: videos y diseño | Noel Studio",
@@ -79,6 +81,8 @@ PAGINAS = {
         "cabecera": ("Estudio creativo", "Piezas que hacen que se detengan a verte.", "Videos, diseño y marca para que tu negocio se vea profesional en redes."),
         "secciones": ["creativos", "cierre"],
         "cierre": "Hagamos que tu negocio se vea.",
+        "cierre_boton": "Cotizar mi pieza",
+        "cierre_texto": "Cuéntame qué vendes y te propongo la primera pieza antes de empezar.",
     },
     "tarjetas-nfc.html": {
         "titulo": "Tarjetas y soportes NFC para negocios | Noel Studio Chihuahua",
@@ -88,6 +92,8 @@ PAGINAS = {
         "secciones": ["nfc", "preguntas", "cierre"],
         "temas": ["nfc", "general"],
         "cierre": "Que cada mesa te traiga un cliente.",
+        "cierre_boton": "Pedir mi muestra",
+        "cierre_texto": "Te mando la muestra del diseño con tu marca antes de imprimir.",
     },
     "contacto.html": {
         "titulo": "Contacto | Noel Studio Chihuahua",
@@ -149,6 +155,8 @@ def iconos(texto):
 def filtrar(html_seccion, datos):
     """Deja solo las preguntas del tema de la pagina y pone su cierre."""
     html_seccion = html_seccion.replace("{{CIERRE}}", datos.get("cierre", "Que la siguiente llamada sí se conteste."))
+    html_seccion = html_seccion.replace("{{CIERRE_BOTON}}", datos.get("cierre_boton", "Quiero mi prueba"))
+    html_seccion = html_seccion.replace("{{CIERRE_TEXTO}}", datos.get("cierre_texto", "Te armo una prueba con la información de tu negocio para que la escuches antes de pagar."))
     temas = datos.get("temas")
     if not temas or "data-tema" not in html_seccion:
         return html_seccion
