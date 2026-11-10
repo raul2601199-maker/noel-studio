@@ -60,8 +60,8 @@
       gsap.fromTo(capas, { scale: 0.8, y: 70, opacity: 0.6 }, { scale: 1, y: 0, opacity: 1, ease: 'power2.out', immediateRender: false, scrollTrigger: dedo(seccion, 'top 100%', 'top 55%') });
       gsap.fromTo(capas, { scale: 1, opacity: 1 }, { scale: 1.08, opacity: 0.6, ease: 'power1.in', immediateRender: false, scrollTrigger: { trigger: seccion, start: 'bottom 40%', end: 'bottom 0%', scrub: 0.35 } });
     });
-    gsap.to('.hero__texto', { y: -60, opacity: 0.4, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.3 } });
-    gsap.to('.elector', { y: -110, scale: 0.85, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.3 } });
+    if (document.querySelector('.hero')) gsap.to('.hero__texto', { y: -60, opacity: 0.4, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.3 } });
+    if (document.querySelector('.hero')) gsap.to('.elector', { y: -110, scale: 0.85, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.3 } });
 
     // Titulos: las lineas suben desde abajo.
     document.querySelectorAll('main h2:not(.problema h2)').forEach((titulo) => {
@@ -102,6 +102,6 @@
       gsap.from(fila, { y: 26, opacity: 0.68, ease: 'power2.out', scrollTrigger: dedo(fila, 'top 98%', 'top 82%') });
     });
 
-    gsap.fromTo('.cierre h2', { scale: 1.16 }, { scale: 1, ease: 'none', transformOrigin: 'left center', scrollTrigger: dedo('.cierre', 'top 100%', 'top 45%') });
+    if (document.querySelector('.cierre')) gsap.fromTo('.cierre h2', { scale: 1.16 }, { scale: 1, ease: 'none', transformOrigin: 'left center', scrollTrigger: dedo('.cierre', 'top 100%', 'top 45%') });
   });
 })();
