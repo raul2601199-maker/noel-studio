@@ -44,8 +44,8 @@
 }
 /* Rendimiento: sin desenfoque en vivo (el tunel animado lo recalculaba en cada cuadro).
    El vidrio se simula con fondo oscuro translucido + brillo en la orilla. */
-.planes .plan { background: linear-gradient(160deg, rgba(40, 44, 56, .78), rgba(14, 15, 21, .82) 60%); }
-.planes .plan--destacado { background: linear-gradient(160deg, rgba(30, 70, 50, .8), rgba(14, 18, 18, .85) 65%); }
+.plan { background: linear-gradient(160deg, rgba(40, 44, 56, .78), rgba(14, 15, 21, .82) 60%); }
+.plan--destacado { background: linear-gradient(160deg, rgba(30, 70, 50, .8), rgba(14, 18, 18, .85) 65%); }
 .gcharla { background: linear-gradient(160deg, rgba(40, 44, 56, .76), rgba(14, 15, 21, .82) 60%); }
 .btn--linea, button.btn--linea { background: rgba(30, 33, 42, .7); }
 /* Las barritas de voz solo se mueven al pasar el mouse por la tarjeta. */

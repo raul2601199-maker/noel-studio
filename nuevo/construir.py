@@ -59,7 +59,7 @@ PAGINAS = {
         "descripcion": "Un agente de inteligencia artificial que responde dudas, aparta citas y toma pedidos por WhatsApp.",
         "icono": "message-circle",
         "cabecera": ("WhatsApp automático", "Cada mensaje recibe respuesta.", "Responde con la información de tu negocio y te avisa cuando alguien quiere comprar."),
-        "secciones": ["whatsapp", "chat-whatsapp", "proceso", "preguntas", "cierre"],
+        "secciones": ["chat-whatsapp", "whatsapp", "proceso", "preguntas", "cierre"],
         "temas": ["agentes", "general"],
         "cierre": "Que ningún mensaje se quede sin respuesta.",
     },

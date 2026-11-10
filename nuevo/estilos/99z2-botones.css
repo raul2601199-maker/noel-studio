@@ -38,9 +38,8 @@
 .btn:active { transform: scale(.97); }
 .btn:focus-visible { outline: 2px solid var(--acento); outline-offset: 3px; }
 
-/* La tarjeta blanca destacada (WhatsApp) conserva su boton negro. */
-.plan--destacado .btn--solido { color: var(--blanco); background: var(--negro); border-color: var(--negro); }
-.planes .plan--destacado .btn--solido { color: var(--negro); background: var(--blanco); border-color: var(--blanco); }
+/* Planes destacados (vidrio verde): boton blanco. */
+.plan--destacado .btn--solido { color: var(--negro); background: var(--blanco); border-color: var(--blanco); }
 
 /* ---------- Menu de computadora ---------- */
 .nav::before { border-radius: 18px; }
