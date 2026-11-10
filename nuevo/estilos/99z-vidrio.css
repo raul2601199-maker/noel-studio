@@ -30,5 +30,4 @@
 .planes .plan--destacado li::before { background: var(--acento); }
 .planes .plan--destacado .btn--solido { color: var(--negro); background: var(--blanco); }
 /* Sin soporte de desenfoque: un poco mas solido para que se lea. */
-@supports not (( }
-}
+

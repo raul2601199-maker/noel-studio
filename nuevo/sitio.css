@@ -674,8 +674,7 @@ h1 em, h2 em, .problema em { color: var(--blanco); }
 .planes .plan--destacado li::before { background: var(--acento); }
 .planes .plan--destacado .btn--solido { color: var(--negro); background: var(--blanco); }
 /* Sin soporte de desenfoque: un poco mas solido para que se lea. */
-@supports not (( }
-}
+
 
 /* Botones y menu con identidad propia: esquinas de tablilla (no pastilla),
    flecha que avanza al pasar el mouse, brillo LED verde y vidrio. */
