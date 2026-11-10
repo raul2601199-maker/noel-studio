@@ -80,6 +80,15 @@ PAGINAS = {
         "secciones": ["creativos", "cierre"],
         "cierre": "Hagamos que tu negocio se vea.",
     },
+    "tarjetas-nfc.html": {
+        "titulo": "Tarjetas y soportes NFC para negocios | Noel Studio Chihuahua",
+        "descripcion": "Soportes de mesa, tarjetas de presentación y de reseñas con NFC y QR. Un toque abre tu WhatsApp, tu menú o tu perfil de Google.",
+        "icono": "nfc",
+        "cabecera": ("Tarjetas NFC", "Un toque y tu cliente ya está contigo.", "Acercan el celular y se abre tu WhatsApp, tu menú o tus reseñas de Google."),
+        "secciones": ["nfc", "preguntas", "cierre"],
+        "temas": ["nfc", "general"],
+        "cierre": "Que cada mesa te traiga un cliente.",
+    },
     "contacto.html": {
         "titulo": "Contacto | Noel Studio Chihuahua",
         "descripcion": "Habla con Raúl de Noel Studio por WhatsApp o correo. Chihuahua, México.",

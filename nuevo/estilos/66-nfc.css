@@ -1,0 +1,55 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+*/
+/* Tarjeta NFC en el mosaico de servicios: ocupa todo el ancho abajo. */
+.servicio--nfc { grid-column: 1 / -1; color: var(--blanco); background: var(--panel); }
+.nfc .ventajas--tarjetas { margin-bottom: clamp(30px, 5vw, 56px); }
+
+/* Escena: comparador que se arrastra de abajo hacia arriba. Abajo de la linea = diseño.
+   --p va de 0 a 1; arranca en .15 para que se note que se mueve. */
+.nfc-escena { --p: .15; padding-block: clamp(10px, 3vw, 40px) clamp(40px, 6vw, 80px); }
+.nfc-escena__rejilla { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(24px, 5vw, 72px); align-items: center; }
+.nfc-escena__texto p:not(.nfc-escena__etapa) { color: var(--texto-suave); max-width: 34ch; }
+.nfc-escena__texto .nfc-escena__pista { display: inline-flex; gap: 8px; align-items: center; margin-top: 22px; padding: 8px 14px; font-size: .9rem; color: var(--blanco); border: 1px solid rgba(77, 255, 154, .35); border-radius: 999px; }
+.nfc-escena__pista span { color: var(--acento); }
+.nfc-escena__etapa { display: grid; margin: 0 0 12px; font-size: .82rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--acento); }
+.nfc-escena__etapa span { grid-area: 1 / 1; transition: opacity .35s var(--curva), transform .35s var(--curva); }
+.nfc-escena__antes { opacity: 0; transform: translateY(-6px); }
+.nfc-escena.es-blanca .nfc-escena__antes { opacity: 1; transform: none; }
+.nfc-escena.es-blanca .nfc-escena__ya { opacity: 0; transform: translateY(6px); }
+.nfc-escena__foto { position: relative; margin: 0; aspect-ratio: 1; cursor: ns-resize; }
+.nfc-escena__foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; -webkit-mask-image: radial-gradient(closest-side, #000 78%, transparent); mask-image: radial-gradient(closest-side, #000 78%, transparent); pointer-events: none; user-select: none; }
+/* La linea sube por la tablilla: de su orilla de abajo (82%) a la de arriba (15%). */
+.nfc-escena__diseno { clip-path: inset(calc(80.5% - var(--p) * 63.5%) 0 0 0); }
+.nfc-escena__luz { position: absolute; left: 16.5%; right: 18%; top: calc(80.5% - var(--p) * 63.5%); height: 2px; margin-top: -1px; background: var(--acento); box-shadow: 0 0 14px 3px var(--brillo); pointer-events: none; }
+.nfc-escena__agarre { position: absolute; top: 50%; left: 50%; width: 44px; height: 44px; translate: -50% -50%; border-radius: 50%; background: var(--negro); border: 2px solid var(--acento); box-shadow: 0 0 18px var(--brillo); transition: scale .2s var(--curva); }
+.nfc-escena__agarre { pointer-events: auto; touch-action: none; cursor: grab; }
+.nfc-escena__agarre::before, .nfc-escena__agarre::after { content: ""; position: absolute; left: 50%; width: 8px; height: 8px; border: solid var(--acento); border-width: 2px 0 0 2px; translate: -50% 0; }
+.nfc-escena__agarre::before { top: 10px; rotate: 45deg; }
+.nfc-escena__agarre::after { bottom: 10px; rotate: -135deg; }
+/* Pista: el agarre sube y baja un poquito hasta que alguien lo toca. */
+.nfc-escena:not(.ya-movio) .nfc-escena__agarre { animation: nfc-pista 1.8s var(--curva) infinite; }
+@keyframes nfc-pista { 0%, 55%, 100% { translate: -50% -50%; } 25% { translate: -50% calc(-50% - 10px); } }
+@media (prefers-reduced-motion: reduce) { .nfc-escena__agarre { animation: none !important; } }
+.nfc-escena__foto:active .nfc-escena__agarre { scale: .92; }
+/* Control nativo invisible encima: da arrastre con mouse, dedo y teclado. */
+.nfc-escena__control { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.nfc-escena__control:focus-visible + * , .nfc-escena__foto:has(.nfc-escena__control:focus-visible) .nfc-escena__agarre { outline: 2px solid var(--blanco); outline-offset: 3px; }
+@media (max-width: 860px) {
+  .nfc-escena__rejilla { grid-template-columns: 1fr; }
+  .nfc-escena__foto { max-width: 520px; width: 100%; justify-self: center; }
+}
+/* La regla de cabecera oculta el primer titulo de la seccion; aqui si se necesita. */
+.cabecera + .linea-servicio.nfc .linea-servicio__cabeza { display: block; }
