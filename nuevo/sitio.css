@@ -664,8 +664,6 @@ h1 em, h2 em, .problema em { color: var(--blanco); }
   background: linear-gradient(160deg, rgba(255, 255, 255, .11), rgba(255, 255, 255, .03) 60%);
   border: 1px solid rgba(255, 255, 255, .16);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22), 0 18px 40px rgba(0, 0, 0, .35);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
-  backdrop-filter: blur(18px) saturate(140%);
 }
 .planes .plan--destacado {
   background: linear-gradient(160deg, rgba(77, 255, 154, .16), rgba(255, 255, 255, .04) 65%);
@@ -676,11 +674,7 @@ h1 em, h2 em, .problema em { color: var(--blanco); }
 .planes .plan--destacado li::before { background: var(--acento); }
 .planes .plan--destacado .btn--solido { color: var(--negro); background: var(--blanco); }
 /* Sin soporte de desenfoque: un poco mas solido para que se lea. */
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .planes .plan { background: rgba(20, 22, 30, .88); }
-}
-@media (max-width: 860px) {
-  .planes .plan { -webkit-backdrop-filter: blur(12px) saturate(140%); backdrop-filter: blur(12px) saturate(140%); }
+@supports not (( }
 }
 
 /* Botones y menu con identidad propia: esquinas de tablilla (no pastilla),
@@ -697,7 +691,7 @@ h1 em, h2 em, .problema em { color: var(--blanco); }
 .btn--solido { background: var(--blanco); color: var(--negro); border-color: var(--blanco); box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .12); }
 
 /* Linea: vidrio con borde fino. */
-.btn--linea, button.btn--linea { color: var(--blanco); background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .22); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.btn--linea, button.btn--linea { color: var(--blanco); background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .22); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14); }
 
 @media (hover: hover) and (pointer: fine) {
   .btn--solido:hover { background: var(--acento); border-color: var(--acento); color: #02140a; box-shadow: 0 0 0 1px rgba(77, 255, 154, .4), 0 8px 28px rgba(77, 255, 154, .28); }
@@ -736,7 +730,7 @@ h1 em, h2 em, .problema em { color: var(--blanco); }
 .charla { grid-column: span 2; }
 .charla:nth-child(n+4) { grid-column: span 3; }
 @media (max-width: 1100px) and (min-width: 861px) { .giros__charlas { grid-template-columns: repeat(2, minmax(0, 1fr)); } .charla, .charla:nth-child(n+4) { grid-column: auto; } .charla:last-child { grid-column: 1 / -1; } }
-.charla { display: flex; flex-direction: column; gap: 12px; padding: 20px 20px 18px; background: linear-gradient(160deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .025) 60%); border: 1px solid rgba(255, 255, 255, .14); border-radius: 16px; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); transition: border-color .25s var(--curva), box-shadow .25s var(--curva); }
+.charla { display: flex; flex-direction: column; gap: 12px; padding: 20px 20px 18px; background: linear-gradient(160deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .025) 60%); border: 1px solid rgba(255, 255, 255, .14); border-radius: 16px; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16); transition: border-color .25s var(--curva), box-shadow .25s var(--curva); }
 @media (hover: hover) and (pointer: fine) { .charla:hover { border-color: rgba(77, 255, 154, .45); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16), 0 0 28px rgba(77, 255, 154, .12); } }
 .charla__cabeza { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid rgba(255, 255, 255, .1); }
 .charla__cabeza h3 { margin: 0; font: 700 1.02rem/1.2 'Unbounded', sans-serif; letter-spacing: -0.01em; }
@@ -756,8 +750,17 @@ h1 em, h2 em, .problema em { color: var(--blanco); }
 @media (max-width: 860px) {
   .giros__charlas { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 10px; margin-inline: -18px; padding: 2px 18px 8px; scroll-padding-inline: 18px; scrollbar-width: none; }
   .giros__charlas::-webkit-scrollbar { display: none; }
-  .charla { flex: 0 0 84%; scroll-snap-align: start; padding: 18px; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+  .charla { flex: 0 0 84%; scroll-snap-align: start; padding: 18px; }
 }
+/* Rendimiento: sin desenfoque en vivo (el tunel animado lo recalculaba en cada cuadro).
+   El vidrio se simula con fondo oscuro translucido + brillo en la orilla. */
+.planes .plan { background: linear-gradient(160deg, rgba(40, 44, 56, .78), rgba(14, 15, 21, .82) 60%); }
+.planes .plan--destacado { background: linear-gradient(160deg, rgba(30, 70, 50, .8), rgba(14, 18, 18, .85) 65%); }
+.charla { background: linear-gradient(160deg, rgba(40, 44, 56, .76), rgba(14, 15, 21, .82) 60%); }
+.btn--linea, button.btn--linea { background: rgba(30, 33, 42, .7); }
+/* Las barritas de voz solo se mueven al pasar el mouse por la tarjeta. */
+.charla__vivo i { animation-play-state: paused; }
+@media (hover: hover) and (pointer: fine) { .charla:hover .charla__vivo i { animation-play-state: running; } }
 
 /* Orden del telefono: ninguna seccion mide una pantalla si su contenido no la llena. */
 @media (max-width: 860px) {

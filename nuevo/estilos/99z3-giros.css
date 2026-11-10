@@ -20,7 +20,7 @@
 .charla { grid-column: span 2; }
 .charla:nth-child(n+4) { grid-column: span 3; }
 @media (max-width: 1100px) and (min-width: 861px) { .giros__charlas { grid-template-columns: repeat(2, minmax(0, 1fr)); } .charla, .charla:nth-child(n+4) { grid-column: auto; } .charla:last-child { grid-column: 1 / -1; } }
-.charla { display: flex; flex-direction: column; gap: 12px; padding: 20px 20px 18px; background: linear-gradient(160deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .025) 60%); border: 1px solid rgba(255, 255, 255, .14); border-radius: 16px; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); transition: border-color .25s var(--curva), box-shadow .25s var(--curva); }
+.charla { display: flex; flex-direction: column; gap: 12px; padding: 20px 20px 18px; background: linear-gradient(160deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .025) 60%); border: 1px solid rgba(255, 255, 255, .14); border-radius: 16px; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16); transition: border-color .25s var(--curva), box-shadow .25s var(--curva); }
 @media (hover: hover) and (pointer: fine) { .charla:hover { border-color: rgba(77, 255, 154, .45); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16), 0 0 28px rgba(77, 255, 154, .12); } }
 .charla__cabeza { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid rgba(255, 255, 255, .1); }
 .charla__cabeza h3 { margin: 0; font: 700 1.02rem/1.2 'Unbounded', sans-serif; letter-spacing: -0.01em; }
@@ -40,5 +40,14 @@
 @media (max-width: 860px) {
   .giros__charlas { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 10px; margin-inline: -18px; padding: 2px 18px 8px; scroll-padding-inline: 18px; scrollbar-width: none; }
   .giros__charlas::-webkit-scrollbar { display: none; }
-  .charla { flex: 0 0 84%; scroll-snap-align: start; padding: 18px; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+  .charla { flex: 0 0 84%; scroll-snap-align: start; padding: 18px; }
 }
+/* Rendimiento: sin desenfoque en vivo (el tunel animado lo recalculaba en cada cuadro).
+   El vidrio se simula con fondo oscuro translucido + brillo en la orilla. */
+.planes .plan { background: linear-gradient(160deg, rgba(40, 44, 56, .78), rgba(14, 15, 21, .82) 60%); }
+.planes .plan--destacado { background: linear-gradient(160deg, rgba(30, 70, 50, .8), rgba(14, 18, 18, .85) 65%); }
+.charla { background: linear-gradient(160deg, rgba(40, 44, 56, .76), rgba(14, 15, 21, .82) 60%); }
+.btn--linea, button.btn--linea { background: rgba(30, 33, 42, .7); }
+/* Las barritas de voz solo se mueven al pasar el mouse por la tarjeta. */
+.charla__vivo i { animation-play-state: paused; }
+@media (hover: hover) and (pointer: fine) { .charla:hover .charla__vivo i { animation-play-state: running; } }
