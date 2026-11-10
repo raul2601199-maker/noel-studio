@@ -68,7 +68,7 @@ PAGINAS = {
         "descripcion": "Páginas web desde 4,500 pesos, tienda con terminal de pago, correo profesional y Google.",
         "icono": "globe",
         "cabecera": ("Páginas web", "Tu negocio, bien presentado en internet.", "Páginas hechas desde cero, rápidas y listas para que Google las encuentre."),
-        "secciones": ["web", "portafolio", "resenas", "preguntas", "cierre"],
+        "secciones": ["portafolio", "web", "resenas", "preguntas", "cierre"],
         "temas": ["web", "general"],
         "cierre": "Tu próxima página puede ser esta.",
     },

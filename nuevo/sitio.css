@@ -811,6 +811,17 @@ main:has(.cierre) + .pie .pie__banda, main:has(.cierre) ~ .pie .pie__banda { dis
   .ruta li::before { top: 2px; }
 }
 
+/* Creativos: galeria primero; la lista de precios lleva su titulo visible. */
+.cabecera + .linea-servicio.creativos .linea-servicio__cabeza { display: block; }
+.creativos .galeria + .creativos__rejilla, .creativos > .contenedor + .creativos__rejilla { margin-top: clamp(48px, 7vw, 96px); }
+
+/* Contacto: datos concretos de Raul en vez de solo texto. */
+.raul__datos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 22px; padding: 0; }
+.raul__datos li { display: grid; gap: 4px; padding: 14px; background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .1); border-radius: 14px; }
+.raul__datos strong { font: 700 1.5rem/1 'Unbounded', sans-serif; color: var(--acento); }
+.raul__datos span { color: var(--gris); font-size: .86rem; line-height: 1.35; }
+@media (max-width: 520px) { .raul__datos { grid-template-columns: 1fr; } .raul__datos li { grid-template-columns: 74px 1fr; align-items: center; } }
+
 /* Orden del telefono: ninguna seccion mide una pantalla si su contenido no la llena. */
 @media (max-width: 860px) {
   main > section:not(.hero),
