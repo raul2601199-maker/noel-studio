@@ -303,7 +303,7 @@
   const voces = [...seccion.querySelectorAll('[data-voz-id]')];
   const inicial = estado.textContent;
   const SDK = 'https://cdn.jsdelivr.net/npm/retell-client-js-sdk@3.0.4/+esm';
-  const SEGUNDOS = 120;
+  const SEGUNDOS = 300;
   let elegida = voces[0];
   let cliente = null;
   let llamada = null;
