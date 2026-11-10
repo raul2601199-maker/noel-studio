@@ -34,6 +34,8 @@ DATOS = {
     # Llave pública de Retell (empieza con public_key_). Sin llave, el botón se oculta.
     "RETELL_LLAVE": os.environ.get("RETELL_LLAVE", "public_key_fbd8d71501f324c5a6b9c"),
     "RETELL_AGENTE": "agent_cf2ef29399ba0b6b0f5967cdc7",
+    # Llave de SITIO de Google reCAPTCHA v3 (es publica). Vacia = sin reCAPTCHA.
+    "RECAPTCHA": "",
 }
 
 # Paginas del sitio. Cada una arma sus secciones en este orden.

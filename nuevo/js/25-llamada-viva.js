@@ -35,6 +35,28 @@
     });
   }
 
+  // reCAPTCHA v3: si hay llave de sitio, se carga el script de Google al primer clic
+  // y se pide un token nuevo antes de cada llamada (Retell lo exige si esta activado).
+  const SITIO = seccion.dataset.recaptcha || '';
+  let google = null;
+  function cargarGoogle() {
+    if (!SITIO) return Promise.resolve(null);
+    if (google) return google;
+    google = new Promise((listo, falla) => {
+      const s = document.createElement('script');
+      s.src = 'https://www.google.com/recaptcha/api.js?render=' + encodeURIComponent(SITIO);
+      s.async = true;
+      s.onload = () => window.grecaptcha.ready(() => listo(window.grecaptcha));
+      s.onerror = falla;
+      document.head.appendChild(s);
+    });
+    return google;
+  }
+  async function boleto() {
+    const g = await cargarGoogle();
+    return g ? g.execute(SITIO, { action: 'llamada' }) : undefined;
+  }
+
   function mostrar(mensaje, fase) {
     estado.textContent = mensaje;
     seccion.dataset.fase = fase;
@@ -86,9 +108,10 @@
     bloquear(true);
     mostrar('Conectando con ' + elegida.dataset.nombre + '…', 'conectando');
     try {
-      const listo = await preparar();
+      const [listo, recaptchaToken] = await Promise.all([preparar(), boleto()]);
       llamada = listo.createWebCall({
         agent_id: seccion.dataset.agente,
+        ...(recaptchaToken ? { recaptchaToken } : {}),
         agent_override: { agent: { voice_id: elegida.dataset.vozId } },
         retell_llm_dynamic_variables: { nombre: elegida.dataset.nombre },
         hooks: {
