@@ -189,8 +189,19 @@ def cabecera(datos, icono):
 VERSION = str(int(__import__("time").time()))
 
 
-def main():
+SITIO = "https://raul2601199-maker.github.io/noel-studio/"
+# Carpetas que la pagina usa y que se copian al publicar en la raiz.
+CARPETAS = ["fuentes", "voces", "creativos", "nfc"]
+
+
+def main(publicar=False):
+    """Sin argumentos genera la vista de prueba en nuevo/.
+    Con --publicar genera el sitio oficial en la raiz del repo (indexable)."""
+    destino = RAIZ.parent if publicar else RAIZ
+    DATOS["BASE"] = "" if publicar else "../"
     plantilla = leer(RAIZ / "plantilla.html")
+    if publicar:
+        plantilla = re.sub(r"<!-- Quitar al publicar.*?-->\s*<meta name=\"robots\"[^>]*>\s*", "", plantilla, flags=re.S)
     firma = (RAIZ / "plantilla.html").read_text(encoding="utf-8").split("-->")[0] + "-->\n"
     for archivo, datos in PAGINAS.items():
         antes = "\n".join(leer(RAIZ / "secciones" / f"{n}.html") for n in COMUNES_ANTES)
@@ -204,23 +215,52 @@ def main():
         pagina = pagina.replace("sitio.css", f"sitio.css?v={VERSION}").replace("sitio.js", f"sitio.js?v={VERSION}")
         pagina = pagina.replace("{{ESQUEMA}}", esquema_preguntas(principal))
         pagina = pagina.replace("{{TITULO}}", datos["titulo"]).replace("{{DESCRIPCION}}", datos["descripcion"])
+        if publicar:
+            url = SITIO + ("" if archivo == "index.html" else archivo)
+            pagina = pagina.replace('<meta name="description"', f'<link rel="canonical" href="{url}">\n<meta property="og:url" content="{url}">\n<meta name="description"', 1)
         # Solo se pide una foto si el archivo existe; si no, queda la inicial.
         pagina = re.sub(
             r' data-foto="([^"]+)"',
             lambda m: m.group(0) if (RAIZ / m.group(1)).exists() else "",
             pagina,
         )
-        (RAIZ / archivo).write_text(firma + iconos(poner_datos(pagina)), encoding="utf-8")
+        (destino / archivo).write_text(firma + iconos(poner_datos(pagina)), encoding="utf-8")
 
     archivos = sorted((RAIZ / "estilos").glob("*.css"))
     archivos += sorted((RAIZ / "estilos" / "movil").glob("*.css"))
     css = "\n".join(leer(p) for p in archivos)
-    (RAIZ / "sitio.css").write_text(poner_datos(css), encoding="utf-8")
+    (destino / "sitio.css").write_text(poner_datos(css), encoding="utf-8")
 
     js = "\n".join(leer(p) for p in sorted((RAIZ / "js").glob("*.js")))
-    (RAIZ / "sitio.js").write_text(js, encoding="utf-8")
-    print(f"Listo: {len(PAGINAS)} páginas.")
+    (destino / "sitio.js").write_text(js, encoding="utf-8")
+
+    if publicar:
+        import shutil
+        for carpeta in CARPETAS:
+            shutil.copytree(RAIZ / carpeta, destino / carpeta, dirs_exist_ok=True)
+        hoy = __import__("datetime").date.today().isoformat()
+        urls = "".join(
+            f"  <url><loc>{SITIO}{'' if a == 'index.html' else a}</loc><lastmod>{hoy}</lastmod></url>\n"
+            for a in PAGINAS
+        )
+        (destino / "sitemap.xml").write_text(
+            '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls + "</urlset>\n",
+            encoding="utf-8",
+        )
+        # Paginas viejas: mandan a su equivalente nuevo para no perder visitas ni Google.
+        for viejo, nuevo in {"agentes-ia.html": "llamadas.html", "portafolio.html": "index.html#portafolio"}.items():
+            (destino / viejo).write_text(
+                f'<!doctype html><html lang="es"><head><meta charset="utf-8"><title>Noel Studio</title>'
+                f'<link rel="canonical" href="{SITIO}{nuevo.split("#")[0].replace("index.html", "")}">'
+                f'<meta http-equiv="refresh" content="0; url={nuevo}"></head>'
+                f'<body><a href="{nuevo}">Ir a Noel Studio</a></body></html>\n',
+                encoding="utf-8",
+            )
+        print(f"Publicado en la raiz: {len(PAGINAS)} páginas + sitemap + redirecciones.")
+    else:
+        print(f"Listo: {len(PAGINAS)} páginas.")
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+    main(publicar="--publicar" in sys.argv)

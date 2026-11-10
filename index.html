@@ -1,1070 +1,310 @@
-<!DOCTYPE html>
+<!--
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+-->
+<!doctype html>
 <html lang="es">
 <head>
-<!-- Google Analytics: se carga DESPUÉS de que la página ya se ve.
-     Así no le roba red ni procesador al primer dibujado (mejora la velocidad en celular). -->
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-EH81SC2V5B');
-  addEventListener('load', function () {
-    var s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-EH81SC2V5B';
-    document.head.appendChild(s);
-  });
-</script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Agentes de IA para negocios | Noel Studio Chihuahua</title>
-<meta name="description" content="Agentes de inteligencia artificial que contestan el WhatsApp y las llamadas de tu negocio 24/7: agendan citas y toman pedidos. Chihuahua, México.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Agentes de IA que contestan tu negocio | Noel Studio Chihuahua</title>
+<link rel="canonical" href="https://raul2601199-maker.github.io/noel-studio/">
+<meta property="og:url" content="https://raul2601199-maker.github.io/noel-studio/">
+<meta name="description" content="Agentes de inteligencia artificial que contestan llamadas y WhatsApp, páginas web y creativos para negocios. Chihuahua, México.">
+<meta name="theme-color" content="#030305">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://www.google.com https://www.gstatic.com; frame-src https://www.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; media-src 'self' blob: mediastream: https:; connect-src 'self' https: wss:; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="theme-color" content="#000000">
-
-<meta property="og:title" content="Agentes de IA para negocios | Noel Studio Chihuahua">
-<meta property="og:description" content="Agentes de inteligencia artificial que contestan el WhatsApp y las llamadas de tu negocio 24/7: agendan citas y toman pedidos. Chihuahua, México.">
+<meta property="og:title" content="Tu negocio contesta, aunque tú no puedas | Noel Studio">
+<meta property="og:description" content="Agentes de inteligencia artificial para llamadas y WhatsApp. Chihuahua, México.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
-<meta property="og:url" content="https://raul2601199-maker.github.io/noel-studio/">
 <meta property="og:image" content="https://raul2601199-maker.github.io/noel-studio/assets/og-image.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://raul2601199-maker.github.io/noel-studio/assets/og-image.jpg">
-
-<!-- Ícono de la pestaña del navegador y al guardar en el celular -->
 <link rel="icon" href="assets/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="manifest" href="site.webmanifest">
-
-<link rel="canonical" href="https://raul2601199-maker.github.io/noel-studio/">
-
-<!-- ============================================================
-     DATOS ESTRUCTURADOS (Schema.org)
-     Esto es lo que Google LEE para entender a qué se dedica el negocio.
-     Va todo en un @graph enlazado por @id, que es la forma que Google recomienda:
-       Organization  -> quién soy
-       ProfessionalService -> el negocio local + CATÁLOGO de los 11 servicios con precio
-       WebSite / WebPage -> la página
-       FAQPage -> las preguntas de la sección "PREGUNTAS FRECUENTES" (deben existir
-                  visibles en la página, si no Google lo marca como engaño)
-     Si cambias un precio o una pregunta ABAJO, cámbialo también aquí.
-     ============================================================ -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://raul2601199-maker.github.io/noel-studio/#organizacion",
-      "name": "Noel Studio",
-      "alternateName": "Noel Studio Chihuahua",
-      "url": "https://raul2601199-maker.github.io/noel-studio/",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://raul2601199-maker.github.io/noel-studio/assets/logo-hero.png",
-        "width": 263,
-        "height": 313
-      },
-      "image": "https://raul2601199-maker.github.io/noel-studio/assets/og-image.jpg",
-      "description": "Noel Studio desarrolla agentes de inteligencia artificial que atienden el WhatsApp y las llamadas telefónicas de negocios en Chihuahua las 24 horas: contestan dudas, dan precios, agendan citas y toman pedidos. También diseña páginas web, tiendas en línea y correo profesional.",
-      "founder": {
-        "@type": "Person",
-        "name": "Raúl Noel",
-        "jobTitle": "Desarrollador de agentes de inteligencia artificial"
-      },
-      "email": "contacto.noelstudio@gmail.com",
-      "telephone": "+526142251419",
-      "areaServed": {
-        "@type": "State",
-        "name": "Chihuahua, México"
-      },
-      "sameAs": [
-        "https://www.instagram.com/noelstudioweb",
-        "https://www.facebook.com/profile.php?id=61589966980458",
-        "https://www.tiktok.com/@noelstudio_"
-      ]
-    },
-    {
-      "@type": ["ProfessionalService", "LocalBusiness"],
-      "@id": "https://raul2601199-maker.github.io/noel-studio/#negocio",
-      "name": "Noel Studio",
-      "parentOrganization": { "@id": "https://raul2601199-maker.github.io/noel-studio/#organizacion" },
-      "url": "https://raul2601199-maker.github.io/noel-studio/",
-      "image": "https://raul2601199-maker.github.io/noel-studio/assets/og-image.jpg",
-      "description": "Agentes de inteligencia artificial que contestan WhatsApp y llamadas 24/7, agendan citas y toman pedidos para negocios de Chihuahua. También páginas web, tiendas en línea, correo profesional y posicionamiento en Google.",
-      "slogan": "El cliente al que no le contestas, le compra al de al lado.",
-      "telephone": "+526142251419",
-      "email": "contacto.noelstudio@gmail.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Chihuahua",
-        "addressRegion": "Chihuahua",
-        "addressCountry": "MX"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 28.6353,
-        "longitude": -106.0889
-      },
-      "areaServed": [
-        { "@type": "City", "name": "Chihuahua" },
-        { "@type": "State", "name": "Chihuahua" },
-        { "@type": "Country", "name": "México" }
-      ],
-      "priceRange": "$$",
-      "currenciesAccepted": "MXN",
-      "openingHoursSpecification": [{
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-        "opens": "08:00",
-        "closes": "21:00"
-      }],
-      "knowsAbout": [
-        "Agentes de inteligencia artificial",
-        "Automatización de WhatsApp para negocios",
-        "Agentes de voz que contestan llamadas",
-        "Agendado automático de citas",
-        "Toma de pedidos por WhatsApp",
-        "Diseño de páginas web",
-        "Tiendas en línea",
-        "Posicionamiento en Google (SEO local)",
-        "Correo profesional con dominio propio"
-      ],
-      "sameAs": [
-        "https://www.instagram.com/noelstudioweb",
-        "https://www.facebook.com/profile.php?id=61589966980458",
-        "https://www.tiktok.com/@noelstudio_"
-      ],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Servicios de Noel Studio",
-        "itemListElement": [
-          {
-            "@type": "OfferCatalog",
-            "name": "Agentes de inteligencia artificial",
-            "itemListElement": [
-              {
-                "@type": "Offer",
-                "price": "1499",
-                "priceCurrency": "MXN",
-                "url": "https://raul2601199-maker.github.io/noel-studio/agentes-ia.html#agente-ia",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Agente de IA para WhatsApp",
-                  "serviceType": "Agente de inteligencia artificial para atención por WhatsApp",
-                  "description": "Una inteligencia artificial entrenada con la información de tu negocio que contesta tu WhatsApp las 24 horas: responde dudas, dice precios, agenda citas, toma pedidos y te avisa cuando alguien quiere comprar.",
-                  "provider": { "@id": "https://raul2601199-maker.github.io/noel-studio/#negocio" },
-                  "areaServed": { "@type": "State", "name": "Chihuahua, México" }
-                }
-              },
-              {
-                "@type": "Offer",
-                "price": "3999",
-                "priceCurrency": "MXN",
-                "url": "https://raul2601199-maker.github.io/noel-studio/agentes-ia.html#agente-ia",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Agente de IA que contesta llamadas telefónicas",
-                  "serviceType": "Agente de voz con inteligencia artificial para llamadas",
-                  "description": "Un agente con voz natural que contesta el teléfono de tu negocio cuando tú no puedes: atiende, informa, agenda la cita y te pasa el recado por escrito.",
-                  "provider": { "@id": "https://raul2601199-maker.github.io/noel-studio/#negocio" },
-                  "areaServed": { "@type": "State", "name": "Chihuahua, México" }
-                }
-              },
-              {
-                "@type": "Offer",
-                "price": "1499",
-                "priceCurrency": "MXN",
-                "url": "https://raul2601199-maker.github.io/noel-studio/agentes-ia.html#agente-ia",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Agente de reservas y citas",
-                  "serviceType": "Agendado automático de citas con inteligencia artificial",
-                  "description": "Para salones, spas, gimnasios, consultorios y salones de eventos: revisa tu agenda, ofrece los horarios libres, aparta el lugar y manda el recordatorio al cliente.",
-                  "provider": { "@id": "https://raul2601199-maker.github.io/noel-studio/#negocio" }
-                }
-              },
-              {
-                "@type": "Offer",
-                "price": "1499",
-                "priceCurrency": "MXN",
-                "url": "https://raul2601199-maker.github.io/noel-studio/agentes-ia.html#agente-ia",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Agente de pedidos",
-                  "serviceType": "Toma de pedidos automatizada con inteligencia artificial",
-                  "description": "Para restaurantes, taquerías, tiendas y negocios de comida: enseña el menú, toma la orden completa, confirma la dirección y te manda el pedido listo para preparar.",
-                  "provider": { "@id": "https://raul2601199-maker.github.io/noel-studio/#negocio" }
-                }
-              }
-            ]
-          },
-          {
-            "@type": "OfferCatalog",
-            "name": "Tu negocio en internet",
-            "itemListElement": [
-              {
-                "@type": "Offer",
-                "price": "7000",
-                "priceCurrency": "MXN",
-                "url": "https://raul2601199-maker.github.io/noel-studio/paginas-web.html#precios",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Página de presentación",
-                  "serviceType": "Diseño de página web",
-                  "description": "Una sola página con todo lo importante de tu negocio: qué haces, fotos de tu trabajo, dónde estás y un botón directo a tu WhatsApp.",
-                  "provider": { "@id": "https://raul2601199-maker.github.io/noel-studio/#negocio" }
-                }
-              },
-              {
-                "@type": "Offer",
-                "price": "12000",
-                "priceCurrency": "MXN",
-                "url": "https://raul2601199-maker.github.io/noel-studio/paginas-web.html#precios",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Sitio web completo",
-                  "serviceType": "Desarrollo de sitio web profesional",
-                  "description": "Varias páginas conectadas: inicio, servicios, quiénes somos y contacto, con herramientas como un catálogo de productos bien organizado.",
-                  "provider": { "@id": "https://raul2601199-maker.github.io/noel-studio/#negocio" }
-                }
-              },
-              {
-                "@type": "Offer",
-                "price": "18000",
-                "priceCurrency": "MXN",
-                "url": "https://raul2601199-maker.github.io/noel-studio/contacto.html#contacto",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Tienda en línea",
-                  "serviceType": "Desarrollo de tienda en línea (e-commerce)",
-                  "description": "Tus productos en internet con carrito de compras y pagos seguros, para que te compren a cualquier hora.",
-                  "provider": { "@id": "https://raul2601199-maker.github.io/noel-studio/#negocio" }
-                }
-              },
-              {
-                "@type": "Offer",
-                "price": "3000",
-                "priceCurrency": "MXN",
-                "url": "https://raul2601199-maker.github.io/noel-studio/contacto.html#contacto",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Aparecer en Google (SEO local)",
-                  "serviceType": "Posicionamiento en buscadores para negocios locales",
-                  "description": "Trabajo tu página cada mes para que cuando alguien busque en Google lo que tú vendes en Chihuahua, tu negocio salga entre los primeros.",
-                  "provider": { "@id": "https://raul2601199-maker.github.io/noel-studio/#negocio" }
-                }
-              }
-            ]
-          },
-          {
-            "@type": "OfferCatalog",
-            "name": "Servicios complementarios",
-            "itemListElement": [
-              {
-                "@type": "Offer",
-                "price": "1199",
-                "priceCurrency": "MXN",
-                "url": "https://raul2601199-maker.github.io/noel-studio/paginas-web.html#correo",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Correo profesional con IA",
-                  "serviceType": "Correo electrónico corporativo con dominio propio",
-                  "description": "Tu correo con el nombre de tu negocio en vez de un @gmail, con un asistente de inteligencia artificial que te resume los mensajes y te ayuda a responder.",
-                  "provider": { "@id": "https://raul2601199-maker.github.io/noel-studio/#negocio" }
-                }
-              },
-              {
-                "@type": "Offer",
-                "price": "1000",
-                "priceCurrency": "MXN",
-                "url": "https://raul2601199-maker.github.io/noel-studio/contacto.html#contacto",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Video promocional para redes sociales",
-                  "serviceType": "Producción de video publicitario para redes sociales",
-                  "description": "Un video corto y profesional para Reels, TikTok e historias, con voz, música y movimiento.",
-                  "provider": { "@id": "https://raul2601199-maker.github.io/noel-studio/#negocio" }
-                }
-              },
-              {
-                "@type": "Offer",
-                "price": "599",
-                "priceCurrency": "MXN",
-                "url": "https://raul2601199-maker.github.io/noel-studio/paginas-web.html#plan-mensual",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Plan mensual: página web sin inversión inicial",
-                  "serviceType": "Página web por suscripción mensual",
-                  "description": "Tu página profesional pagando por mes: dominio, hosting y soporte incluidos, sin pagar todo de golpe.",
-                  "provider": { "@id": "https://raul2601199-maker.github.io/noel-studio/#negocio" }
-                }
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://raul2601199-maker.github.io/noel-studio/#sitio",
-      "url": "https://raul2601199-maker.github.io/noel-studio/",
-      "name": "Noel Studio",
-      "inLanguage": "es-MX",
-      "publisher": { "@id": "https://raul2601199-maker.github.io/noel-studio/#organizacion" }
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://raul2601199-maker.github.io/noel-studio/#pagina",
-      "url": "https://raul2601199-maker.github.io/noel-studio/",
-      "name": "Agentes de IA para negocios | Noel Studio Chihuahua",
-      "description": "Agentes de inteligencia artificial que contestan el WhatsApp y las llamadas de tu negocio 24/7: agendan citas y toman pedidos. Chihuahua, México.",
-      "isPartOf": { "@id": "https://raul2601199-maker.github.io/noel-studio/#sitio" },
-      "about": { "@id": "https://raul2601199-maker.github.io/noel-studio/#negocio" },
-      "inLanguage": "es-MX",
-      "primaryImageOfPage": "https://raul2601199-maker.github.io/noel-studio/assets/og-image.jpg"
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://raul2601199-maker.github.io/noel-studio/#preguntas",
-      "isPartOf": { "@id": "https://raul2601199-maker.github.io/noel-studio/#pagina" },
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "¿Qué es un agente de inteligencia artificial para un negocio?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Es un asistente de inteligencia artificial entrenado con la información de tu negocio (precios, servicios, horarios, ubicación) que atiende a tus clientes por WhatsApp o por teléfono las 24 horas. Contesta dudas, cotiza, agenda la cita, levanta el pedido y te pasa el aviso cuando alguien está listo para comprar. Trabaja aunque tú estés dormido, atendiendo a otro cliente o de descanso."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿En qué se diferencia de un chatbot de los de antes?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Un chatbot viejo sigue un menú fijo: si el cliente no escribe la opción exacta, se traba. Un agente de inteligencia artificial entiende lo que le escriben con las palabras de cada quien, con faltas de ortografía y con audios, y responde con la información real de tu negocio. Además hace cosas, no solo platica: revisa la agenda, aparta el lugar, arma el pedido y te lo manda."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Cuánto cuesta un agente de IA para WhatsApp en Chihuahua?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "El agente que atiende WhatsApp arranca en 1,499 pesos al mes. El agente que contesta llamadas telefónicas con voz arranca en 3,999 pesos al mes. El precio final depende de cuántos mensajes maneje tu negocio y de si necesita conectarse a tu agenda, a tu catálogo o a tu sistema de pedidos."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Cuánto cuesta una página web en Chihuahua?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Una página de presentación arranca en 7,000 pesos, un sitio web completo de varias páginas en 12,000 pesos y una tienda en línea con carrito y pagos en 18,000 pesos. Si no quieres pagar todo de golpe, existe el plan mensual desde 599 pesos al mes con dominio, hosting y soporte incluidos."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Sirve para mi tipo de negocio?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sirve para cualquier negocio que pierda ventas por no alcanzar a contestar. Hoy trabajo con talleres y refaccionarias, salones de belleza y spas, gimnasios, consultorios, restaurantes y taquerías, salones de eventos, distribuidoras y despachos. Si a ti te llegan mensajes o llamadas y no siempre puedes responder, te sirve."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Necesito saber de tecnología para usarlo?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "No. Yo lo configuro, lo entreno con la información de tu negocio y lo dejo funcionando. Tú sigues usando tu WhatsApp de siempre: la diferencia es que ahora te llegan los clientes ya atendidos y las citas ya agendadas. Cuando algo se tenga que cambiar, me escribes y yo lo cambio."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿El agente puede agendar citas y tomar pedidos solo?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sí. Revisa los horarios que tengas libres, le ofrece opciones al cliente, aparta la cita y le manda un recordatorio antes para que no te falle. Para pedidos enseña el menú o el catálogo, toma la orden completa, confirma la dirección y te la manda lista para preparar."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Solo trabajas en Chihuahua?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Soy de Chihuahua y ahí está la mayoría de mis clientes, pero todo el trabajo se hace en línea, así que puedo atender negocios de cualquier parte de México. Las juntas son por videollamada o por WhatsApp."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Cómo empezamos?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Me escribes por WhatsApp al 614 225 1419, me cuentas de tu negocio y qué es lo que más se te está escapando. Te digo qué te conviene, cuánto cuesta y cómo quedaría. Sin compromiso y sin tecnicismos."
-          }
-        }
-      ]
-    }
-  ]
-}
-</script>
-
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<!-- Fuentes AUTOALOJADAS (en este mismo sitio): carga más rápido y no depende de Google Fonts. -->
 <link rel="preload" href="assets/fonts/unbounded-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fuentes/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts/fonts.css">
-<!-- GSAP con defer: no bloquea el dibujado de la página (carga más rápido).
-     La marca .has-gsap se pone en el script principal (DOMContentLoaded), ya que con
-     defer GSAP aún no existe en este punto. Si GSAP no carga, TODO queda visible. -->
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
-<!-- SplitText (gratis desde GSAP 3.13): divide los párrafos en líneas para animarlas una por una. -->
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
-<!-- Lenis: scroll suave premium (inercia). Con defer no bloquea el dibujado.
-     Se inicializa abajo SOLO si carga y el visitante no pidió menos movimiento. -->
-<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
-<!-- model-viewer (Google): el logo 3D. Pesa 250 KB, así que SOLO se carga en pantallas
-     de computadora (769px o más). En celular se muestra el logo como imagen ligera. -->
-<script>
-  if (window.matchMedia('(min-width: 769px)').matches) {
-    var mv3d = document.createElement('script');
-    mv3d.type = 'module';
-    mv3d.src = 'https://cdn.jsdelivr.net/npm/@google/model-viewer@4.0.0/dist/model-viewer.min.js';
-    document.head.appendChild(mv3d);
-  }
-</script>
-<link rel="stylesheet" href="assets/styles.css?v=15">
+<link rel="stylesheet" href="sitio.css?v=1794351478">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": []}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Noel Studio","description":"Agentes de inteligencia artificial para llamadas y WhatsApp, y páginas web para negocios.","telephone":"+526142251419","email":"contacto.noelstudio@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Chihuahua","addressRegion":"Chihuahua","addressCountry":"MX"},"areaServed":"MX","sameAs":["https://www.instagram.com/noelstudioweb","https://www.tiktok.com/@noelstudio_"]}</script>
 </head>
-<body id="top">
+<body>
+<canvas class="viaje-lienzo" data-viaje aria-hidden="true"></canvas>
+<div class="barra-avance" aria-hidden="true"></div>
+<a class="saltar" href="#principal">Saltar al contenido</a>
+<header class="nav" data-nav>
+  <a class="nav__marca" href="index.html" aria-current="page" aria-label="Noel Studio, inicio">NOEL STUDIO</a>
+  <nav class="nav__ligas" aria-label="Principal">
+    <a href="llamadas.html">Llamadas</a>
+    <a href="whatsapp.html">WhatsApp</a>
+    <a href="paginas-web.html">Páginas web</a>
+    <a href="creativos.html">Creativos</a>
+    <a href="tarjetas-nfc.html">NFC</a>
+    <a href="contacto.html">Contacto</a>
+  </nav>
+  <a class="btn btn--solido nav__accion" href="https://wa.me/526142251419?text=Hola,%20quiero%20un%20agente%20para%20mi%20negocio">Escríbeme</a>
+  <details class="nav__menu">
+    <summary aria-label="Abrir menú"></summary>
+    <div class="nav__panel">
+      <p class="nav__titulo">Servicios</p>
+      <a class="nav__opcion" href="llamadas.html"><span class="nav__icono"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /> </svg></span><span><strong>Llamadas con IA</strong><small>Tu teléfono contesta solo</small></span></a>
+      <a class="nav__opcion" href="whatsapp.html"><span class="nav__icono"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /> </svg></span><span><strong>WhatsApp automático</strong><small>Responde, agenda y toma pedidos</small></span></a>
+      <a class="nav__opcion" href="paginas-web.html"><span class="nav__icono"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="12" cy="12" r="10" /> <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /> <path d="M2 12h20" /> </svg></span><span><strong>Páginas web</strong><small>Desde $4,500</small></span></a>
+      <a class="nav__opcion" href="creativos.html"><span class="nav__icono"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z" /> <path d="m6.2 5.3 3.1 3.9" /> <path d="m12.4 3.4 3.1 4" /> <path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" /> </svg></span><span><strong>Estudio creativo</strong><small>Videos y diseño</small></span></a>
+      <a class="nav__opcion" href="tarjetas-nfc.html"><span class="nav__icono"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M6 8.32a7.43 7.43 0 0 1 0 7.36" /> <path d="M9.46 6.21a11.76 11.76 0 0 1 0 11.58" /> <path d="M12.91 4.1a15.91 15.91 0 0 1 .01 15.8" /> <path d="M16.37 2a20.16 20.16 0 0 1 0 20" /> </svg></span><span><strong>Tarjetas NFC</strong><small>Un toque abre tu WhatsApp</small></span></a>
+      <p class="nav__titulo">Noel Studio</p>
+      <div class="nav__cortos"><a href="contacto.html#agenda">Agendar visita</a><a href="index.html" aria-current="page">Inicio</a><a href="index.html#portafolio">Proyectos</a><a href="contacto.html">Contacto</a></div>
+      <a class="btn btn--solido nav__cta" href="https://wa.me/526142251419?text=Hola,%20quiero%20informaci%C3%B3n"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /> </svg> Escribir por WhatsApp</a>
+    </div>
+  </details>
+</header>
 
-<!-- PRELOADER — marca mientras carga el sitio (se quita solo; failsafe en el script) -->
-<div id="preload" role="status" aria-label="Cargando Noel Studio">
-  <img class="pl-logo" src="assets/logo-hero.png" alt="Logo de Noel Studio" width="64" height="76">
-  <div class="pl-name">NOEL STUDIO</div>
-  <div class="pl-bar"><i id="plBar"></i></div>
-</div>
-
-<!-- Accesibilidad: saltar el menú e ir directo al contenido -->
-<a href="#inicio" class="skip-link">Saltar al contenido</a>
-
-<!-- Barra de progreso de lectura -->
-<div class="scroll-progress" id="scrollProgress"></div>
-
-<!-- CURSOR -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-follower" id="cursorFollower"></div>
-
-<!-- NAV -->
-<nav id="navbar">
-  <ul class="nav-links">
-    <li><a href="index.html" class="active" aria-current="page">Inicio</a></li>
-    <li><a href="agentes-ia.html" class="nav-cta">Agentes de IA</a></li>
-    <li><a href="paginas-web.html">Páginas web</a></li>
-    <li><a href="portafolio.html">Portafolio</a></li>
-    <li><a href="contacto.html">Contacto</a></li>
-  </ul>
-  <a href="index.html" class="nav-brand" aria-label="Noel Studio — inicio">
-    <span class="nav-brand-name">NOEL STUDIO</span>
-  </a>
-  <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<div class="first-swap">
-<!-- HERO -->
-<section class="hero" id="inicio">
-  <canvas class="hero-canvas" id="heroCanvas"></canvas>
-  <div class="hero-aura" aria-hidden="true"></div>
-  <div class="hero-content">
-    <div class="hero-left">
-      <div class="hero-tag" id="heroTag">— Inteligencia Artificial para negocios · Chihuahua, México</div>
-      <h1 class="hero-title">
-        <span class="sr-only">Agentes de inteligencia artificial para negocios en Chihuahua — Noel Studio</span>
-        <div class="line" aria-hidden="true"><span>NOEL</span></div>
-        <div class="line" aria-hidden="true"><span>STUDIO</span></div>
-      </h1>
-      <!-- SEÑAL DE DISPONIBILIDAD: en horario dice que contesto en minutos.
-           FUERA de horario NO se disculpa: se convierte en la demostración del producto
-           ("yo ya no contesto, un agente de IA sí"). El punto se queda verde siempre.
-
-           El texto va en dos trozos (hs-l1 / hs-l2) que en celular son dos líneas fijas,
-           para que cambiarlo desde el script nunca altere la altura de la caja. El script
-           que lo decide vive AL FINAL DEL BODY, no aquí: ver la nota de allá abajo. -->
-      <div class="hero-status" id="heroStatus">
-        <span class="hero-status-dot" aria-hidden="true"></span>
-        <span class="hero-status-text">
-          <span class="hs-l1">En línea</span><span class="hs-l2">te contesto en minutos</span>
+<main id="principal">
+<section class="hero" id="inicio" data-mundo="pleno" data-llamada>
+  <div class="contenedor hero__rejilla">
+    <div class="hero__texto">
+      <h1>Tu negocio contesta. Aunque tú no puedas.</h1>
+      <p class="hero__sub">Un agente de inteligencia artificial atiende tus llamadas, resuelve dudas y te deja el recado por escrito. Tú sigues trabajando.</p>
+      <div class="acciones">
+        <a class="btn btn--solido" href="https://wa.me/526142251419?text=Hola,%20quiero%20un%20agente%20para%20mi%20negocio">Quiero mi agente <svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg></a>
+        <a class="btn btn--linea" href="#prueba"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" /> <path d="M19 10v2a7 7 0 0 1-14 0v-2" /> <line x1="12" x2="12" y1="19" y2="22" /> </svg> Hablar en vivo</a>
+      </div>
+      <p class="confianza"><span><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /> </svg> 5.0 en Google</span><span><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /> <circle cx="12" cy="10" r="3" /> </svg> Chihuahua</span><span><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="12" cy="12" r="10" /> <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /> <path d="M2 12h20" /> </svg> Todo México</span></p>
+    </div>
+    <div class="elector" data-elector>
+      <button class="orbe" type="button" data-hablar aria-label="Escuchar ejemplo de voz">
+        <span class="orbe__anillo" aria-hidden="true"></span>
+        <span class="orbe__anillo" aria-hidden="true"></span>
+        <span class="orbe__centro">
+          <span class="orbe__foto" data-orbe-foto aria-hidden="true"></span>
+          <span class="barras" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
         </span>
-      </div>
-      <div class="hero-actions">
-        <a href="https://wa.me/526142251419?text=Hola,%20quiero%20un%20agente%20de%20IA%20para%20mi%20negocio.%20%C2%BFMe%20pasas%20informaci%C3%B3n%3F" target="_blank" rel="noopener" class="hero-btn hero-btn-primary">Quiero mi agente de IA <span aria-hidden="true">→</span></a>
-        <a href="agentes-ia.html#agente-ia" class="hero-btn hero-btn-ghost">Ver cómo funciona</a>
-      </div>
-      <div class="social-links hero-social">
-        <a href="https://www.instagram.com/noelstudioweb" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </a>
-        <a href="https://www.facebook.com/profile.php?id=61589966980458" target="_blank" rel="noopener" aria-label="Facebook">
-          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        </a>
-        <a href="https://www.tiktok.com/@noelstudio_" target="_blank" rel="noopener" aria-label="TikTok">
-          <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
-        </a>
-        <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20un%20agente%20de%20IA%20para%20mi%20negocio" target="_blank" rel="noopener" aria-label="WhatsApp">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        </a>
-      </div>
-    </div>
-    <div class="hero-right">
-    <!-- En celular se ve esta imagen (15 KB); en computadora, el modelo 3D de abajo. -->
-    <img class="hero-3d-img" src="assets/logo-hero.png" alt="Noel Studio: agentes de inteligencia artificial y páginas web en Chihuahua" width="263" height="313" fetchpriority="high" decoding="async">
-    <model-viewer
-      class="hero-3d"
-      src="assets/ns-3d.glb"
-      alt="Logo 3D de Noel Studio girando"
-      auto-rotate
-      auto-rotate-delay="0"
-      rotation-per-second="26deg"
-      camera-controls
-      disable-zoom
-      interaction-prompt="none"
-      environment-image="neutral"
-      exposure="1.0"
-      tone-mapping="neutral"
-      shadow-intensity="0"
-      camera-orbit="0deg 80deg 105%"
-      loading="eager"></model-viewer>
-  </div>
-  </div>
-  <div class="hero-sub" id="heroSub">
-    <p>Pongo inteligencia artificial a trabajar en tu negocio: contesta tu WhatsApp y tus llamadas las 24 horas, agenda citas y toma pedidos. Chihuahua, México.</p>
-    <div class="hero-scroll">
-      <div class="scroll-line"></div>
-      Scroll
-    </div>
-  </div>
-</section>
-
-<!-- PROPUESTA DE VALOR (puente entre el hero y el contenido) -->
-<section class="intro" id="intro">
-  <div class="intro-inner">
-    <div class="intro-eyebrow"><span class="intro-rule" aria-hidden="true"></span>Por qué Noel Studio</div>
-    <div class="intro-grid">
-      <h2 class="intro-headline">
-        <span class="intro-dim">El cliente al que no le contestas,</span>
-        <span class="intro-strong">le compra <span class="intro-mark">al de al lado<i class="intro-underline" aria-hidden="true"></i></span>.</span>
-      </h2>
-      <div class="intro-aside">
-        <p class="intro-text">Los mensajes de las 11 de la noche, la llamada que entró mientras atendías, el que preguntó precio y nadie le respondió. Ahí se te va el dinero todos los días. Un agente de inteligencia artificial contesta al instante, a cualquier hora, con la información de tu negocio: agenda la cita, toma el pedido y te avisa. Tú solo cierras.</p>
-        <a href="agentes-ia.html#agente-ia" class="intro-link">Ver cómo funciona <span aria-hidden="true">→</span></a>
+      </button>
+      <p class="elector__info"><span class="elector__titulo"><span class="elector__icono" aria-hidden="true"></span><span class="orbe__texto" data-orbe-texto>Escucha a Claudia</span></span><span class="orbe__sub" data-estado aria-live="polite">Ejemplo de voz</span></p>
+      <div class="elector__lista" role="group" aria-label="Elige una voz">
+        <button type="button" data-persona="claudia" data-nombre="Claudia" data-audio="voces/claudia.mp3" data-foto="voces/fotos/claudia.jpg" aria-label="Claudia" aria-pressed="true"><span>C</span></button>
+        <button type="button" data-persona="andrea" data-nombre="Andrea" data-audio="voces/andrea.mp3" data-foto="voces/fotos/andrea.jpg" aria-label="Andrea" aria-pressed="false"><span>A</span></button>
+        <button type="button" data-persona="gaby" data-nombre="Gaby" data-audio="voces/gaby.mp3" data-foto="voces/fotos/gaby.jpg" aria-label="Gaby" aria-pressed="false"><span>G</span></button>
+        <button type="button" data-persona="alejandro" data-nombre="Alejandro" data-audio="voces/alejandro.mp3" data-foto="voces/fotos/alejandro.jpg" aria-label="Alejandro" aria-pressed="false"><span>A</span></button>
       </div>
     </div>
   </div>
 </section>
-</div><!-- /first-swap -->
 
-<!-- BANDA EN MOVIMIENTO -->
-<div class="banda" aria-hidden="true">
-  <div class="banda-pista"><div class="banda-grupo"><span class="banda-item">Contesta a las 3 de la mañana</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Agenda citas sin que estés</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Cotiza mientras duermes</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item is-fuerte">Nunca deja un mensaje en visto</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Levanta pedidos en domingo</span><span class="banda-punto" aria-hidden="true"></span></div><div class="banda-grupo"><span class="banda-item">Contesta a las 3 de la mañana</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Agenda citas sin que estés</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Cotiza mientras duermes</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item is-fuerte">Nunca deja un mensaje en visto</span><span class="banda-punto" aria-hidden="true"></span><span class="banda-item">Levanta pedidos en domingo</span><span class="banda-punto" aria-hidden="true"></span></div></div>
-</div>
-
-<!-- CHAT EN VIVO — el agente atendiendo de madrugada, dentro de un teléfono.
-     Todas las burbujas están en el HTML y VISIBLES por defecto: si el JS no corre,
-     la conversación se lee completa igual. La animación solo la reproduce por pasos. -->
-<section id="chat-vivo">
-  <div class="section-header">
+<section class="problema" data-mundo="lectura">
+  <div class="contenedor problema__rejilla">
     <div>
-      <h2 class="section-title line-mask"><span class="sr-only">Un agente de inteligencia artificial contestando WhatsApp a las 11:47 de la noche</span><span aria-hidden="true">SON LAS 11:47</span><span aria-hidden="true">DE LA NOCHE</span></h2>
+      <h2 data-aparece>El cliente al que no le contestas <em>le marca al de al lado.</em></h2>
+      <p class="problema__texto">Estás con un cliente, debajo de un carro o ya cerraste. Suena el teléfono y nadie alcanza. Esa llamada no deja rastro: no sabes quién era ni qué quería.</p>
     </div>
-    <p class="section-desc reveal">Tú ya cerraste. Un cliente le acaba de escribir a tu negocio. Esto es lo que pasa cuando hay un agente de inteligencia artificial contestando.</p>
-  </div>
-
-  <div class="chat-vivo-wrap">
-    <div class="chat-tel">
-      <div class="chat-tel-muesca" aria-hidden="true"></div>
-      <div class="chat-vivo" id="chatVivo" aria-label="Ejemplo de conversación entre un cliente y el agente de inteligencia artificial">
-        <div class="chat-cabecera">
-          <span class="chat-atras" aria-hidden="true">‹</span>
-          <div class="chat-avatar" aria-hidden="true">RM</div>
-          <div class="chat-quien">
-            <span class="chat-negocio">Refaccionaria Morales</span>
-            <span class="chat-estado">en línea</span>
-          </div>
-        </div>
-
-        <div class="chat-cuerpo">
-          <div class="chat-dia" aria-hidden="true"><span>HOY</span></div>
-
-          <div class="chat-msg is-cliente"><p>buenas, traen balatas pa una jetta 2016?</p><span class="chat-hora">11:47 p.m.</span></div>
-
-          <div class="chat-msg is-agente"><p>Buenas noches. Sí, tenemos para Jetta 2016. Delanteras $890 el juego, traseras $740. ¿Las quiere solo para llevar o también con instalación?</p><span class="chat-hora">11:47 p.m. <span class="chat-check" aria-hidden="true">✓✓</span></span></div>
-
-          <div class="chat-msg is-cliente"><p>con instalacion, pero nomas las de adelante</p><span class="chat-hora">11:48 p.m.</span></div>
-
-          <div class="chat-msg is-agente"><p>Va. Delanteras puestas: $890 de balatas más $260 de mano de obra, $1,150 en total.<br><br>Una cosa que le sirve saber: si las traseras ya pasaron de 60 mil kilómetros, conviene revisarlas el mismo día. La revisión no se cobra y se ahorra volver a pagar mano de obra después.</p><span class="chat-hora">11:48 p.m. <span class="chat-check" aria-hidden="true">✓✓</span></span></div>
-
-          <div class="chat-msg is-cliente"><p>ah va, si trae como 70 mil. revisamelas pues</p><span class="chat-hora">11:49 p.m.</span></div>
-
-          <div class="chat-msg is-agente"><p>Perfecto. Le aparto una hora y media. Si las traseras sí ocupan cambio, el técnico le pasa el precio antes de tocarlas, usted decide ahí mismo.<br><br>¿Le acomoda mañana 9:00 o 11:30?</p><span class="chat-hora">11:49 p.m. <span class="chat-check" aria-hidden="true">✓✓</span></span></div>
-
-          <div class="chat-msg is-cliente"><p>9 esta bien. ricardo najera, placas FTM-2290</p><span class="chat-hora">11:50 p.m.</span></div>
-
-          <div class="chat-msg is-agente"><p>Listo, señor Nájera. Mañana 9:00, cambio de balatas delanteras en su Jetta 2016, con revisión de traseras sin costo.<br><br>Le mando recordatorio a las 8:00. Que descanse.</p><span class="chat-hora">11:50 p.m. <span class="chat-check" aria-hidden="true">✓✓</span></span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="chat-lectura">
-      <p class="chat-lectura-p reveal">Tú te enteras a las 7 de la mañana, cuando abres el teléfono y la cita ya está en tu agenda.</p>
-      <p class="chat-lectura-p reveal">Sin agente, ese mensaje se queda en visto hasta media mañana. Para entonces Ricardo ya preguntó en otros dos lugares y agendó con el que le contestó.</p>
-
-      <ul class="chat-datos">
-        <li class="reveal">
-          <span class="chat-dato-num">4 s</span>
-          <strong>Contestó en 4 segundos</strong>
-          <span>A las 11 de la noche, en domingo, el 24 de diciembre. Le da igual.</span>
-        </li>
-        <li class="reveal">
-          <span class="chat-dato-num">$1,150</span>
-          <strong>Cotizó con tus precios</strong>
-          <span>No improvisa: contesta con la lista de precios y los tiempos que tú le cargaste.</span>
-        </li>
-        <li class="reveal">
-          <span class="chat-dato-num">+1</span>
-          <strong>Ofreció la revisión de traseras</strong>
-          <span>Sube el ticket con lógica, no con presión. Si no conviene, no lo ofrece.</span>
-        </li>
-        <li class="reveal">
-          <span class="chat-dato-num">9:00</span>
-          <strong>Agendó y confirmó</strong>
-          <span>Te deja el recado por escrito y le manda recordatorio al cliente.</span>
-        </li>
-      </ul>
-
-      <a class="demo-cta" href="agentes-ia.html">Ver cómo funciona</a>
+    <div class="aviso-pila" aria-label="Ejemplo de llamadas perdidas contra llamadas atendidas">
+      <p class="aviso-pila__titulo">Hoy, sin agente</p>
+      <div class="aviso aviso--perdida"><span class="aviso__icono"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /> </svg></span><p><strong>Llamada perdida</strong><span>614 ••• 2231</span></p><time>1:42 p.m.</time></div>
+      <div class="aviso aviso--perdida"><span class="aviso__icono"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /> </svg></span><p><strong>Llamada perdida</strong><span>614 ••• 8810</span></p><time>2:05 p.m.</time></div>
+      <div class="aviso aviso--perdida"><span class="aviso__icono"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /> </svg></span><p><strong>Llamada perdida</strong><span>Número desconocido</span></p><time>7:48 p.m.</time></div>
+      <p class="aviso-pila__titulo aviso-pila__titulo--con">Hoy, con Claudia</p>
+      <div class="aviso aviso--atendida"><span class="aviso__icono"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="12" cy="12" r="10" /> <path d="m9 12 2 2 4-4" /> </svg></span><p><strong>Claudia atendió 3 llamadas</strong><span>2 citas apartadas · 1 pedido de $236 en tu tableta</span></p><time>ahora</time></div>
     </div>
   </div>
 </section>
 
+<section class="servicios" id="servicios" data-mundo="lectura">
+  <div class="contenedor">
+    <h2 data-aparece>Todo lo que hacemos por tu negocio.</h2>
+    <div class="servicios__mosaico">
+      <a class="servicio servicio--llamadas" href="llamadas.html">
+        <div class="barras barras--tarjeta" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <h3>Llamadas con IA</h3>
+        <p>Nuestro servicio principal: contesta tu teléfono, informa y te deja el recado.</p>
+        <span class="precio">Desde $2,999 al mes <svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg></span>
+      </a>
+      <a class="servicio servicio--whatsapp" href="whatsapp.html">
+        <span class="servicio__icono"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /> </svg></span>
+        <h3>WhatsApp automático</h3>
+        <p>Atiende mensajes, aparta citas y toma pedidos.</p>
+        <span class="precio">Desde $1,799 al mes <svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg></span>
+      </a>
+      <a class="servicio servicio--web" href="paginas-web.html">
+        <span class="servicio__icono"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="12" cy="12" r="10" /> <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /> <path d="M2 12h20" /> </svg></span>
+        <h3>Presencia web</h3>
+        <p>Páginas, tienda con pagos, correo y Google.</p>
+        <span class="precio">Desde $4,500 <svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg></span>
+      </a>
+      <a class="servicio servicio--creativos" href="creativos.html">
+        <span class="servicio__icono"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z" /> <path d="m6.2 5.3 3.1 3.9" /> <path d="m12.4 3.4 3.1 4" /> <path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" /> </svg></span>
+        <h3>Estudio creativo</h3>
+        <p>Videos y piezas para que tu negocio llame la atención.</p>
+        <span class="precio">Desde $1,000 <svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg></span>
+      </a>
+      <a class="servicio servicio--nfc" href="tarjetas-nfc.html">
+        <span class="servicio__icono"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M6 8.32a7.43 7.43 0 0 1 0 7.36" /> <path d="M9.46 6.21a11.76 11.76 0 0 1 0 11.58" /> <path d="M12.91 4.1a15.91 15.91 0 0 1 .01 15.8" /> <path d="M16.37 2a20.16 20.16 0 0 1 0 20" /> </svg></span>
+        <h3>Tarjetas NFC</h3>
+        <p>Soportes de mesa y tarjetas: un toque abre tu WhatsApp, menú o reseñas.</p>
+        <span class="precio">Desde $390 <svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /> </svg></span>
+      </a>
+    </div>
+  </div>
+</section>
 
-<!-- CALCULADORA — el visitante pone los números de SU negocio y ve la cuenta.
-     Los supuestos están a la vista: no hay número inventado escondido.
-     Sin JS quedan los valores por omisión, que ya cuadran entre sí. -->
-<section id="calculadora">
-  <div class="section-header">
+<section class="voces" id="prueba" data-mundo="lectura" data-prueba data-llave="public_key_fbd8d71501f324c5a6b9c" data-recaptcha="6LcpVBouAAAAACb9FAMv_eb3kkUP20ixmPtj3gUs" data-agente="agent_cf2ef29399ba0b6b0f5967cdc7">
+  <div class="contenedor">
+    <h2 data-aparece>Prueba maestra.</h2>
+    <p class="voces__nota">Elige una voz y habla con ella en vivo. Cuéntale de tu negocio como si llamaras a Noel Studio.</p>
+    <div class="voces__lista" role="group" aria-label="Elige con quién hablar">
+      <button class="voz" type="button" data-voz-id="retell-Claudia" data-nombre="Claudia" aria-pressed="true">
+        <span class="voz__foto" data-foto="voces/fotos/claudia.jpg" aria-hidden="true">C</span>
+        <span class="voz__nombre">Claudia</span>
+        <span class="voz__tipo">Mexicana · Adulta</span>
+        <span class="voz__desc">Clara y profesional.</span>
+      </button>
+      <button class="voz" type="button" data-voz-id="retell-Andrea" data-nombre="Andrea" aria-pressed="false">
+        <span class="voz__foto" data-foto="voces/fotos/andrea.jpg" aria-hidden="true">A</span>
+        <span class="voz__nombre">Andrea</span>
+        <span class="voz__tipo">Mexicana · Adulta</span>
+        <span class="voz__desc">Serena y segura.</span>
+      </button>
+      <button class="voz" type="button" data-voz-id="retell-Gaby" data-nombre="Gaby" aria-pressed="false">
+        <span class="voz__foto" data-foto="voces/fotos/gaby.jpg" aria-hidden="true">G</span>
+        <span class="voz__nombre">Gaby</span>
+        <span class="voz__tipo">Mexicana · Joven</span>
+        <span class="voz__desc">Cercana y ágil.</span>
+      </button>
+      <button class="voz" type="button" data-voz-id="retell-Alejandro" data-nombre="Alejandro" aria-pressed="false">
+        <span class="voz__foto" data-foto="voces/fotos/alejandro.jpg" aria-hidden="true">A</span>
+        <span class="voz__nombre">Alejandro</span>
+        <span class="voz__tipo">Mexicano · Joven</span>
+        <span class="voz__desc">Natural y directo.</span>
+      </button>
+    </div>
+    <div class="prueba__accion">
+      <button class="btn btn--solido prueba__hablar" type="button" data-hablar><span class="punto" aria-hidden="true"></span><span data-hablar-texto>Hablar con Claudia</span></button>
+      <p class="prueba__estado" data-estado aria-live="polite">Llamada en vivo · máximo 2 minutos · usa tu micrófono</p>
+      <p class="prueba__legal">Protegido por reCAPTCHA. Aplican la <a href="https://policies.google.com/privacy" rel="noopener">Política de privacidad</a> y los <a href="https://policies.google.com/terms" rel="noopener">Términos</a> de Google.</p>
+    </div>
+  </div>
+</section>
+
+<section class="portafolio" id="portafolio" data-mundo="tenue" data-escena="portafolio">
+  <div class="contenedor">
+    <div class="titulo-fila">
+      <h2 data-aparece>Hecho aquí.</h2>
+      <a class="liga" href="portafolio.html">Ver todos los proyectos</a>
+    </div>
+  </div>
+  <div class="carril" tabindex="0" aria-label="Proyectos">
+    <a class="proyecto proyecto--grande" href="https://elgaragesi.com"><img src="assets/demo-elgarage.webp" alt="Sitio web de El Garage" width="900" height="600" loading="lazy" decoding="async"><span class="etiqueta">Cliente real</span><h3>El Garage</h3><p>Distribuidora industrial</p></a>
+    <a class="proyecto" href="portafolio.html"><img src="assets/montes-local.webp" alt="Local de Montes Tire Center" width="600" height="600" loading="lazy" decoding="async"><span class="etiqueta">Cliente real</span><h3>Montes Tire Center</h3><p>Llantera en Chihuahua</p></a>
+    <a class="proyecto" href="portafolio.html"><img src="assets/demo-restaurante.webp" alt="Demo de sitio para restaurante" width="600" height="600" loading="lazy" decoding="async"><span class="etiqueta">Demo</span><h3>Mezquite</h3><p>Restaurante</p></a>
+    <a class="proyecto" href="portafolio.html"><img src="assets/demo-barberia.webp" alt="Demo de sitio para barbería" width="600" height="600" loading="lazy" decoding="async"><span class="etiqueta">Demo</span><h3>Filo</h3><p>Barbería</p></a>
+    <a class="proyecto" href="portafolio.html"><img src="assets/demo-hygge.webp" alt="Demo de sitio para salón y spa" width="600" height="600" loading="lazy" decoding="async"><span class="etiqueta">Demo</span><h3>HYGGE</h3><p>Salón y spa</p></a>
+    <a class="proyecto" href="portafolio.html"><img src="assets/demo-lasollas.webp" alt="Demo de sitio para salón de recepciones" width="600" height="600" loading="lazy" decoding="async"><span class="etiqueta">Demo</span><h3>Las Ollas</h3><p>Salón de recepciones</p></a>
+  </div>
+</section>
+
+<section class="resenas" data-mundo="lectura">
+  <div class="contenedor">
+    <p class="resenas__nota"><span class="estrellas" aria-label="5 de 5"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /> </svg><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /> </svg><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /> </svg><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /> </svg><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /> </svg></span> <strong>5.0</strong> en Google · reseñas reales</p>
+    <blockquote class="resena resena--grande" data-aparece>
+      <p>“Raúl siempre fue profesional, cumplió con lo acordado y estuvo atento a cada detalle del proyecto.”</p>
+      <cite><span class="autor">L</span>Luis Carlos C.<small>Cliente · Google</small></cite>
+    </blockquote>
+    <div class="resenas__par">
+      <blockquote class="resena"><p>“El diseño se ve moderno, profesional y transmite confianza a mis clientes.”</p><cite><span class="autor">A</span>ANDR3CHUS<small>Local Guide · Google</small></cite></blockquote>
+      <blockquote class="resena"><p>“Quedó muy profesional, moderna y rápida. Raúl explica todo claro y da seguimiento.”</p><cite><span class="autor">M</span>Montes Tire Center<small>Cliente · Google</small></cite></blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="cierre" data-mundo="pleno">
+  <div class="contenedor">
+    <h2 data-aparece>Que la siguiente llamada sí se conteste.</h2>
+    <p class="cierre__texto">Te armo una prueba con la información de tu negocio para que la escuches antes de pagar.</p>
+    <div class="cierre__acciones">
+      <a class="btn btn--solido" href="https://wa.me/526142251419?text=Hola,%20quiero%20una%20prueba%20con%20mi%20negocio"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /> </svg> Quiero mi prueba</a>
+      <a class="btn btn--linea" href="contacto.html#agenda"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /> <circle cx="12" cy="10" r="3" /> </svg> Agendar una visita</a>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="pie">
+  <div class="contenedor pie__banda">
+    <p><strong>¿Listo para que tu negocio conteste siempre?</strong><span>Te digo qué te conviene en una plática corta.</span></p>
+    <a class="btn btn--solido" href="https://wa.me/526142251419?text=Hola,%20quiero%20informaci%C3%B3n"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /> </svg> Escribir por WhatsApp</a>
+  </div>
+  <div class="contenedor pie__rejilla">
     <div>
-      <h2 class="section-title line-mask"><span class="sr-only">Cuánto dinero pierde tu negocio por no contestar mensajes y llamadas</span><span aria-hidden="true">LA CUENTA QUE</span><span aria-hidden="true">NADIE TE HACE</span></h2>
+      <p class="pie__marca">NOEL STUDIO</p>
+      <p>Inteligencia artificial y páginas web para negocios.</p>
+      <p class="pie__lugar"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /> <circle cx="12" cy="10" r="3" /> </svg> Chihuahua, México · Atiendo todo México</p>
     </div>
-    <p class="section-desc reveal">Escoge tu giro para empezar, luego mueve los controles con tus números reales. La cuenta es tuya, no mía.</p>
-  </div>
-
-  <div class="calc" id="calc">
-    <div class="calc-controles">
-      <div class="calc-giros" role="group" aria-label="Escoge un giro para partir de números típicos">
-        <button type="button" class="calc-giro is-on" data-sin="10" data-ticket="1800" data-tasa="3">Taller o refaccionaria</button>
-        <button type="button" class="calc-giro" data-sin="14" data-ticket="650" data-tasa="3">Salón o spa</button>
-        <button type="button" class="calc-giro" data-sin="20" data-ticket="380" data-tasa="4">Restaurante</button>
-        <button type="button" class="calc-giro" data-sin="6" data-ticket="900" data-tasa="3">Consultorio</button>
-      </div>
-
-      <div class="calc-campo">
-        <label for="calcSin">Mensajes y llamadas que dejas sin contestar al día</label>
-        <input type="range" id="calcSin" min="1" max="40" step="1" value="10" aria-describedby="calcSinVal">
-        <output id="calcSinVal" class="calc-valor" for="calcSin">10 al día</output>
-      </div>
-
-      <div class="calc-campo">
-        <label for="calcTicket">Lo que te deja en promedio un cliente que sí compra</label>
-        <input type="range" id="calcTicket" min="200" max="8000" step="100" value="1800" aria-describedby="calcTicketVal">
-        <output id="calcTicketVal" class="calc-valor" for="calcTicket">$1,800</output>
-      </div>
-
-      <div class="calc-campo">
-        <label for="calcTasa">De cada 10 que no contestas, cuántos sí iban a comprar</label>
-        <input type="range" id="calcTasa" min="1" max="6" step="1" value="3" aria-describedby="calcTasaVal">
-        <output id="calcTasaVal" class="calc-valor" for="calcTasa">3 de 10</output>
-      </div>
-
-      <p class="calc-honesto">Ningún agente recupera el 100% de esos clientes, y quien te diga lo contrario te está vendiendo humo. Esta cuenta es el tamaño del hoyo, no la promesa de taparlo completo.</p>
-    </div>
-
-    <div class="calc-resultado" aria-live="polite">
-      <span class="calc-etiqueta">Se te va al año</span>
-      <div class="calc-cifra" id="calcAnual">$1,944,000</div>
-
-      <div class="calc-escalas">
-        <div><span id="calcDiario">$5,400</span><small>al día</small></div>
-        <div><span id="calcMensual">$162,000</span><small>al mes</small></div>
-      </div>
-
-      <p class="calc-detalle" id="calcDetalle">10 sin contestar al día · 3 de cada 10 compraban · $1,800 cada uno</p>
-
-      <div class="calc-barras">
-        <div class="calc-barra">
-          <div class="calc-barra-cab"><span>Lo que se te va al mes</span><strong id="calcBarraPerdida">$162,000</strong></div>
-          <div class="calc-barra-pista"><i id="calcBarraP" style="width:100%"></i></div>
-        </div>
-        <div class="calc-barra is-costo">
-          <div class="calc-barra-cab"><span>Lo que cuesta el agente</span><strong id="calcBarraCosto">$1,499</strong></div>
-          <div class="calc-barra-pista"><i id="calcBarraC" style="width:1%"></i></div>
-        </div>
-      </div>
-
-      <p class="calc-plan" id="calcPlan">Con tu volumen, el plan <strong>Esencial</strong> te alcanza. Recuperando <strong>1 cliente al mes</strong> ya se pagó solo.</p>
-
-      <a class="demo-cta" href="agentes-ia.html">Ver los planes</a>
-    </div>
-  </div>
-</section>
-
-
-<!-- LO QUE HAGO — lista a la izquierda, panel a la derecha que cambia solo.
-     El cambio de panel se hace con CSS (:has), no con JavaScript: si el JS falla,
-     la sección sigue funcionando completa. En celular el panel se oculta y cada
-     servicio muestra su propia descripción. -->
-<section id="servicios">
-  <div class="section-header">
+    <nav aria-label="Páginas">
+      <a href="llamadas.html">Llamadas con IA</a>
+      <a href="whatsapp.html">WhatsApp automático</a>
+      <a href="paginas-web.html">Presencia web</a>
+      <a href="creativos.html">Estudio creativo</a>
+      <a href="tarjetas-nfc.html">Tarjetas NFC</a>
+      <a href="index.html#portafolio">Proyectos</a>
+    </nav>
     <div>
-      <h2 class="section-title line-mask"><span class="sr-only">Servicios: agentes de IA para WhatsApp y llamadas, páginas web y automatización</span><span aria-hidden="true">LO QUE</span><span aria-hidden="true">HAGO</span></h2>
-    </div>
-    <p class="section-desc reveal">Once servicios en tres familias. Apunta cualquiera para verlo en grande.</p>
-  </div>
-
-  <div class="serv-split">
-    <div class="serv-lista">
-      <h3 class="serv-fam">Agentes de inteligencia artificial</h3>
-      <div class="serv-grupo-items">
-        <a href="agentes-ia.html#agente-ia" class="serv-item is-promo" id="sv1">
-          <img class="serv-item-img" src="assets/serv-whatsapp.webp" alt="Conversación de WhatsApp atendida por el agente de inteligencia artificial" width="1536" height="960" loading="lazy" decoding="async">
-          <span class="serv-num"><span class="promo-pill">Principal</span></span>
-          <span class="serv-nombre">Agente de IA para tu WhatsApp</span>
-          <span class="serv-precio">Desde $1,499/mes</span>
-          <p class="serv-desc-movil">Una inteligencia artificial entrenada con la información de tu negocio que contesta tu WhatsApp las 24 horas: responde dudas, dice precios, agenda citas, toma pedidos y te avisa al instante cuando alguien quiere comprar. Nunca deja un mensaje sin responder, ni a las 3 de la mañana.</p>
-        </a>
-        <a href="agentes-ia.html#agente-ia" class="serv-item" id="sv2">
-          <img class="serv-item-img" src="assets/serv-llamadas.webp" alt="Demostración del agente que contesta llamadas telefónicas" width="1536" height="960" loading="lazy" decoding="async">
-          <span class="serv-num">02</span>
-          <span class="serv-nombre">Agente de IA que contesta tus llamadas</span>
-          <span class="serv-precio">Desde $3,999/mes</span>
-          <p class="serv-desc-movil">Un agente con voz natural que contesta el teléfono de tu negocio cuando tú no puedes. Atiende, informa, agenda la cita y te pasa el recado por escrito. Se acabó el “nadie contestó” y el buzón de voz que nadie escucha.</p>
-        </a>
-        <a href="agentes-ia.html#agente-ia" class="serv-item" id="sv3">
-          <img class="serv-item-img" src="assets/serv-citas.webp" alt="Salón y spa donde el agente agenda las citas" width="1536" height="960" loading="lazy" decoding="async">
-          <span class="serv-num">03</span>
-          <span class="serv-nombre">Agente de Reservas y Citas</span>
-          <span class="serv-precio">Desde $1,499/mes</span>
-          <p class="serv-desc-movil">Para salones, spas, gimnasios, consultorios y salones de eventos. El agente revisa tu agenda, ofrece los horarios libres, aparta el lugar y le manda el recordatorio al cliente un día antes para que no te falle. Tu agenda se llena sola.</p>
-        </a>
-        <a href="agentes-ia.html#agente-ia" class="serv-item" id="sv4">
-          <img class="serv-item-img" src="assets/serv-pedidos.webp" alt="Restaurante donde el agente levanta los pedidos" width="1536" height="960" loading="lazy" decoding="async">
-          <span class="serv-num">04</span>
-          <span class="serv-nombre">Agente de Pedidos</span>
-          <span class="serv-precio">Desde $1,499/mes</span>
-          <p class="serv-desc-movil">Para restaurantes, taquerías, tiendas y negocios de comida. El agente enseña el menú, toma la orden completa, confirma la dirección y te manda el pedido listo para preparar. Sin errores y sin tener a alguien pegado al celular.</p>
-        </a>
-      </div>
-      <h3 class="serv-fam">Tu negocio en internet</h3>
-      <div class="serv-grupo-items">
-        <a href="paginas-web.html#precios" class="serv-item" id="sv5">
-          <img class="serv-item-img" src="assets/serv-presentacion.webp" alt="Página de presentación de una barbería" width="1536" height="960" loading="lazy" decoding="async">
-          <span class="serv-num">05</span>
-          <span class="serv-nombre">Página de Presentación</span>
-          <span class="serv-precio">Desde $7,000 MXN</span>
-          <p class="serv-desc-movil">Una sola página con todo lo importante de tu negocio: qué haces, fotos de tu trabajo, dónde estás y un botón para que te escriban directo al WhatsApp. Ideal para empezar.</p>
-        </a>
-        <a href="paginas-web.html#precios" class="serv-item" id="sv6">
-          <img class="serv-item-img" src="assets/serv-sitio-completo.webp" alt="Sitio web completo de El Garage, distribuidora industrial" width="1536" height="960" loading="lazy" decoding="async">
-          <span class="serv-num">06</span>
-          <span class="serv-nombre">Sitio Web Completo</span>
-          <span class="serv-precio">Desde $12,000 MXN</span>
-          <p class="serv-desc-movil">Varias páginas conectadas: inicio, servicios, quiénes somos y contacto. Incluye herramientas para tu negocio, como un inventario bien organizado de tus productos. Para negocios que quieren verse grandes y profesionales en internet.</p>
-        </a>
-        <a href="contacto.html#contacto" class="serv-item" id="sv7">
-          <img class="serv-item-img" src="assets/serv-tienda.webp" alt="Tienda en línea con catálogo y pedidos" width="1536" height="960" loading="lazy" decoding="async">
-          <span class="serv-num">07</span>
-          <span class="serv-nombre">Tienda en Línea</span>
-          <span class="serv-precio">Desde $18,000 MXN</span>
-          <p class="serv-desc-movil">Tus productos en internet con carrito de compras y pagos seguros. Tus clientes te compran a cualquier hora, aunque la tienda física esté cerrada.</p>
-        </a>
-        <a href="contacto.html#contacto" class="serv-item" id="sv8">
-          <img class="serv-item-img" src="assets/serv-google.webp" alt="Negocio local apareciendo en la búsqueda de Google" width="1536" height="960" loading="lazy" decoding="async">
-          <span class="serv-num">08</span>
-          <span class="serv-nombre">Aparecer en Google</span>
-          <span class="serv-precio">Desde $3,000/mes MXN</span>
-          <p class="serv-desc-movil">Trabajo tu página cada mes para que cuando alguien busque en Google lo que tú vendes en Chihuahua, tu negocio salga entre los primeros. (A esto se le llama SEO.)</p>
-        </a>
-      </div>
-      <h3 class="serv-fam">Lo que lo termina de redondear</h3>
-      <div class="serv-grupo-items">
-        <a href="paginas-web.html#correo" class="serv-item" id="sv9">
-          <img class="serv-item-img" src="assets/serv-correo.webp" alt="Correo profesional con el dominio del negocio" width="1536" height="960" loading="lazy" decoding="async">
-          <span class="serv-num">09</span>
-          <span class="serv-nombre">Correo Profesional con IA</span>
-          <span class="serv-precio">Desde $1,199/año</span>
-          <p class="serv-desc-movil">Tu correo con el nombre de tu negocio (como ventas@tunegocio.com), en vez de un @gmail común. Se ve serio y da confianza. Trae un asistente de inteligencia artificial que te resume los mensajes, te ayuda a responder y busca por ti. Yo paso tu Gmail actual sin que pierdas nada.</p>
-        </a>
-        <a href="contacto.html#contacto" class="serv-item" id="sv10">
-          <img class="serv-item-img" src="assets/serv-video.webp" alt="Video promocional para redes sociales" width="1536" height="960" loading="lazy" decoding="async">
-          <span class="serv-num">10</span>
-          <span class="serv-nombre">Video Promocional para Redes</span>
-          <span class="serv-precio">Desde $1,000 MXN</span>
-          <p class="serv-desc-movil">Un video corto y profesional para tus redes (Reels, TikTok, historias). Muestra tu negocio o tu página web con voz, música y movimiento, listo para llamar la atención y que más gente te escriba.</p>
-        </a>
-        <a href="paginas-web.html#plan-mensual" class="serv-item" id="sv11">
-          <img class="serv-item-img" src="assets/serv-plan-mensual.webp" alt="Página entregada con el plan mensual" width="1536" height="960" loading="lazy" decoding="async">
-          <span class="serv-num">11</span>
-          <span class="serv-nombre">Plan Mensual — página sin inversión inicial</span>
-          <span class="serv-precio">Desde $599/mes</span>
-          <p class="serv-desc-movil">¿No quieres pagar todo de golpe? Ten tu página profesional pagando por mes: dominio, hosting y soporte, todo incluido y siempre cuidado por mí. Ideal para empezar hoy mismo.</p>
-        </a>
-      </div>
-    </div>
-
-    <div class="serv-panel" aria-hidden="true">
-      <article class="serv-ficha is-def" id="fi1">
-        <img src="assets/serv-whatsapp.webp" alt="Conversación de WhatsApp atendida por el agente de inteligencia artificial" width="1536" height="960" loading="lazy">
-        <h4 class="serv-ficha-nombre">Agente de IA para tu WhatsApp</h4>
-        <p class="serv-ficha-desc">Una inteligencia artificial entrenada con la información de tu negocio que contesta tu WhatsApp las 24 horas: responde dudas, dice precios, agenda citas, toma pedidos y te avisa al instante cuando alguien quiere comprar. Nunca deja un mensaje sin responder, ni a las 3 de la mañana.</p>
-        <div class="serv-ficha-pie"><span class="serv-ficha-precio">Desde $1,499/mes</span><span class="serv-ficha-cta">Ver detalles →</span></div>
-      </article>
-      <article class="serv-ficha" id="fi2">
-        <img src="assets/serv-llamadas.webp" alt="Demostración del agente que contesta llamadas telefónicas" width="1536" height="960" loading="lazy">
-        <h4 class="serv-ficha-nombre">Agente de IA que contesta tus llamadas</h4>
-        <p class="serv-ficha-desc">Un agente con voz natural que contesta el teléfono de tu negocio cuando tú no puedes. Atiende, informa, agenda la cita y te pasa el recado por escrito. Se acabó el “nadie contestó” y el buzón de voz que nadie escucha.</p>
-        <div class="serv-ficha-pie"><span class="serv-ficha-precio">Desde $3,999/mes</span><span class="serv-ficha-cta">Ver detalles →</span></div>
-      </article>
-      <article class="serv-ficha" id="fi3">
-        <img src="assets/serv-citas.webp" alt="Salón y spa donde el agente agenda las citas" width="1536" height="960" loading="lazy">
-        <h4 class="serv-ficha-nombre">Agente de Reservas y Citas</h4>
-        <p class="serv-ficha-desc">Para salones, spas, gimnasios, consultorios y salones de eventos. El agente revisa tu agenda, ofrece los horarios libres, aparta el lugar y le manda el recordatorio al cliente un día antes para que no te falle. Tu agenda se llena sola.</p>
-        <div class="serv-ficha-pie"><span class="serv-ficha-precio">Desde $1,499/mes</span><span class="serv-ficha-cta">Ver detalles →</span></div>
-      </article>
-      <article class="serv-ficha" id="fi4">
-        <img src="assets/serv-pedidos.webp" alt="Restaurante donde el agente levanta los pedidos" width="1536" height="960" loading="lazy">
-        <h4 class="serv-ficha-nombre">Agente de Pedidos</h4>
-        <p class="serv-ficha-desc">Para restaurantes, taquerías, tiendas y negocios de comida. El agente enseña el menú, toma la orden completa, confirma la dirección y te manda el pedido listo para preparar. Sin errores y sin tener a alguien pegado al celular.</p>
-        <div class="serv-ficha-pie"><span class="serv-ficha-precio">Desde $1,499/mes</span><span class="serv-ficha-cta">Ver detalles →</span></div>
-      </article>
-      <article class="serv-ficha" id="fi5">
-        <img src="assets/serv-presentacion.webp" alt="Página de presentación de una barbería" width="1536" height="960" loading="lazy">
-        <h4 class="serv-ficha-nombre">Página de Presentación</h4>
-        <p class="serv-ficha-desc">Una sola página con todo lo importante de tu negocio: qué haces, fotos de tu trabajo, dónde estás y un botón para que te escriban directo al WhatsApp. Ideal para empezar.</p>
-        <div class="serv-ficha-pie"><span class="serv-ficha-precio">Desde $7,000 MXN</span><span class="serv-ficha-cta">Ver detalles →</span></div>
-      </article>
-      <article class="serv-ficha" id="fi6">
-        <img src="assets/serv-sitio-completo.webp" alt="Sitio web completo de El Garage, distribuidora industrial" width="1536" height="960" loading="lazy">
-        <h4 class="serv-ficha-nombre">Sitio Web Completo</h4>
-        <p class="serv-ficha-desc">Varias páginas conectadas: inicio, servicios, quiénes somos y contacto. Incluye herramientas para tu negocio, como un inventario bien organizado de tus productos. Para negocios que quieren verse grandes y profesionales en internet.</p>
-        <div class="serv-ficha-pie"><span class="serv-ficha-precio">Desde $12,000 MXN</span><span class="serv-ficha-cta">Ver detalles →</span></div>
-      </article>
-      <article class="serv-ficha" id="fi7">
-        <img src="assets/serv-tienda.webp" alt="Tienda en línea con catálogo y pedidos" width="1536" height="960" loading="lazy">
-        <h4 class="serv-ficha-nombre">Tienda en Línea</h4>
-        <p class="serv-ficha-desc">Tus productos en internet con carrito de compras y pagos seguros. Tus clientes te compran a cualquier hora, aunque la tienda física esté cerrada.</p>
-        <div class="serv-ficha-pie"><span class="serv-ficha-precio">Desde $18,000 MXN</span><span class="serv-ficha-cta">Ver detalles →</span></div>
-      </article>
-      <article class="serv-ficha" id="fi8">
-        <img src="assets/serv-google.webp" alt="Negocio local apareciendo en la búsqueda de Google" width="1536" height="960" loading="lazy">
-        <h4 class="serv-ficha-nombre">Aparecer en Google</h4>
-        <p class="serv-ficha-desc">Trabajo tu página cada mes para que cuando alguien busque en Google lo que tú vendes en Chihuahua, tu negocio salga entre los primeros. (A esto se le llama SEO.)</p>
-        <div class="serv-ficha-pie"><span class="serv-ficha-precio">Desde $3,000/mes MXN</span><span class="serv-ficha-cta">Ver detalles →</span></div>
-      </article>
-      <article class="serv-ficha" id="fi9">
-        <img src="assets/serv-correo.webp" alt="Correo profesional con el dominio del negocio" width="1536" height="960" loading="lazy">
-        <h4 class="serv-ficha-nombre">Correo Profesional con IA</h4>
-        <p class="serv-ficha-desc">Tu correo con el nombre de tu negocio (como ventas@tunegocio.com), en vez de un @gmail común. Se ve serio y da confianza. Trae un asistente de inteligencia artificial que te resume los mensajes, te ayuda a responder y busca por ti. Yo paso tu Gmail actual sin que pierdas nada.</p>
-        <div class="serv-ficha-pie"><span class="serv-ficha-precio">Desde $1,199/año</span><span class="serv-ficha-cta">Ver detalles →</span></div>
-      </article>
-      <article class="serv-ficha" id="fi10">
-        <img src="assets/serv-video.webp" alt="Video promocional para redes sociales" width="1536" height="960" loading="lazy">
-        <h4 class="serv-ficha-nombre">Video Promocional para Redes</h4>
-        <p class="serv-ficha-desc">Un video corto y profesional para tus redes (Reels, TikTok, historias). Muestra tu negocio o tu página web con voz, música y movimiento, listo para llamar la atención y que más gente te escriba.</p>
-        <div class="serv-ficha-pie"><span class="serv-ficha-precio">Desde $1,000 MXN</span><span class="serv-ficha-cta">Ver detalles →</span></div>
-      </article>
-      <article class="serv-ficha" id="fi11">
-        <img src="assets/serv-plan-mensual.webp" alt="Página entregada con el plan mensual" width="1536" height="960" loading="lazy">
-        <h4 class="serv-ficha-nombre">Plan Mensual — página sin inversión inicial</h4>
-        <p class="serv-ficha-desc">¿No quieres pagar todo de golpe? Ten tu página profesional pagando por mes: dominio, hosting y soporte, todo incluido y siempre cuidado por mí. Ideal para empezar hoy mismo.</p>
-        <div class="serv-ficha-pie"><span class="serv-ficha-precio">Desde $599/mes</span><span class="serv-ficha-cta">Ver detalles →</span></div>
-      </article>
+      <a href="https://wa.me/526142251419"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /> </svg> WhatsApp · 614 225 1419</a>
+      <a href="mailto:contacto.noelstudio@gmail.com"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="20" height="16" x="2" y="4" rx="2" /> <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /> </svg> contacto.noelstudio@gmail.com</a>
+      <a href="https://www.instagram.com/noelstudioweb">Instagram</a>
+      <a href="https://www.tiktok.com/@noelstudio_">TikTok</a>
     </div>
   </div>
-</section>
-
-
-<section id="numeros" class="stats">
-  <div class="stats-grid">
-    <div class="stat reveal">
-      <div class="stat-num" data-count="5" data-decimals="1">5.0</div>
-      <div class="stat-label">Estrellas en Google</div>
-    </div>
-    <div class="stat reveal">
-      <div class="stat-num" data-count="2" data-suffix=" días">2 días</div>
-      <div class="stat-label">Entrega desde</div>
-    </div>
-    <div class="stat reveal">
-      <div class="stat-num" data-count="100" data-suffix="%">100%</div>
-      <div class="stat-label">La página es tuya</div>
-    </div>
-    <div class="stat reveal">
-      <div class="stat-num stat-static">24/7</div>
-      <div class="stat-label">Tu web trabajando</div>
-    </div>
-  </div>
-</section>
-
-<!-- RESEÑAS -->
-<section id="resenas">
-  <h2 class="sr-only">Reseñas de clientes de Noel Studio</h2>
-  <div class="reviews-head reveal">
-    <div class="rh-stars">★★★★★</div>
-    <div class="rh-score">5.0 en Google</div>
-    <div class="rh-sub">Lo que dicen mis clientes</div>
-  </div>
-</section>
-
-<!-- PREGUNTAS FRECUENTES — las mismas que van en el bloque FAQPage del <head>.
-     Google exige que la pregunta y la respuesta estén VISIBLES en la página para
-     mostrarlas en los resultados. Si cambias una aquí, cámbiala también arriba.
-     Usa <details>/<summary> del navegador: abre y cierra sin JavaScript, así que
-     el contenido nunca depende de una animación para poder leerse. -->
-<section id="preguntas">
-  <div class="section-header">
-    <div>
-      <h2 class="section-title line-mask"><span class="sr-only">Preguntas frecuentes sobre agentes de inteligencia artificial y páginas web</span><span aria-hidden="true">PREGUNTAS</span><span aria-hidden="true">FRECUENTES</span></h2>
-    </div>
-    <p class="section-desc reveal">Lo que más me preguntan antes de contratar. Si te falta algo, escríbeme y te lo aclaro.</p>
-  </div>
-
-  <div class="faq-lista">
-    <details class="faq-item">
-      <summary class="faq-q"><span>¿Qué es un agente de inteligencia artificial para un negocio?</span><i class="faq-mas" aria-hidden="true"></i></summary>
-      <div class="faq-a"><p>Es un asistente de inteligencia artificial entrenado con la información de tu negocio (precios, servicios, horarios, ubicación) que atiende a tus clientes por WhatsApp o por teléfono las 24 horas. Contesta dudas, cotiza, agenda la cita, levanta el pedido y te pasa el aviso cuando alguien está listo para comprar. Trabaja aunque tú estés dormido, atendiendo a otro cliente o de descanso.</p></div>
-    </details>
-    <details class="faq-item">
-      <summary class="faq-q"><span>¿En qué se diferencia de un chatbot de los de antes?</span><i class="faq-mas" aria-hidden="true"></i></summary>
-      <div class="faq-a"><p>Un chatbot viejo sigue un menú fijo: si el cliente no escribe la opción exacta, se traba. Un agente de inteligencia artificial entiende lo que le escriben con las palabras de cada quien, con faltas de ortografía y con audios, y responde con la información real de tu negocio. Además hace cosas, no solo platica: revisa la agenda, aparta el lugar, arma el pedido y te lo manda.</p></div>
-    </details>
-    <details class="faq-item">
-      <summary class="faq-q"><span>¿Cuánto cuesta un agente de IA para WhatsApp en Chihuahua?</span><i class="faq-mas" aria-hidden="true"></i></summary>
-      <div class="faq-a"><p>El agente que atiende WhatsApp arranca en 1,499 pesos al mes. El agente que contesta llamadas telefónicas con voz arranca en 3,999 pesos al mes. El precio final depende de cuántos mensajes maneje tu negocio y de si necesita conectarse a tu agenda, a tu catálogo o a tu sistema de pedidos.</p></div>
-    </details>
-    <details class="faq-item">
-      <summary class="faq-q"><span>¿Cuánto cuesta una página web en Chihuahua?</span><i class="faq-mas" aria-hidden="true"></i></summary>
-      <div class="faq-a"><p>Una página de presentación arranca en 7,000 pesos, un sitio web completo de varias páginas en 12,000 pesos y una tienda en línea con carrito y pagos en 18,000 pesos. Si no quieres pagar todo de golpe, existe el plan mensual desde 599 pesos al mes con dominio, hosting y soporte incluidos.</p></div>
-    </details>
-    <details class="faq-item">
-      <summary class="faq-q"><span>¿Sirve para mi tipo de negocio?</span><i class="faq-mas" aria-hidden="true"></i></summary>
-      <div class="faq-a"><p>Sirve para cualquier negocio que pierda ventas por no alcanzar a contestar. Hoy trabajo con talleres y refaccionarias, salones de belleza y spas, gimnasios, consultorios, restaurantes y taquerías, salones de eventos, distribuidoras y despachos. Si a ti te llegan mensajes o llamadas y no siempre puedes responder, te sirve.</p></div>
-    </details>
-    <details class="faq-item">
-      <summary class="faq-q"><span>¿Necesito saber de tecnología para usarlo?</span><i class="faq-mas" aria-hidden="true"></i></summary>
-      <div class="faq-a"><p>No. Yo lo configuro, lo entreno con la información de tu negocio y lo dejo funcionando. Tú sigues usando tu WhatsApp de siempre: la diferencia es que ahora te llegan los clientes ya atendidos y las citas ya agendadas. Cuando algo se tenga que cambiar, me escribes y yo lo cambio.</p></div>
-    </details>
-    <details class="faq-item">
-      <summary class="faq-q"><span>¿El agente puede agendar citas y tomar pedidos solo?</span><i class="faq-mas" aria-hidden="true"></i></summary>
-      <div class="faq-a"><p>Sí. Revisa los horarios que tengas libres, le ofrece opciones al cliente, aparta la cita y le manda un recordatorio antes para que no te falle. Para pedidos enseña el menú o el catálogo, toma la orden completa, confirma la dirección y te la manda lista para preparar.</p></div>
-    </details>
-    <details class="faq-item">
-      <summary class="faq-q"><span>¿Solo trabajas en Chihuahua?</span><i class="faq-mas" aria-hidden="true"></i></summary>
-      <div class="faq-a"><p>Soy de Chihuahua y ahí está la mayoría de mis clientes, pero todo el trabajo se hace en línea, así que puedo atender negocios de cualquier parte de México. Las juntas son por videollamada o por WhatsApp.</p></div>
-    </details>
-    <details class="faq-item">
-      <summary class="faq-q"><span>¿Cómo empezamos?</span><i class="faq-mas" aria-hidden="true"></i></summary>
-      <div class="faq-a"><p>Me escribes por WhatsApp al 614 225 1419, me cuentas de tu negocio y qué es lo que más se te está escapando. Te digo qué te conviene, cuánto cuesta y cómo quedaría. Sin compromiso y sin tecnicismos.</p></div>
-    </details>
-  </div>
-
-  <p class="faq-pie reveal">¿Tu duda no está aquí? <a href="https://wa.me/526142251419?text=Hola,%20tengo%20una%20duda%20sobre%20los%20agentes%20de%20IA" target="_blank" rel="noopener">Pregúntamela por WhatsApp</a>.</p>
-</section>
-
-<!-- CIERRE DE PÁGINA -->
-<section class="cta-final">
-  <h2 class="section-title line-mask"><span class="sr-only">Contrata tu agente de inteligencia artificial en Chihuahua</span><span aria-hidden="true">EMPIEZA</span><span aria-hidden="true">POR AQUÍ</span></h2>
-  <p class="cta-final-text reveal">No necesitas saber de tecnología. Escríbeme por WhatsApp, cuéntame de tu negocio y yo te digo qué te conviene y cuánto cuesta.</p>
-  <div class="cta-final-acciones reveal">
-    <a class="demo-cta" href="https://wa.me/526142251419?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20lo%20que%20hacen" target="_blank" rel="noopener">Escríbeme por WhatsApp</a>
-    <a class="cta-final-link" href="agentes-ia.html">Ver los agentes de IA →</a>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-top">
-    <div class="footer-col">
-      <div class="footer-brand">NOEL STUDIO</div>
-      <p class="footer-tagline">Inteligencia artificial para negocios en Chihuahua. Agentes que atienden tu WhatsApp y tus llamadas 24/7, agendan citas y toman pedidos. También diseño web.</p>
-      <div class="social-links footer-social">
-        <a href="https://www.instagram.com/noelstudioweb" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </a>
-        <a href="https://www.tiktok.com/@noelstudio_" target="_blank" rel="noopener" aria-label="TikTok">
-          <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
-        </a>
-        <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20un%20agente%20de%20IA%20para%20mi%20negocio" target="_blank" rel="noopener" aria-label="WhatsApp">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        </a>
-      </div>
-    </div>
-    <div class="footer-col">
-      <span class="footer-heading">Navegación</span>
-      <a href="index.html">Inicio</a>
-      <a href="agentes-ia.html">Agentes de IA</a>
-      <a href="paginas-web.html">Páginas web</a>
-      <a href="portafolio.html">Portafolio</a>
-      <a href="contacto.html">Contacto</a>
-    </div>
-    <div class="footer-col">
-      <span class="footer-heading">Contacto</span>
-      <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20un%20agente%20de%20IA%20para%20mi%20negocio.%20%C2%BFMe%20pasas%20informaci%C3%B3n%3F" target="_blank" rel="noopener">WhatsApp · 614 225 1419</a>
-      <a href="mailto:contacto.noelstudio@gmail.com">contacto.noelstudio@gmail.com</a>
-      <span class="footer-muted">Chihuahua, México</span>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <div class="footer-copy">© 2026 Noel Studio · Todos los derechos reservados</div>
-    <a href="#top" class="footer-top-link">Volver arriba ↑</a>
-  </div>
+  <p class="contenedor pie__legal"><span>© 2026 Noel Studio</span><span>Hecho en Chihuahua con inteligencia artificial</span></p>
 </footer>
 
-<!-- WhatsApp flotante -->
-<a href="https://wa.me/526142251419" class="wa-float" target="_blank" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-</a>
+<nav class="barra-movil" data-barra-movil aria-label="Accesos rápidos">
+  <button class="btn btn--linea" type="button" data-agente-abrir-extra>¿Dudas?</button>
+  <a class="btn btn--solido" href="https://wa.me/526142251419?text=Hola,%20quiero%20un%20agente%20para%20mi%20negocio">Escribir</a>
+</nav>
 
-<!-- El texto de la señal del hero se decide AQUÍ, al final del body, nunca en medio del
-     hero. Un <script> inline en mitad del HTML detiene la lectura de la página hasta que
-     termina de bajar styles.css (136 KB): el navegador pintaba medio hero, y al continuar
-     metía el resto de golpe. Eso solo costaba 0.198 de CLS. Medido: aquí abajo da 0. -->
-<script>
-        (function () {
-          var caja = document.getElementById('heroStatus');
-          if (!caja) return;
-          try {
-            // Hora de Chihuahua, no la del visitante (puede estar en otro estado o país).
-            var partes = new Intl.DateTimeFormat('en-US', {
-              timeZone: 'America/Chihuahua', weekday: 'short', hour: 'numeric', hour12: false
-            }).formatToParts(new Date());
-            var dia = '', hora = 0;
-            partes.forEach(function (x) {
-              if (x.type === 'weekday') dia = x.value;
-              if (x.type === 'hour') hora = parseInt(x.value, 10);
-            });
-            if (dia !== 'Sun' && hora >= 8 && hora < 21) return;  // en horario: se queda el verde
+<!-- Vista previa: todavia no hay un modelo conectado. Antes de publicar, conectarlo o cambiar el texto. -->
+<button class="agente-boton" type="button" data-agente-abrir aria-haspopup="dialog">
+  <span class="agente-boton__luz" aria-hidden="true"></span>
+  <span class="agente-boton__largo">¿No sabes qué buscas?</span>
+  <span class="agente-boton__corto">¿Dudas?</span>
+</button>
+<dialog class="agente" data-panel-agente aria-labelledby="agente-titulo">
+  <header class="agente__cabeza">
+    <div>
+      <h2 id="agente-titulo" tabindex="-1" autofocus>Habla con nuestro agente de inteligencia artificial</h2>
+      <p>Vista previa. Muy pronto contestará en vivo.</p>
+    </div>
+    <button class="agente__cerrar" type="button" data-agente-cerrar aria-label="Cerrar">×</button>
+  </header>
+  <p class="agente__globo">¿No sabes lo que buscas? Dime qué necesitas y te llevo a la opción correcta.</p>
+  <div class="agente__opciones">
+    <button type="button" data-destino="llamadas.html#planes">Que contesten mis llamadas</button>
+    <button type="button" data-destino="whatsapp.html">Atender mi WhatsApp</button>
+    <button type="button" data-destino="paginas-web.html">Una página web</button>
+    <button type="button" data-destino="creativos.html">Videos y diseño</button>
+    <button type="button" data-destino="tarjetas-nfc.html">Tarjetas NFC</button>
+    <button type="button" data-destino="contacto.html#contacto">No sé qué necesito</button>
+  </div>
+  <form class="agente__campo" data-agente-formulario data-whatsapp="https://wa.me/526142251419">
+    <label class="oculto" for="agente-mensaje">Escribe tu duda</label>
+    <input id="agente-mensaje" name="mensaje" placeholder="Escribe tu duda" autocomplete="off" required>
+    <button class="btn btn--solido" type="submit">Enviar</button>
+  </form>
+</dialog>
 
-            // Fuera de horario: la hora en formato de la calle (8pm, 3am, 12am).
-            var h12 = hora % 12; if (h12 === 0) h12 = 12;
-            var reloj = h12 + (hora < 12 ? 'am' : 'pm');
-            caja.classList.add('is-off');
-            // Solo se reemplaza el TEXTO de cada línea: la caja mide igual que antes.
-            caja.querySelector('.hs-l1').textContent = 'Son las ' + reloj + ' y yo ya no contesto.';
-            caja.querySelector('.hs-l2').textContent = 'Un agente de IA sí.';
-          } catch (e) { /* si algo falla, se queda el texto por defecto */ }
-        })();
-      </script>
-<script defer src="assets/site.js?v=14"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" integrity="sha384-P8VzCVnT9NBUkMrpcIZrJbA7EBjJvh/fJS6PmP+4nLIM284DtsImIv8D0fFjIkeh" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js" integrity="sha384-xb96EMJeax+NLXMC88ZBa1xAeAW+kn+horHh/zFlbMLG2UPWhMJJSlv7fi57hS+Q" crossorigin="anonymous" defer></script>
+<script src="sitio.js?v=1794351478" defer></script>
 </body>
 </html>

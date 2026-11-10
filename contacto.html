@@ -1,370 +1,265 @@
-<!DOCTYPE html>
+<!--
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+-->
+<!doctype html>
 <html lang="es">
 <head>
-<!-- Google Analytics: se carga DESPUÉS de que la página ya se ve.
-     Así no le roba red ni procesador al primer dibujado (mejora la velocidad en celular). -->
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-EH81SC2V5B');
-  addEventListener('load', function () {
-    var s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-EH81SC2V5B';
-    document.head.appendChild(s);
-  });
-</script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Contacto — Noel Studio Chihuahua</title>
-<meta name="description" content="Escríbeme por WhatsApp al 614 225 1419 o al correo contacto.noelstudio@gmail.com. Quién está detrás de Noel Studio y las preguntas más frecuentes.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Contacto | Noel Studio Chihuahua</title>
+<link rel="canonical" href="https://raul2601199-maker.github.io/noel-studio/contacto.html">
+<meta property="og:url" content="https://raul2601199-maker.github.io/noel-studio/contacto.html">
+<meta name="description" content="Habla con Raúl de Noel Studio por WhatsApp o correo. Chihuahua, México.">
+<meta name="theme-color" content="#030305">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://www.google.com https://www.gstatic.com; frame-src https://www.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; media-src 'self' blob: mediastream: https:; connect-src 'self' https: wss:; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="theme-color" content="#000000">
-
-<meta property="og:title" content="Contacto — Noel Studio Chihuahua">
-<meta property="og:description" content="Escríbeme por WhatsApp al 614 225 1419 o al correo contacto.noelstudio@gmail.com. Quién está detrás de Noel Studio y las preguntas más frecuentes.">
+<meta property="og:title" content="Tu negocio contesta, aunque tú no puedas | Noel Studio">
+<meta property="og:description" content="Agentes de inteligencia artificial para llamadas y WhatsApp. Chihuahua, México.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
-<meta property="og:url" content="https://raul2601199-maker.github.io/noel-studio/contacto.html">
 <meta property="og:image" content="https://raul2601199-maker.github.io/noel-studio/assets/og-image.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://raul2601199-maker.github.io/noel-studio/assets/og-image.jpg">
-
-<!-- Ícono de la pestaña del navegador y al guardar en el celular -->
 <link rel="icon" href="assets/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="manifest" href="site.webmanifest">
-
-<link rel="canonical" href="https://raul2601199-maker.github.io/noel-studio/contacto.html">
-
-<!-- Datos estructurados de Preguntas Frecuentes: Google puede mostrarlas
-     directamente en los resultados de búsqueda (más espacio, más clics). -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "¿Qué es exactamente un agente de inteligencia artificial?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Piénsalo como un empleado que solo se dedica a atender clientes, pero que no duerme, no se enferma y contesta en segundos. Lo entreno con la información de tu negocio —tus precios, tus horarios, tus servicios, tu forma de hablar— y desde ahí contesta tu WhatsApp o tu teléfono por ti: resuelve dudas, agenda citas, toma pedidos y te avisa cuando alguien quiere comprar. Tú solo cierras la venta." }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Se nota que es una inteligencia artificial y no una persona?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No suena a esas grabaciones de marque 1 para ventas. El agente entiende lo que le escriben aunque esté mal redactado, responde con el tono de tu negocio y sostiene la conversación. Y cuando algo se sale de lo que sabe, no inventa: te lo pasa a ti al instante." }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Puedo probar el agente de IA antes de pagar?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Sí. Te armo el agente con la información real de tu negocio y te paso un número para que le escribas desde tu celular y platiques con él. Si te convence, lo dejamos trabajando. Si no, no perdiste nada." }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Necesito cambiar mi número de WhatsApp?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No. El agente trabaja con el número de tu negocio y tú sigues viendo todas las conversaciones. En cualquier momento puedes entrar y tomar el control del chat tú mismo; el agente se hace a un lado." }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Para qué le sirve una página web a mi negocio?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Es como tu local, pero abierto las 24 horas. Cuando alguien busca tu servicio en internet y no te encuentra, le compra al que sí aparece. Tu página le muestra qué haces, le da confianza y le pone un botón para escribirte al WhatsApp en ese momento." }
-    },
-    {
-      "@type": "Question",
-      "name": "No sé nada de tecnología, ¿hay problema?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Ninguno. Para eso estoy yo. Tú solo me cuentas de tu negocio y yo me encargo de todo lo técnico. Al final te explico cómo funciona tu página con palabras normales." }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Qué necesito para empezar?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Solo la información de tu negocio: a qué te dedicas, tus precios o servicios, fotos y tu logo si tienes. Si te falta algo de eso, no te preocupes — te ayudo a resolverlo." }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Qué significa dominio y hosting?",
-      "acceptedAnswer": { "@type": "Answer", "text": "El dominio es el nombre de tu página en internet (por ejemplo: tunegocio.com). El hosting es el espacio donde vive tu página para que cualquiera pueda verla. En el paquete Pro, los dos van incluidos — tú no tienes que hacer nada." }
-    },
-    {
-      "@type": "Question",
-      "name": "¿La página queda a mi nombre?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Sí, la página es tuya. No te amarro con rentas escondidas ni te la quito si dejas de trabajar conmigo." }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Cuánto tiempo tarda?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Entre 5 y 21 días según el paquete. Te doy la fecha exacta antes de empezar y te voy mostrando avances en el camino." }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Qué pasa después de que me entregas la página?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No desaparezco. Te explico cómo usarla y quedo al pendiente por WhatsApp para cualquier duda. Si más adelante quieres cambios o que tu página aparezca más arriba en Google, también te puedo ayudar con eso." }
-    }
-  ]
-}
-</script>
-
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<!-- Fuentes AUTOALOJADAS (en este mismo sitio): carga más rápido y no depende de Google Fonts. -->
 <link rel="preload" href="assets/fonts/unbounded-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fuentes/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts/fonts.css">
-<!-- GSAP con defer: no bloquea el dibujado de la página (carga más rápido).
-     La marca .has-gsap se pone en el script principal (DOMContentLoaded), ya que con
-     defer GSAP aún no existe en este punto. Si GSAP no carga, TODO queda visible. -->
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
-<!-- SplitText (gratis desde GSAP 3.13): divide los párrafos en líneas para animarlas una por una. -->
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
-<!-- Lenis: scroll suave premium (inercia). Con defer no bloquea el dibujado.
-     Se inicializa abajo SOLO si carga y el visitante no pidió menos movimiento. -->
-<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
-<link rel="stylesheet" href="assets/styles.css?v=15">
+<link rel="stylesheet" href="sitio.css?v=1794351478">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Qué es un agente de inteligencia artificial?", "acceptedAnswer": {"@type": "Answer", "text": "Es un asistente entrenado con la información de tu negocio: precios, servicios, horarios y ubicación. Atiende a tus clientes por teléfono o WhatsApp y te avisa lo importante."}}, {"@type": "Question", "name": "¿En qué se diferencia de un menú automático?", "acceptedAnswer": {"@type": "Answer", "text": "Un menú te obliga a oprimir opciones. Un agente entiende lo que la persona dice con sus propias palabras y responde con la información real de tu negocio."}}, {"@type": "Question", "name": "¿Cuánto cuesta?", "acceptedAnswer": {"@type": "Answer", "text": "El agente de WhatsApp arranca en 1,799 pesos al mes y el de llamadas en 2,999 pesos al mes, más instalación. El de llamadas se cobra por minutos: el plan Inicio trae 500 minutos, unas 8 llamadas al día."}}, {"@type": "Question", "name": "¿Cuánto cuesta una página web?", "acceptedAnswer": {"@type": "Answer", "text": "Una página de presentación arranca en 4,500 pesos, un sitio completo en 6,900 pesos y una página Studio con tienda y terminal de pago en 10,000 pesos. También hay plan mensual desde 599 pesos."}}, {"@type": "Question", "name": "¿Sirve para mi tipo de negocio?", "acceptedAnswer": {"@type": "Answer", "text": "Sirve para negocios que reciben llamadas o mensajes y no siempre alcanzan a responder: talleres, veterinarias, consultorios, salones y restaurantes, entre otros."}}, {"@type": "Question", "name": "¿Necesito saber de tecnología?", "acceptedAnswer": {"@type": "Answer", "text": "No. Yo lo configuro, lo entreno con la información de tu negocio y te explico cómo funciona. Si algo cambia, me escribes y yo lo cambio."}}, {"@type": "Question", "name": "¿Se nota que es inteligencia artificial?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Se presenta como asistente de inteligencia artificial. No suena a una grabación de “marque 1”: entiende a la persona y sostiene la conversación."}}, {"@type": "Question", "name": "¿Qué pasa si no sabe algo?", "acceptedAnswer": {"@type": "Answer", "text": "No inventa. Toma el recado para que tú des seguimiento."}}, {"@type": "Question", "name": "¿Puedo probarlo antes de pagar?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Lo armo con la información de tu negocio para que lo pruebes. Si te convence, lo dejamos trabajando."}}, {"@type": "Question", "name": "¿Tengo que cambiar mi número?", "acceptedAnswer": {"@type": "Answer", "text": "Revisamos tu línea y te digo cuál es la mejor forma de conectarlo con tu negocio."}}, {"@type": "Question", "name": "¿Qué pasa después de la entrega?", "acceptedAnswer": {"@type": "Answer", "text": "Te explico cómo usarlo y quedo al pendiente. Si quieres cambios o crecer en Google, también te puedo ayudar."}}, {"@type": "Question", "name": "¿Solo trabajas en Chihuahua?", "acceptedAnswer": {"@type": "Answer", "text": "Soy de Chihuahua, pero el trabajo se hace en línea, así que puedo atender negocios de cualquier parte de México."}}, {"@type": "Question", "name": "¿La página queda a mi nombre?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. El dominio queda a tu nombre y la página es tuya. Si algún día quieres moverte, te la llevas."}}, {"@type": "Question", "name": "¿Cuánto tarda una página?", "acceptedAnswer": {"@type": "Answer", "text": "Entre 1 y 21 días, según el paquete. Te doy la fecha antes de empezar y te muestro avances."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Noel Studio","description":"Agentes de inteligencia artificial para llamadas y WhatsApp, y páginas web para negocios.","telephone":"+526142251419","email":"contacto.noelstudio@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Chihuahua","addressRegion":"Chihuahua","addressCountry":"MX"},"areaServed":"MX","sameAs":["https://www.instagram.com/noelstudioweb","https://www.tiktok.com/@noelstudio_"]}</script>
 </head>
-<body id="top">
-
-<!-- PRELOADER — marca mientras carga el sitio (se quita solo; failsafe en el script) -->
-<div id="preload" role="status" aria-label="Cargando Noel Studio">
-  <img class="pl-logo" src="assets/logo-hero.png" alt="Logo de Noel Studio" width="64" height="76">
-  <div class="pl-name">NOEL STUDIO</div>
-  <div class="pl-bar"><i id="plBar"></i></div>
-</div>
-
-<!-- Accesibilidad: saltar el menú e ir directo al contenido -->
-<a href="#sobre-mi" class="skip-link">Saltar al contenido</a>
-
-<!-- Barra de progreso de lectura -->
-<div class="scroll-progress" id="scrollProgress"></div>
-
-<!-- CURSOR -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-follower" id="cursorFollower"></div>
-
-<!-- NAV -->
-<nav id="navbar">
-  <ul class="nav-links">
-    <li><a href="index.html">Inicio</a></li>
-    <li><a href="agentes-ia.html" class="nav-cta">Agentes de IA</a></li>
-    <li><a href="paginas-web.html">Páginas web</a></li>
-    <li><a href="portafolio.html">Portafolio</a></li>
-    <li><a href="contacto.html" class="active" aria-current="page">Contacto</a></li>
-  </ul>
-  <a href="index.html" class="nav-brand" aria-label="Noel Studio — inicio">
-    <span class="nav-brand-name">NOEL STUDIO</span>
-  </a>
-  <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<section id="sobre-mi">
-  <div class="section-header">
-    <div>
-      <h2 class="section-title line-mask"><span>QUIÉN ESTÁ</span><span>DETRÁS</span></h2>
+<body>
+<canvas class="viaje-lienzo" data-viaje aria-hidden="true"></canvas>
+<div class="barra-avance" aria-hidden="true"></div>
+<a class="saltar" href="#principal">Saltar al contenido</a>
+<header class="nav" data-nav>
+  <a class="nav__marca" href="index.html" aria-label="Noel Studio, inicio">NOEL STUDIO</a>
+  <nav class="nav__ligas" aria-label="Principal">
+    <a href="llamadas.html">Llamadas</a>
+    <a href="whatsapp.html">WhatsApp</a>
+    <a href="paginas-web.html">Páginas web</a>
+    <a href="creativos.html">Creativos</a>
+    <a href="tarjetas-nfc.html">NFC</a>
+    <a href="contacto.html" aria-current="page">Contacto</a>
+  </nav>
+  <a class="btn btn--solido nav__accion" href="https://wa.me/526142251419?text=Hola,%20quiero%20un%20agente%20para%20mi%20negocio">Escríbeme</a>
+  <details class="nav__menu">
+    <summary aria-label="Abrir menú"></summary>
+    <div class="nav__panel">
+      <p class="nav__titulo">Servicios</p>
+      <a class="nav__opcion" href="llamadas.html"><span class="nav__icono"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /> </svg></span><span><strong>Llamadas con IA</strong><small>Tu teléfono contesta solo</small></span></a>
+      <a class="nav__opcion" href="whatsapp.html"><span class="nav__icono"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /> </svg></span><span><strong>WhatsApp automático</strong><small>Responde, agenda y toma pedidos</small></span></a>
+      <a class="nav__opcion" href="paginas-web.html"><span class="nav__icono"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="12" cy="12" r="10" /> <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /> <path d="M2 12h20" /> </svg></span><span><strong>Páginas web</strong><small>Desde $4,500</small></span></a>
+      <a class="nav__opcion" href="creativos.html"><span class="nav__icono"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z" /> <path d="m6.2 5.3 3.1 3.9" /> <path d="m12.4 3.4 3.1 4" /> <path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" /> </svg></span><span><strong>Estudio creativo</strong><small>Videos y diseño</small></span></a>
+      <a class="nav__opcion" href="tarjetas-nfc.html"><span class="nav__icono"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M6 8.32a7.43 7.43 0 0 1 0 7.36" /> <path d="M9.46 6.21a11.76 11.76 0 0 1 0 11.58" /> <path d="M12.91 4.1a15.91 15.91 0 0 1 .01 15.8" /> <path d="M16.37 2a20.16 20.16 0 0 1 0 20" /> </svg></span><span><strong>Tarjetas NFC</strong><small>Un toque abre tu WhatsApp</small></span></a>
+      <p class="nav__titulo">Noel Studio</p>
+      <div class="nav__cortos"><a href="contacto.html#agenda">Agendar visita</a><a href="index.html">Inicio</a><a href="index.html#portafolio">Proyectos</a><a href="contacto.html" aria-current="page">Contacto</a></div>
+      <a class="btn btn--solido nav__cta" href="https://wa.me/526142251419?text=Hola,%20quiero%20informaci%C3%B3n"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /> </svg> Escribir por WhatsApp</a>
     </div>
-    <p class="section-desc reveal">Una persona real de Chihuahua, no una agencia enorme. La inteligencia artificial la construyo yo, contigo.</p>
+  </details>
+</header>
+
+<main id="principal">
+<section class="cabecera" data-mundo="pleno">
+  <div class="contenedor cabecera__rejilla">
+    <div class="cabecera__texto">
+      <nav class="migas" aria-label="Ruta"><a href="index.html">Inicio</a><span aria-hidden="true">/</span><span>Contacto</span></nav>
+      <h1>Hablemos de tu negocio.</h1>
+      <p>Escríbeme por WhatsApp o déjame tus datos. Te digo qué te conviene y cuánto cuesta.</p>
+    </div>
+    <div class="emblema" aria-hidden="true"><span class="emblema__anillo"></span><span class="emblema__anillo"></span><span class="emblema__centro"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="20" height="16" x="2" y="4" rx="2" /> <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /> </svg></span></div>
   </div>
-  <div class="about-wrap reveal">
-    <div class="about-photo">
-      <div class="about-card">
-        <img src="assets/logo-hero.png" alt="" aria-hidden="true" class="about-card-logo" width="160" height="190">
-        <div class="about-card-name">NOEL STUDIO</div>
-        <div class="about-card-meta">Chihuahua, México</div>
-      </div>
-    </div>
-    <div class="about-body">
-      <div class="about-eyebrow">— Fundador de Noel Studio</div>
-      <p>Soy Raúl. Desde Chihuahua le pongo inteligencia artificial a negocios como el tuyo, para que ningún cliente se quede sin respuesta y tu negocio siga trabajando aunque tú estés dormido.</p>
-      <p>Estudio ingeniería en inteligencia artificial y eso es exactamente lo que construyo: agentes que atienden tu WhatsApp y tus llamadas, agendan tus citas y levantan tus pedidos. También diseño la página web donde vive tu negocio.</p>
-      <p>No soy una agencia gigante ni un intermediario: trabajo de cerca contigo, te explico todo en español claro —sin tecnicismos— y quedo al pendiente por WhatsApp después de entregarte.</p>
-      <ul class="about-points">
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Trato directo, sin intermediarios</li>
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Todo explicado sin tecnicismos</li>
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Seguimiento personal por WhatsApp</li>
+</section>
+<section class="agenda" id="agenda" data-mundo="lectura">
+  <div class="contenedor agenda__rejilla">
+    <div class="agenda__texto">
+      <h2 data-aparece>Agenda una visita.</h2>
+      <p>Voy a tu negocio, veo cómo atiendes hoy y te digo qué te conviene. Sin costo y sin compromiso. También puede ser por videollamada.</p>
+      <ul class="agenda__pasos">
+        <li><span>1</span>Elige día y hora</li>
+        <li><span>2</span>Te confirmo por WhatsApp</li>
+        <li><span>3</span>Platicamos 20 minutos</li>
       </ul>
-      <div class="about-signature">— Raúl, Noel Studio</div>
     </div>
-  </div>
-</section>
-
-<section id="preguntas">
-  <div class="section-header">
-    <div>
-      <h2 class="section-title line-mask"><span>PREGUNTAS</span><span>FRECUENTES</span></h2>
-    </div>
-    <p class="section-desc reveal">Lo que casi todos me preguntan antes de empezar, respondido sin rodeos.</p>
-  </div>
-  <div class="faq-list">
-    <details class="faq-item reveal">
-      <summary>¿Para qué le sirve una página web a mi negocio?</summary>
-      <p>Es como tu local, pero abierto las 24 horas. Cuando alguien busca tu servicio en internet y no te encuentra, le compra al que sí aparece. Tu página le muestra qué haces, le da confianza y le pone un botón para escribirte al WhatsApp en ese momento.</p>
-    </details>
-    <details class="faq-item reveal">
-      <summary>No sé nada de tecnología, ¿hay problema?</summary>
-      <p>Ninguno. Para eso estoy yo. Tú solo me cuentas de tu negocio y yo me encargo de todo lo técnico. Al final te explico cómo funciona tu página con palabras normales.</p>
-    </details>
-    <details class="faq-item reveal">
-      <summary>¿Qué necesito para empezar?</summary>
-      <p>Solo la información de tu negocio: a qué te dedicas, tus precios o servicios, fotos y tu logo si tienes. Si te falta algo de eso, no te preocupes — te ayudo a resolverlo.</p>
-    </details>
-    <details class="faq-item reveal">
-      <summary>¿Qué significan “dominio” y “hosting”?</summary>
-      <p>El dominio es el nombre de tu página en internet (por ejemplo: tunegocio.com). El hosting es el espacio donde “vive” tu página para que cualquiera pueda verla. En el paquete Pro, los dos van incluidos — tú no tienes que hacer nada.</p>
-    </details>
-    <details class="faq-item reveal">
-      <summary>¿La página queda a mi nombre?</summary>
-      <p>Sí, la página es tuya. No te amarro con rentas escondidas ni te la quito si dejas de trabajar conmigo.</p>
-    </details>
-    <details class="faq-item reveal">
-      <summary>¿Cuánto tiempo tarda?</summary>
-      <p>Entre 1 y 21 días según el paquete: una página de presentación queda en 1 a 2 días, y los proyectos más completos hasta en 21. Te doy la fecha exacta antes de empezar y te voy mostrando avances en el camino.</p>
-    </details>
-    <details class="faq-item reveal">
-      <summary>¿Qué es exactamente un agente de inteligencia artificial?</summary>
-      <p>Piénsalo como un empleado que solo se dedica a atender clientes, pero que no duerme, no se enferma y contesta en segundos. Lo entreno con la información de tu negocio —tus precios, tus horarios, tus servicios, tu forma de hablar— y desde ahí contesta tu WhatsApp o tu teléfono por ti: resuelve dudas, agenda citas, toma pedidos y te avisa cuando alguien quiere comprar. Tú solo cierras la venta.</p>
-    </details>
-    <details class="faq-item reveal">
-      <summary>¿Se nota que es una inteligencia artificial y no una persona?</summary>
-      <p>No suena a esas grabaciones de “marque 1 para ventas”. El agente entiende lo que le escriben aunque esté mal redactado, responde con el tono de tu negocio y sostiene la conversación. Y cuando algo se sale de lo que sabe, no inventa: te lo pasa a ti al instante.</p>
-    </details>
-    <details class="faq-item reveal">
-      <summary>¿Puedo probarlo antes de pagar?</summary>
-      <p>Sí, y es como prefiero trabajar. Te armo el agente con la información real de tu negocio y te paso un número para que le escribas desde tu celular y platiques con él. Si te convence, lo dejamos trabajando. Si no, no perdiste nada.</p>
-    </details>
-    <details class="faq-item reveal">
-      <summary>¿Necesito cambiar mi número de WhatsApp?</summary>
-      <p>No. El agente trabaja con el número de tu negocio y tú sigues viendo todas las conversaciones. En cualquier momento puedes entrar y tomar el control del chat tú mismo; el agente se hace a un lado.</p>
-    </details>
-    <details class="faq-item reveal">
-      <summary>¿Qué pasa después de que me entregas la página?</summary>
-      <p>No desaparezco. Te explico cómo usarla y quedo al pendiente por WhatsApp para cualquier duda. Si más adelante quieres cambios o que tu página aparezca más arriba en Google, también te puedo ayudar con eso.</p>
-    </details>
-  </div>
-</section>
-
-<section id="contacto">
-  <div class="contact-bg-text">HOLA</div>
-  <div class="contact-inner">
-    <div>
-      <h2 class="contact-title reveal">
-        ¿LISTO<br>PARA<br><em>CRECER?</em>
-      </h2>
-      <div class="contact-info">
-        <div class="contact-info-item">
-          <span class="contact-info-label">Teléfono / WhatsApp</span>
-          <span class="contact-info-value">
-            <a href="https://wa.me/526142251419">614 225 1419</a>
-          </span>
+    <form class="agenda__form" data-agenda data-whatsapp="https://wa.me/526142251419">
+      <fieldset>
+        <legend>¿Cómo prefieres?</legend>
+        <div class="agenda__chips">
+          <label><input type="radio" name="modo" value="En mi negocio" checked><span><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /> <circle cx="12" cy="10" r="3" /> </svg> En tu negocio</span></label>
+          <label><input type="radio" name="modo" value="Videollamada"><span><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="12" cy="12" r="10" /> <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /> <path d="M2 12h20" /> </svg> Videollamada</span></label>
+          <label><input type="radio" name="modo" value="Llamada"><span><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /> </svg> Llamada</span></label>
         </div>
-        <div class="contact-info-item">
-          <span class="contact-info-label">Correo</span>
-          <span class="contact-info-value">
-            <a href="mailto:contacto.noelstudio@gmail.com">contacto.noelstudio@gmail.com</a>
-          </span>
+      </fieldset>
+      <fieldset>
+        <legend>Día</legend>
+        <div class="agenda__dias" data-agenda-dias><p class="agenda__sinjs">Escríbeme por WhatsApp y te doy fecha.</p></div>
+      </fieldset>
+      <fieldset>
+        <legend>Hora</legend>
+        <div class="agenda__chips agenda__horas">
+          <label><input type="radio" name="hora" value="10:00 a.m." required><span>10:00</span></label>
+          <label><input type="radio" name="hora" value="12:00 p.m."><span>12:00</span></label>
+          <label><input type="radio" name="hora" value="4:00 p.m."><span>4:00 p.m.</span></label>
+          <label><input type="radio" name="hora" value="6:00 p.m."><span>6:00 p.m.</span></label>
         </div>
-        <div class="contact-info-item">
-          <span class="contact-info-label">Ubicación</span>
-          <span class="contact-info-value">Chihuahua, México</span>
+      </fieldset>
+      <fieldset>
+        <legend>¿Qué te interesa? <small>Puedes elegir varios</small></legend>
+        <div class="agenda__chips agenda__chips--varios">
+          <label><input type="checkbox" name="interes" value="Llamadas con IA"><span>Llamadas</span></label>
+          <label><input type="checkbox" name="interes" value="WhatsApp automático"><span>WhatsApp</span></label>
+          <label><input type="checkbox" name="interes" value="Página web"><span>Página web</span></label>
+          <label><input type="checkbox" name="interes" value="Creativos"><span>Videos y diseño</span></label>
+          <label><input type="checkbox" name="interes" value="Tarjetas NFC"><span>Tarjetas NFC</span></label>
+          <label><input type="checkbox" name="interes" value="Todavía no sé"><span>No sé todavía</span></label>
         </div>
-        <div class="contact-info-item">
-          <span class="contact-info-label">Disponibilidad</span>
-          <span class="contact-info-value">Lun – Sáb · 8am – 9pm</span>
-        </div>
-        <div class="contact-info-item">
-          <span class="contact-info-label">Sígueme</span>
-          <span class="contact-info-value">
-            <div class="social-links">
-              <a href="https://www.instagram.com/noelstudioweb" target="_blank" rel="noopener" aria-label="Instagram">
-                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-              </a>
-              <a href="https://www.facebook.com/profile.php?id=61589966980458" target="_blank" rel="noopener" aria-label="Facebook">
-                <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-              </a>
-              <a href="https://www.tiktok.com/@noelstudio_" target="_blank" rel="noopener" aria-label="TikTok">
-                <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
-              </a>
-            </div>
-          </span>
-        </div>
+      </fieldset>
+      <div class="agenda__campos">
+        <label>Tu nombre<input name="nombre" autocomplete="name" required></label>
+        <label>Tu negocio<input name="negocio" autocomplete="organization" required></label>
+        <label class="agenda__direccion" data-agenda-direccion>Dirección del negocio<input name="direccion" autocomplete="street-address" placeholder="Calle, número y colonia"></label>
       </div>
-      <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20un%20agente%20de%20IA%20para%20mi%20negocio.%20%C2%BFMe%20pasas%20informaci%C3%B3n%3F"
-         class="btn-submit">
-        Escribir por WhatsApp
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
-      </a>
-    </div>
-    <form class="contact-form reveal" onsubmit="sendWhatsApp(event)">
-      <div class="form-field">
-        <label for="fname">Tu nombre</label>
-        <input type="text" id="fname" name="nombre" autocomplete="name" placeholder="Nombre completo" required>
-      </div>
-      <div class="form-field">
-        <label for="fbusiness">Tu negocio</label>
-        <input type="text" id="fbusiness" name="negocio" autocomplete="organization" placeholder="Nombre de tu negocio">
-      </div>
-      <div class="form-field">
-        <label for="fmessage">¿Qué necesitas?</label>
-        <textarea id="fmessage" name="mensaje" placeholder="Ej: Tengo un salón y no me doy abasto contestando WhatsApp…"></textarea>
-      </div>
-      <button type="submit" class="btn-submit">
-        Enviar por WhatsApp
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
-      </button>
+      <button class="btn btn--solido" type="submit"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /> </svg> Pedir mi visita</button>
+      <p class="agenda__nota">Te llega el mensaje listo a WhatsApp. Yo te confirmo el horario.</p>
     </form>
   </div>
 </section>
 
-<footer>
-  <div class="footer-top">
-    <div class="footer-col">
-      <div class="footer-brand">NOEL STUDIO</div>
-      <p class="footer-tagline">Inteligencia artificial para negocios en Chihuahua. Agentes que atienden tu WhatsApp y tus llamadas 24/7, agendan citas y toman pedidos. También diseño web.</p>
-      <div class="social-links footer-social">
-        <a href="https://www.instagram.com/noelstudioweb" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </a>
-        <a href="https://www.tiktok.com/@noelstudio_" target="_blank" rel="noopener" aria-label="TikTok">
-          <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
-        </a>
-        <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20un%20agente%20de%20IA%20para%20mi%20negocio" target="_blank" rel="noopener" aria-label="WhatsApp">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        </a>
-      </div>
+<section class="contacto" id="contacto" data-mundo="lectura">
+  <div class="contenedor contacto__rejilla">
+    <div>
+      <h2 data-aparece>Cuéntame de tu negocio.</h2>
+      <ul class="contacto__datos">
+        <li><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /> </svg><a href="https://wa.me/526142251419">WhatsApp · 614 225 1419</a></li>
+        <li><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="20" height="16" x="2" y="4" rx="2" /> <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /> </svg><a href="mailto:contacto.noelstudio@gmail.com">contacto.noelstudio@gmail.com</a></li>
+        <li><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /> <circle cx="12" cy="10" r="3" /> </svg><span>Chihuahua, México · Atiendo todo México</span></li>
+      </ul>
     </div>
-    <div class="footer-col">
-      <span class="footer-heading">Navegación</span>
-      <a href="index.html">Inicio</a>
-      <a href="agentes-ia.html">Agentes de IA</a>
-      <a href="paginas-web.html">Páginas web</a>
-      <a href="portafolio.html">Portafolio</a>
-      <a href="contacto.html">Contacto</a>
-    </div>
-    <div class="footer-col">
-      <span class="footer-heading">Contacto</span>
-      <a href="https://wa.me/526142251419?text=Hola,%20me%20interesa%20un%20agente%20de%20IA%20para%20mi%20negocio.%20%C2%BFMe%20pasas%20informaci%C3%B3n%3F" target="_blank" rel="noopener">WhatsApp · 614 225 1419</a>
-      <a href="mailto:contacto.noelstudio@gmail.com">contacto.noelstudio@gmail.com</a>
-      <span class="footer-muted">Chihuahua, México</span>
+    <form class="formulario" data-formulario data-whatsapp="https://wa.me/526142251419">
+      <label>Tu nombre<input name="nombre" autocomplete="name" required></label>
+      <label>Tu negocio<input name="negocio" autocomplete="organization" required></label>
+      <label>¿Qué necesitas?<textarea name="mensaje" rows="3" required></textarea></label>
+      <button class="btn btn--solido" type="submit">Enviar por WhatsApp</button>
+    </form>
+  </div>
+</section>
+
+<section class="raul" data-mundo="lectura">
+  <div class="contenedor raul__rejilla">
+    <h2 data-aparece>Hablas conmigo. No con una agencia.</h2>
+    <div>
+      <p>Soy Raúl, de Chihuahua. Estudio ingeniería en inteligencia artificial y construyo lo que vendo.</p>
+      <p>Trabajo de cerca contigo, te explico todo en español claro y quedo al pendiente después de entregarte.</p>
+      <ul class="raul__datos">
+        <li><strong>5.0</strong><span>en Google, reseñas reales</span></li>
+        <li><strong>1 a 1</strong><span>trato directo, sin intermediarios</span></li>
+        <li><strong>614</strong><span>de Chihuahua para todo México</span></li>
+      </ul>
     </div>
   </div>
-  <div class="footer-bottom">
-    <div class="footer-copy">© 2026 Noel Studio · Todos los derechos reservados</div>
-    <a href="#top" class="footer-top-link">Volver arriba ↑</a>
+</section>
+
+<section class="preguntas" id="preguntas" data-mundo="tenue">
+  <div class="contenedor preguntas__rejilla">
+    <h2 data-aparece>Lo que más me preguntan.</h2>
+    <div class="acordeon">
+      <details open data-tema="agentes"><summary>¿Qué es un agente de inteligencia artificial?</summary><p>Es un asistente entrenado con la información de tu negocio: precios, servicios, horarios y ubicación. Atiende a tus clientes por teléfono o WhatsApp y te avisa lo importante.</p></details>
+      <details data-tema="agentes"><summary>¿En qué se diferencia de un menú automático?</summary><p>Un menú te obliga a oprimir opciones. Un agente entiende lo que la persona dice con sus propias palabras y responde con la información real de tu negocio.</p></details>
+      <details data-tema="agentes"><summary>¿Cuánto cuesta?</summary><p>El agente de WhatsApp arranca en 1,799 pesos al mes y el de llamadas en 2,999 pesos al mes, más instalación. El de llamadas se cobra por minutos: el plan Inicio trae 500 minutos, unas 8 llamadas al día.</p></details>
+      <details data-tema="web"><summary>¿Cuánto cuesta una página web?</summary><p>Una página de presentación arranca en 4,500 pesos, un sitio completo en 6,900 pesos y una página Studio con tienda y terminal de pago en 10,000 pesos. También hay plan mensual desde 599 pesos.</p></details>
+      <details data-tema="agentes"><summary>¿Sirve para mi tipo de negocio?</summary><p>Sirve para negocios que reciben llamadas o mensajes y no siempre alcanzan a responder: talleres, veterinarias, consultorios, salones y restaurantes, entre otros.</p></details>
+      <details data-tema="general"><summary>¿Necesito saber de tecnología?</summary><p>No. Yo lo configuro, lo entreno con la información de tu negocio y te explico cómo funciona. Si algo cambia, me escribes y yo lo cambio.</p></details>
+      <details data-tema="agentes"><summary>¿Se nota que es inteligencia artificial?</summary><p>Sí. Se presenta como asistente de inteligencia artificial. No suena a una grabación de “marque 1”: entiende a la persona y sostiene la conversación.</p></details>
+      <details data-tema="agentes"><summary>¿Qué pasa si no sabe algo?</summary><p>No inventa. Toma el recado para que tú des seguimiento.</p></details>
+      <details data-tema="agentes"><summary>¿Puedo probarlo antes de pagar?</summary><p>Sí. Lo armo con la información de tu negocio para que lo pruebes. Si te convence, lo dejamos trabajando.</p></details>
+      <details data-tema="agentes"><summary>¿Tengo que cambiar mi número?</summary><p>Revisamos tu línea y te digo cuál es la mejor forma de conectarlo con tu negocio.</p></details>
+      <details data-tema="general"><summary>¿Qué pasa después de la entrega?</summary><p>Te explico cómo usarlo y quedo al pendiente. Si quieres cambios o crecer en Google, también te puedo ayudar.</p></details>
+      <details data-tema="general"><summary>¿Solo trabajas en Chihuahua?</summary><p>Soy de Chihuahua, pero el trabajo se hace en línea, así que puedo atender negocios de cualquier parte de México.</p></details>
+      <details data-tema="web"><summary>¿La página queda a mi nombre?</summary><p>Sí. El dominio queda a tu nombre y la página es tuya. Si algún día quieres moverte, te la llevas.</p></details>
+      <details data-tema="web"><summary>¿Cuánto tarda una página?</summary><p>Entre 1 y 21 días, según el paquete. Te doy la fecha antes de empezar y te muestro avances.</p></details>
+    </div>
   </div>
+</section>
+
+</main>
+<footer class="pie">
+  <div class="contenedor pie__banda">
+    <p><strong>¿Listo para que tu negocio conteste siempre?</strong><span>Te digo qué te conviene en una plática corta.</span></p>
+    <a class="btn btn--solido" href="https://wa.me/526142251419?text=Hola,%20quiero%20informaci%C3%B3n"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /> </svg> Escribir por WhatsApp</a>
+  </div>
+  <div class="contenedor pie__rejilla">
+    <div>
+      <p class="pie__marca">NOEL STUDIO</p>
+      <p>Inteligencia artificial y páginas web para negocios.</p>
+      <p class="pie__lugar"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /> <circle cx="12" cy="10" r="3" /> </svg> Chihuahua, México · Atiendo todo México</p>
+    </div>
+    <nav aria-label="Páginas">
+      <a href="llamadas.html">Llamadas con IA</a>
+      <a href="whatsapp.html">WhatsApp automático</a>
+      <a href="paginas-web.html">Presencia web</a>
+      <a href="creativos.html">Estudio creativo</a>
+      <a href="tarjetas-nfc.html">Tarjetas NFC</a>
+      <a href="index.html#portafolio">Proyectos</a>
+    </nav>
+    <div>
+      <a href="https://wa.me/526142251419"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /> </svg> WhatsApp · 614 225 1419</a>
+      <a href="mailto:contacto.noelstudio@gmail.com"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="20" height="16" x="2" y="4" rx="2" /> <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /> </svg> contacto.noelstudio@gmail.com</a>
+      <a href="https://www.instagram.com/noelstudioweb">Instagram</a>
+      <a href="https://www.tiktok.com/@noelstudio_">TikTok</a>
+    </div>
+  </div>
+  <p class="contenedor pie__legal"><span>© 2026 Noel Studio</span><span>Hecho en Chihuahua con inteligencia artificial</span></p>
 </footer>
 
-<!-- WhatsApp flotante -->
-<a href="https://wa.me/526142251419" class="wa-float" target="_blank" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-</a>
+<nav class="barra-movil" data-barra-movil aria-label="Accesos rápidos">
+  <button class="btn btn--linea" type="button" data-agente-abrir-extra>¿Dudas?</button>
+  <a class="btn btn--solido" href="https://wa.me/526142251419?text=Hola,%20quiero%20un%20agente%20para%20mi%20negocio">Escribir</a>
+</nav>
 
-<script defer src="assets/site.js?v=14"></script>
+<!-- Vista previa: todavia no hay un modelo conectado. Antes de publicar, conectarlo o cambiar el texto. -->
+<button class="agente-boton" type="button" data-agente-abrir aria-haspopup="dialog">
+  <span class="agente-boton__luz" aria-hidden="true"></span>
+  <span class="agente-boton__largo">¿No sabes qué buscas?</span>
+  <span class="agente-boton__corto">¿Dudas?</span>
+</button>
+<dialog class="agente" data-panel-agente aria-labelledby="agente-titulo">
+  <header class="agente__cabeza">
+    <div>
+      <h2 id="agente-titulo" tabindex="-1" autofocus>Habla con nuestro agente de inteligencia artificial</h2>
+      <p>Vista previa. Muy pronto contestará en vivo.</p>
+    </div>
+    <button class="agente__cerrar" type="button" data-agente-cerrar aria-label="Cerrar">×</button>
+  </header>
+  <p class="agente__globo">¿No sabes lo que buscas? Dime qué necesitas y te llevo a la opción correcta.</p>
+  <div class="agente__opciones">
+    <button type="button" data-destino="llamadas.html#planes">Que contesten mis llamadas</button>
+    <button type="button" data-destino="whatsapp.html">Atender mi WhatsApp</button>
+    <button type="button" data-destino="paginas-web.html">Una página web</button>
+    <button type="button" data-destino="creativos.html">Videos y diseño</button>
+    <button type="button" data-destino="tarjetas-nfc.html">Tarjetas NFC</button>
+    <button type="button" data-destino="contacto.html#contacto">No sé qué necesito</button>
+  </div>
+  <form class="agente__campo" data-agente-formulario data-whatsapp="https://wa.me/526142251419">
+    <label class="oculto" for="agente-mensaje">Escribe tu duda</label>
+    <input id="agente-mensaje" name="mensaje" placeholder="Escribe tu duda" autocomplete="off" required>
+    <button class="btn btn--solido" type="submit">Enviar</button>
+  </form>
+</dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" integrity="sha384-P8VzCVnT9NBUkMrpcIZrJbA7EBjJvh/fJS6PmP+4nLIM284DtsImIv8D0fFjIkeh" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js" integrity="sha384-xb96EMJeax+NLXMC88ZBa1xAeAW+kn+horHh/zFlbMLG2UPWhMJJSlv7fi57hS+Q" crossorigin="anonymous" defer></script>
+<script src="sitio.js?v=1794351478" defer></script>
 </body>
 </html>
