@@ -33,7 +33,7 @@
 <link rel="preload" href="../assets/fonts/unbounded-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fuentes/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
-<link rel="stylesheet" href="sitio.css?v=1794348909">
+<link rel="stylesheet" href="sitio.css?v=1794349192">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": []}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Noel Studio","description":"Agentes de inteligencia artificial para llamadas y WhatsApp, y páginas web para negocios.","telephone":"+526142251419","email":"contacto.noelstudio@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Chihuahua","addressRegion":"Chihuahua","addressCountry":"MX"},"areaServed":"MX","sameAs":["https://www.instagram.com/noelstudioweb","https://www.tiktok.com/@noelstudio_"]}</script>
 </head>
@@ -101,11 +101,18 @@
 </section>
 
 <section class="problema" data-mundo="lectura">
-  <div class="contenedor">
-    <h2 data-aparece>El cliente al que no le contestas <em>le marca al de al lado.</em></h2>
-    <div class="problema__columnas">
-      <p>Estás con un cliente, debajo de un carro o ya cerraste. Suena el teléfono y nadie alcanza a contestar.</p>
-      <p>La llamada perdida no deja rastro: no sabes quién era ni qué quería. Tu agente contesta, atiende y te avisa.</p>
+  <div class="contenedor problema__rejilla">
+    <div>
+      <h2 data-aparece>El cliente al que no le contestas <em>le marca al de al lado.</em></h2>
+      <p class="problema__texto">Estás con un cliente, debajo de un carro o ya cerraste. Suena el teléfono y nadie alcanza. Esa llamada no deja rastro: no sabes quién era ni qué quería.</p>
+    </div>
+    <div class="aviso-pila" aria-label="Ejemplo de llamadas perdidas contra llamadas atendidas">
+      <p class="aviso-pila__titulo">Hoy, sin agente</p>
+      <div class="aviso aviso--perdida"><span class="aviso__icono"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /> </svg></span><p><strong>Llamada perdida</strong><span>614 ••• 2231</span></p><time>1:42 p.m.</time></div>
+      <div class="aviso aviso--perdida"><span class="aviso__icono"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /> </svg></span><p><strong>Llamada perdida</strong><span>614 ••• 8810</span></p><time>2:05 p.m.</time></div>
+      <div class="aviso aviso--perdida"><span class="aviso__icono"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /> </svg></span><p><strong>Llamada perdida</strong><span>Número desconocido</span></p><time>7:48 p.m.</time></div>
+      <p class="aviso-pila__titulo aviso-pila__titulo--con">Hoy, con Claudia</p>
+      <div class="aviso aviso--atendida"><span class="aviso__icono"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="12" cy="12" r="10" /> <path d="m9 12 2 2 4-4" /> </svg></span><p><strong>Claudia atendió 3 llamadas</strong><span>2 citas apartadas · 1 pedido de $236 en tu tableta</span></p><time>ahora</time></div>
     </div>
   </div>
 </section>
@@ -219,6 +226,11 @@
 <section class="cierre" data-mundo="pleno">
   <div class="contenedor">
     <h2 data-aparece>Que la siguiente llamada sí se conteste.</h2>
+    <p class="cierre__texto">Te armo una prueba con la información de tu negocio para que la escuches antes de pagar.</p>
+    <div class="cierre__acciones">
+      <a class="btn btn--solido" href="https://wa.me/526142251419?text=Hola,%20quiero%20una%20prueba%20con%20mi%20negocio"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /> </svg> Quiero mi prueba</a>
+      <a class="btn btn--linea" href="tel:+526142251419"><svg class="icono" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /> </svg> 614 225 1419</a>
+    </div>
   </div>
 </section>
 
@@ -291,6 +303,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
-<script src="sitio.js?v=1794348909" defer></script>
+<script src="sitio.js?v=1794349192" defer></script>
 </body>
 </html>

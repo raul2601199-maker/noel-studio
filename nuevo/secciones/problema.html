@@ -14,11 +14,18 @@
   ──────── by Raúl · Chihuahua, MX ────────
 -->
 <section class="problema" data-mundo="lectura">
-  <div class="contenedor">
-    <h2 data-aparece>El cliente al que no le contestas <em>le marca al de al lado.</em></h2>
-    <div class="problema__columnas">
-      <p>Estás con un cliente, debajo de un carro o ya cerraste. Suena el teléfono y nadie alcanza a contestar.</p>
-      <p>La llamada perdida no deja rastro: no sabes quién era ni qué quería. Tu agente contesta, atiende y te avisa.</p>
+  <div class="contenedor problema__rejilla">
+    <div>
+      <h2 data-aparece>El cliente al que no le contestas <em>le marca al de al lado.</em></h2>
+      <p class="problema__texto">Estás con un cliente, debajo de un carro o ya cerraste. Suena el teléfono y nadie alcanza. Esa llamada no deja rastro: no sabes quién era ni qué quería.</p>
+    </div>
+    <div class="aviso-pila" aria-label="Ejemplo de llamadas perdidas contra llamadas atendidas">
+      <p class="aviso-pila__titulo">Hoy, sin agente</p>
+      <div class="aviso aviso--perdida"><span class="aviso__icono">{{ICONO:phone}}</span><p><strong>Llamada perdida</strong><span>614 ••• 2231</span></p><time>1:42 p.m.</time></div>
+      <div class="aviso aviso--perdida"><span class="aviso__icono">{{ICONO:phone}}</span><p><strong>Llamada perdida</strong><span>614 ••• 8810</span></p><time>2:05 p.m.</time></div>
+      <div class="aviso aviso--perdida"><span class="aviso__icono">{{ICONO:phone}}</span><p><strong>Llamada perdida</strong><span>Número desconocido</span></p><time>7:48 p.m.</time></div>
+      <p class="aviso-pila__titulo aviso-pila__titulo--con">Hoy, con Claudia</p>
+      <div class="aviso aviso--atendida"><span class="aviso__icono">{{ICONO:circle-check}}</span><p><strong>Claudia atendió 3 llamadas</strong><span>2 citas apartadas · 1 pedido de $236 en tu tableta</span></p><time>ahora</time></div>
     </div>
   </div>
 </section>
