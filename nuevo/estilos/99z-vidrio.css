@@ -1,0 +1,40 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+*/
+/* Planes de llamadas en vidrio (glass): transparentes, con desenfoque del tunel detras.
+   Solo en la seccion .planes de la pagina de llamadas. */
+.planes .plan {
+  color: var(--blanco);
+  background: linear-gradient(160deg, rgba(255, 255, 255, .11), rgba(255, 255, 255, .03) 60%);
+  border: 1px solid rgba(255, 255, 255, .16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22), 0 18px 40px rgba(0, 0, 0, .35);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+}
+.planes .plan--destacado {
+  background: linear-gradient(160deg, rgba(77, 255, 154, .16), rgba(255, 255, 255, .04) 65%);
+  border-color: rgba(77, 255, 154, .55);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .28), 0 0 0 1px rgba(77, 255, 154, .25), 0 0 40px rgba(77, 255, 154, .14), 0 18px 40px rgba(0, 0, 0, .35);
+}
+.planes .plan--destacado .plan__precio { color: var(--acento); }
+.planes .plan--destacado li::before { background: var(--acento); }
+.planes .plan--destacado .btn--solido { color: var(--negro); background: var(--blanco); }
+/* Sin soporte de desenfoque: un poco mas solido para que se lea. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .planes .plan { background: rgba(20, 22, 30, .88); }
+}
+@media (max-width: 860px) {
+  .planes .plan { -webkit-backdrop-filter: blur(12px) saturate(140%); backdrop-filter: blur(12px) saturate(140%); }
+}
