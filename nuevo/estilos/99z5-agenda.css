@@ -1,0 +1,55 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+*/
+/* Agenda de visita: chips para elegir modo, dia y hora; arma el mensaje de WhatsApp. */
+.agenda { padding-block: var(--seccion); }
+.agenda__rejilla { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(28px, 5vw, 80px); align-items: start; }
+.agenda__texto p { max-width: 40ch; margin-top: 18px; color: var(--texto-suave); font-size: 1.06rem; }
+.agenda__pasos { display: grid; gap: 10px; margin-top: 26px; padding: 0; }
+.agenda__pasos li { display: flex; align-items: center; gap: 12px; color: var(--texto-suave); }
+.agenda__pasos span { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 9px; font-weight: 700; color: var(--acento); background: rgba(77, 255, 154, .1); border: 1px solid rgba(77, 255, 154, .35); }
+.agenda__form { display: grid; gap: 20px; padding: clamp(18px, 3vw, 30px); background: linear-gradient(160deg, rgba(40, 44, 56, .8), rgba(12, 13, 18, .9)); border: 1px solid rgba(255, 255, 255, .13); border-radius: 22px; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14), 0 30px 60px rgba(0, 0, 0, .4); }
+.agenda__form fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
+.agenda__form legend { margin-bottom: 10px; padding: 0; font-weight: 700; }
+.agenda__form legend small { margin-left: 6px; font-weight: 400; color: var(--gris); font-size: .85rem; }
+.agenda__chips, .agenda__dias { display: flex; flex-wrap: wrap; gap: 8px; }
+.agenda__dias { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+.agenda__dias::-webkit-scrollbar { display: none; }
+.agenda__form label:has(> input[type="radio"]), .agenda__form label:has(> input[type="checkbox"]) { position: relative; }
+.agenda__form input[type="radio"], .agenda__form input[type="checkbox"] { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.agenda__chips span, .agenda__dias span { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 14px; color: var(--texto-suave); background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .14); border-radius: 12px; cursor: pointer; transition: border-color .2s var(--curva), background-color .2s var(--curva), color .2s var(--curva); }
+.agenda__dias span { flex-direction: column; gap: 0; min-width: 64px; padding: 8px 10px; line-height: 1.15; }
+.agenda__dias small { font-size: .74rem; letter-spacing: .06em; text-transform: uppercase; color: var(--gris); }
+.agenda__dias b { font: 700 1.25rem/1.1 'Unbounded', sans-serif; color: var(--blanco); }
+.agenda__form input:checked + span { color: var(--blanco); background: rgba(77, 255, 154, .12); border-color: var(--acento); box-shadow: 0 0 18px rgba(77, 255, 154, .15); }
+.agenda__form input:checked + span small { color: var(--acento); }
+.agenda__form input:focus-visible + span { outline: 2px solid var(--acento); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .agenda__chips span:hover, .agenda__dias span:hover { border-color: rgba(255, 255, 255, .35); } }
+.agenda__chips .icono { color: var(--acento); }
+.agenda__campos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.agenda__campos label { display: grid; gap: 7px; font-weight: 600; }
+.agenda__direccion { grid-column: 1 / -1; }
+.agenda__direccion[hidden] { display: none; }
+.agenda__campos input { width: 100%; min-height: 50px; padding: 12px 14px; color: var(--blanco); background: rgba(3, 3, 5, .7); border: 1px solid rgba(255, 255, 255, .16); border-radius: 12px; font: inherit; font-size: 16px; }
+.agenda__campos input:focus { outline: none; border-color: var(--acento); }
+.agenda__form > .btn { width: 100%; cursor: pointer; }
+.agenda__nota, .agenda__sinjs { margin: -8px 0 0; color: var(--gris); font-size: .88rem; text-align: center; }
+.agenda__sinjs { margin: 0; text-align: left; }
+.agenda__error { margin: -6px 0 0; color: #ff8a8a; font-size: .9rem; text-align: center; }
+@media (max-width: 860px) {
+  .agenda__rejilla { grid-template-columns: 1fr; }
+  .agenda__campos { grid-template-columns: 1fr; }
+  .agenda__dias { margin-inline: -18px; padding-inline: 18px; }
+}

@@ -94,7 +94,7 @@ PAGINAS = {
         "descripcion": "Habla con Raúl de Noel Studio por WhatsApp o correo. Chihuahua, México.",
         "icono": "mail",
         "cabecera": ("Contacto", "Hablemos de tu negocio.", "Escríbeme por WhatsApp o déjame tus datos. Te digo qué te conviene y cuánto cuesta."),
-        "secciones": ["contacto", "raul", "preguntas"],
+        "secciones": ["agenda", "contacto", "raul", "preguntas"],
         "temas": ["agentes", "web", "general"],
     },
 }

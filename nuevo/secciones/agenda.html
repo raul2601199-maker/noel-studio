@@ -1,0 +1,69 @@
+<!--
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+-->
+<section class="agenda" id="agenda" data-mundo="lectura">
+  <div class="contenedor agenda__rejilla">
+    <div class="agenda__texto">
+      <h2 data-aparece>Agenda una visita.</h2>
+      <p>Voy a tu negocio, veo cómo atiendes hoy y te digo qué te conviene. Sin costo y sin compromiso. También puede ser por videollamada.</p>
+      <ul class="agenda__pasos">
+        <li><span>1</span>Elige día y hora</li>
+        <li><span>2</span>Te confirmo por WhatsApp</li>
+        <li><span>3</span>Platicamos 20 minutos</li>
+      </ul>
+    </div>
+    <form class="agenda__form" data-agenda data-whatsapp="{{WA}}">
+      <fieldset>
+        <legend>¿Cómo prefieres?</legend>
+        <div class="agenda__chips">
+          <label><input type="radio" name="modo" value="En mi negocio" checked><span>{{ICONO:map-pin}} En tu negocio</span></label>
+          <label><input type="radio" name="modo" value="Videollamada"><span>{{ICONO:globe}} Videollamada</span></label>
+          <label><input type="radio" name="modo" value="Llamada"><span>{{ICONO:phone}} Llamada</span></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Día</legend>
+        <div class="agenda__dias" data-agenda-dias><p class="agenda__sinjs">Escríbeme por WhatsApp y te doy fecha.</p></div>
+      </fieldset>
+      <fieldset>
+        <legend>Hora</legend>
+        <div class="agenda__chips agenda__horas">
+          <label><input type="radio" name="hora" value="10:00 a.m." required><span>10:00</span></label>
+          <label><input type="radio" name="hora" value="12:00 p.m."><span>12:00</span></label>
+          <label><input type="radio" name="hora" value="4:00 p.m."><span>4:00 p.m.</span></label>
+          <label><input type="radio" name="hora" value="6:00 p.m."><span>6:00 p.m.</span></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>¿Qué te interesa? <small>Puedes elegir varios</small></legend>
+        <div class="agenda__chips agenda__chips--varios">
+          <label><input type="checkbox" name="interes" value="Llamadas con IA"><span>Llamadas</span></label>
+          <label><input type="checkbox" name="interes" value="WhatsApp automático"><span>WhatsApp</span></label>
+          <label><input type="checkbox" name="interes" value="Página web"><span>Página web</span></label>
+          <label><input type="checkbox" name="interes" value="Creativos"><span>Videos y diseño</span></label>
+          <label><input type="checkbox" name="interes" value="Tarjetas NFC"><span>Tarjetas NFC</span></label>
+          <label><input type="checkbox" name="interes" value="Todavía no sé"><span>No sé todavía</span></label>
+        </div>
+      </fieldset>
+      <div class="agenda__campos">
+        <label>Tu nombre<input name="nombre" autocomplete="name" required></label>
+        <label>Tu negocio<input name="negocio" autocomplete="organization" required></label>
+        <label class="agenda__direccion" data-agenda-direccion>Dirección del negocio<input name="direccion" autocomplete="street-address" placeholder="Calle, número y colonia"></label>
+      </div>
+      <button class="btn btn--solido" type="submit">{{ICONO:message-circle}} Pedir mi visita</button>
+      <p class="agenda__nota">Te llega el mensaje listo a WhatsApp. Yo te confirmo el horario.</p>
+    </form>
+  </div>
+</section>
