@@ -431,6 +431,13 @@ html.viaje .chat-wa { background: transparent; }
 }
 /* La regla de cabecera oculta el primer titulo de la seccion; aqui si se necesita. */
 .cabecera + .linea-servicio.nfc .linea-servicio__cabeza { display: block; }
+/* Botones para cambiar el diseño que se imprime (marca propia o reseñas de Google). */
+.nfc-escena__diseno[hidden] { display: none; }
+.nfc-escena__opciones { position: absolute; left: 50%; bottom: 2%; translate: -50% 0; display: flex; gap: 6px; padding: 5px; background: rgba(14, 15, 21, .85); border: 1px solid rgba(255, 255, 255, .12); border-radius: 999px; z-index: 2; }
+.nfc-escena__opciones button { padding: 9px 16px; font: inherit; font-size: .88rem; font-weight: 600; color: var(--texto-suave); background: none; border: 0; border-radius: 999px; cursor: pointer; white-space: nowrap; transition: background-color .2s var(--curva), color .2s var(--curva); }
+.nfc-escena__opciones button[aria-pressed="true"] { color: var(--negro); background: var(--acento); }
+.nfc-escena__opciones button:active { scale: .97; }
+@media (max-width: 860px) { .nfc-escena__opciones button { padding: 8px 12px; font-size: .82rem; } }
 
 .proceso { position: relative; z-index: 1; min-height: 100svh; display: flex; align-items: center; padding-block: var(--seccion); background: var(--negro); }
 .pasos { counter-reset: paso; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(26px, 4vw, 54px); margin-top: clamp(38px, 5vw, 66px); }

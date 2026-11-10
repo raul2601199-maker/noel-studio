@@ -47,5 +47,15 @@
   addEventListener('pointercancel', () => { arrastrando = false; });
   // Teclado: flechas sobre el control oculto.
   control.addEventListener('input', () => { escena.classList.add('ya-movio'); pintar(control.value / 100); });
+  // Cambiar entre diseño propio y reseñas de Google; se muestra completo al elegir.
+  const disenos = escena.querySelectorAll('[data-diseno]');
+  escena.querySelectorAll('[data-ver]').forEach((boton) => {
+    boton.addEventListener('click', () => {
+      disenos.forEach((img) => { img.hidden = img.dataset.diseno !== boton.dataset.ver; });
+      escena.querySelectorAll('[data-ver]').forEach((b) => b.setAttribute('aria-pressed', String(b === boton)));
+      escena.classList.add('ya-movio');
+      pintar(1);
+    });
+  });
   pintar(0.15);
 })();
