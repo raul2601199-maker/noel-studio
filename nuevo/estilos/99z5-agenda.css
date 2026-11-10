@@ -53,3 +53,8 @@
   .agenda__campos { grid-template-columns: 1fr; }
   .agenda__dias { margin-inline: -18px; padding-inline: 18px; }
 }
+
+/* reCAPTCHA: se oculta el sello flotante (tapaba el boton de ayuda) y se muestra el aviso legal junto a la llamada. */
+.grecaptcha-badge { visibility: hidden !important; }
+.prueba__legal { margin-top: 8px; font-size: .78rem; color: var(--gris); }
+.prueba__legal a { color: inherit; text-decoration: underline; }

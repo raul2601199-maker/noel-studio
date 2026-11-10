@@ -870,6 +870,11 @@ main:has(.cierre) + .pie .pie__banda, main:has(.cierre) ~ .pie .pie__banda { dis
   .agenda__dias { margin-inline: -18px; padding-inline: 18px; }
 }
 
+/* reCAPTCHA: se oculta el sello flotante (tapaba el boton de ayuda) y se muestra el aviso legal junto a la llamada. */
+.grecaptcha-badge { visibility: hidden !important; }
+.prueba__legal { margin-top: 8px; font-size: .78rem; color: var(--gris); }
+.prueba__legal a { color: inherit; text-decoration: underline; }
+
 /* Estudio creativo: reel en celulares, feed tipo Instagram y precios en tarjetas. */
 .estudio { padding-top: clamp(24px, 4vw, 48px); }
 .estudio__etiqueta { margin: 0 0 12px; font-size: .78rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--acento); }
