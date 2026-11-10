@@ -1,0 +1,60 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+*/
+/* Botones y menu con identidad propia: esquinas de tablilla (no pastilla),
+   flecha que avanza al pasar el mouse, brillo LED verde y vidrio. */
+
+/* ---------- Botones ---------- */
+.btn { position: relative; gap: 12px; border-radius: 14px; letter-spacing: .01em; isolation: isolate;
+  transition: transform .2s var(--curva), background-color .25s var(--curva), color .25s var(--curva), border-color .25s var(--curva), box-shadow .25s var(--curva); }
+/* Flecha en un cuadrito: solo en botones que no traen su propio icono. */
+.btn:not(:has(svg))::after { content: "→"; display: grid; place-items: center; flex: none; width: 28px; height: 28px; margin-right: -12px; border-radius: 9px; font-size: 1rem; line-height: 1; background: color-mix(in srgb, currentColor 12%, transparent); transition: transform .3s var(--curva), background-color .25s; }
+.btn .icono { transition: transform .3s var(--curva); }
+
+/* Solido: blanco; al pasar se enciende en verde LED. */
+.btn--solido { background: var(--blanco); color: var(--negro); border-color: var(--blanco); box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .12); }
+
+/* Linea: vidrio con borde fino. */
+.btn--linea, button.btn--linea { color: var(--blanco); background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .22); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+
+@media (hover: hover) and (pointer: fine) {
+  .btn--solido:hover { background: var(--acento); border-color: var(--acento); color: #02140a; box-shadow: 0 0 0 1px rgba(77, 255, 154, .4), 0 8px 28px rgba(77, 255, 154, .28); }
+  .btn--linea:hover, button.btn--linea:hover { color: var(--blanco); background: rgba(77, 255, 154, .1); border-color: rgba(77, 255, 154, .6); box-shadow: 0 0 22px rgba(77, 255, 154, .18), inset 0 1px 0 rgba(255, 255, 255, .14); }
+  .btn:hover::after { transform: translateX(3px); }
+  .btn:hover .icono { transform: translateX(2px) rotate(-6deg); }
+}
+.btn:active { transform: scale(.97); }
+.btn:focus-visible { outline: 2px solid var(--acento); outline-offset: 3px; }
+
+/* La tarjeta blanca destacada (WhatsApp) conserva su boton negro. */
+.plan--destacado .btn--solido { color: var(--blanco); background: var(--negro); border-color: var(--negro); }
+.planes .plan--destacado .btn--solido { color: var(--negro); background: var(--blanco); border-color: var(--blanco); }
+
+/* ---------- Menu de computadora ---------- */
+.nav::before { border-radius: 18px; }
+.nav__ligas { gap: 4px; }
+.nav__ligas a { position: relative; min-height: 42px; padding-inline: 13px; border-radius: 10px; background: none !important; color: rgba(255, 255, 255, .66); letter-spacing: .01em; }
+/* Punto LED debajo: tenue al pasar, encendido en la pagina actual. */
+.nav__ligas a::after { content: ""; position: absolute; left: 50%; bottom: 3px; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: var(--acento); opacity: 0; transform: scale(.4); transition: opacity .25s var(--curva), transform .25s var(--curva); }
+.nav__ligas a:hover { color: var(--blanco); }
+.nav__ligas a:hover::after { opacity: .5; transform: none; }
+.nav__ligas a[aria-current="page"], .nav__ligas a.activa { color: var(--blanco); }
+.nav__ligas a[aria-current="page"]::after, .nav__ligas a.activa::after { opacity: 1; transform: none; box-shadow: 0 0 8px 2px var(--brillo); }
+.nav__accion { min-height: 44px; padding: 8px 18px; border-radius: 12px; }
+.nav__menu summary { border-radius: 12px; background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .14); }
+
+/* ---------- Menu de telefono ---------- */
+.nav__cortos a { border-radius: 10px; }
+.nav__accion::after { display: none !important; }

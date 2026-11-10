@@ -17,7 +17,9 @@
   .servicio--llamadas { min-height: 280px; }
   .pasos { gap: 28px; }
   .pasos li { display: grid; grid-template-columns: 58px 1fr; column-gap: 10px; }
-  .pasos li::before { grid-row: span 2; margin: 0; font-size: 2.5rem; }
+  .pasos li::before { grid-row: span 3; margin: 0; font-size: 2.5rem; }
+  .pasos li > * { grid-column: 2; }
+  .pasos .paso__icono { margin-bottom: 8px; }
   .pasos p { margin-top: 4px; }
   .carril { margin-top: 26px; padding-inline: 18px; scroll-padding-inline: 18px; scroll-snap-type: x mandatory; }
   .proyecto, .proyecto--grande { flex-basis: 84%; }
