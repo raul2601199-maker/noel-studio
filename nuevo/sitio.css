@@ -438,6 +438,10 @@ html.viaje .chat-wa { background: transparent; }
 .nfc-escena__opciones button[aria-pressed="true"] { color: var(--negro); background: var(--acento); }
 .nfc-escena__opciones button:active { scale: .97; }
 @media (max-width: 860px) { .nfc-escena__opciones button { padding: 8px 12px; font-size: .82rem; } }
+/* Reseñas de Google: foto fija, sin linea ni pista. */
+.nfc-escena.es-resenas .nfc-escena__diseno { clip-path: none; }
+.nfc-escena.es-resenas .nfc-escena__luz, .nfc-escena.es-resenas .nfc-escena__pista { visibility: hidden; }
+.nfc-escena.es-resenas .nfc-escena__foto { cursor: default; }
 
 .proceso { position: relative; z-index: 1; min-height: 100svh; display: flex; align-items: center; padding-block: var(--seccion); background: var(--negro); }
 .pasos { counter-reset: paso; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(26px, 4vw, 54px); margin-top: clamp(38px, 5vw, 66px); }

@@ -60,3 +60,7 @@
 .nfc-escena__opciones button[aria-pressed="true"] { color: var(--negro); background: var(--acento); }
 .nfc-escena__opciones button:active { scale: .97; }
 @media (max-width: 860px) { .nfc-escena__opciones button { padding: 8px 12px; font-size: .82rem; } }
+/* Reseñas de Google: foto fija, sin linea ni pista. */
+.nfc-escena.es-resenas .nfc-escena__diseno { clip-path: none; }
+.nfc-escena.es-resenas .nfc-escena__luz, .nfc-escena.es-resenas .nfc-escena__pista { visibility: hidden; }
+.nfc-escena.es-resenas .nfc-escena__foto { cursor: default; }
