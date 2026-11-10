@@ -68,3 +68,10 @@ main:has(.cierre) + .pie .pie__banda, main:has(.cierre) ~ .pie .pie__banda { dis
 .raul__datos strong { font: 700 1.5rem/1 'Unbounded', sans-serif; color: var(--acento); }
 .raul__datos span { color: var(--gris); font-size: .86rem; line-height: 1.35; }
 @media (max-width: 520px) { .raul__datos { grid-template-columns: 1fr; } .raul__datos li { grid-template-columns: 74px 1fr; align-items: center; } }
+
+/* Tarjetas de servicios del inicio en vidrio (Llamadas sigue blanca por ser el principal). */
+.servicio--whatsapp, .servicio--web, .servicio--creativos, .servicio--nfc {
+  background: linear-gradient(160deg, rgba(48, 52, 66, .72), rgba(14, 15, 21, .8) 62%);
+  border: 1px solid rgba(255, 255, 255, .15);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18), 0 18px 40px rgba(0, 0, 0, .35);
+}
