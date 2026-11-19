@@ -16,16 +16,49 @@
 <section class="problema" data-mundo="lectura">
   <div class="contenedor problema__rejilla">
     <div>
-      <h2 data-aparece>El cliente al que no le contestas <em>le marca al de al lado.</em></h2>
-      <p class="problema__texto">Estás con un cliente, debajo de un carro o ya cerraste. Suena el teléfono y nadie alcanza. Esa llamada no deja rastro: no sabes quién era ni qué quería.</p>
+      <h2 data-aparece>Mismas llamadas, mismo día. <em>Otro resultado.</em></h2>
+      <p class="problema__texto">Estás en plena hora pico, atendiendo clientes o ya cerraste. Suena el teléfono y nadie alcanza. Esa llamada no deja rastro: no sabes quién era ni qué quería.</p>
+      <ol class="pasos-mini" aria-label="Cómo funciona">
+        <li><span>{{ICONO:phone}}</span>Te llaman</li>
+        <li><span>{{ICONO:mic}}</span>Contesta tu agente de IA</li>
+        <li><span>{{ICONO:tablet}}</span>Llega a tu tableta</li>
+      </ol>
     </div>
-    <div class="aviso-pila" aria-label="Ejemplo de llamadas perdidas contra llamadas atendidas">
-      <p class="aviso-pila__titulo">Hoy, sin agente</p>
-      <div class="aviso aviso--perdida"><span class="aviso__icono">{{ICONO:phone}}</span><p><strong>Llamada perdida</strong><span>614 ••• 2231</span></p><time>1:42 p.m.</time></div>
-      <div class="aviso aviso--perdida"><span class="aviso__icono">{{ICONO:phone}}</span><p><strong>Llamada perdida</strong><span>614 ••• 8810</span></p><time>2:05 p.m.</time></div>
-      <div class="aviso aviso--perdida"><span class="aviso__icono">{{ICONO:phone}}</span><p><strong>Llamada perdida</strong><span>Número desconocido</span></p><time>7:48 p.m.</time></div>
-      <p class="aviso-pila__titulo aviso-pila__titulo--con">Hoy, con Claudia</p>
-      <div class="aviso aviso--atendida"><span class="aviso__icono">{{ICONO:circle-check}}</span><p><strong>Claudia atendió 3 llamadas</strong><span>2 citas apartadas · 1 pedido de $236 en tu tableta</span></p><time>ahora</time></div>
+    <div class="dia" aria-label="El mismo día de un restaurante, sin agente y con agente de IA">
+      <div class="dia__marcador">
+        <p class="dia__total dia__total--sin"><b>0 de 4</b><span>Sin agente</span>Perdiste 2 reservaciones y 1 pedido.</p>
+        <p class="dia__total dia__total--con"><b>4 de 4</b><span>Con agente de IA</span>Ganaste las 3 y contestó una extra al mismo tiempo.</p>
+      </div>
+      <div class="dia__tabla">
+        <p class="dia__cabeza" aria-hidden="true"><span></span><span>Sin agente</span><span>Con agente de IA</span></p>
+        <ol>
+        <li class="dia__fila">
+          <time>1:42 p.m.</time>
+          <p class="dia__sin"><svg class="marca-x" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg>Perdida</p>
+          <p class="dia__con"><svg class="marca-v" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span><strong>Reservación</strong> mesa para 4</span></p>
+        </li>
+          <li class="dia__juntas">
+            <p class="dia__aviso">{{ICONO:phone}}Dos llamadas a la vez</p>
+            <ol>
+              <li class="dia__fila">
+                <time>2:05 p.m.</time>
+                <p class="dia__sin"><svg class="marca-x" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg>Perdida</p>
+                <p class="dia__con"><svg class="marca-v" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span><strong>Pedido</strong> 2 platillos para llevar</span></p>
+              </li>
+              <li class="dia__fila">
+                <time>2:05 p.m.</time>
+                <p class="dia__sin"><svg class="marca-x" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg>Ocupado</p>
+                <p class="dia__con"><svg class="marca-v" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span><strong>Al mismo tiempo</strong> «¿Hasta qué hora abren?»</span></p>
+              </li>
+            </ol>
+          </li>
+        <li class="dia__fila">
+          <time>8:10 p.m.</time>
+          <p class="dia__sin"><svg class="marca-x" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg>Perdida</p>
+          <p class="dia__con"><svg class="marca-v" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span><strong>Reservación</strong> mesa para 6</span></p>
+        </li>
+        </ol>
+      </div>
     </div>
   </div>
 </section>

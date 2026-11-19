@@ -1,0 +1,37 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗        NOEL STUDIO
+  ──────── by Raúl · Chihuahua, MX ────────
+  Pulido 17-nov: servicios sin cuadritos de ícono, voz que llena la tarjeta principal
+  y el punto del asistente quieto (no está "en vivo").
+*/
+
+/* Servicios: el ícono va junto al título, sin su cajita. */
+.servicio:not(.servicio--llamadas) { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; column-gap: 14px; row-gap: 12px; }
+.servicio:not(.servicio--llamadas) > :not(.servicio__icono) { grid-column: 1 / -1; }
+.servicio:not(.servicio--llamadas) > h3:not(.servicio__icono) { grid-column: 2; }
+.servicio .servicio__icono { width: auto; height: auto; margin: 0; padding: 0; background: none; border: 0; box-shadow: none; }
+.servicio .servicio__icono .icono { width: 26px; height: 26px; stroke-width: 1.75; }
+
+/* Tarjeta de llamadas: la voz ocupa todo el ancho, como la huella de una llamada. */
+.servicio--llamadas .barras--tarjeta { flex: 1 1 auto; justify-content: space-between; gap: 0; width: 100%; height: auto; min-height: 120px; max-height: 340px; margin-bottom: clamp(20px, 3vw, 40px); }
+.servicio--llamadas .barras--tarjeta i { width: clamp(3px, .45vw, 6px); }
+.servicio--llamadas .barras--tarjeta i:nth-child(5n + 2) { animation-duration: 1.35s; }
+.servicio--llamadas .barras--tarjeta i:nth-child(7n) { animation-duration: .7s; }
+.servicio--llamadas:hover .barras--tarjeta i { animation-duration: .45s; }
+@media (prefers-reduced-motion: reduce) { .servicio--llamadas .barras--tarjeta i { animation: none; transform: scaleY(.45); } }
+
+/* El asistente de respuestas no está en vivo: el punto no late. */
+.agente-boton__luz { animation: none; }
+
+@media (max-width: 760px) { .servicio--llamadas .barras--tarjeta { height: 84px; } }
+
+/* Prueba maestra: la indicación es texto, no una caja que parece campo de formulario. */
+.voces .voces__nota { padding: 0; background: none; border: 0; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; max-width: 52ch; color: var(--texto-suave); font-size: 1.08rem; text-shadow: 0 1px 14px rgba(0, 0, 0, .9), 0 0 2px rgba(0, 0, 0, .8); }
+
+/* Portafolio: etiqueta discreta sobre la foto; el verde solo marca al cliente real. */
+.proyecto .etiqueta { display: inline-flex; align-items: center; gap: 7px; top: 14px; left: 14px; padding: 6px 11px 6px 9px; color: var(--blanco); background: rgba(5, 6, 9, .86); font-size: .78rem; font-weight: 600; letter-spacing: .02em; box-shadow: 0 6px 16px -8px rgba(0, 0, 0, .8); }
+.proyecto .etiqueta::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--acento); }
+.proyecto .etiqueta--demo::before { background: var(--gris); }
+
+/* La onda solo se mueve cuando la tarjeta está en pantalla (ahorra batería y procesador). */
+.servicio--llamadas:not(.en-pantalla) .barras--tarjeta i { animation-play-state: paused; }

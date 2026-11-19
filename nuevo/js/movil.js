@@ -77,10 +77,11 @@
     });
 
     // Palabras que se encienden con el dedo.
-    document.querySelectorAll('.problema h2, .resena--grande p').forEach((texto) => {
+    // Se parte hasta que carga la tipografia: asi las palabras miden lo que deben.
+    document.fonts.ready.then(() => document.querySelectorAll('.problema h2, .resena--grande p').forEach((texto) => {
       const partes = SplitText.create(texto, { type: 'words', aria: 'none' });
       gsap.from(partes.words, { color: '#85868f', ease: 'none', stagger: 0.1, scrollTrigger: { trigger: texto, start: 'top 84%', end: 'bottom 48%', scrub: 0.4 } });
-    });
+    }));
 
     // La conversacion entra de cada lado.
     gsap.utils.toArray('.globo, .recado').forEach((globo) => {

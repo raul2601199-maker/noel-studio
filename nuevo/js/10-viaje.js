@@ -46,7 +46,7 @@
 
   function ajustar() {
     const movil = innerWidth < 861;
-    const escala = Math.min(devicePixelRatio || 1, movil ? 1.5 : 2);
+    const escala = Math.min(devicePixelRatio || 1, 1.5); // 1.5 basta para líneas finas y pinta 44% menos que 2
     ancho = innerWidth;
     alto = lienzo.clientHeight;
     sombra = null;
