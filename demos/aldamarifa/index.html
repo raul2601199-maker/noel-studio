@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta name="robots" content="noindex">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Aldama Rifa — Rifas express con Lotería Nacional</title>
+  <meta name="description" content="Rifas express desde Aldama, Chihuahua. Elige tu número, apártalo por WhatsApp y paga por transferencia. El ganador sale con la Lotería Nacional.">
+  <meta name="theme-color" content="#0D1F52">
+  <meta property="og:title" content="Aldama Rifa">
+  <meta property="og:description" content="Elige tu número de la suerte y apártalo en un clic. Ganador con Lotería Nacional.">
+  <meta property="og:image" content="img/og.png">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="img/favicon-64.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@600;700;800&family=Yellowtail&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=202610270120">
+</head>
+<body class="con-barra">
+<!-- Barra de demo (portafolio Noel Studio) -->
+<div style="position:relative;z-index:9999;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;justify-content:center;padding:9px 14px;background:#0a0a0a;color:#e8e8e8;font:500 13px/1.3 system-ui,-apple-system,sans-serif;text-align:center"><span><strong>Sitio demostrativo</strong> · hecho por Noel Studio para Aldama Rifa</span><a href="../../index.html#portafolio" style="color:#4dff9a;font-weight:700;text-decoration:none">← Volver al portafolio</a></div>
+
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="top-lado" href="index.html#pagos">Métodos<br>de pago</a>
+    <a class="marca" href="index.html" aria-label="Aldama Rifa, inicio">
+      <img src="img/logo-320.webp" alt="" width="48" height="48">
+      <span>Aldama Rifa</span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#rifas" class="nav-oculto">Rifas</a>
+      <a href="#ganadores" class="nav-oculto">Ganadores</a>
+      <a href="verificador.html">Mis boletos</a>
+      <a class="nav-wa" data-wa href="#" aria-label="WhatsApp">WhatsApp</a>
+    </nav>
+    <a class="top-lado" href="verificador.html">Mis<br>boletos</a>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <img class="hero-logo" src="img/logo-640.webp" alt="Logo de Aldama Rifa: trébol de cuatro hojas con boletos" width="420" height="420" fetchpriority="high">
+      <div class="hero-texto">
+        <h1><span class="script">Aldama se rifa</span>Rifas express con Lotería Nacional</h1>
+        <p>Elige tu número, apártalo en un clic y paga por transferencia. Sorteos en vivo y premios entregados en mano.</p>
+        <div class="hero-cta">
+          <a class="btn btn-verde" href="#rifas" id="ctaDisponibles">Ver boletos disponibles</a>
+          <a class="btn btn-claro" href="verificador.html">Revisar mis boletos</a>
+        </div>
+        <div class="hero-sellos" id="heroSellos"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARTELERA -->
+  <section class="seccion" id="rifas">
+    <div class="wrap">
+      <div class="seccion-titulo">
+        <span class="eyebrow">Cartelera</span>
+        <h2>Rifas activas</h2>
+      </div>
+      <div class="cartelera" id="cartelera"><p class="cargando">Cargando rifas…</p></div>
+    </div>
+  </section>
+
+  <!-- CÓMO PARTICIPAR -->
+  <section class="seccion seccion-azul" id="como">
+    <div class="wrap">
+      <div class="seccion-titulo">
+        <span class="eyebrow" style="color:var(--oro)">Así de fácil</span>
+        <h2>Cómo participar</h2>
+      </div>
+      <div class="pasos">
+        <div class="paso">
+          <h3>Elige tus números</h3>
+          <p>Toca los números libres en la rifa que quieras o deja que la maquinita escoja por ti.</p>
+        </div>
+        <div class="paso">
+          <h3>Apártalos por WhatsApp</h3>
+          <p>Pon tu nombre y tu celular. Se abre WhatsApp con tu folio, tus números y los datos para pagar.</p>
+        </div>
+        <div class="paso">
+          <h3>Paga y manda tu comprobante</h3>
+          <p>Transfiere a la cuenta indicada, manda la foto del comprobante por el mismo chat y tu número queda pagado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOTERÍA -->
+  <section class="seccion seccion-blanca" id="ganador">
+    <div class="wrap loteria">
+      <div>
+        <div class="seccion-titulo">
+          <span class="eyebrow">Sin tómbolas, sin trampas</span>
+          <h2>Cómo se elige al ganador</h2>
+        </div>
+        <ul class="reglas" id="reglas">
+          <li><span data-icon="check"></span><span>Gana el número que coincide con las <b>últimas 2 cifras del premio mayor</b> de la Lotería Nacional del día del sorteo.</span></li>
+          <li><span data-icon="check"></span><span>El resultado es público: cualquiera lo puede revisar en la página oficial de la Lotería Nacional.</span></li>
+          <li><span data-icon="check"></span><span>Tu número debe estar <b>pagado</b> antes del sorteo. Los apartados sin pagar no juegan.</span></li>
+          <li><span data-icon="check"></span><span>Si sale un número que no se vendió, la rifa se juega con el siguiente sorteo de la Lotería. <b>Siempre hay ganador.</b></span></li>
+          <li><span data-icon="check"></span><span>Transmitimos en vivo por Facebook el resultado y la entrega del premio.</span></li>
+        </ul>
+        <p class="mt"><a href="https://www.gob.mx/lotenal" target="_blank" rel="noopener">Ver resultados oficiales de la Lotería Nacional</a></p>
+      </div>
+      <div class="billete" aria-label="Ejemplo: si el premio mayor sale 48352, gana el boleto 52">
+        <div class="billete-top"><span>Lotería Nacional</span><span>Premio mayor</span></div>
+        <div class="billete-num">483<em>52</em></div>
+        <div class="billete-pie">Ejemplo: si el premio mayor sale <b>48352</b>, gana el boleto <b>52</b>.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GANADORES -->
+  <section class="seccion" id="ganadores">
+    <div class="wrap">
+      <div class="seccion-titulo">
+        <span class="eyebrow">Sí se entregan</span>
+        <h2>Premios entregados</h2>
+        <span class="contador-ganadores" id="cuantosGanadores"></span>
+      </div>
+      <div class="ganadores" id="listaGanadores"><p class="cargando">Cargando…</p></div>
+    </div>
+  </section>
+
+  <!-- PAGOS -->
+  <section class="seccion seccion-blanca" id="pagos">
+    <div class="wrap">
+      <div class="seccion-titulo">
+        <span class="eyebrow">Formas de pago</span>
+        <h2>Dónde pagar</h2>
+        <p class="lead">Transferencia desde la app de tu banco. Toca "Copiar" y pégalo en tu app.</p>
+      </div>
+      <div class="cuentas" id="cuentas"><p class="cargando">Cargando…</p></div>
+      <p class="aviso-concepto">En el concepto pon tu <b>nombre completo</b>. No escribas "rifa".</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="seccion" id="dudas">
+    <div class="wrap">
+      <div class="seccion-titulo">
+        <span class="eyebrow">Dudas</span>
+        <h2>Preguntas frecuentes</h2>
+      </div>
+      <div class="faq">
+        <details><summary>¿Cuánto tiempo tengo para pagar?</summary><p>Cada rifa indica sus horas de apartado (normalmente 12). Si no pagas a tiempo, tus números pueden liberarse para que otra persona los tome.</p></details>
+        <details><summary>¿Qué es el bono por pronto pago?</summary><p>Algunas rifas dan un premio extra si pagas en los primeros minutos después de apartar. El tiempo exacto viene en tu mensaje de WhatsApp.</p></details>
+        <details><summary>¿Qué pasa si no se vende todo?</summary><p>La rifa se juega en la fecha anunciada. Si sale un número que no se vendió, se juega con el siguiente sorteo de la Lotería Nacional hasta que haya ganador. Tu número sigue siendo tuyo y te avisamos por WhatsApp.</p></details>
+        <details><summary>¿Cómo sé que mi número quedó pagado?</summary><p>Entra a "Mis boletos", escribe tu celular y verás tus números en verde cuando ya estén pagados.</p></details>
+        <details><summary>¿Puedo participar si no vivo en Aldama?</summary><p>Sí. Puedes participar desde cualquier parte de México. El dinero se manda por transferencia y los premios físicos se envían por paquetería o se recogen en persona.</p></details>
+        <details><summary>¿Cómo me entregan el premio?</summary><p>Te contactamos por WhatsApp el mismo día del sorteo. El efectivo se entrega en mano o por transferencia, y la entrega se transmite en vivo.</p></details>
+        <details><summary>¿Hay edad mínima?</summary><p>Sí, solo pueden participar mayores de 18 años.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <div class="wrap">
+    <div class="pie-grid">
+      <img src="img/logo-320.webp" alt="Aldama Rifa" width="96" height="96" loading="lazy">
+      <div>
+        <p style="margin:0 0 6px;color:#fff;font-weight:700">Aldama Rifa</p>
+        <p style="margin:0">Rifas express desde Aldama, Chihuahua. Ganador con Lotería Nacional.</p>
+      </div>
+      <div class="pie-redes">
+        <a data-wa href="#"><span data-icon="wa"></span>WhatsApp</a>
+        <a data-fb href="#" target="_blank" rel="noopener" hidden><span data-icon="fb"></span>Facebook</a>
+        <a data-ig href="#" target="_blank" rel="noopener" hidden><span data-icon="ig"></span>Instagram</a>
+        <a data-tt href="#" target="_blank" rel="noopener" hidden><span data-icon="tt"></span>TikTok</a>
+      </div>
+    </div>
+    <div class="pie-legal">
+      © <span id="anio"></span> Aldama Rifa · Solo mayores de 18 años · <a href="verificador.html">Revisar mis boletos</a>
+    </div>
+  </div>
+</footer>
+
+<a class="barra-segura" href="#ganador"><b>Estos sorteos son seguros</b><span>Toca para ver cómo se elige al ganador</span></a>
+
+<a class="wa-flotante" data-wa="Hola, tengo una pregunta sobre las rifas" href="#" aria-label="Escríbenos por WhatsApp"><span data-icon="wa"></span></a>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="js/config.js?v=202610270120"></script>
+<script src="js/data.js?v=202610270120"></script>
+<script src="js/common.js?v=202610270120"></script>
+<script src="js/home.js?v=202610270120"></script>
+</body>
+</html>

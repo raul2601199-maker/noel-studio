@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta name="robots" content="noindex">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Mis boletos — Aldama Rifa</title>
+  <meta name="description" content="Revisa tus boletos de Aldama Rifa con tu número de WhatsApp.">
+  <meta name="theme-color" content="#0D1F52">
+  <link rel="icon" type="image/png" href="img/favicon-64.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@600;700;800&family=Yellowtail&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=202610270120">
+</head>
+<body>
+<!-- Barra de demo (portafolio Noel Studio) -->
+<div style="position:relative;z-index:9999;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;justify-content:center;padding:9px 14px;background:#0a0a0a;color:#e8e8e8;font:500 13px/1.3 system-ui,-apple-system,sans-serif;text-align:center"><span><strong>Sitio demostrativo</strong> · hecho por Noel Studio para Aldama Rifa</span><a href="../../index.html#portafolio" style="color:#4dff9a;font-weight:700;text-decoration:none">← Volver al portafolio</a></div>
+
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="top-lado" href="index.html#pagos">Métodos<br>de pago</a>
+    <a class="marca" href="index.html" aria-label="Aldama Rifa, inicio">
+      <img src="img/logo-320.webp" alt="" width="48" height="48">
+      <span>Aldama Rifa</span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="index.html#rifas">Rifas</a>
+      <a href="verificador.html" aria-current="page" class="nav-oculto">Mis boletos</a>
+      <a class="nav-wa" data-wa href="#" aria-label="WhatsApp">WhatsApp</a>
+    </nav>
+    <a class="top-lado" href="verificador.html">Mis<br>boletos</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero" style="padding-bottom:40px">
+    <div class="wrap hero-inner" style="grid-template-columns:1fr">
+      <img src="img/logo-320.webp" alt="" width="150" height="150" style="width:150px;height:150px;filter:drop-shadow(0 10px 20px rgba(0,0,0,.4))">
+      <div class="hero-texto" style="justify-items:center;text-align:center">
+        <h1><span class="script">Verificador</span>Mis boletos</h1>
+        <p>Escribe el WhatsApp con el que apartaste y ve si tus números ya están pagados.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion" style="padding-top:28px">
+    <div class="wrap" style="display:grid;justify-items:center">
+      <form class="verif-caja form" id="formVerif" style="width:100%">
+        <label>Tu WhatsApp <span class="ayuda">10 dígitos</span>
+          <input class="campo" id="tel" inputmode="numeric" autocomplete="tel-national" placeholder="614 123 4567" maxlength="14" required>
+        </label>
+        <button class="btn btn-verde btn-bloque" type="submit">Buscar mis boletos</button>
+        <p class="error" id="errorVerif" hidden></p>
+      </form>
+      <div class="verif-res" id="resultado" style="width:100%;max-width:620px" aria-live="polite"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <div class="wrap">
+    <div class="pie-redes" style="justify-content:center;margin-bottom:14px"><a data-fb href="#" target="_blank" rel="noopener" hidden><span data-icon="fb"></span>Facebook</a><a data-ig href="#" target="_blank" rel="noopener" hidden><span data-icon="ig"></span>Instagram</a><a data-tt href="#" target="_blank" rel="noopener" hidden><span data-icon="tt"></span>TikTok</a></div>
+    <div class="pie-legal" style="margin:0;border:0;padding:0">© <span id="anio"></span> Aldama Rifa · Solo mayores de 18 años · <a href="index.html">Inicio</a></div>
+  </div>
+</footer>
+
+<a class="wa-flotante" data-wa="Hola, quiero revisar mis boletos" href="#" aria-label="Escríbenos por WhatsApp"><span data-icon="wa"></span></a>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="js/config.js?v=202610270120"></script>
+<script src="js/data.js?v=202610270120"></script>
+<script src="js/common.js?v=202610270120"></script>
+<script>
+(function () {
+  'use strict';
+  var RA = window.RA, DB = window.RA_DB;
+
+  function buscar(tel) {
+    var res = document.getElementById('resultado');
+    res.innerHTML = '<p class="cargando">Buscando…</p>';
+    DB.verificar(tel).then(function (lista) {
+      if (!lista.length) {
+        res.innerHTML = '<div class="vacio"><img src="' + RA.LOGO + '" alt=""><p><b>No hay boletos con ese número.</b><br>' +
+          'Si apartaste y no pagaste a tiempo, tus números pudieron liberarse. Escríbenos por WhatsApp.</p>' +
+          '<a class="btn btn-verde" href="index.html#rifas">Ver rifas activas</a></div>';
+        return;
+      }
+      var porRifa = {};
+      lista.forEach(function (b) { (porRifa[b.rifa_id] = porRifa[b.rifa_id] || { titulo: b.rifa_titulo, total: b.total_numeros, fecha: b.fecha_sorteo, items: [] }).items.push(b); });
+      res.innerHTML = Object.keys(porRifa).map(function (k) {
+        var g = porRifa[k];
+        var pend = g.items.filter(function (b) { return b.estado === 'apartado'; });
+        return '<div class="verif-rifa"><h3>' + RA.esc(g.titulo) + '</h3>' +
+          '<p style="margin:0 0 10px;color:var(--gris)">Sorteo: ' + RA.fechaLarga(g.fecha) + ' · A nombre de ' + RA.esc(g.items[0].nombre) + '</p>' +
+          '<div class="verif-nums">' + g.items.map(function (b) {
+            return '<span class="chip ' + b.estado + '" title="' + (b.estado === 'pagado' ? 'Pagado' : 'Apartado, falta pagar') + '">' + RA.pad(b.numero, g.total) + '</span>';
+          }).join('') + '</div>' +
+          (pend.length
+            ? '<p class="aviso-concepto" style="margin-top:12px">Te falta pagar ' + pend.length + (pend.length > 1 ? ' números' : ' número') +
+              '. Paga antes del ' + RA.fechaLarga(pend[0].expira_en) + ' a las ' + RA.hora(pend[0].expira_en) + ' para no perderlos. Folio: <b>' + RA.esc(pend[0].folio) + '</b></p>'
+            : '<p style="margin:12px 0 0;color:var(--verde);font-weight:700">Todos tus números están pagados. ¡Mucha suerte!</p>') +
+          '<a href="rifa.html?id=' + encodeURIComponent(k) + '" style="display:inline-block;margin-top:10px">Ver la rifa</a></div>';
+      }).join('') +
+      '<div class="leyenda" style="justify-content:center"><span><i class="l-sel"></i>Pagado</span><span><i class="l-apart"></i>Falta pagar</span></div>';
+    }).catch(function () {
+      res.innerHTML = '<p class="vacio">No se pudo buscar. Revisa tu internet e intenta otra vez.</p>';
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var input = document.getElementById('tel'), err = document.getElementById('errorVerif');
+    var inicial = new URLSearchParams(location.search).get('tel');
+    if (!inicial) { try { inicial = localStorage.getItem('ra_tel'); } catch (e) {} }
+    if (inicial) { input.value = inicial; buscar(inicial.replace(/\D/g, '')); }
+    document.getElementById('formVerif').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var t = input.value.replace(/\D/g, '');
+      if (t.length === 12 && t.indexOf('52') === 0) t = t.slice(2);
+      if (t.length !== 10) { err.textContent = 'Escribe los 10 dígitos de tu WhatsApp.'; err.hidden = false; return; }
+      err.hidden = true; buscar(t);
+    });
+  });
+})();
+</script>
+</body>
+</html>

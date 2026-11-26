@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta name="robots" content="noindex">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Rifa — Aldama Rifa</title>
+  <meta name="description" content="Elige tus números de la suerte y apártalos por WhatsApp. Ganador con Lotería Nacional.">
+  <meta name="theme-color" content="#0D1F52">
+  <meta property="og:image" content="img/og.png">
+  <link rel="icon" type="image/png" href="img/favicon-64.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@600;700;800&family=Yellowtail&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=202610270120">
+</head>
+<body>
+<!-- Barra de demo (portafolio Noel Studio) -->
+<div style="position:relative;z-index:9999;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;justify-content:center;padding:9px 14px;background:#0a0a0a;color:#e8e8e8;font:500 13px/1.3 system-ui,-apple-system,sans-serif;text-align:center"><span><strong>Sitio demostrativo</strong> · hecho por Noel Studio para Aldama Rifa</span><a href="../../index.html#portafolio" style="color:#4dff9a;font-weight:700;text-decoration:none">← Volver al portafolio</a></div>
+
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="top-lado" href="index.html#pagos">Métodos<br>de pago</a>
+    <a class="marca" href="index.html" aria-label="Aldama Rifa, inicio">
+      <img src="img/logo-320.webp" alt="" width="48" height="48">
+      <span>Aldama Rifa</span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="index.html#rifas" class="nav-oculto">Rifas</a>
+      <a href="verificador.html">Mis boletos</a>
+      <a class="nav-wa" data-wa href="#" aria-label="WhatsApp">WhatsApp</a>
+    </nav>
+    <a class="top-lado" href="verificador.html">Mis<br>boletos</a>
+  </div>
+</header>
+
+<main id="app">
+  <section class="rifa-cabeza">
+    <div class="wrap">
+      <div class="migas"><a href="index.html">Inicio</a> / <a href="index.html#rifas">Rifas</a></div>
+      <div class="rifa-top" id="cabeza"><p class="cargando" style="color:#CFD7F0">Cargando rifa…</p></div>
+    </div>
+  </section>
+
+  <section class="seccion" id="seccionCombos" hidden style="padding-bottom:32px">
+    <div class="wrap">
+      <div class="seccion-titulo">
+        <span class="eyebrow">Promociones</span>
+        <h2>Combos</h2>
+      </div>
+      <div class="combos" id="combos"></div>
+      <div id="bono"></div>
+    </div>
+  </section>
+
+  <h2 class="banda" id="elegirTitulo">Elige aquí abajo tus números de la suerte</h2>
+  <section class="seccion" id="elegir">
+    <div class="wrap">
+
+      <div id="estadoVenta"></div>
+
+      <div class="herramientas">
+        <div class="herr-bloque">
+          <span class="herr-et">Para elegir al azar usa la maquinita</span>
+          <div class="maquinita">
+            <label for="cuantosAzar">Cuántos</label>
+            <select id="cuantosAzar" aria-label="Cuántos números al azar">
+              <option value="1">1</option><option value="2">2</option><option value="3" selected>3</option>
+              <option value="5">5</option><option value="10">10</option>
+            </select>
+            <button class="btn btn-oro" type="button" id="btnAzar">Maquinita de la suerte</button>
+          </div>
+        </div>
+        <form class="herr-bloque" id="formBuscar" role="search">
+          <label class="herr-et" for="buscarNum">Para buscar tu número escríbelo</label>
+          <div class="buscar">
+            <input class="campo" id="buscarNum" inputmode="numeric" autocomplete="off" placeholder="Ej: 07">
+            <button class="btn btn-claro" type="submit">Buscar</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="leyenda" style="margin-bottom:14px">
+        <span><i class="l-libre"></i>Libre</span>
+        <span><i class="l-sel"></i>Tu selección</span>
+        <span><i class="l-vend"></i>Vendido</span>
+        <label class="filtro" style="margin-left:auto"><input type="checkbox" id="soloLibres"> Ver solo libres</label>
+      </div>
+
+      <div class="paginas" id="paginas" hidden></div>
+      <div class="tablero" id="tablero" aria-label="Números de la rifa"></div>
+      <p class="centro mt" style="color:var(--gris);font-size:15px">La lista se actualiza sola cada 20 segundos.</p>
+    </div>
+  </section>
+
+  <section class="seccion seccion-blanca" id="pagos">
+    <div class="wrap">
+      <div class="seccion-titulo">
+        <span class="eyebrow">Después de apartar</span>
+        <h2>Dónde pagar</h2>
+      </div>
+      <div class="cuentas" id="cuentas"></div>
+      <p class="aviso-concepto">En el concepto pon tu <b>nombre completo</b>. No escribas "rifa".</p>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="wrap loteria">
+      <div>
+        <div class="seccion-titulo">
+          <span class="eyebrow">Reglas</span>
+          <h2>Cómo se elige al ganador</h2>
+        </div>
+        <ul class="reglas" id="reglasRifa"></ul>
+      </div>
+      <div class="billete">
+        <div class="billete-top"><span>Lotería Nacional</span><span id="billeteSorteo">Premio mayor</span></div>
+        <div class="billete-num" id="billeteNum">483<em>52</em></div>
+        <div class="billete-pie" id="billetePie">Ejemplo: si el premio mayor sale <b>48352</b>, gana el boleto <b>52</b>.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <div class="wrap">
+    <div class="pie-grid">
+      <img src="img/logo-320.webp" alt="Aldama Rifa" width="96" height="96" loading="lazy">
+      <div>
+        <p style="margin:0 0 6px;color:#fff;font-weight:700">Aldama Rifa</p>
+        <p style="margin:0">Rifas express desde Aldama, Chihuahua. Ganador con Lotería Nacional.</p>
+      </div>
+      <div class="pie-redes">
+        <a data-wa href="#"><span data-icon="wa"></span>WhatsApp</a>
+        <a data-fb href="#" target="_blank" rel="noopener" hidden><span data-icon="fb"></span>Facebook</a>
+        <a data-ig href="#" target="_blank" rel="noopener" hidden><span data-icon="ig"></span>Instagram</a>
+        <a data-tt href="#" target="_blank" rel="noopener" hidden><span data-icon="tt"></span>TikTok</a>
+      </div>
+    </div>
+    <div class="pie-legal">© <span id="anio"></span> Aldama Rifa · Solo mayores de 18 años · <a href="verificador.html">Revisar mis boletos</a></div>
+  </div>
+</footer>
+
+<a class="wa-flotante" data-wa="Hola, tengo una pregunta sobre una rifa" href="#" aria-label="Escríbenos por WhatsApp"><span data-icon="wa"></span></a>
+
+<!-- Carrito fijo -->
+<div class="carrito" id="carrito" aria-live="polite">
+  <div class="wrap">
+    <div class="carrito-info">
+      <div class="carrito-nums" id="carritoNums"></div>
+      <div class="carrito-total" id="carritoTotal"></div>
+      <button class="limpiar" type="button" id="btnLimpiar">Quitar todos</button>
+    </div>
+    <button class="btn btn-rojo" type="button" id="btnApartar">Apartar</button>
+  </div>
+</div>
+
+<!-- Ventana de apartado -->
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
+  <div class="modal-caja" id="modalCaja"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="js/config.js?v=202610270120"></script>
+<script src="js/data.js?v=202610270120"></script>
+<script src="js/common.js?v=202610270120"></script>
+<script src="js/rifa.js?v=202610311900"></script>
+</body>
+</html>

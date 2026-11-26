@@ -1,0 +1,7 @@
+# Las páginas siempre se revisan contra el servidor (para que los cambios se vean al momento).
+# Los .js y .css llevan ?v=... en su enlace, así que pueden guardarse en caché sin problema.
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+</IfModule>
