@@ -1011,6 +1011,16 @@ main:has(.cierre) + .pie .pie__banda, main:has(.cierre) ~ .pie .pie__banda { dis
   .pieza-precio__precio { padding-top: 4px; }
 }
 
+/* Video corporativo (horizontal) y anuncio vertical en el feed. */
+.corporativo { margin-top: clamp(56px, 7vw, 110px); }
+.corporativo__video { margin: clamp(24px, 3vw, 40px) 0 0; }
+.corporativo__video video { display: block; width: 100%; height: auto !important; min-height: 0 !important; aspect-ratio: 16 / 9; object-fit: cover; background: #0e0f15; border-radius: 20px; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12), 0 30px 70px -30px rgba(0, 0, 0, .9); }
+.corporativo__video figcaption { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline; margin-top: 14px; }
+.corporativo__video figcaption span { color: var(--texto-suave); font-size: .95rem; }
+.feed__rejilla { grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: start; }
+.post--alto img { aspect-ratio: 4 / 5; }
+@media (max-width: 860px) { .corporativo__video video { border-radius: 14px; } }
+
 /* Servicios: el ícono va junto al título, sin su cajita. */
 .servicio:not(.servicio--llamadas) { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; column-gap: 14px; row-gap: 12px; }
 .servicio:not(.servicio--llamadas) > :not(.servicio__icono) { grid-column: 1 / -1; }
