@@ -128,3 +128,23 @@ main:has(.cierre) + .pie .pie__banda, main:has(.cierre) ~ .pie .pie__banda { dis
   .dia__aviso .icono { width: 16px; height: 16px; }
 }
 .problema h2 em { display: block; }
+
+/* Pulido 26-nov: textos de la tabla legibles en telefono.
+   Cada llamada en dos renglones: hora + lo que pasaba sin agente arriba,
+   y lo que hizo el agente abajo, a todo lo ancho. */
+.problema .problema__texto strong { color: var(--blanco); font-weight: 600; }
+.dia__cabeza span:first-child { color: rgba(185, 187, 200, .6); }
+@media (max-width: 600px) {
+  .dia__cabeza { display: none; }
+  .dia__tabla { padding: 6px 16px 10px; }
+  .dia__fila { grid-template-columns: auto 1fr; grid-template-areas: "hora sin" "con con"; row-gap: 8px; column-gap: 12px; padding: 14px 0; }
+  .dia__fila time { grid-area: hora; font-size: .86rem; color: var(--gris); }
+  .dia__sin { grid-area: sin; justify-self: end; padding: 3px 10px; border-radius: 999px; background: rgba(255, 128, 128, .1); font-size: .8rem !important; font-weight: 600; }
+  .dia__con { grid-area: con; font-size: .98rem !important; line-height: 1.4 !important; }
+  .dia__con strong { display: inline; }
+  .dia__juntas { margin: 8px -8px; padding: 6px 12px 2px; }
+  .dia__aviso { font-size: .76rem; margin-top: 10px; }
+  .dia__total { padding: 15px 14px; font-size: .86rem; }
+  .dia__total span { font-size: .7rem; letter-spacing: .06em; }
+  .pasos-mini li { font-size: .84rem; }
+}
