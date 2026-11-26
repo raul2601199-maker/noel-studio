@@ -61,8 +61,7 @@
 
   function ajustar() {
     const movil = innerWidth < 861;
-    // En telefono se pinta a 1x: las luces son difusas y asi el scroll queda libre.
-    const escala = movil ? 1 : Math.min(devicePixelRatio || 1, 1.5);
+    const escala = Math.min(devicePixelRatio || 1, movil ? 1.5 : 2);
     ancho = innerWidth;
     alto = lienzo.clientHeight;
     sombra = null;
@@ -218,12 +217,8 @@
     ctx.restore();
   }
 
-  // En telefono el fondo se dibuja a 30 cuadros: se ve igual y deja aire al dedo.
-  let ultimo = 0;
   function ciclo(tiempo) {
-    const saltar = ancho < 861 && tiempo - ultimo < 30;
-    if (!document.hidden && !saltar) {
-      ultimo = tiempo;
+    if (!document.hidden) {
       const meta = scrollY * (ancho < 861 ? 0.09 : 0.055) + tiempo * 0.0016;
       const nuevo = pos + (meta - pos) * 0.09;
       velocidad += (Math.max(0, nuevo - pos) - velocidad) * 0.12;
