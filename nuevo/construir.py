@@ -189,7 +189,7 @@ def cabecera(datos, icono):
 VERSION = str(int(__import__("time").time()))
 
 
-SITIO = "https://raul2601199-maker.github.io/noel-studio/"
+SITIO = "https://noelstudioweb.com/"
 # Carpetas que la pagina usa y que se copian al publicar en la raiz.
 CARPETAS = ["fuentes", "voces", "creativos", "nfc"]
 
