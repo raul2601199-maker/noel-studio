@@ -908,6 +908,24 @@ main:has(.cierre) + .pie .pie__banda, main:has(.cierre) ~ .pie .pie__banda { dis
   .pasos-mini li { font-size: .84rem; }
 }
 
+/* Pulido 26-nov (2): el marcador se entiende sin leer (4 llamadas = 4 marcas)
+   y la tabla termina con una invitacion a escuchar al agente. */
+.dia__puntos { display: flex; gap: 6px; margin: 2px 0 10px; font-style: normal; }
+.dia__puntos > i { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 8px; background: rgba(255, 128, 128, .14); }
+.dia__puntos svg { width: 14px; height: 14px; fill: none; stroke: var(--rojo); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.dia__total--con .dia__puntos > i { background: rgba(77, 255, 154, .16); }
+.dia__total--con .dia__puntos svg { stroke: var(--acento); }
+.dia__total--sin b { opacity: .92; }
+.dia__sin { text-decoration: none; }
+.dia__fila .dia__sin { opacity: .9; }
+.dia__con strong { color: var(--blanco); }
+.dia__pie { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 8px -8px 0; padding: 14px 16px; border-radius: 14px; color: var(--texto-suave); font-size: .92rem; text-decoration: none; background: rgba(77, 255, 154, .07); transition: background-color .2s; }
+.dia__pie strong { color: var(--acento); font-weight: 700; margin-left: 4px; }
+.dia__pie .icono { width: 18px; height: 18px; flex: none; color: var(--acento); transition: transform .2s var(--curva); }
+.dia__pie:hover { background: rgba(77, 255, 154, .13); }
+.dia__pie:hover .icono { transform: translateX(3px); }
+@media (min-width: 861px) { .dia__puntos > i { width: 30px; height: 30px; } .dia__puntos svg { width: 16px; height: 16px; } .dia__pie { font-size: 1rem; } }
+
 /* Agenda de visita: chips para elegir modo, dia y hora; arma el mensaje de WhatsApp. */
 .agenda { padding-block: var(--seccion); }
 .agenda__rejilla { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(28px, 5vw, 80px); align-items: start; }
@@ -1051,6 +1069,15 @@ main:has(.cierre) + .pie .pie__banda, main:has(.cierre) ~ .pie .pie__banda { dis
 
 /* La onda solo se mueve cuando la tarjeta está en pantalla (ahorra batería y procesador). */
 .servicio--llamadas:not(.en-pantalla) .barras--tarjeta i { animation-play-state: paused; }
+
+/* 26-nov: servicios en compu = tarjeta grande de llamadas a la izquierda y las 4 restantes
+   apiladas a la derecha (antes NFC iba sola a todo lo ancho con un hueco vacio). */
+@media (min-width: 761px) {
+  .servicios__mosaico { grid-template-rows: repeat(4, minmax(140px, auto)); }
+  .servicio--llamadas { grid-row: span 4; }
+  .servicio--nfc { grid-column: auto; }
+  .servicio:not(.servicio--llamadas) { padding: clamp(20px, 2.2vw, 30px) clamp(22px, 2.6vw, 34px); row-gap: 8px; }
+}
 
 /* Orden del telefono: ninguna seccion mide una pantalla si su contenido no la llena. */
 @media (max-width: 860px) {

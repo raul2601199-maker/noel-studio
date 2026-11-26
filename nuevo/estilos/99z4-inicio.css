@@ -148,3 +148,21 @@ main:has(.cierre) + .pie .pie__banda, main:has(.cierre) ~ .pie .pie__banda { dis
   .dia__total span { font-size: .7rem; letter-spacing: .06em; }
   .pasos-mini li { font-size: .84rem; }
 }
+
+/* Pulido 26-nov (2): el marcador se entiende sin leer (4 llamadas = 4 marcas)
+   y la tabla termina con una invitacion a escuchar al agente. */
+.dia__puntos { display: flex; gap: 6px; margin: 2px 0 10px; font-style: normal; }
+.dia__puntos > i { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 8px; background: rgba(255, 128, 128, .14); }
+.dia__puntos svg { width: 14px; height: 14px; fill: none; stroke: var(--rojo); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.dia__total--con .dia__puntos > i { background: rgba(77, 255, 154, .16); }
+.dia__total--con .dia__puntos svg { stroke: var(--acento); }
+.dia__total--sin b { opacity: .92; }
+.dia__sin { text-decoration: none; }
+.dia__fila .dia__sin { opacity: .9; }
+.dia__con strong { color: var(--blanco); }
+.dia__pie { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 8px -8px 0; padding: 14px 16px; border-radius: 14px; color: var(--texto-suave); font-size: .92rem; text-decoration: none; background: rgba(77, 255, 154, .07); transition: background-color .2s; }
+.dia__pie strong { color: var(--acento); font-weight: 700; margin-left: 4px; }
+.dia__pie .icono { width: 18px; height: 18px; flex: none; color: var(--acento); transition: transform .2s var(--curva); }
+.dia__pie:hover { background: rgba(77, 255, 154, .13); }
+.dia__pie:hover .icono { transform: translateX(3px); }
+@media (min-width: 861px) { .dia__puntos > i { width: 30px; height: 30px; } .dia__puntos svg { width: 16px; height: 16px; } .dia__pie { font-size: 1rem; } }
