@@ -16,6 +16,8 @@
     conMovimiento: '(prefers-reduced-motion: no-preference)',
   };
 
+  // En telefono la barra del navegador aparece y se esconde al subir: no recalcular por eso.
+  ScrollTrigger.config({ ignoreMobileResize: true });
   document.fonts.ready.then(() => ScrollTrigger.refresh());
   addEventListener('load', () => ScrollTrigger.refresh());
   // En computadora los proyectos se cargan antes para que el carril fijo no se trabe.
@@ -59,7 +61,8 @@
 
   function ajustar() {
     const movil = innerWidth < 861;
-    const escala = Math.min(devicePixelRatio || 1, movil ? 1.5 : 2);
+    // En telefono se pinta a 1x: las luces son difusas y asi el scroll queda libre.
+    const escala = movil ? 1 : Math.min(devicePixelRatio || 1, 1.5);
     ancho = innerWidth;
     alto = lienzo.clientHeight;
     sombra = null;
@@ -215,8 +218,12 @@
     ctx.restore();
   }
 
+  // En telefono el fondo se dibuja a 30 cuadros: se ve igual y deja aire al dedo.
+  let ultimo = 0;
   function ciclo(tiempo) {
-    if (!document.hidden) {
+    const saltar = ancho < 861 && tiempo - ultimo < 30;
+    if (!document.hidden && !saltar) {
+      ultimo = tiempo;
       const meta = scrollY * (ancho < 861 ? 0.09 : 0.055) + tiempo * 0.0016;
       const nuevo = pos + (meta - pos) * 0.09;
       velocidad += (Math.max(0, nuevo - pos) - velocidad) * 0.12;
@@ -531,6 +538,12 @@
     if (document.hidden) document.addEventListener('visibilitychange', entrar, { once: true });
     else entrar();
   });
+})();
+
+(function () {
+  const tarjeta = document.querySelector(".servicio--llamadas");
+  if (!tarjeta || !("IntersectionObserver" in window)) return;
+  new IntersectionObserver(([e]) => tarjeta.classList.toggle("en-pantalla", e.isIntersecting)).observe(tarjeta);
 })();
 
 (function () {
@@ -864,8 +877,10 @@
     // Cada seccion llega desde el fondo del tunel.
     gsap.utils.toArray('main > section:not(.hero)').forEach((seccion) => {
       const capas = seccion.children;
-      gsap.fromTo(capas, { scale: 0.8, y: 70, opacity: 0.6 }, { scale: 1, y: 0, opacity: 1, ease: 'power2.out', immediateRender: false, scrollTrigger: dedo(seccion, 'top 100%', 'top 55%') });
-      gsap.fromTo(capas, { scale: 1, opacity: 1 }, { scale: 1.08, opacity: 0.6, ease: 'power1.in', immediateRender: false, scrollTrigger: { trigger: seccion, start: 'bottom 40%', end: 'bottom 0%', scrub: 0.35 } });
+      // Entrada suave y salida solo con brillo: nada crece mas que la pantalla
+      // (antes salia a 108% y las tarjetas se cortaban por los lados).
+      gsap.fromTo(capas, { scale: 0.96, y: 36, opacity: 0.6 }, { scale: 1, y: 0, opacity: 1, ease: 'power2.out', immediateRender: false, scrollTrigger: dedo(seccion, 'top 100%', 'top 62%') });
+      gsap.fromTo(capas, { opacity: 1 }, { opacity: 0.55, ease: 'power1.in', immediateRender: false, scrollTrigger: { trigger: seccion, start: 'bottom 40%', end: 'bottom 0%', scrub: 0.35 } });
     });
     if (document.querySelector('.hero')) gsap.to('.hero__texto', { y: -60, opacity: 0.4, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.3 } });
     if (document.querySelector('.hero')) gsap.to('.elector', { y: -110, scale: 0.85, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.3 } });
@@ -884,10 +899,11 @@
     });
 
     // Palabras que se encienden con el dedo.
-    document.querySelectorAll('.problema h2, .resena--grande p').forEach((texto) => {
+    // Se parte hasta que carga la tipografia: asi las palabras miden lo que deben.
+    document.fonts.ready.then(() => document.querySelectorAll('.problema h2, .resena--grande p').forEach((texto) => {
       const partes = SplitText.create(texto, { type: 'words', aria: 'none' });
       gsap.from(partes.words, { color: '#85868f', ease: 'none', stagger: 0.1, scrollTrigger: { trigger: texto, start: 'top 84%', end: 'bottom 48%', scrub: 0.4 } });
-    });
+    }));
 
     // La conversacion entra de cada lado.
     gsap.utils.toArray('.globo, .recado').forEach((globo) => {

@@ -57,8 +57,10 @@
     // Cada seccion llega desde el fondo del tunel.
     gsap.utils.toArray('main > section:not(.hero)').forEach((seccion) => {
       const capas = seccion.children;
-      gsap.fromTo(capas, { scale: 0.8, y: 70, opacity: 0.6 }, { scale: 1, y: 0, opacity: 1, ease: 'power2.out', immediateRender: false, scrollTrigger: dedo(seccion, 'top 100%', 'top 55%') });
-      gsap.fromTo(capas, { scale: 1, opacity: 1 }, { scale: 1.08, opacity: 0.6, ease: 'power1.in', immediateRender: false, scrollTrigger: { trigger: seccion, start: 'bottom 40%', end: 'bottom 0%', scrub: 0.35 } });
+      // Entrada suave y salida solo con brillo: nada crece mas que la pantalla
+      // (antes salia a 108% y las tarjetas se cortaban por los lados).
+      gsap.fromTo(capas, { scale: 0.96, y: 36, opacity: 0.6 }, { scale: 1, y: 0, opacity: 1, ease: 'power2.out', immediateRender: false, scrollTrigger: dedo(seccion, 'top 100%', 'top 62%') });
+      gsap.fromTo(capas, { opacity: 1 }, { opacity: 0.55, ease: 'power1.in', immediateRender: false, scrollTrigger: { trigger: seccion, start: 'bottom 40%', end: 'bottom 0%', scrub: 0.35 } });
     });
     if (document.querySelector('.hero')) gsap.to('.hero__texto', { y: -60, opacity: 0.4, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.3 } });
     if (document.querySelector('.hero')) gsap.to('.elector', { y: -110, scale: 0.85, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.3 } });

@@ -30,6 +30,8 @@
     conMovimiento: '(prefers-reduced-motion: no-preference)',
   };
 
+  // En telefono la barra del navegador aparece y se esconde al subir: no recalcular por eso.
+  ScrollTrigger.config({ ignoreMobileResize: true });
   document.fonts.ready.then(() => ScrollTrigger.refresh());
   addEventListener('load', () => ScrollTrigger.refresh());
   // En computadora los proyectos se cargan antes para que el carril fijo no se trabe.

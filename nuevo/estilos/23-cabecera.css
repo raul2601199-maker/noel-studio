@@ -15,7 +15,7 @@
 */
 .cabecera { min-height: 0 !important; padding-block: clamp(140px, 16vw, 210px) clamp(36px, 5vw, 70px); }
 .migas { display: flex; gap: 8px; margin-bottom: 18px; color: var(--gris); font-size: .95rem; }
-.migas a { color: var(--gris); text-decoration: none; }
+.migas a { color: var(--gris); text-decoration: none; padding: 10px 6px 10px 0; margin: -10px 0; }
 .migas a:hover { color: var(--blanco); }
 .cabecera h1 { max-width: 16ch; font-size: clamp(2.3rem, 1.4rem + 4vw, 4.8rem); }
 .cabecera p { max-width: 54ch; margin-top: 18px; color: var(--texto-suave); font-size: clamp(1.02rem, .95rem + .4vw, 1.25rem); }

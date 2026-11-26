@@ -25,3 +25,9 @@
 }
 .cabecera__rejilla { position: relative; }
 .emblema { justify-self: end; margin-right: clamp(0px, 8vw, 150px); }
+/* Telefono: el emblema va chico arriba a la derecha, junto a la ruta, sin encimarse al texto. */
+@media (max-width: 860px) {
+  .cabecera__rejilla { grid-template-columns: minmax(0, 1fr); }
+  .emblema { position: absolute; top: -10px; right: 0; width: 64px; margin: 0; }
+  .cabecera__texto p { max-width: none; }
+}

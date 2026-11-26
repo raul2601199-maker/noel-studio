@@ -14,6 +14,10 @@
   ──────── by Raúl · Chihuahua, MX ────────
 */
 @media (max-width: 860px) {
+  /* Scroll de telefono 100% nativo: el scroll suave por CSS y el bloqueo del rebote
+     peleaban con el dedo en iPhone y dejaban un "tope" al volver a subir. */
+  html { scroll-behavior: auto; }
+  html, body { overscroll-behavior: auto; }
   body { font-size: 1.0625rem; padding-bottom: env(safe-area-inset-bottom); }
   .contenedor { padding-inline: 18px; }
   .btn { min-height: 52px; width: 100%; }
@@ -21,4 +25,9 @@
   .acciones .btn { padding-inline: 8px; }
   .servicios > .contenedor { padding-top: 0; }
   .raul > .contenedor { padding-top: 0; }
+}
+
+/* El boton largo de "¿No sabes que buscas?" se partia fuera de la pantalla: aqui si puede ir en dos renglones. */
+@media (max-width: 860px) {
+  .planes__agente { white-space: normal !important; text-align: center; line-height: 1.3; padding-inline: 18px; }
 }

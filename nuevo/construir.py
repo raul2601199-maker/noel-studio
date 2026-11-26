@@ -52,7 +52,7 @@ PAGINAS = {
         "titulo": "Agente de llamadas con IA | Noel Studio",
         "descripcion": "Un agente con voz natural que contesta tu teléfono, informa y te deja el recado. Escucha las voces y pruébalo en vivo.",
         "icono": "phone",
-        "cabecera": ("Llamadas con IA", "Tu teléfono contesta al primer timbre.", "Claudia atiende, informa y te deja cada recado por escrito, aunque tú estés ocupado."),
+        "cabecera": ("Llamadas con IA", "Tu teléfono contesta al primer timbre.", "Tu agente de IA atiende, informa y te deja cada recado por escrito, aunque tú estés ocupado."),
         "secciones": ["llamada", "voces", "giros", "planes", "proceso", "preguntas"],
         "temas": ["agentes", "general"],
     },
