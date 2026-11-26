@@ -1035,7 +1035,7 @@ main:has(.cierre) + .pie .pie__banda, main:has(.cierre) ~ .pie .pie__banda { dis
 .corporativo__video video { display: block; width: 100%; height: auto !important; min-height: 0 !important; aspect-ratio: 16 / 9; object-fit: cover; background: #0e0f15; border-radius: 20px; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12), 0 30px 70px -30px rgba(0, 0, 0, .9); }
 .corporativo__video figcaption { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline; margin-top: 14px; }
 .corporativo__video figcaption span { color: var(--texto-suave); font-size: .95rem; }
-.feed__rejilla { grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: start; }
+.feed__rejilla { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; }
 .post--alto img { aspect-ratio: 4 / 5; }
 @media (max-width: 860px) { .corporativo__video video { border-radius: 14px; } }
 
@@ -1085,7 +1085,7 @@ main:has(.cierre) + .pie .pie__banda, main:has(.cierre) ~ .pie .pie__banda { dis
   .portafolio .carril { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 18px; width: auto; max-width: 1184px; margin-inline: auto; padding-inline: 0; overflow: visible; scroll-snap-type: none; }
   .portafolio .carril { width: calc(100% - 2 * clamp(16px, 4vw, 48px)); }
   .portafolio .proyecto { grid-column: span 4; flex-basis: auto; }
-  .portafolio .proyecto--grande { grid-column: span 8; }
+  .portafolio .proyecto--grande { grid-column: span 6; }
   .portafolio .proyecto:has(.etiqueta--demo) { grid-column: span 3; }
   .portafolio .proyecto img { width: 100%; height: clamp(220px, 24vw, 340px); object-fit: cover; }
   .portafolio .proyecto:has(.etiqueta--demo) img { height: clamp(170px, 15vw, 220px); }
