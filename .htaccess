@@ -1,0 +1,54 @@
+# .htaccess de noelstudioweb.com (Hostinger: LiteSpeed/Apache + CDN hcdn)
+# Hace 5 cosas, cada una dentro de <IfModule> para que, si un modulo
+# no existe, esa parte simplemente se ignore y el sitio siga en pie:
+#   1. www.noelstudioweb.com  -> https://noelstudioweb.com (301)
+#   2. /creativos y /creativos/ -> /creativos.html (301); /nfc y /nfc/ -> /tarjetas-nfc.html (301).
+#      Los archivos de dentro (creativos/x.webp, nfc/x.webp) se siguen sirviendo normal.
+#   3. /llamadas, /whatsapp, /contacto... (sin .html) muestran la pagina .html si existe.
+#   4. Paginas que no existen -> /404.html (en espanol, con status 404).
+#   5. Cache: archivos estaticos 1 ano; sitio.css/sitio.js 1 ano (llevan ?v= nuevo en cada build);
+#      otros css/js 1 dia; HTML siempre se revalida.
+
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1. www -> sin www (siempre https)
+  RewriteCond %{HTTP_HOST} ^www\.noelstudioweb\.com$ [NC]
+  RewriteRule ^(.*)$ https://noelstudioweb.com/$1 [R=301,L]
+
+  # 2. Carpetas de medios que se llaman igual que una pagina
+  RewriteRule ^creativos/?$ https://noelstudioweb.com/creativos.html [R=301,L]
+  RewriteRule ^nfc/?$ https://noelstudioweb.com/tarjetas-nfc.html [R=301,L]
+
+  # 3a. /llamadas/ (con barra final) -> /llamadas (301), para que las rutas relativas no se rompan
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^([A-Za-z0-9_-]+(?:/[A-Za-z0-9_-]+)*)/$ https://noelstudioweb.com/$1 [R=301,L]
+
+  # 3b. URL sin .html -> pagina .html (reescritura interna, la URL no cambia)
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^([A-Za-z0-9_-]+(?:/[A-Za-z0-9_-]+)*)$ /$1.html [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  # Fuentes, imagenes, videos y audio: 1 ano. Si se cambia una imagen, renombrarla.
+  <FilesMatch "\.(woff2?|ttf|otf|webp|avif|jpe?g|png|gif|svg|ico|mp4|webm|mp3|glb)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # css/js sin version en la URL (fonts.css, etc.): 1 dia
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=86400"
+  </FilesMatch>
+  # sitio.css y sitio.js: construir.py les pone ?v=<numero> nuevo en cada build
+  <FilesMatch "^sitio\.(css|js)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # HTML, xml y txt: siempre preguntar si hay version nueva
+  <FilesMatch "\.(html|xml|txt|webmanifest)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
