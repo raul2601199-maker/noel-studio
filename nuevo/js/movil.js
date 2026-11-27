@@ -14,13 +14,25 @@
 // Bloques de telefono: barra inferior, carruseles y entrada ligera.
 (function () {
   const barra = document.querySelector('[data-barra-movil]');
-  const hero = document.querySelector('.hero');
-  const contacto = document.querySelector('#contacto');
-  if (barra && hero && contacto) {
-    let enHero = true, enContacto = false;
-    const actualizar = () => barra.classList.toggle('barra-movil--visible', !enHero && !enContacto);
-    new IntersectionObserver(([e]) => { enHero = e.isIntersecting; actualizar(); }).observe(hero);
-    new IntersectionObserver(([e]) => { enContacto = e.isIntersecting; actualizar(); }).observe(contacto);
+  // La barra sale en TODAS las paginas en cuanto se deja atras la primera pantalla
+  // (antes exigia .hero y #contacto a la vez y ninguna pagina tenia los dos).
+  // Se esconde mientras se escribe en un campo para no tapar el teclado ni el boton de enviar.
+  if (barra) {
+    const telefono = window.matchMedia('(max-width: 860px)');
+    let escribiendo = false;
+    let pendiente = false;
+    const actualizar = () => {
+      pendiente = false;
+      const mostrar = telefono.matches && !escribiendo && window.scrollY > window.innerHeight * 0.6;
+      barra.classList.toggle('barra-movil--visible', mostrar);
+    };
+    const pedir = () => { if (!pendiente) { pendiente = true; requestAnimationFrame(actualizar); } };
+    const esCampo = (el) => el && el.matches && el.matches('input, textarea, select');
+    window.addEventListener('scroll', pedir, { passive: true });
+    window.addEventListener('resize', pedir, { passive: true });
+    document.addEventListener('focusin', (e) => { if (esCampo(e.target) && !barra.contains(e.target)) { escribiendo = true; pedir(); } });
+    document.addEventListener('focusout', (e) => { if (esCampo(e.target)) { escribiendo = false; pedir(); } });
+    actualizar();
   }
 
   // Puntos que dicen en que tarjeta vas.

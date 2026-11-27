@@ -1,0 +1,52 @@
+/*
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ███████╗████████╗██╗   ██╗██████╗ ██╗ ██████╗
+  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║██╔═══██╗
+  ███████╗   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ╚════██║   ██║   ██║   ██║██║  ██║██║██║   ██║
+  ███████║   ██║   ╚██████╔╝██████╔╝██║╚██████╔╝
+  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝ ╚═════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+*/
+/* Pulido de telefono (27-nov): dedo comodo (44 px), letra minima ~13 px y portafolio sin huecos.
+   Solo agranda areas de toque y tamanos; no cambia colores, textos ni orden. */
+@media (max-width: 860px) {
+  /* Areas de toque de 44 px sin mover el diseno. */
+  .nav__marca { display: inline-flex; align-items: center; min-height: 44px; margin-block: -12px; }
+  .nav__cortos a { padding: 12px 15px !important; min-height: 44px; display: inline-flex; align-items: center; }
+  .migas a { display: inline-flex; align-items: center; min-width: 44px; min-height: 44px; margin-block: -12px; padding-block: 0; }
+  .pie a { min-height: 44px; padding-block: 4px; }
+  .prueba__legal { font-size: .82rem; line-height: 1.7; }
+  .prueba__legal a { display: inline-block; padding-block: 14px; margin-block: -14px; }
+  .nfc-escena__opciones button { min-height: 44px; }
+  /* El boton de sonido se ve igual (38 px); solo crece la zona que recibe el dedo. */
+  .telefono__sonido::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; }
+
+  /* Letra minima ~13 px en texto informativo (las maquetas de chat se quedan como estan). */
+  .dia__cabeza { font-size: .82rem; }
+  .dia__aviso { font-size: .82rem; }
+  .dia__sin { font-size: .82rem !important; }
+  .dia__total span { font-size: .82rem; letter-spacing: .04em; }
+  .gcharla__linea span { font-size: .82rem; }
+  .ruta__cuando, .estudio__etiqueta, .proyecto .etiqueta { font-size: .82rem; }
+  .agenda__dias small { font-size: .82rem; }
+
+  /* Portafolio: la etiqueta "Cliente real / Demo" baja a la esquina inferior de la foto
+     para no tapar el titulo de la captura. */
+  .carril .proyecto { --alto-foto: 150px; }
+  .carril .proyecto--grande { --alto-foto: 210px; }
+  .carril .proyecto .etiqueta { top: calc(var(--alto-foto) - 8px); left: 8px; translate: 0 -100%; padding: 4px 9px 4px 8px; }
+  /* Si queda un proyecto solo en el ultimo renglon, ocupa todo el ancho en vez de dejar un hueco. */
+  .carril > .proyecto:not(.proyecto--grande):nth-child(odd of :not(.proyecto--grande)):last-child { grid-column: 1 / -1; --alto-foto: 190px; }
+  .carril > .proyecto:not(.proyecto--grande):nth-child(odd of :not(.proyecto--grande)):last-child img { height: 190px; }
+}
+/* 320 px: "Escribeme" + menu no cabian y la hamburguesa quedaba recortada. */
+@media (max-width: 350px) {
+  .nav { gap: 10px; padding-left: 16px; }
+  .nav .nav__accion { padding-inline: 12px; }
+}

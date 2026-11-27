@@ -31,3 +31,16 @@
 @media (max-width: 860px) {
   .planes__agente { white-space: normal !important; text-align: center; line-height: 1.3; padding-inline: 18px; }
 }
+
+/* Botones del hero: no deben empujar la pantalla hacia los lados en telefonos angostos. */
+@media (max-width: 860px) {
+  .acciones { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .hero__texto { min-width: 0; }
+}
+@media (max-width: 379px) {
+  .hero .acciones .btn { padding-inline: 6px; gap: 6px; font-size: .9rem; }
+}
+/* 320 px: no cabe texto + icono en media pantalla; se queda el texto completo. */
+@media (max-width: 350px) {
+  .hero .acciones .btn .icono { display: none; }
+}

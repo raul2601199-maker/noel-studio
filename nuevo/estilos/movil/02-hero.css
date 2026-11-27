@@ -39,3 +39,13 @@
   .hero__sub { display: none; }
   .acciones { margin-top: 14px; }
 }
+/* Telefonos de alto normal con Safari (390x664, 375x667): el hero media ~765 px y
+   "Quiero mi agente" quedaba cortado en el primer pantallazo. Se aprieta el espacio
+   (orbe, separaciones), sin quitar nada: el subtitulo sigue visible. */
+@media (max-width: 860px) and (min-height: 621px) and (max-height: 780px) {
+  .hero { padding-top: calc(84px + env(safe-area-inset-top)); }
+  .hero .hero__rejilla { gap: 14px; }
+  .hero .elector { gap: 8px; }
+  .hero .orbe { --tam: min(40vw, 16svh, 170px); }
+  .hero .hero__sub { margin-block: 10px 14px; }
+}

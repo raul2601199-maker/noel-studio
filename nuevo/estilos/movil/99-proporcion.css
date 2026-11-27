@@ -50,9 +50,7 @@
   .btn { min-height: 50px; font-size: .98rem; }
 }
 @media (max-width: 860px) {
-  .agente-boton, .barra-movil--visible ~ .agente-boton { display: none; }
   .nav::before { background: rgba(10, 11, 16, .78); }
-  .barra-movil .btn { min-height: 48px; font-size: .96rem; cursor: pointer; }
 }
 @media (max-width: 860px) {
   .nav .nav__accion { width: auto; flex: none; padding-inline: 18px; }

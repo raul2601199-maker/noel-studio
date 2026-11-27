@@ -27,5 +27,5 @@
   .resena--grande p { font-size: 1.62rem; }
   .contacto__rejilla { grid-template-columns: 1fr; }
   .liga { display: inline-flex; align-items: center; min-height: 44px; }
-  .pie { padding-bottom: calc(92px + env(safe-area-inset-bottom)); }
+  .pie { padding-bottom: calc(var(--barra-movil-alto) + 24px); }
 }
