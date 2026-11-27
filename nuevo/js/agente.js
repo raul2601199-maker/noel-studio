@@ -56,9 +56,18 @@
   panel.querySelectorAll('[data-destino]').forEach((opcion) => {
     opcion.addEventListener('click', () => irA(opcion.dataset.destino));
   });
+  formulario.addEventListener('input', (evento) => evento.target.setCustomValidity && evento.target.setCustomValidity(''));
   formulario.addEventListener('submit', (evento) => {
     evento.preventDefault();
-    const texto = 'Hola, tengo una duda: ' + new FormData(formulario).get('mensaje');
+    const campo = formulario.elements.mensaje;
+    const duda = campo.value.trim();
+    // Solo espacios no cuenta como duda.
+    if (!duda) {
+      campo.setCustomValidity('Escribe tu duda');
+      campo.reportValidity();
+      return;
+    }
+    const texto = 'Hola, tengo una duda: ' + duda;
     window.location.href = formulario.dataset.whatsapp + '?text=' + encodeURIComponent(texto);
   });
 

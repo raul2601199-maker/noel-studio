@@ -1,0 +1,66 @@
+<!doctype html>
+<!--
+  ███╗   ██╗ ██████╗ ███████╗██╗
+  ████╗  ██║██╔═══██╗██╔════╝██║
+  ██╔██╗ ██║██║   ██║█████╗  ██║
+  ██║╚██╗██║██║   ██║██╔══╝  ██║
+  ██║ ╚████║╚██████╔╝███████╗███████╗
+  ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝
+  ──────── by Raúl · Chihuahua, MX ────────
+  Pagina 404: la muestra el servidor (.htaccess: ErrorDocument 404 /404.html)
+  en cualquier ruta, por eso todos los enlaces y recursos empiezan con "/".
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Página no encontrada | Noel Studio</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#030305">
+<link rel="icon" href="/assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/unbounded-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face { font-family: 'Unbounded'; font-weight: 500 700; font-display: swap; src: url('/assets/fonts/unbounded-latin.woff2') format('woff2'); }
+@font-face { font-family: 'Hanken Grotesk'; font-weight: 100 900; font-display: swap; src: url('/fuentes/hanken-grotesk.woff2') format('woff2'); }
+:root { --negro: #030305; --blanco: #fff; --suave: rgba(255, 255, 255, .66); --linea: rgba(255, 255, 255, .16); --acento: #4dff9a; }
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; display: flex; flex-direction: column; background: var(--negro); color: var(--blanco); font: 400 clamp(1.02rem, .98rem + .3vw, 1.18rem)/1.6 'Hanken Grotesk', system-ui, sans-serif; }
+a { color: inherit; }
+.marca { display: inline-block; padding: 22px clamp(16px, 4vw, 48px); font: 700 1rem/1 'Unbounded', sans-serif; letter-spacing: -.02em; text-decoration: none; }
+main { flex: 1; display: flex; flex-direction: column; justify-content: center; width: 100%; max-width: 760px; margin: 0 auto; padding: 40px 16px 80px; }
+.codigo { margin: 0 0 12px; color: var(--acento); font: 600 .85rem/1 'Unbounded', sans-serif; letter-spacing: .12em; }
+h1 { margin: 0 0 16px; font: 700 clamp(2rem, 1.4rem + 3vw, 3.4rem)/1.08 'Unbounded', sans-serif; letter-spacing: -.025em; text-wrap: balance; }
+p { margin: 0 0 32px; color: var(--suave); max-width: 52ch; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 12px 26px; border-radius: 999px; background: var(--blanco); color: var(--negro); font-weight: 600; text-decoration: none; transition: transform .2s; }
+.btn:active { transform: scale(.97); }
+nav { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--linea); }
+nav h2 { margin: 0 0 12px; color: var(--suave); font: 500 .8rem/1 'Unbounded', sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+nav ul { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; list-style: none; }
+nav a { display: inline-block; padding: 10px 16px; border: 1px solid var(--linea); border-radius: 999px; text-decoration: none; transition: border-color .2s; }
+nav a:hover, nav a:focus-visible { border-color: var(--blanco); }
+:focus-visible { outline: 3px solid var(--blanco); outline-offset: 3px; }
+</style>
+</head>
+<body>
+<a class="marca" href="/" aria-label="Noel Studio, inicio">Noel Studio</a>
+<main>
+  <p class="codigo">ERROR 404</p>
+  <h1>Esta página no existe</h1>
+  <p>Puede que el enlace esté mal escrito o que la página se haya movido. Desde aquí puedes regresar al inicio o ir directo a lo que buscabas.</p>
+  <div><a class="btn" href="/">Volver al inicio</a></div>
+  <nav aria-label="Servicios">
+    <h2>Servicios</h2>
+    <ul>
+      <li><a href="/llamadas.html">Llamadas con IA</a></li>
+      <li><a href="/whatsapp.html">WhatsApp automático</a></li>
+      <li><a href="/paginas-web.html">Páginas web</a></li>
+      <li><a href="/creativos.html">Estudio creativo</a></li>
+      <li><a href="/tarjetas-nfc.html">Tarjetas NFC</a></li>
+      <li><a href="/contacto.html">Contacto</a></li>
+    </ul>
+  </nav>
+</main>
+</body>
+</html>
