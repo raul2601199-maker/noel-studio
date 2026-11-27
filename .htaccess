@@ -35,7 +35,7 @@ ErrorDocument 404 /404.html
 </IfModule>
 
 <IfModule mod_headers.c>
-  # Fuentes, imagenes, videos y audio: 1 ano. Si se cambia una imagen, renombrarla.
+  # Fuentes, imagenes, videos y audio: 30 dias (se cambian fotos con el mismo nombre).
   <FilesMatch "\.(woff2?|ttf|otf|webp|avif|jpe?g|png|gif|svg|ico|mp4|webm|mp3|glb)$">
     Header set Cache-Control "public, max-age=2592000"
   </FilesMatch>
