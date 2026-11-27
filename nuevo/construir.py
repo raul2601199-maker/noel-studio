@@ -43,31 +43,32 @@ COMUNES_ANTES = ["nav"]
 COMUNES_DESPUES = ["pie", "movil-barra", "agente"]
 PAGINAS = {
     "index.html": {
-        "titulo": "Agentes de IA que contestan tu negocio | Noel Studio Chihuahua",
-        "descripcion": "Agentes de inteligencia artificial que contestan llamadas y WhatsApp, páginas web y creativos para negocios. Chihuahua, México.",
+        "titulo": "Agentes de IA para llamadas y WhatsApp | Noel Studio Chihuahua",
+        "descripcion": "Agentes de inteligencia artificial que contestan las llamadas y el WhatsApp de tu negocio, además de páginas web, videos y tarjetas NFC. Chihuahua, México.",
         "secciones": ["hero", "problema", "servicios", "voces", "portafolio", "resenas", "cierre"],
         "cierre": "Que la siguiente llamada sí se conteste.",
     },
     "llamadas.html": {
-        "titulo": "Agente de llamadas con IA | Noel Studio",
-        "descripcion": "Un agente con voz natural que contesta tu teléfono, informa y te deja el recado. Escucha las voces y pruébalo en vivo.",
+        "titulo": "Agente de llamadas con IA en Chihuahua | Noel Studio",
+        "descripcion": "Un agente con voz natural contesta el teléfono de tu negocio, informa, toma pedidos y te deja el recado por escrito. Escucha las voces y revisa los planes.",
         "icono": "phone",
         "cabecera": ("Llamadas con IA", "Tu teléfono contesta al primer timbre.", "Tu agente de IA atiende, informa y te deja cada recado por escrito, aunque tú estés ocupado."),
         "secciones": ["llamada", "voces", "giros", "planes", "proceso", "preguntas"],
         "temas": ["agentes", "general"],
     },
     "whatsapp.html": {
-        "titulo": "WhatsApp automático para negocios | Noel Studio",
-        "descripcion": "Un agente de inteligencia artificial que responde dudas, aparta citas y toma pedidos por WhatsApp.",
+        "titulo": "WhatsApp automático con IA en Chihuahua | Noel Studio",
+        "descripcion": "Un agente de inteligencia artificial responde dudas, aparta citas y toma pedidos por el WhatsApp de tu negocio, las 24 horas. Planes desde 1,799 pesos al mes.",
         "icono": "message-circle",
         "cabecera": ("WhatsApp automático", "Cada mensaje recibe respuesta.", "Responde con la información de tu negocio y te avisa cuando alguien quiere comprar."),
         "secciones": ["chat-whatsapp", "whatsapp", "proceso", "preguntas", "cierre"],
         "temas": ["agentes", "general"],
         "cierre": "Que ningún mensaje se quede sin respuesta.",
+        "cierre_texto": "Lo armo con la información de tu negocio para que lo pruebes antes de pagar.",
     },
     "paginas-web.html": {
         "titulo": "Páginas web en Chihuahua | Noel Studio",
-        "descripcion": "Páginas web desde 4,500 pesos, tienda con terminal de pago, correo profesional y Google.",
+        "descripcion": "Páginas web para negocios en Chihuahua desde 4,500 pesos: hechas desde cero, con tienda y terminal de pago, correo profesional y presencia en Google.",
         "icono": "globe",
         "cabecera": ("Páginas web", "Tu negocio, bien presentado en internet.", "Páginas hechas desde cero, rápidas y listas para que Google las encuentre."),
         "secciones": ["portafolio", "web", "resenas", "preguntas", "cierre"],
@@ -75,20 +76,23 @@ PAGINAS = {
         "cierre": "Tu próxima página puede ser esta.",
         "cierre_boton": "Quiero mi página",
         "cierre_texto": "Te enseño cómo se vería tu página antes de empezar.",
+        "lcp": "demo-elgarage.webp",
+        "pie": "¿Listo para empezar?",
     },
     "creativos.html": {
-        "titulo": "Estudio creativo: videos y diseño | Noel Studio",
-        "descripcion": "Videos para redes, diseño para campañas, logo, marca, catálogos y menús.",
+        "titulo": "Videos y diseño para negocios en Chihuahua | Noel Studio",
+        "descripcion": "Videos para Reels y TikTok, video corporativo, diseño para campañas, logo, marca, catálogos y menús para negocios de Chihuahua. Precios desde 800 pesos.",
         "icono": "clapperboard",
         "cabecera": ("Estudio creativo", "Piezas que hacen que se detengan a verte.", "Videos, diseño y marca para que tu negocio se vea profesional en redes."),
         "secciones": ["creativos", "cierre"],
         "cierre": "Hagamos que tu negocio se vea.",
         "cierre_boton": "Cotizar mi pieza",
         "cierre_texto": "Cuéntame qué vendes y te propongo la primera pieza antes de empezar.",
+        "pie": "¿Listo para empezar?",
     },
     "tarjetas-nfc.html": {
         "titulo": "Tarjetas y soportes NFC para negocios | Noel Studio Chihuahua",
-        "descripcion": "Soportes de mesa, tarjetas de presentación y de reseñas con NFC y QR. Un toque abre tu WhatsApp, tu menú o tu perfil de Google.",
+        "descripcion": "Soportes de mesa y tarjetas de reseñas con NFC y QR, diseñados con tu marca en Chihuahua. Un toque abre tu WhatsApp, tu menú o tu perfil de Google.",
         "icono": "nfc",
         "cabecera": ("Tarjetas NFC", "Un toque y tu cliente ya está contigo.", "Acercan el celular y se abre tu WhatsApp, tu menú o tus reseñas de Google."),
         "secciones": ["nfc", "preguntas", "cierre"],
@@ -96,14 +100,17 @@ PAGINAS = {
         "cierre": "Que cada mesa te traiga un cliente.",
         "cierre_boton": "Pedir mi muestra",
         "cierre_texto": "Te mando la muestra del diseño con tu marca antes de imprimir.",
+        "lcp": "tablilla-despues.webp",
+        "pie": "¿Listo para empezar?",
     },
     "contacto.html": {
         "titulo": "Contacto | Noel Studio Chihuahua",
-        "descripcion": "Habla con Raúl de Noel Studio por WhatsApp o correo. Chihuahua, México.",
+        "descripcion": "Habla con Raúl de Noel Studio por WhatsApp, correo o agenda una visita a tu negocio. Agentes de IA, páginas web y diseño en Chihuahua, México.",
         "icono": "mail",
         "cabecera": ("Contacto", "Hablemos de tu negocio.", "Escríbeme por WhatsApp o déjame tus datos. Te digo qué te conviene y cuánto cuesta."),
         "secciones": ["agenda", "contacto", "raul", "preguntas"],
         "temas": ["agentes", "web", "general"],
+        "pie": "¿Listo para empezar?",
     },
 }
 
@@ -127,7 +134,10 @@ def poner_datos(texto):
 
 def esquema_preguntas(cuerpo):
     """Crea los datos de preguntas para Google desde la sección visible."""
-    pares = re.findall(r"<summary>(.*?)</summary>\s*<p>(.*?)</p>", cuerpo, re.S)
+    # Solo las preguntas reales (<details data-tema>), no los grupos de planes.
+    pares = re.findall(r'<details[^>]*\bdata-tema="[a-z]+"[^>]*>\s*<summary>(.*?)</summary>\s*<p>(.*?)</p>', cuerpo, re.S)
+    if not pares:
+        return ""  # Sin preguntas no se escribe el bloque (Google marca error si va vacío).
     limpio = lambda t: html.unescape(re.sub(r"<[^>]+>", "", t)).strip()
     datos = {
         "@context": "https://schema.org",
@@ -141,7 +151,8 @@ def esquema_preguntas(cuerpo):
             for pregunta, respuesta in pares
         ],
     }
-    return json.dumps(datos, ensure_ascii=False)
+    texto = json.dumps(datos, ensure_ascii=False).replace("</", "<\\/")
+    return '<script type="application/ld+json">' + texto + "</script>"
 
 
 def iconos(texto):
@@ -213,8 +224,18 @@ def main(publicar=False):
         cuerpo = antes + '\n<main id="principal">\n' + principal + "\n</main>\n" + despues
         pagina = plantilla.replace("{{CUERPO}}", cuerpo)
         pagina = pagina.replace("sitio.css", f"sitio.css?v={VERSION}").replace("sitio.js", f"sitio.js?v={VERSION}")
-        pagina = pagina.replace("{{ESQUEMA}}", esquema_preguntas(principal))
-        pagina = pagina.replace("{{TITULO}}", datos["titulo"]).replace("{{DESCRIPCION}}", datos["descripcion"])
+        esquema = esquema_preguntas(principal)
+        pagina = pagina.replace("{{ESQUEMA}}\n", esquema + "\n" if esquema else "")
+        pagina = pagina.replace("{{PIE_PREGUNTA}}", datos.get("pie", "¿Listo para que tu negocio conteste siempre?"))
+        pagina = pagina.replace("{{TITULO}}", html.escape(datos["titulo"])).replace("{{DESCRIPCION}}", html.escape(datos["descripcion"]))
+        # La imagen principal de la pagina carga primero, sin esperar (mejora el LCP).
+        if datos.get("lcp"):
+            pagina = re.sub(
+                r'(<img [^>]*src="[^"]*' + re.escape(datos["lcp"]) + r'"[^>]*?) loading="lazy"',
+                r'\1 loading="eager" fetchpriority="high"',
+                pagina,
+                count=1,
+            )
         if publicar:
             url = SITIO + ("" if archivo == "index.html" else archivo)
             pagina = pagina.replace('<meta name="description"', f'<link rel="canonical" href="{url}">\n<meta property="og:url" content="{url}">\n<meta name="description"', 1)
@@ -250,7 +271,7 @@ def main(publicar=False):
         # Paginas viejas: mandan a su equivalente nuevo para no perder visitas ni Google.
         for viejo, nuevo in {"agentes-ia.html": "llamadas.html", "portafolio.html": "index.html#portafolio"}.items():
             (destino / viejo).write_text(
-                f'<!doctype html><html lang="es"><head><meta charset="utf-8"><title>Noel Studio</title>'
+                f'<!doctype html><html lang="es-MX"><head><meta charset="utf-8"><title>Noel Studio</title>'
                 f'<link rel="canonical" href="{SITIO}{nuevo.split("#")[0].replace("index.html", "")}">'
                 f'<meta http-equiv="refresh" content="0; url={nuevo}"></head>'
                 f'<body><a href="{nuevo}">Ir a Noel Studio</a></body></html>\n',
