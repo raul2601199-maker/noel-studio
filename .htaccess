@@ -37,7 +37,7 @@ ErrorDocument 404 /404.html
 <IfModule mod_headers.c>
   # Fuentes, imagenes, videos y audio: 1 ano. Si se cambia una imagen, renombrarla.
   <FilesMatch "\.(woff2?|ttf|otf|webp|avif|jpe?g|png|gif|svg|ico|mp4|webm|mp3|glb)$">
-    Header set Cache-Control "public, max-age=31536000, immutable"
+    Header set Cache-Control "public, max-age=2592000"
   </FilesMatch>
   # css/js sin version en la URL (fonts.css, etc.): 1 dia
   <FilesMatch "\.(css|js)$">
