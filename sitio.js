@@ -20,6 +20,32 @@
   ScrollTrigger.config({ ignoreMobileResize: true });
   document.fonts.ready.then(() => ScrollTrigger.refresh());
   addEventListener('load', () => ScrollTrigger.refresh());
+
+  // Ancla desde otra pagina (llamadas.html#planes): el navegador salta antes de que
+  // ScrollTrigger termine de medir y a veces queda arriba. Tras cada refresh de los
+  // primeros segundos se vuelve a llevar al destino, salvo que la persona ya haya movido
+  // la pagina o este recargando / regresando (ahi el navegador recuerda su posicion).
+  (function () {
+    const id = location.hash.slice(1);
+    if (!id) return;
+    let destino = null;
+    try { destino = document.getElementById(decodeURIComponent(id)); } catch (e) { return; }
+    const navegacion = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+    if (!destino || (navegacion && navegacion.type !== 'navigate')) return;
+    let tocado = false;
+    const marcar = () => { tocado = true; };
+    ['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach((tipo) => addEventListener(tipo, marcar, { once: true, passive: true }));
+    const ajustar = () => {
+      if (tocado || location.hash.slice(1) !== id) return;
+      // scrollIntoView respeta scroll-padding-top (92px) igual que el salto nativo.
+      if (Math.abs(destino.getBoundingClientRect().top - 92) > 4) destino.scrollIntoView({ block: 'start', behavior: 'instant' });
+    };
+    ScrollTrigger.addEventListener('refresh', ajustar);
+    addEventListener('load', () => {
+      requestAnimationFrame(ajustar);
+      setTimeout(() => { ajustar(); ScrollTrigger.removeEventListener('refresh', ajustar); }, 2500);
+    });
+  })();
   // En computadora los proyectos se cargan antes para que el carril fijo no se trabe.
   if (matchMedia('(min-width: 861px)').matches) document.querySelectorAll('.carril img[loading="lazy"]').forEach((imagen) => {
     imagen.loading = 'eager';
@@ -797,9 +823,18 @@
   panel.querySelectorAll('[data-destino]').forEach((opcion) => {
     opcion.addEventListener('click', () => irA(opcion.dataset.destino));
   });
+  formulario.addEventListener('input', (evento) => evento.target.setCustomValidity && evento.target.setCustomValidity(''));
   formulario.addEventListener('submit', (evento) => {
     evento.preventDefault();
-    const texto = 'Hola, tengo una duda: ' + new FormData(formulario).get('mensaje');
+    const campo = formulario.elements.mensaje;
+    const duda = campo.value.trim();
+    // Solo espacios no cuenta como duda.
+    if (!duda) {
+      campo.setCustomValidity('Escribe tu duda');
+      campo.reportValidity();
+      return;
+    }
+    const texto = 'Hola, tengo una duda: ' + duda;
     window.location.href = formulario.dataset.whatsapp + '?text=' + encodeURIComponent(texto);
   });
 
@@ -819,23 +854,48 @@
 (function () {
   const formulario = document.querySelector('[data-formulario]');
   if (!formulario) return;
+  const avisos = { nombre: 'Escribe tu nombre', negocio: 'Escribe el nombre de tu negocio', mensaje: 'Cuéntanos qué necesitas' };
+  // Al volver a escribir se quita el aviso, para que el navegador deje enviar.
+  formulario.addEventListener('input', (evento) => evento.target.setCustomValidity && evento.target.setCustomValidity(''));
   formulario.addEventListener('submit', (evento) => {
     evento.preventDefault();
-    const datos = new FormData(formulario);
-    const texto = 'Hola, soy ' + datos.get('nombre') + ' de ' + datos.get('negocio') + '. ' + datos.get('mensaje');
+    // required del navegador acepta "   ": se recorta cada campo y se avisa si quedo vacio.
+    const valores = {};
+    for (const nombre of Object.keys(avisos)) {
+      const campo = formulario.elements[nombre];
+      valores[nombre] = (campo ? campo.value : '').trim();
+      if (campo && !valores[nombre]) {
+        campo.setCustomValidity(avisos[nombre]);
+        campo.reportValidity();
+        return;
+      }
+    }
+    const texto = 'Hola, soy ' + valores.nombre + ' de ' + valores.negocio + '. ' + valores.mensaje;
     window.location.href = formulario.dataset.whatsapp + '?text=' + encodeURIComponent(texto);
   });
 })();
 
 (function () {
   const barra = document.querySelector('[data-barra-movil]');
-  const hero = document.querySelector('.hero');
-  const contacto = document.querySelector('#contacto');
-  if (barra && hero && contacto) {
-    let enHero = true, enContacto = false;
-    const actualizar = () => barra.classList.toggle('barra-movil--visible', !enHero && !enContacto);
-    new IntersectionObserver(([e]) => { enHero = e.isIntersecting; actualizar(); }).observe(hero);
-    new IntersectionObserver(([e]) => { enContacto = e.isIntersecting; actualizar(); }).observe(contacto);
+  // La barra sale en TODAS las paginas en cuanto se deja atras la primera pantalla
+  // (antes exigia .hero y #contacto a la vez y ninguna pagina tenia los dos).
+  // Se esconde mientras se escribe en un campo para no tapar el teclado ni el boton de enviar.
+  if (barra) {
+    const telefono = window.matchMedia('(max-width: 860px)');
+    let escribiendo = false;
+    let pendiente = false;
+    const actualizar = () => {
+      pendiente = false;
+      const mostrar = telefono.matches && !escribiendo && window.scrollY > window.innerHeight * 0.6;
+      barra.classList.toggle('barra-movil--visible', mostrar);
+    };
+    const pedir = () => { if (!pendiente) { pendiente = true; requestAnimationFrame(actualizar); } };
+    const esCampo = (el) => el && el.matches && el.matches('input, textarea, select');
+    window.addEventListener('scroll', pedir, { passive: true });
+    window.addEventListener('resize', pedir, { passive: true });
+    document.addEventListener('focusin', (e) => { if (esCampo(e.target) && !barra.contains(e.target)) { escribiendo = true; pedir(); } });
+    document.addEventListener('focusout', (e) => { if (esCampo(e.target)) { escribiendo = false; pedir(); } });
+    actualizar();
   }
 
   // Puntos que dicen en que tarjeta vas.

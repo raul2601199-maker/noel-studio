@@ -33,7 +33,7 @@ h3 { font-size: clamp(1.15rem, 1rem + .7vw, 1.6rem); }
 p { text-wrap: pretty; }
 .contenedor { width: min(100%, 1280px); margin-inline: auto; padding-inline: clamp(16px, 4vw, 48px); }
 .acciones { display: flex; flex-wrap: wrap; gap: 12px; }
-.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 12px 26px; border: 2px solid transparent; border-radius: 999px; font-weight: 600; text-decoration: none; transition: transform .2s var(--curva), background-color .2s, color .2s; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 12px 26px; border: 2px solid transparent; border-radius: 999px; font-family: inherit; font-size: inherit; font-weight: 600; text-decoration: none; transition: transform .2s var(--curva), background-color .2s, color .2s; }
 .btn:active { transform: scale(.97); }
 .btn--solido { background: var(--blanco); color: var(--negro); text-shadow: none; }
 .btn--solido:hover { background: var(--gris); }
@@ -1091,6 +1091,75 @@ main:has(.cierre) + .pie .pie__banda, main:has(.cierre) ~ .pie .pie__banda { dis
   .portafolio .proyecto:has(.etiqueta--demo) img { height: clamp(170px, 15vw, 220px); }
 }
 
+/* Pulido de computadora (27-nov). Solo pule lo que ya existe: escala de
+   titulos, ritmo entre secciones, botones, precios y legibilidad sobre el
+   tunel. Todo vive en min-width: 861px para no tocar el celular. */
+
+/* Precios de lista: un solo estilo en todo el sitio (verde LED, legible). */
+.precio, .grupo summary small, .creativos__lista span { font: 700 1.15rem/1.3 'Hanken Grotesk', sans-serif; letter-spacing: 0; }
+.grupo summary small { color: var(--acento); }
+.creativos__lista h3 { line-height: 1.15; }
+.creativos__lista h3 + p { margin-top: 6px; }
+
+/* Portafolio: que se vea el texto de cada captura (no recortarlo por el centro). */
+.proyecto img[src*="cliente-daxtons"] { object-position: 0 0 !important; }
+.proyecto img[src*="cliente-aldamarifa"] { object-position: 12% 0; }
+
+@media (min-width: 861px) {
+  /* ---------- Escala de titulos: H1 siempre manda ---------- */
+  /* Nivel 1 (titulo de seccion): 4.4rem. Queda abajo del H1 de cada pagina (4.8rem). */
+  h2, .problema h2 { font-size: clamp(2.15rem, 1.2rem + 4.3vw, 4.4rem); }
+  .cierre h2 { font-size: clamp(2.2rem, 1.2rem + 4.3vw, 4.6rem); }
+  /* Nivel 2 (preguntas, chat, formulario): 3.3rem. */
+  .preguntas h2, .chat-wa h2, .contacto h2 { font-size: clamp(2rem, 1.3rem + 2.5vw, 3.3rem); }
+
+  /* ---------- Hero de subpagina -> primera seccion: mismo aire ---------- */
+  .cabecera + .agenda, .cabecera + .portafolio { padding-top: 40px; }
+  .cabecera + .chat-wa { padding-top: 0; }
+  .cabecera:has(+ .chat-wa) { padding-bottom: 40px; }
+  /* Llamadas: la escena fija va centrada en pantalla; se recorta el aire del encabezado. */
+  .cabecera:has(+ .pin-spacer), .cabecera:has(+ .llamada) { padding-bottom: 0; }
+
+  /* ---------- Botones: una sola altura ---------- */
+  .btn:not(.nav__accion) { min-height: 56px; padding-block: 10px; line-height: 1.4; }
+  .prueba__hablar { font: 600 1em/1.4 'Hanken Grotesk', sans-serif; }
+
+  /* ---------- Barra de navegacion legible sobre tarjetas claras ---------- */
+  .nav::before { background: rgba(12, 13, 18, .74); }
+  .nav--solida::before { background: rgba(12, 13, 18, .8); }
+  .nav__ligas a { color: rgba(255, 255, 255, .8); }
+
+  /* ---------- Textos sobre los aros del tunel ---------- */
+  .cabecera p, .cierre p, .hero__sub, .confianza {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .95), 0 0 22px rgba(0, 0, 0, .95), 0 0 46px rgba(0, 0, 0, .85);
+  }
+  .cabecera p { color: #dfe1ea; }
+  .elector__info .orbe__sub { color: var(--texto-suave); font-size: .95rem; opacity: 1; }
+
+  /* ---------- Boton flotante del asistente: vidrio oscuro, no compite ---------- */
+  .agente-boton { color: var(--blanco); background: rgba(12, 13, 18, .78); border: 1px solid rgba(255, 255, 255, .22); box-shadow: 0 10px 30px -12px rgba(0, 0, 0, .9), inset 0 1px 0 rgba(255, 255, 255, .12); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+  .agente-boton__luz { background: var(--acento); box-shadow: 0 0 8px 1px var(--brillo); }
+  .pie { padding-bottom: 96px; }
+
+  /* ---------- Cajas de una misma columna con el mismo ancho ---------- */
+  .llamada__texto, .llamada .lista-simple { width: 100%; max-width: 474px; }
+  .planes__promo { max-width: none; }
+
+  /* ---------- Caja de intro alineada con la ultima linea del titulo ---------- */
+  .linea-servicio__cabeza { align-items: last baseline; }
+
+
+  /* ---------- Tarjeta de llamadas: onda de voz mas fina ---------- */
+  .servicio--llamadas .barras--tarjeta i { width: clamp(2px, .28vw, 4px); background: #2a2c36; }
+}
+
+/* Portafolio con el mismo ritmo que las demas secciones (pantallas altas;
+   las bajas conservan su ajuste compacto). */
+@media (min-width: 861px) and (min-height: 841px) {
+  .portafolio { padding-block: var(--seccion); }
+  .cabecera + .portafolio { padding-top: 40px; }
+}
+
 /* Orden del telefono: ninguna seccion mide una pantalla si su contenido no la llena. */
 @media (max-width: 860px) {
   main > section:not(.hero),
@@ -1176,6 +1245,19 @@ main:has(.cierre) + .pie .pie__banda, main:has(.cierre) ~ .pie .pie__banda { dis
   .planes__agente { white-space: normal !important; text-align: center; line-height: 1.3; padding-inline: 18px; }
 }
 
+/* Botones del hero: no deben empujar la pantalla hacia los lados en telefonos angostos. */
+@media (max-width: 860px) {
+  .acciones { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .hero__texto { min-width: 0; }
+}
+@media (max-width: 379px) {
+  .hero .acciones .btn { padding-inline: 6px; gap: 6px; font-size: .9rem; }
+}
+/* 320 px: no cabe texto + icono en media pantalla; se queda el texto completo. */
+@media (max-width: 350px) {
+  .hero .acciones .btn .icono { display: none; }
+}
+
 @media (max-width: 860px) {
   .hero { min-height: 100svh; padding-block: calc(92px + env(safe-area-inset-top)) 22px; align-items: stretch; }
   .hero__rejilla { height: 100%; display: flex; flex-direction: column-reverse; justify-content: space-between; gap: 24px; }
@@ -1201,6 +1283,16 @@ main:has(.cierre) + .pie .pie__banda, main:has(.cierre) ~ .pie .pie__banda { dis
   .hero h1 { font-size: 2rem; }
   .hero__sub { display: none; }
   .acciones { margin-top: 14px; }
+}
+/* Telefonos de alto normal con Safari (390x664, 375x667): el hero media ~765 px y
+   "Quiero mi agente" quedaba cortado en el primer pantallazo. Se aprieta el espacio
+   (orbe, separaciones), sin quitar nada: el subtitulo sigue visible. */
+@media (max-width: 860px) and (min-height: 621px) and (max-height: 780px) {
+  .hero { padding-top: calc(84px + env(safe-area-inset-top)); }
+  .hero .hero__rejilla { gap: 14px; }
+  .hero .elector { gap: 8px; }
+  .hero .orbe { --tam: min(40vw, 16svh, 170px); }
+  .hero .hero__sub { margin-block: 10px 14px; }
 }
 
 @media (max-width: 860px) {
@@ -1259,12 +1351,20 @@ main:has(.cierre) + .pie .pie__banda, main:has(.cierre) ~ .pie .pie__banda { dis
   .resena--grande p { font-size: 1.62rem; }
   .contacto__rejilla { grid-template-columns: 1fr; }
   .liga { display: inline-flex; align-items: center; min-height: 44px; }
-  .pie { padding-bottom: calc(92px + env(safe-area-inset-bottom)); }
+  .pie { padding-bottom: calc(var(--barra-movil-alto) + 24px); }
 }
 
 @media (max-width: 860px) {
-  .barra-movil { position: fixed; left: 0; right: 0; bottom: 0; z-index: var(--z-nav); display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px 14px calc(10px + env(safe-area-inset-bottom)); background: rgba(3, 3, 5, .92); border-top: 1px solid var(--linea); transform: translateY(110%); transition: transform .25s var(--curva); }
-  .barra-movil--visible { transform: none; }
+  /* Alto real de la barra: 10 + 48 + 10. El pie y el scroll reservan exactamente esto. */
+  :root { --barra-movil-alto: calc(68px + env(safe-area-inset-bottom)); }
+  html { scroll-padding-bottom: var(--barra-movil-alto); }
+  .barra-movil { position: fixed; left: 0; right: 0; bottom: 0; z-index: var(--z-nav); display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px 14px calc(10px + env(safe-area-inset-bottom)); background: rgba(3, 3, 5, .92); border-top: 1px solid var(--linea); transform: translateY(110%); visibility: hidden; transition: transform .25s var(--curva), visibility 0s linear .25s; }
+  .barra-movil--visible { transform: none; visibility: visible; transition: transform .25s var(--curva), visibility 0s; }
+  .barra-movil .btn { min-height: 48px; padding-block: 0; font-size: .96rem; cursor: pointer; }
+}
+/* Telefono acostado: la barra no sale (00-orden.css), asi que no se reserva su espacio. */
+@media (max-width: 960px) and (max-height: 500px) {
+  :root { --barra-movil-alto: env(safe-area-inset-bottom); }
 }
 
 @media (max-width: 860px) {
@@ -1280,16 +1380,15 @@ main:has(.cierre) + .pie .pie__banda, main:has(.cierre) ~ .pie .pie__banda { dis
 
 @media (max-width: 860px) {
   .agente-boton { right: 14px; bottom: calc(14px + env(safe-area-inset-bottom)); min-height: 46px; padding: 8px 15px; font-size: .96rem; }
-  .barra-movil--visible ~ .agente-boton { bottom: calc(84px + env(safe-area-inset-bottom)); }
   .agente-boton__largo { display: none; }
   .agente-boton__corto { display: inline; }
   .agente { width: 100%; max-width: none; max-height: 88dvh; margin: auto 0 0; padding: 20px 18px calc(18px + env(safe-area-inset-bottom)); border-width: 1px 0 0; border-radius: 18px 18px 0 0; }
   .agente__campo .btn { width: auto; }
 }
+/* En telefono el asistente se abre con "¿Dudas?" de la barra inferior (mismo panel).
+   El boton flotante no se muestra para no encimarse con la barra ni con los botones del hero. */
 @media (max-width: 860px) {
-  .agente-boton { opacity: 0; pointer-events: none; }
-  .barra-movil--visible ~ .agente-boton { opacity: 1; pointer-events: auto; }
-  .barra-movil--visible ~ .agente-boton--oculto { opacity: 0; pointer-events: none; }
+  .agente-boton { display: none; }
 }
 
 @media (max-width: 860px) {
@@ -1337,9 +1436,7 @@ main:has(.cierre) + .pie .pie__banda, main:has(.cierre) ~ .pie .pie__banda { dis
   .btn { min-height: 50px; font-size: .98rem; }
 }
 @media (max-width: 860px) {
-  .agente-boton, .barra-movil--visible ~ .agente-boton { display: none; }
   .nav::before { background: rgba(10, 11, 16, .78); }
-  .barra-movil .btn { min-height: 48px; font-size: .96rem; cursor: pointer; }
 }
 @media (max-width: 860px) {
   .nav .nav__accion { width: auto; flex: none; padding-inline: 18px; }
@@ -1355,4 +1452,42 @@ main:has(.cierre) + .pie .pie__banda, main:has(.cierre) ~ .pie .pie__banda { dis
   .proyecto h3 { margin-top: 10px; font-size: 1rem; }
   .proyecto p { font-size: .88rem; }
   .portafolio + .puntos, .carril + .puntos { display: none; }
+}
+
+/* Pulido de telefono (27-nov): dedo comodo (44 px), letra minima ~13 px y portafolio sin huecos.
+   Solo agranda areas de toque y tamanos; no cambia colores, textos ni orden. */
+@media (max-width: 860px) {
+  /* Areas de toque de 44 px sin mover el diseno. */
+  .nav__marca { display: inline-flex; align-items: center; min-height: 44px; margin-block: -12px; }
+  .nav__cortos a { padding: 12px 15px !important; min-height: 44px; display: inline-flex; align-items: center; }
+  .migas a { display: inline-flex; align-items: center; min-width: 44px; min-height: 44px; margin-block: -12px; padding-block: 0; }
+  .pie a { min-height: 44px; padding-block: 4px; }
+  .prueba__legal { font-size: .82rem; line-height: 1.7; }
+  .prueba__legal a { display: inline-block; padding-block: 14px; margin-block: -14px; }
+  .nfc-escena__opciones button { min-height: 44px; }
+  /* El boton de sonido se ve igual (38 px); solo crece la zona que recibe el dedo. */
+  .telefono__sonido::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; }
+
+  /* Letra minima ~13 px en texto informativo (las maquetas de chat se quedan como estan). */
+  .dia__cabeza { font-size: .82rem; }
+  .dia__aviso { font-size: .82rem; }
+  .dia__sin { font-size: .82rem !important; }
+  .dia__total span { font-size: .82rem; letter-spacing: .04em; }
+  .gcharla__linea span { font-size: .82rem; }
+  .ruta__cuando, .estudio__etiqueta, .proyecto .etiqueta { font-size: .82rem; }
+  .agenda__dias small { font-size: .82rem; }
+
+  /* Portafolio: la etiqueta "Cliente real / Demo" baja a la esquina inferior de la foto
+     para no tapar el titulo de la captura. */
+  .carril .proyecto { --alto-foto: 150px; }
+  .carril .proyecto--grande { --alto-foto: 210px; }
+  .carril .proyecto .etiqueta { top: calc(var(--alto-foto) - 8px); left: 8px; translate: 0 -100%; padding: 4px 9px 4px 8px; }
+  /* Si queda un proyecto solo en el ultimo renglon, ocupa todo el ancho en vez de dejar un hueco. */
+  .carril > .proyecto:not(.proyecto--grande):nth-child(odd of :not(.proyecto--grande)):last-child { grid-column: 1 / -1; --alto-foto: 190px; }
+  .carril > .proyecto:not(.proyecto--grande):nth-child(odd of :not(.proyecto--grande)):last-child img { height: 190px; }
+}
+/* 320 px: "Escribeme" + menu no cabian y la hamburguesa quedaba recortada. */
+@media (max-width: 350px) {
+  .nav { gap: 10px; padding-left: 16px; }
+  .nav .nav__accion { padding-inline: 12px; }
 }
